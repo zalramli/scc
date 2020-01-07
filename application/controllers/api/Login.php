@@ -66,7 +66,7 @@ class Login extends REST_Controller
                 } else {
                     // membuat array untuk di transfer ke API
                     $result["success"] = "1";
-                    $result["message"] = "Password anda tidak salah !";
+                    $result["message"] = "Password anda salah !";
                     $this->response($result, 200);
                 }
             }
@@ -106,7 +106,7 @@ class Login extends REST_Controller
                     } else {
                         // membuat array untuk di transfer ke API
                         $result["success"] = "1";
-                        $result["message"] = "Username anda tidak terdaftar !";
+                        $result["message"] = "Password anda salah !";
                         $this->response($result, 200);
                     }
                 }
