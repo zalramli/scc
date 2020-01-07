@@ -4,12 +4,72 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context="com.its.xcc.Activities.Login.LoginActivity">
+	tools:context="com.its.xcc.Activities._Login.LoginActivity">
 
-	<TextView
-		android:layout_width="wrap_content"
+	<com.google.android.material.appbar.AppBarLayout
+		android:id="@+id/app_bar_layout"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_centerInParent="true"
-		android:text="ads" />
+		android:layout_alignParentTop="true">
+
+		<androidx.appcompat.widget.Toolbar
+			android:id="@+id/toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize"
+			app:theme="@style/ToolbarTheme"
+			app:titleTextColor="@color/white">
+
+		</androidx.appcompat.widget.Toolbar>
+
+	</com.google.android.material.appbar.AppBarLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_marginBottom="40dp"
+		android:orientation="vertical"
+		android:padding="16dp">
+
+		<com.google.android.material.textfield.TextInputLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textColorHint="@color/white">
+
+			<EditText
+				android:id="@+id/edt_username"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="Username ..." />
+
+		</com.google.android.material.textfield.TextInputLayout>
+
+		<com.google.android.material.textfield.TextInputLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			app:passwordToggleEnabled="true">
+
+			<EditText
+				android:id="@+id/edt_password"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:backgroundTint="@color/white"
+				android:hint="Password ..."
+				android:imeOptions="actionNext"
+				android:inputType="textPassword"
+				android:textColor="@color/white" />
+
+		</com.google.android.material.textfield.TextInputLayout>
+
+		<Button
+			android:id="@+id/btn_login"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
+			android:text="Login"
+			android:textAllCaps="false"
+			android:textSize="15dp" />
+
+	</LinearLayout>
 
 </RelativeLayout>
