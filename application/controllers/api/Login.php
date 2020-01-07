@@ -61,11 +61,14 @@ class Login extends REST_Controller
 
                     // membuat array untuk di transfer
                     $result["success"] = "2";
+                    $result["hak_akses"] = "internal";
                     $result["message"] = "Success Berhasil Masuk";
+                    $result["gaji"] = "gaji";
                     $this->response($result, 200);
                 } else {
                     // membuat array untuk di transfer ke API
                     $result["success"] = "1";
+                    $result["hak_akses"] = "internal";
                     $result["message"] = "Password anda salah !";
                     $this->response($result, 200);
                 }
@@ -101,11 +104,14 @@ class Login extends REST_Controller
 
                         // membuat array untuk di transfer
                         $result["success"] = "2";
+                        $result["hak_akses"] = "eksternal";
                         $result["message"] = "Success Berhasil Masuk";
+                        $result["gaji"] = "gaji";
                         $this->response($result, 200);
                     } else {
                         // membuat array untuk di transfer ke API
                         $result["success"] = "1";
+                        $result["hak_akses"] = "internal";
                         $result["message"] = "Password anda salah !";
                         $this->response($result, 200);
                     }
@@ -113,7 +119,8 @@ class Login extends REST_Controller
             } else {
 
                 // membuat array untuk di transfer ke API
-                $result["success"] = "1";
+                $result["success"] = "0";
+                $result["hak_akses"] = "internal";
                 $result["message"] = "Username anda tidak ditemukan !";
                 $this->response($result, 200);
             }
