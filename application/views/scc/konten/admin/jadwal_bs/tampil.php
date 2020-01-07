@@ -124,7 +124,7 @@
                                 ?>
 							<li class="list-group-item" id="table1">
 								<?= $data_senin->jam_mulai.' - '.$data_senin->jam_selesai ?>
-								<select class="float-right" id="ubah_status">
+								<select class="float-right status_senin">
 									<option value="<?= $data_senin->id_jadwal_bs ?>-Aktif"
 										<?php if($data_senin->status_aktif== 'Aktif') echo 'selected'; ?>>Aktif
 									</option>
@@ -150,7 +150,17 @@
                                     foreach($record_selasa as $data_selasa):
                                 ?>
 							<li class="list-group-item">
-								<?= $data_selasa->jam_mulai.' - '.$data_selasa->jam_selesai ?></li>
+								<?= $data_selasa->jam_mulai.' - '.$data_selasa->jam_selesai ?>
+								<select class="float-right status_selasa">
+									<option value="<?= $data_selasa->id_jadwal_bs ?>-Aktif"
+										<?php if($data_selasa->status_aktif== 'Aktif') echo 'selected'; ?>>Aktif
+									</option>
+									<option value="<?= $data_selasa->id_jadwal_bs ?>-Tidak Aktif"
+										<?php if($data_selasa->status_aktif== 'Tidak Aktif') echo 'selected'; ?>>
+										Tidak Aktif
+									</option>
+								</select>
+							</li>
 							<?php endforeach; ?>
 
 						</ul>
@@ -167,7 +177,17 @@
                                     foreach($record_rabu as $data_rabu):
                                 ?>
 							<li class="list-group-item">
-								<?= $data_rabu->jam_mulai.' - '.$data_rabu->jam_selesai ?></li>
+								<?= $data_rabu->jam_mulai.' - '.$data_rabu->jam_selesai ?>
+								<select class="float-right status_rabu">
+									<option value="<?= $data_rabu->id_jadwal_bs ?>-Aktif"
+										<?php if($data_rabu->status_aktif== 'Aktif') echo 'selected'; ?>>Aktif
+									</option>
+									<option value="<?= $data_rabu->id_jadwal_bs ?>-Tidak Aktif"
+										<?php if($data_rabu->status_aktif== 'Tidak Aktif') echo 'selected'; ?>>
+										Tidak Aktif
+									</option>
+								</select>
+							</li>
 							<?php endforeach; ?>
 
 						</ul>
@@ -184,7 +204,17 @@
                                     foreach($record_kamis as $data_kamis):
                                 ?>
 							<li class="list-group-item">
-								<?= $data_kamis->jam_mulai.' - '.$data_kamis->jam_selesai ?></li>
+								<?= $data_kamis->jam_mulai.' - '.$data_kamis->jam_selesai ?>
+								<select class="float-right status_kamis">
+									<option value="<?= $data_kamis->id_jadwal_bs ?>-Aktif"
+										<?php if($data_kamis->status_aktif== 'Aktif') echo 'selected'; ?>>Aktif
+									</option>
+									<option value="<?= $data_kamis->id_jadwal_bs ?>-Tidak Aktif"
+										<?php if($data_kamis->status_aktif== 'Tidak Aktif') echo 'selected'; ?>>
+										Tidak Aktif
+									</option>
+								</select>
+							</li>
 							<?php endforeach; ?>
 
 						</ul>
@@ -201,7 +231,17 @@
                                     foreach($record_jumat as $data_jumat):
                                 ?>
 							<li class="list-group-item">
-								<?= $data_jumat->jam_mulai.' - '.$data_jumat->jam_selesai ?></li>
+								<?= $data_jumat->jam_mulai.' - '.$data_jumat->jam_selesai ?>
+								<select class="float-right status_jumat">
+									<option value="<?= $data_jumat->id_jadwal_bs ?>-Aktif"
+										<?php if($data_jumat->status_aktif== 'Aktif') echo 'selected'; ?>>Aktif
+									</option>
+									<option value="<?= $data_jumat->id_jadwal_bs ?>-Tidak Aktif"
+										<?php if($data_jumat->status_aktif== 'Tidak Aktif') echo 'selected'; ?>>
+										Tidak Aktif
+									</option>
+								</select>
+							</li>
 							<?php endforeach; ?>
 
 						</ul>
@@ -212,11 +252,62 @@
 	</div>
 	<script src="<?= base_url(); ?>assets/sb_admin_2/vendor/jquery/jquery.min.js"></script>
 	<script>
-		$('#ubah_status').change(function () {
+		$('.status_senin').change(function () {
 			var id = this.value;
-			alert(id);
 			$.ajax({
-				url: "<?php echo base_url() . 'admin/internal/update_jadwal_senin'; ?>",
+				url: "<?php echo base_url() . 'admin/jadwal_bs/update_jadwal_senin'; ?>",
+				method: "POST",
+				data: {
+					id: id
+				},
+				success: function (data) {
+					location.reload();
+				}
+			});
+		});
+		$('.status_selasa').change(function () {
+			var id = this.value;
+			$.ajax({
+				url: "<?php echo base_url() . 'admin/jadwal_bs/update_jadwal_selasa'; ?>",
+				method: "POST",
+				data: {
+					id: id
+				},
+				success: function (data) {
+					location.reload();
+				}
+			});
+		});
+		$('.status_rabu').change(function () {
+			var id = this.value;
+			$.ajax({
+				url: "<?php echo base_url() . 'admin/jadwal_bs/update_jadwal_rabu'; ?>",
+				method: "POST",
+				data: {
+					id: id
+				},
+				success: function (data) {
+					location.reload();
+				}
+			});
+		});
+		$('.status_kamis').change(function () {
+			var id = this.value;
+			$.ajax({
+				url: "<?php echo base_url() . 'admin/jadwal_bs/update_jadwal_kamis'; ?>",
+				method: "POST",
+				data: {
+					id: id
+				},
+				success: function (data) {
+					location.reload();
+				}
+			});
+		});
+		$('.status_jumat').change(function () {
+			var id = this.value;
+			$.ajax({
+				url: "<?php echo base_url() . 'admin/jadwal_bs/update_jadwal_jumat'; ?>",
 				method: "POST",
 				data: {
 					id: id

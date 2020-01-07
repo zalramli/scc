@@ -100,4 +100,74 @@ class Jadwal_prove extends CI_Controller {
         echo $ubah_status;
 
     }
+
+    function update_jadwal_selasa()
+    {
+        $id = $this->input->post('id');
+        $id_prove = substr($id,0,1);
+        $ubah_status = substr($id,2);
+
+        $where = array(
+        'id_jadwal_prove' => $id_prove
+        );
+        $data = array(
+        'status_aktif' => $ubah_status
+        );
+
+        $this->M_crud->update_data($where,'jadwal_prove',$data);
+        echo $ubah_status;
+
+    }
+    function update_jadwal_rabu()
+    {
+        $id = $this->input->post('id');
+        $id_prove = substr($id,0,1);
+        $ubah_status = substr($id,2);
+
+        $where = array(
+        'id_jadwal_prove' => $id_prove
+        );
+        $data = array(
+        'status_aktif' => $ubah_status
+        );
+
+        $this->M_crud->update_data($where,'jadwal_prove',$data);
+        echo $ubah_status;
+    }
+
+    function update_jadwal_kamis()
+    {
+        $id = $this->input->post('id');
+        $id_prove = substr($id,0,1);
+        $ubah_status = substr($id,2);
+
+        $where = array(
+        'id_jadwal_prove' => $id_prove
+        );
+        $data = array(
+        'status_aktif' => $ubah_status
+        );
+
+        $this->M_crud->update_data($where,'jadwal_prove',$data);
+        echo $ubah_status;
+
+    }
+
+    function update_jadwal_jumat()
+    {
+        $id = $this->input->post('id');
+        $id_prove = substr($id,0,1);
+        $ubah_status = substr($id,2);
+
+        $where = array(
+        'id_jadwal_prove' => $id_prove
+        );
+        $data = array(
+        'status_aktif' => $ubah_status
+        );
+
+        $this->M_crud->update_data($where,'jadwal_prove',$data);
+        echo $ubah_status;
+
+    }
 }

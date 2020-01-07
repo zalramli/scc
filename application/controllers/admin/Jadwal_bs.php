@@ -71,4 +71,94 @@ class Jadwal_bs extends CI_Controller {
 
     }
 
+    function update_jadwal_senin()
+    {
+        $id = $this->input->post('id');
+        $id_jadwal_bs = substr($id,0,1);
+        $ubah_status = substr($id,2);
+
+        $where = array(
+            'id_jadwal_bs' => $id_jadwal_bs
+        );
+        $data = array(
+            'status_aktif' => $ubah_status
+        );
+
+        $this->M_crud->update_data($where,'jadwal_bank_software',$data);
+        echo $ubah_status;
+
+    }
+
+    function update_jadwal_selasa()
+    {
+        $id = $this->input->post('id');
+        $id_jadwal_bs = substr($id,0,1);
+        $ubah_status = substr($id,2);
+
+        $where = array(
+        'id_jadwal_bs' => $id_jadwal_bs
+        );
+        $data = array(
+        'status_aktif' => $ubah_status
+        );
+
+        $this->M_crud->update_data($where,'jadwal_bank_software',$data);
+        echo $ubah_status;
+
+    }
+
+    function update_jadwal_rabu()
+    {
+    $id = $this->input->post('id');
+    $id_jadwal_bs = substr($id,0,1);
+    $ubah_status = substr($id,2);
+
+    $where = array(
+    'id_jadwal_bs' => $id_jadwal_bs
+    );
+    $data = array(
+    'status_aktif' => $ubah_status
+    );
+
+    $this->M_crud->update_data($where,'jadwal_bank_software',$data);
+    echo $ubah_status;
+
+    }
+
+    function update_jadwal_kamis()
+    {
+        $id = $this->input->post('id');
+        $id_jadwal_bs = substr($id,0,1);
+        $ubah_status = substr($id,2);
+
+        $where = array(
+        'id_jadwal_bs' => $id_jadwal_bs
+        );
+        $data = array(
+        'status_aktif' => $ubah_status
+        );
+
+        $this->M_crud->update_data($where,'jadwal_bank_software',$data);
+        echo $ubah_status;
+
+    }
+
+    function update_jadwal_jumat()
+    {
+        $id = $this->input->post('id');
+        $id_jadwal_bs = substr($id,0,1);
+        $ubah_status = substr($id,2);
+
+        $where = array(
+        'id_jadwal_bs' => $id_jadwal_bs
+        );
+        $data = array(
+        'status_aktif' => $ubah_status
+        );
+
+        $this->M_crud->update_data($where,'jadwal_bank_software',$data);
+        echo $ubah_status;
+
+    }
+
 }
