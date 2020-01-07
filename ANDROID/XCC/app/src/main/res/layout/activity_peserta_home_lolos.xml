@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.its.xcc.Activities.Peserta.Home.PesertaHomeLolosActivity"
+    android:background="@drawable/grad_bg">
+
+    <ImageView
+        android:id="@+id/imgView"
+        android:layout_width="242dp"
+        android:layout_height="236dp"
+        android:src="@drawable/robot"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        />
+
+    <TextView
+        android:layout_below="@+id/imgView"
+        android:layout_marginTop="20dp"
+        android:id="@+id/tv_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:gravity="center_horizontal"
+        android:text="David Setya Nur Hakiki Ramadhan"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/tv_deskripsi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Selamat Anda lolos,Hubungi contact dibawah ini ya :)"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/tv_status"
+        android:textColor="@color/white"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:gravity="center_horizontal"
+        />
+
+    <Button
+        android:id="@+id/btn_notif"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@+id/tv_deskripsi"
+        android:text="#Klik"
+        android:background="@drawable/btn_bg"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-medium"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="16sp"/>
+
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/cp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginLeft="50dp"-->
+<!--        android:layout_marginRight="50dp"-->
+<!--        android:layout_marginBottom="30dp">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/transparent"-->
+<!--            android:text="CP : 082247141420"-->
+<!--            android:fontFamily="sans-serif"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="10dp"/>-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/transparent"-->
+<!--            android:text="ID Line : hasri_wiji08"-->
+<!--            android:fontFamily="sans-serif"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:textSize="10dp"/>-->
+
+<!--    </RelativeLayout>-->
+    <TextView
+        android:id="@+id/tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="#ICodeU"
+        android:layout_marginTop="34dp"
+        android:layout_below="@id/btn_notif"
+        android:textColor="@color/white"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:gravity="center_horizontal"
+        android:textFontWeight="bold"
+        android:fontFamily="monospace"
+        android:textSize="25dp"
+        />
+
+
+</RelativeLayout>
