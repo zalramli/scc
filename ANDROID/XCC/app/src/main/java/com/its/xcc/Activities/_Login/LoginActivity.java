@@ -26,8 +26,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 	Button btn_login;
 	Toolbar toolbar;
 
-	String hakAkses;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
