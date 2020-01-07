@@ -1,10 +1,21 @@
 package com.its.xcc.Controllers;
 
 public class BaseUrl {
-    String url_data;
+	String urlData;
+	String urlUpload;
 
-    public String getUrl_data() {
-        url_data = "https://scc-himastaits.com/api/";
-        return url_data;
-    }
+	String ipAddress = "https://scc-himastaits.com/";
+
+	public BaseUrl() {
+		urlData = ipAddress + "api/";
+		urlUpload = ipAddress + "";
+	}
+
+	public String getUrlData() {
+		return urlData;
+	}
+
+	public String getUrlUpload() {
+		return urlUpload;
+	}
 }

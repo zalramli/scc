@@ -4,33 +4,39 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.xcc.R;
-import com.its.xcc.Activities._Login.presenter.ILoginActivityPresenter;
-import com.its.xcc.Activities._Login.presenter.LoginActivityPresenter;
-import com.its.xcc.Activities._Login.view.ILoginActivityView;
+import com.its.xcc.Activities._Login.presenter.ILoginPresenter;
+import com.its.xcc.Activities._Login.presenter.LoginPresenter;
+import com.its.xcc.Activities._Login.view.ILoginView;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener, ILoginActivityView {
+import es.dmoral.toasty.Toasty;
 
-	ILoginActivityPresenter loginActivityPresenter;
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, ILoginView {
 
-	EditText edt_username, edt_password;
+	ILoginPresenter loginPresenter;
+
+	EditText edtUsername, edtPassword;
 	Button btn_login;
-
 	Toolbar toolbar;
+
+	String hakAkses;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
-		loginActivityPresenter = new LoginActivityPresenter(this, this);
+		loginPresenter = new LoginPresenter(this, this);
 
-		edt_username = findViewById(R.id.edt_username);
-		edt_password = findViewById(R.id.edt_password);
+		edtUsername = findViewById(R.id.edt_username);
+		edtPassword = findViewById(R.id.edt_password);
 		btn_login = findViewById(R.id.btn_login);
 
 		initActionBar();
@@ -41,22 +47,51 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.btn_login) {
+			boolean isEmpty = false;
 
+			String inputUsername = edtUsername.getText().toString().trim();
+			String inputPassword = edtPassword.getText().toString().trim();
+
+			if (TextUtils.isEmpty(inputUsername)) {
+				isEmpty = true;
+				edtUsername.setError("Isi Username Dengan Lengkap");
+			} else if (TextUtils.isEmpty(inputPassword)) {
+				isEmpty = true;
+				edtPassword.setError("Isi Password Dengan Lengkap");
+			}
+
+			if (!isEmpty) {
+				loginPresenter.onLogin(inputUsername, inputPassword);
+			}
 		}
 	}
 
 	@Override
 	public void initActionBar() {
-
+		setSupportActionBar(toolbar);
+		if (getSupportActionBar() != null) {
+			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		}
 	}
 
 	@Override
 	public void onSuccessMessage(String message) {
-
+		Toasty.success(this, message, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onErrorMessage(String message) {
+		Toasty.error(this, message, Toast.LENGTH_SHORT).show();
+	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+
+			case android.R.id.home:
+				onBackPressed();
+				break;
+		}
+		return true;
 	}
 }
