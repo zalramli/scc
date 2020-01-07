@@ -2,7 +2,6 @@ package com.its.xcc.Activities._Login.presenter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.view.View;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -81,8 +80,6 @@ public class LoginPresenter implements ILoginPresenter {
 									sessionManager.logout();
 
 								}
-
-//								onSuccessMessage
 
 								//sessionManager.setSessionLogin(id_user, nama, username, hakAkses);
 								loginView.onSuccessMessage(id_user + nama + username);
