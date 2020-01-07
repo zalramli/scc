@@ -59,10 +59,10 @@ public class LoginPresenter implements ILoginPresenter {
 							for (int i = 0; i < jsonArray.length(); i++) {
 								JSONObject object = jsonArray.getJSONObject(i);
 
-								String id_user = "def";
+								String hakAkses = object.getString("hak_akses").trim();
+								String id_user = "";
 								String nama = object.getString("nama").trim();
 								String username = object.getString("username").trim();
-								String hakAkses = object.getString("hak_akses").trim();
 
 								Intent intent = new Intent();
 
@@ -85,10 +85,10 @@ public class LoginPresenter implements ILoginPresenter {
 //								onSuccessMessage
 
 								//sessionManager.setSessionLogin(id_user, nama, username, hakAkses);
-								loginView.onSuccessMessage(id_user);
+								loginView.onSuccessMessage(id_user + nama + username);
 
-								intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-								context.startActivity(intent);
+//								intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//								context.startActivity(intent);
 							}
 						} else if (success.equals("1")) {
 							loginView.onErrorMessage(message);

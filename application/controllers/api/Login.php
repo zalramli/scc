@@ -51,7 +51,7 @@ class Login extends REST_Controller
 
                     // ambil detail data db
                     $data = array(
-                        'id_user' => $row["id_internal"],
+                        'id_internal' => $row["id_internal"],
                         'nama' => $row["nama"],
                         'username' => $row["username"],
                         'hak_akses' => "internal"
@@ -61,15 +61,11 @@ class Login extends REST_Controller
 
                     // membuat array untuk di transfer
                     $result["success"] = "2";
-                    $result["hak_akses"] = "internal";
                     $result["message"] = "Success Berhasil Masuk";
-                    $result["id_internal"] = "id_internal";
-                    $result["gaji"] = "gaji";
                     $this->response($result, 200);
                 } else {
                     // membuat array untuk di transfer ke API
                     $result["success"] = "1";
-                    $result["hak_akses"] = "internal";
                     $result["message"] = "Password anda salah !";
                     $this->response($result, 200);
                 }
@@ -95,7 +91,7 @@ class Login extends REST_Controller
 
                         // ambil detail data db
                         $data = array(
-                            'id_user' => $row["id_eksternal"],
+                            'id_eksternal' => $row["id_eksternal"],
                             'nama' => $row["nama"],
                             'username' => $row["username"],
                             'hak_akses' => "eksternal"
@@ -105,15 +101,11 @@ class Login extends REST_Controller
 
                         // membuat array untuk di transfer
                         $result["success"] = "2";
-                        $result["hak_akses"] = "eksternal";
                         $result["message"] = "Success Berhasil Masuk";
-                        $result["gaji"] = "Gaji";
-                        $result["id_eksternal"] = "id_eksternal";
                         $this->response($result, 200);
                     } else {
                         // membuat array untuk di transfer ke API
                         $result["success"] = "1";
-                        $result["hak_akses"] = "internal";
                         $result["message"] = "Password anda salah !";
                         $this->response($result, 200);
                     }
@@ -122,7 +114,6 @@ class Login extends REST_Controller
 
                 // membuat array untuk di transfer ke API
                 $result["success"] = "0";
-                $result["hak_akses"] = "internal";
                 $result["message"] = "Username anda tidak ditemukan !";
                 $this->response($result, 200);
             }
