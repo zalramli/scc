@@ -2,6 +2,7 @@ package com.its.xcc.Activities._Login.presenter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -41,7 +42,7 @@ public class LoginPresenter implements ILoginPresenter {
 	@Override
 	public void onLogin(String username, String password) {
 		String base_url = baseUrl.getUrlData();
-		String URL_DATA = base_url + "login/"; // url http request
+		String URL_DATA = base_url + "login/masuk"; // url http request
 
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
 			new Response.Listener<String>() {
@@ -52,9 +53,9 @@ public class LoginPresenter implements ILoginPresenter {
 						String success = jsonObject.getString("success");
 						String message = jsonObject.getString("message");
 
-						JSONArray jsonArray = jsonObject.getJSONArray("login");
+						JSONArray jsonArray = jsonObject.getJSONArray("tbl_data");
 
-						if (success.equals("1")) {
+						if (success.equals("2")) {
 							for (int i = 0; i < jsonArray.length(); i++) {
 								JSONObject object = jsonArray.getJSONObject(i);
 
@@ -81,12 +82,15 @@ public class LoginPresenter implements ILoginPresenter {
 
 								}
 
-								sessionManager.setSessionLogin(id_user, nama, username, hakAkses);
+//								onSuccessMessage
+
+								//sessionManager.setSessionLogin(id_user, nama, username, hakAkses);
+								loginView.onSuccessMessage(id_user);
 
 								intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 								context.startActivity(intent);
 							}
-						} else if (success.equals("-1")) {
+						} else if (success.equals("1")) {
 							loginView.onErrorMessage(message);
 						} else if (success.equals("0")) {
 							loginView.onErrorMessage(message);

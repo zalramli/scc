@@ -33,8 +33,7 @@
 
 		<com.google.android.material.textfield.TextInputLayout
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:textColorHint="@color/white">
+			android:layout_height="wrap_content">
 
 			<EditText
 				android:id="@+id/edt_username"
@@ -53,11 +52,9 @@
 				android:id="@+id/edt_password"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:backgroundTint="@color/white"
 				android:hint="Password ..."
 				android:imeOptions="actionNext"
-				android:inputType="textPassword"
-				android:textColor="@color/white" />
+				android:inputType="textPassword" />
 
 		</com.google.android.material.textfield.TextInputLayout>
 

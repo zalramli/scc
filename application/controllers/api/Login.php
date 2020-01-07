@@ -14,7 +14,7 @@ class Login extends REST_Controller
         $this->load->model("api/M_login");
     }
 
-    function index_post()
+    function masuk_post()
     {
         // ambil data
         $post_username = $this->post('username');
@@ -63,6 +63,7 @@ class Login extends REST_Controller
                     $result["success"] = "2";
                     $result["hak_akses"] = "internal";
                     $result["message"] = "Success Berhasil Masuk";
+                    $result["id_internal"] = "id_internal";
                     $result["gaji"] = "gaji";
                     $this->response($result, 200);
                 } else {
@@ -106,7 +107,8 @@ class Login extends REST_Controller
                         $result["success"] = "2";
                         $result["hak_akses"] = "eksternal";
                         $result["message"] = "Success Berhasil Masuk";
-                        $result["gaji"] = "gaji";
+                        $result["gaji"] = "Gaji";
+                        $result["id_eksternal"] = "id_eksternal";
                         $this->response($result, 200);
                     } else {
                         // membuat array untuk di transfer ke API
