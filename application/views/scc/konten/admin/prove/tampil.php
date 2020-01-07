@@ -28,7 +28,7 @@
 							<td><?= $data->nama_eksternal ?></td>
 							<td><?= $data->angkatan ?></td>
 							<td><?= $data->nama_internal ?></td>
-							<td><?= $data->pilihan_materi ?></td>
+							<td><?= $data->nama_materi ?></td>
 							<td><?= $data->deskripsi_materi ?></td>
 							<td>
 								<?php if($data->status_prove == "Selesai")
