@@ -17,44 +17,44 @@ class Login extends REST_Controller
     function index_post()
     {
         // ambil data
-        $post_nim = $this->post('nim');
-        $post_nama = $this->post('nama');
+        $post_username = $this->post('username');
+        $post_password = $this->post('password');
 
-        $nim = strtolower($post_nim);
-        $nama = strtolower($post_nama);
-
-        // data array untuk where db
-        $where = array(
-            'nim' => $nim
-        );
-
-        // mengambil jumlah baris
-        $cek = $this->M_login->get_data('peserta', $where)->num_rows();
+        $username = strtolower($post_username);
+        $password = strtolower($post_password);
 
         // variable array
         $result = array();
         $result['tbl_data'] = array();
 
-        // cek apakah ada data dari nim
+        // data array untuk where db
+        $where = array(
+            'username' => $username
+        );
+
+        // mengambil jumlah baris
+        $cek = $this->M_login->get_data('internal', $where)->num_rows();
+
+        // cek apakah ada data dari username
         if ($cek > 0) {
 
-            // mengambil data dari database berdasarkan nim
-            $query = $this->M_login->get_data('peserta', $where);
+            // mengambil data dari database berdasarkan username
+            $query = $this->M_login->get_data('internal', $where);
 
             // mengeluarkan data dari database
             foreach ($query->result_array() as $row) {
 
-                $db_nama = strtolower($row["nama"]);
+                $db_password = strtolower($row["password"]);
 
-                // dicek apakah data inputan sama dengan data di database
-                if ($nama == $db_nama) {
+                // dicek apakah data inputan dengan data di database
+                if ($password == $db_password) {
 
                     // ambil detail data db
                     $data = array(
-                        'nim' => $row["nim"],
+                        'id_user' => $row["id_internal"],
                         'nama' => $row["nama"],
-                        'status' => $row["status"],
-                        'jabatan' => $row["jabatan"]
+                        'username' => $row["username"],
+                        'hak_akses' => "internal"
                     );
 
                     array_push($result['tbl_data'], $data);
@@ -66,15 +66,57 @@ class Login extends REST_Controller
                 } else {
                     // membuat array untuk di transfer ke API
                     $result["success"] = "1";
-                    $result["message"] = "Nama anda tidak terdaftar !";
+                    $result["message"] = "Password anda tidak salah !";
                     $this->response($result, 200);
                 }
             }
         } else {
-            // membuat array untuk di transfer ke API
-            $result["success"] = "0";
-            $result["message"] = "NRP tidak ditemukan !";
-            $this->response($result, 200);
+
+            // mengambil jumlah baris
+            $cek = $this->M_login->get_data('eksternal', $where)->num_rows();
+
+            // cek apakah ada data dari username
+            if ($cek > 0) {
+
+                // mengambil data dari database berdasarkan username
+                $query = $this->M_login->get_data('eksternal', $where);
+
+                // mengeluarkan data dari database
+                foreach ($query->result_array() as $row) {
+
+                    $db_password = strtolower($row["password"]);
+
+                    // dicek apakah data inputan dengan data di database
+                    if ($password == $db_password) {
+
+                        // ambil detail data db
+                        $data = array(
+                            'id_user' => $row["id_eksternal"],
+                            'nama' => $row["nama"],
+                            'username' => $row["username"],
+                            'hak_akses' => "eksternal"
+                        );
+
+                        array_push($result['tbl_data'], $data);
+
+                        // membuat array untuk di transfer
+                        $result["success"] = "2";
+                        $result["message"] = "Success Berhasil Masuk";
+                        $this->response($result, 200);
+                    } else {
+                        // membuat array untuk di transfer ke API
+                        $result["success"] = "1";
+                        $result["message"] = "Username anda tidak terdaftar !";
+                        $this->response($result, 200);
+                    }
+                }
+            } else {
+
+                // membuat array untuk di transfer ke API
+                $result["success"] = "1";
+                $result["message"] = "Username anda tidak ditemukan !";
+                $this->response($result, 200);
+            }
         }
     }
 }
