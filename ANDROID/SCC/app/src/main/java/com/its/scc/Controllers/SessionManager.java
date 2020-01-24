@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import com.its.scc.Activities._Login.LoginActivity;
+
 import java.util.HashMap;
 
 import es.dmoral.toasty.Toasty;
