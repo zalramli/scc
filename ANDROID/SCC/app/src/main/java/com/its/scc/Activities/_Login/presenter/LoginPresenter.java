@@ -102,7 +102,7 @@ public class LoginPresenter implements ILoginPresenter {
 			new Response.ErrorListener() {
 				@Override
 				public void onErrorResponse(VolleyError error) {
-					loginView.onErrorMessage("Koneksi Error : " + error.toString());
+					loginView.onErrorMessage("Periksa Koneksi Anda !, Error : " + error.toString());
 				}
 			}) {
 			@Override

@@ -52,10 +52,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 			if (TextUtils.isEmpty(inputUsername)) {
 				isEmpty = true;
-				edtUsername.setError("Isi Username Dengan Lengkap");
+				edtUsername.setError("Isi Username Dengan Benar");
 			} else if (TextUtils.isEmpty(inputPassword)) {
 				isEmpty = true;
-				edtPassword.setError("Isi Password Dengan Lengkap");
+				edtPassword.setError("Isi Password Dengan Benar");
 			}
 
 			if (!isEmpty) {
