@@ -6,55 +6,66 @@
 	android:layout_height="match_parent"
 	tools:context=".Activities._Login.LoginActivity">
 
-	<com.google.android.material.appbar.AppBarLayout
-		android:id="@+id/app_bar_layout"
+	<View
 		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@drawable/background_login_1"
+		android:visibility="visible" />
+
+	<ImageView
+		android:layout_width="250sp"
 		android:layout_height="wrap_content"
-		android:layout_alignParentTop="true">
-
-		<androidx.appcompat.widget.Toolbar
-			android:id="@+id/toolbar"
-			android:layout_width="match_parent"
-			android:layout_height="?attr/actionBarSize"
-			app:theme="@style/ToolbarTheme"
-			app:titleTextColor="@color/white">
-
-		</androidx.appcompat.widget.Toolbar>
-
-	</com.google.android.material.appbar.AppBarLayout>
+		android:layout_centerHorizontal="true"
+		android:layout_marginBottom="100dp"
+		android:src="@drawable/ic_android" />
 
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_alignParentBottom="true"
-		android:layout_marginBottom="40dp"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+		android:layout_marginBottom="90dp"
 		android:orientation="vertical"
 		android:padding="16dp">
 
 		<com.google.android.material.textfield.TextInputLayout
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content">
+			android:layout_height="wrap_content"
+			android:textColorHint="@color/white">
 
 			<EditText
 				android:id="@+id/edt_username"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:hint="Username ..." />
+				android:backgroundTint="@color/white"
+				android:drawableStart="@drawable/ic_verified_user_24dp"
+				android:drawableLeft="@drawable/ic_verified_user_24dp"
+				android:drawablePadding="5dp"
+				android:hint="Username ..."
+				android:textColor="@color/white" />
 
 		</com.google.android.material.textfield.TextInputLayout>
 
 		<com.google.android.material.textfield.TextInputLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			app:passwordToggleEnabled="true">
+			android:textColorHint="@color/white"
+			app:passwordToggleEnabled="true"
+			app:passwordToggleTint="#FFF">
 
 			<EditText
 				android:id="@+id/edt_password"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:backgroundTint="@color/white"
+				android:drawableStart="@drawable/ic_lock_24dp"
+				android:drawableLeft="@drawable/ic_lock_24dp"
+				android:drawablePadding="5dp"
 				android:hint="Password ..."
 				android:imeOptions="actionNext"
-				android:inputType="textPassword" />
+				android:inputType="textPassword"
+				android:textColor="@color/white" />
 
 		</com.google.android.material.textfield.TextInputLayout>
 
@@ -63,9 +74,11 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="10dp"
+			android:background="@color/white"
 			android:text="Login"
-			android:textAllCaps="false"
-			android:textSize="15dp" />
+			android:textColor="@color/colorPrimary"
+			android:textSize="15dp"
+			android:textStyle="bold" />
 
 	</LinearLayout>
 

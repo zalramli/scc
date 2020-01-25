@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.its.scc.Activities.Eksternal._Home.EksternalHomeActivity;
 import com.its.scc.Activities.Internal._Home.InternalHomeActivity;
 import com.its.scc.Activities._Login.view.ILoginView;
 import com.its.scc.Controllers.BaseUrl;
@@ -74,7 +75,7 @@ public class LoginPresenter implements ILoginPresenter {
 								} else if (hakAkses.equals("eksternal")) {
 
 									id_user = object.getString("id_eksternal").trim();
-//									intent = new Intent(context, PengajarHomeActivity.class);
+									intent = new Intent(context, EksternalHomeActivity.class);
 
 								} else {
 
