@@ -10,7 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.its.scc.Activities.Internal.Home.InternalHomeActivity;
+import com.its.scc.Activities.Internal._Home.InternalHomeActivity;
 import com.its.scc.Activities._Login.view.ILoginView;
 import com.its.scc.Controllers.BaseUrl;
 import com.its.scc.Controllers.SessionManager;

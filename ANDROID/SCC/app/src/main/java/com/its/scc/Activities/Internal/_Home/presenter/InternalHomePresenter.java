@@ -1,4 +1,4 @@
-package com.its.scc.Activities.Internal.Home.presenter;
+package com.its.scc.Activities.Internal._Home.presenter;
 
 public class InternalHomePresenter implements IInternalHomePresenter {
 }

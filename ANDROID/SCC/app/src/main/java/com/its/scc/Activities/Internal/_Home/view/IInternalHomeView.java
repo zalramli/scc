@@ -1,4 +1,4 @@
-package com.its.scc.Activities.Internal.Home.view;
+package com.its.scc.Activities.Internal._Home.view;
 
 public interface IInternalHomeView {
 	void showDialog();

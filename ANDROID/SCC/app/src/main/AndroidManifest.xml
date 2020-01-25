@@ -16,12 +16,15 @@
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme"
 		android:usesCleartextTraffic="true">
+		<activity android:name=".Activities.Eksternal.ListInternal.EksternalListInternalActivity"></activity>
+		<activity android:name=".Activities.Eksternal._Home.EksternalHomeActivity" />
 		<activity
-			android:name=".Activities.Internal.Home.InternalHomeActivity"
-			android:theme="@style/AppThemeHome"></activity>
+			android:name=".Activities.Internal._Home.InternalHomeActivity"
+			android:theme="@style/AppThemeHome" />
 		<activity android:name=".Activities._Login.LoginActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
+
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>

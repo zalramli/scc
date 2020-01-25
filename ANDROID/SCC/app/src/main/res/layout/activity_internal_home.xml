@@ -5,7 +5,7 @@
 	android:id="@+id/drawer_layout_internal_home"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context=".Activities.Internal.Home.InternalHomeActivity">
+	tools:context=".Activities.Internal._Home.InternalHomeActivity">
 
 	<RelativeLayout
 		android:layout_width="match_parent"

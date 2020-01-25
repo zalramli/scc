@@ -1,11 +1,11 @@
-package com.its.scc.Activities.Internal.Home;
+package com.its.scc.Activities.Internal._Home;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
 
-import com.its.scc.Activities.Internal.Home.view.IInternalHomeView;
+import com.its.scc.Activities.Internal._Home.view.IInternalHomeView;
 import com.its.scc.R;
 
 public class InternalHomeActivity extends AppCompatActivity implements View.OnClickListener, IInternalHomeView {
