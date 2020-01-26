@@ -5,19 +5,27 @@
 		android:id="@+id/group1"
 		android:checkableBehavior="single">
 		<item
-			android:id="@+id/absensi"
-			android:icon="@drawable/ic_check_white_48dp"
-			android:title="Absensi" />
+			android:id="@+id/jadwal_prove"
+			android:icon="@drawable/ic_access_time"
+			android:title="Jadwal Prove" />
 	</group>
 
 	<group
 		android:id="@+id/group2"
 		android:checkableBehavior="single">
 		<item
-			android:id="@+id/jadwal_prove"
-			android:icon="@drawable/ic_access_time"
-			android:title="Jadwal Prove" />
+			android:id="@+id/bank_software"
+			android:icon="@drawable/ic_laptop"
+			android:title="Jadwal Bank Software" />
 	</group>
 
+	<group
+		android:id="@+id/group3"
+		android:checkableBehavior="single">
+		<item
+			android:id="@+id/absensi"
+			android:icon="@drawable/ic_check_white_48dp"
+			android:title="Absensi Rapat" />
+	</group>
 
 </menu>
