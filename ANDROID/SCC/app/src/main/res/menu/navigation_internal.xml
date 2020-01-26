@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-<!--	<group-->
-<!--		android:id="@+id/group1"-->
-<!--		android:checkableBehavior="single">-->
-<!--		<item-->
-<!--			android:id="@+id/gaji_pengajar"-->
-<!--			android:icon="@drawable/ic_attach_money_black_24dp"-->
-<!--			android:title="Pembayaran FEE" />-->
-<!--	</group>-->
+	<group
+		android:id="@+id/group1"
+		android:checkableBehavior="single">
+		<item
+			android:id="@+id/absensi"
+			android:icon="@drawable/ic_check_white_48dp"
+			android:title="Absensi" />
+	</group>
+
+	<group
+		android:id="@+id/group2"
+		android:checkableBehavior="single">
+		<item
+			android:id="@+id/jadwal_prove"
+			android:icon="@drawable/ic_access_time"
+			android:title="Jadwal Prove" />
+	</group>
+
 
 </menu>

@@ -30,7 +30,7 @@
             android:layout_marginStart="15sp"
             android:layout_marginLeft="15sp"
             android:layout_marginTop="175sp"
-            android:text="Aplikasi Absensi dan Monitoring"
+            android:text="Aplikasi SCC"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -41,7 +41,7 @@
             android:layout_below="@+id/caption2"
             android:layout_marginStart="15sp"
             android:layout_marginLeft="15sp"
-            android:text="Bimbel Bigstars"
+            android:text="Learning and Monitoring"
             android:textColor="@color/white"
             android:textSize="10sp" />
 
