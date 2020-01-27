@@ -12,74 +12,111 @@
 		android:background="@drawable/background_login_1"
 		android:visibility="visible" />
 
-	<ImageView
-		android:layout_width="250sp"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_marginBottom="100dp"
-		android:src="@drawable/ic_android" />
-
-	<LinearLayout
+	<androidx.core.widget.NestedScrollView
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true"
-		android:layout_marginLeft="10dp"
-		android:layout_marginRight="10dp"
-		android:layout_marginBottom="90dp"
-		android:orientation="vertical"
-		android:padding="16dp">
+		android:layout_height="match_parent"
+		android:fitsSystemWindows="true"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-		<com.google.android.material.textfield.TextInputLayout
+		<RelativeLayout
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:textColorHint="@color/white">
+			android:layout_height="match_parent">
 
-			<EditText
-				android:id="@+id/edt_username"
+			<ImageView
+				android:layout_width="250sp"
+				android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:layout_marginBottom="100dp"
+				android:src="@drawable/ic_android" />
+
+			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:backgroundTint="@color/white"
-				android:drawableStart="@drawable/ic_verified_user_24dp"
-				android:drawableLeft="@drawable/ic_verified_user_24dp"
-				android:drawablePadding="5dp"
-				android:hint="Username ..."
-				android:textColor="@color/white" />
+				android:layout_alignParentBottom="true"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp"
+				android:layout_marginBottom="90dp"
+				android:orientation="vertical"
+				android:padding="16dp">
 
-		</com.google.android.material.textfield.TextInputLayout>
+				<com.google.android.material.textfield.TextInputLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:textColorHint="@color/white">
 
-		<com.google.android.material.textfield.TextInputLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:textColorHint="@color/white"
-			app:passwordToggleEnabled="true"
-			app:passwordToggleTint="#FFF">
+					<EditText
+						android:id="@+id/edt_username"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:backgroundTint="@color/white"
+						android:drawableStart="@drawable/ic_verified_user_24dp"
+						android:drawableLeft="@drawable/ic_verified_user_24dp"
+						android:drawablePadding="5dp"
+						android:hint="Username ..."
+						android:textColor="@color/white" />
 
-			<EditText
-				android:id="@+id/edt_password"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:backgroundTint="@color/white"
-				android:drawableStart="@drawable/ic_lock_24dp"
-				android:drawableLeft="@drawable/ic_lock_24dp"
-				android:drawablePadding="5dp"
-				android:hint="Password ..."
-				android:imeOptions="actionNext"
-				android:inputType="textPassword"
-				android:textColor="@color/white" />
+				</com.google.android.material.textfield.TextInputLayout>
 
-		</com.google.android.material.textfield.TextInputLayout>
+				<com.google.android.material.textfield.TextInputLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:textColorHint="@color/white"
+					app:passwordToggleEnabled="true"
+					app:passwordToggleTint="#FFF">
 
-		<Button
-			android:id="@+id/btn_login"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="10dp"
-			android:background="@color/white"
-			android:text="Login"
-			android:textColor="@color/colorPrimary"
-			android:textSize="14dp"
-			android:textStyle="bold" />
+					<EditText
+						android:id="@+id/edt_password"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:backgroundTint="@color/white"
+						android:drawableStart="@drawable/ic_lock_24dp"
+						android:drawableLeft="@drawable/ic_lock_24dp"
+						android:drawablePadding="5dp"
+						android:hint="Password ..."
+						android:imeOptions="actionNext"
+						android:inputType="textPassword"
+						android:textColor="@color/white" />
 
-	</LinearLayout>
+				</com.google.android.material.textfield.TextInputLayout>
+
+				<Button
+					android:id="@+id/btn_login"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:background="@color/white"
+					android:text="Login"
+					android:textColor="@color/colorPrimary"
+					android:textSize="14dp"
+					android:textStyle="bold" />
+
+				<androidx.cardview.widget.CardView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:clickable="true"
+					android:focusable="true"
+					android:foreground="?attr/selectableItemBackground"
+					app:cardBackgroundColor="@android:color/transparent"
+					app:cardCornerRadius="0dp"
+					app:cardElevation="0dp">
+
+					<TextView
+						android:textSize="15dp"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="User Baru ? Daftar Disini"
+						android:textAlignment="center"
+						android:textColor="@color/white" />
+
+				</androidx.cardview.widget.CardView>
+
+			</LinearLayout>
+
+
+		</RelativeLayout>
+
+	</androidx.core.widget.NestedScrollView>
+
 
 </RelativeLayout>

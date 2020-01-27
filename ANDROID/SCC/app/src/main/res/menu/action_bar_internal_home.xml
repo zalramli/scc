@@ -2,6 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+	<item
+		android:id="@+id/menu_pemberitahuan"
+		android:icon="@drawable/ic_notifications"
+		android:title="Notification"
+		app:showAsAction="always" />
+
     <item
         android:id="@+id/menu_akun_saya"
         android:title="Akun Saya" />
