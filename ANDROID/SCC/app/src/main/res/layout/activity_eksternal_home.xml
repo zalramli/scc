@@ -171,7 +171,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:layout_gravity="center_vertical"
-							android:text="APPROVE"
+							android:text="PROVE"
 							android:textStyle="bold" />
 
 					</LinearLayout>
@@ -243,7 +243,7 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_gravity="center_vertical"
-						android:text="List Approve"
+						android:text="List Prove"
 						android:textSize="18dp" />
 
 					<RelativeLayout

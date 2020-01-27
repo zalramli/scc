@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="220sp"
-    android:background="@color/colorPrimaryDark"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -10,18 +9,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-<!--        <View-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:background="@drawable/background_menu_1"-->
-<!--            android:visibility="visible" />-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_login_1"
+            android:visibility="visible" />
 
-<!--        <ImageView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:alpha="0.5"-->
-<!--            android:scaleType="centerCrop"-->
-<!--            android:src="@drawable/bg_menu_7" />-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.2"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_android" />
 
         <TextView
             android:id="@+id/caption2"
