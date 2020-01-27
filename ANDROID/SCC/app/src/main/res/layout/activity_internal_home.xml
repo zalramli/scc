@@ -266,11 +266,11 @@
 	</androidx.core.widget.NestedScrollView>
 
 	<com.google.android.material.navigation.NavigationView
-		android:id="@+id/navigation_view_admin"
+		android:id="@+id/navigation_view_internal"
 		android:layout_width="wrap_content"
 		android:layout_height="match_parent"
 		android:layout_gravity="start"
-		app:headerLayout="@layout/nav_header_internal"
+		app:headerLayout="@layout/nav_header"
 		app:menu="@menu/navigation_internal">
 
 	</com.google.android.material.navigation.NavigationView>

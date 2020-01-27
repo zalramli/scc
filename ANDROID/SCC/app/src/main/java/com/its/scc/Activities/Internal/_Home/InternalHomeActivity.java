@@ -27,7 +27,7 @@ public class InternalHomeActivity extends AppCompatActivity implements View.OnCl
 		setContentView(R.layout.activity_internal_home);
 
 		drawerLayout = findViewById(R.id.drawer_layout_internal_home);
-		navigationView = findViewById(R.id.navigation_view_admin);
+		navigationView = findViewById(R.id.navigation_view_internal);
 
 		actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
 		drawerLayout.addDrawerListener(actionBarDrawerToggle);

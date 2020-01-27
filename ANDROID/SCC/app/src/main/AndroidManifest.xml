@@ -16,9 +16,11 @@
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme"
 		android:usesCleartextTraffic="true">
-		<activity android:name=".Activities.Eksternal.ListInternal.EksternalListInternalActivity"></activity>
+		<activity android:name=".Activities.Eksternal.ListMateri.EksternalListMateriActivity"></activity>
+		<activity android:name=".Activities.Eksternal.ListInternal.EksternalListInternalActivity" />
 		<activity
-			android:name=".Activities.Eksternal._Home.EksternalHomeActivity" />
+			android:name=".Activities.Eksternal._Home.EksternalHomeActivity"
+			android:theme="@style/AppThemeHome" />
 		<activity
 			android:name=".Activities.Internal._Home.InternalHomeActivity"
 			android:theme="@style/AppThemeHome" />
