@@ -8,7 +8,7 @@ public class BaseUrl {
 
 	public BaseUrl() {
 		urlData = ipAddress + "api/";
-		urlUpload = ipAddress + "";
+		urlUpload = ipAddress + "upload/";
 	}
 
 	public String getUrlData() {

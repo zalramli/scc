@@ -15,9 +15,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.its.scc.Activities.Eksternal.AkunEdit.EksternalAkunEditActivity;
 import com.its.scc.Activities.Eksternal._Home.view.IEksternalHomeView;
 import com.its.scc.Controllers.SessionManager;
 import com.its.scc.R;
+
+import java.util.HashMap;
 
 import es.dmoral.toasty.Toasty;
 
@@ -50,9 +53,12 @@ public class EksternalHomeActivity extends AppCompatActivity implements View.OnC
 				Intent intent = new Intent();
 				switch (id) {
 					case R.id.edit_akun:
-//						intent = new Intent(getApplicationContext(), AdminPengajarTampilActivity.class);
-//						intent.putExtra(AdminPengajarTampilActivity.EXTRA_STATUS_ACTIVITY, "to_monitoring");
-//						startActivity(intent);
+						HashMap<String, String> user = sessionManager.getDataUser();
+						String id_eksternal = user.get(sessionManager.ID_USER);
+
+						intent = new Intent(getApplicationContext(), EksternalAkunEditActivity.class);
+						intent.putExtra(EksternalAkunEditActivity.EXTRA_ID_EKSTERNAL, id_eksternal);
+						startActivity(intent);
 						break;
 					case R.id.keluar:
 						showDialog();
