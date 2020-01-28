@@ -2,18 +2,24 @@ package com.its.scc.Activities.Eksternal._Home;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.its.scc.Activities.Eksternal._Home.view.IEksternalHomeView;
+import com.its.scc.Controllers.SessionManager;
 import com.its.scc.R;
+
+import es.dmoral.toasty.Toasty;
 
 public class EksternalHomeActivity extends AppCompatActivity implements View.OnClickListener, IEksternalHomeView {
 
@@ -21,10 +27,14 @@ public class EksternalHomeActivity extends AppCompatActivity implements View.OnC
 	private ActionBarDrawerToggle actionBarDrawerToggle;
 	private NavigationView navigationView;
 
+	SessionManager sessionManager;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eksternal_home);
+
+		sessionManager = new SessionManager(this);
 
 		drawerLayout = findViewById(R.id.drawer_layout_eksternal_home);
 		navigationView = findViewById(R.id.navigation_view_eksternal);
@@ -44,6 +54,9 @@ public class EksternalHomeActivity extends AppCompatActivity implements View.OnC
 //						intent.putExtra(AdminPengajarTampilActivity.EXTRA_STATUS_ACTIVITY, "to_monitoring");
 //						startActivity(intent);
 						break;
+					case R.id.keluar:
+						showDialog();
+						break;
 					default:
 						return true;
 				}
@@ -58,35 +71,57 @@ public class EksternalHomeActivity extends AppCompatActivity implements View.OnC
 	}
 
 	@Override
+	public void showDialog() {
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+			this);
+		alertDialogBuilder.setTitle("Ingin Keluar ?");
+		alertDialogBuilder
+			.setMessage("Klik Ya untuk Keluar Aplikasi !")
+			.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+
+					try {
+						sessionManager.logout();
+					} catch (Exception e) {
+						onErrorMessage("Terjadi Kesalahan " + e.toString());
+					}
+
+				}
+			})
+			.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+					dialog.cancel();
+				}
+			});
+
+		AlertDialog alertDialog = alertDialogBuilder.create();
+		alertDialog.show();
+	}
+
+	@Override
+	public void onSuccessMessage(String message) {
+		Toasty.success(this, message, Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
+	public void onErrorMessage(String message) {
+		Toasty.error(this, message, Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-//		getMenuInflater().inflate(R.menu.action_bar_internal_home, menu);
-
-//        View view = menu.findItem(R.id.menu_notification).getActionView();
-//        badge = view.findViewById(R.id.badge);
-//        notificationIcon = view.findViewById(R.id.notification_icon);
-//
-//        notificationIcon.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-
-//            }
-//        });
-
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
-		int id = item.getItemId();
+//		int id = item.getItemId();
 
 		if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
 		}
 //		if (id == R.id.menu_akun_saya) {
-//			return true;
-//		}
-//		if (id == R.id.menu_keluar) {
 //			return true;
 //		}
 
