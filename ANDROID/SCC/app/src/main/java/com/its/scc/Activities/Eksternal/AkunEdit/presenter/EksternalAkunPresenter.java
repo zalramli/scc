@@ -98,7 +98,7 @@ public class EksternalAkunPresenter implements IEksternalAkunPresenter {
 	@Override
 	public void onUpdate(String id_eksternal, String nama, String no_hp, String akun_line, String username, String password, String angkatan, String foto) {
 		String base_url = baseUrl.getUrlData();
-		String URL_DATA = base_url + "admin/pengajar/update_pengajar"; // url http request
+		String URL_DATA = base_url + "eksternal/akun/update_eksternal"; // url http request
 
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
 			new Response.Listener<String>() {

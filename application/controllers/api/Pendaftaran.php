@@ -12,11 +12,13 @@ class Pendaftaran extends REST_Controller
     {
         parent::__construct($config);
         $this->load->model("api/M_universal");
+        $this->load->model("api/M_eksternal");
     }
 
     function eksternal_post()
     {
         // ambil data
+        $id_eksternal = $this->M_eksternal->get_no_id_eksternal();
         $nama = $this->post('nama');
         $no_hp = $this->post('no_hp');
         $akun_line = $this->post('akun_line');
@@ -25,6 +27,8 @@ class Pendaftaran extends REST_Controller
         $angkatan = $this->post('angkatan');
         $foto = $this->post('foto');
 
+        $nama_foto = "DEFEK";
+
         $where = array(
             'username' => $username
         );
@@ -32,13 +36,13 @@ class Pendaftaran extends REST_Controller
         $cek_username = $this->M_universal->get_data('eksternal', $where)->num_rows();
 
         if ($cek_username == 0) {
-            $nama_foto = "DEFEK";
 
             if (!empty($foto)) {
-                $nama_foto = $username;
+                $nama_foto = $id_eksternal;
             }
 
             $data = array(
+                'id_eksternal'  => $id_eksternal,
                 'nama'          => $nama,
                 'no_hp'         => $no_hp,
                 'akun_line'     => $akun_line,

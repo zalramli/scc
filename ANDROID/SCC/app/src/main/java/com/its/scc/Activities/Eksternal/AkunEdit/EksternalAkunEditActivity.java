@@ -150,12 +150,6 @@ public class EksternalAkunEditActivity extends AppCompatActivity implements View
 					} else if (TextUtils.isEmpty(inputUsername)) {
 						isEmpty = true;
 						edtUsername.setError("Isi Data Dengan Lengkap");
-					} else if (TextUtils.isEmpty(inputPassword)) {
-						isEmpty = true;
-						edtPassword.setError("Isi Data Dengan Lengkap");
-					} else if (TextUtils.isEmpty(inputKonfirmasi_password)) {
-						isEmpty = true;
-						edtKonfirmasiPassword.setError("Isi Data Dengan Lengkap");
 					} else if (TextUtils.isEmpty(inputAngkatan)) {
 						isEmpty = true;
 						edtAngkatan.setError("Isi Data Dengan Lengkap");
