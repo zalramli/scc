@@ -2,7 +2,9 @@ package com.its.scc.Activities._Login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 import com.its.scc.Activities._Login.presenter.ILoginPresenter;
 import com.its.scc.Activities._Login.presenter.LoginPresenter;
 import com.its.scc.Activities._Login.view.ILoginView;
+import com.its.scc.Activities._Pendaftaran.PendaftaranActivity;
 import com.its.scc.R;
 
 import es.dmoral.toasty.Toasty;
@@ -26,6 +29,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 	Button btn_login;
 	Toolbar toolbar;
 
+	CardView cvLinkDaftar;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,9 +42,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 		edtPassword = findViewById(R.id.edt_password);
 		btn_login = findViewById(R.id.btn_login);
 
+		cvLinkDaftar = findViewById(R.id.cv_link_daftar);
+
 		initActionBar();
 
 		btn_login.setOnClickListener(this);
+		cvLinkDaftar.setOnClickListener(this);
 	}
 
 	@Override
@@ -61,6 +69,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 			if (!isEmpty) {
 				loginPresenter.onLogin(inputUsername, inputPassword);
 			}
+		}
+
+		if (v.getId() == R.id.cv_link_daftar) {
+			Intent intent = new Intent(getApplicationContext(), PendaftaranActivity.class);
+			startActivity(intent);
 		}
 	}
 

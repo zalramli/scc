@@ -1,5 +1,5 @@
 <?php
-class M_login extends CI_Model
+class M_universal extends CI_Model
 {
     function tampil_data($table)
     {
@@ -8,16 +8,15 @@ class M_login extends CI_Model
 
     function input_data($table, $data)
     {
-        $this->db->insert($table, $data);
+        $status = $this->db->insert($table, $data);
+        return $status;
     }
 
-    function hapus_data($table, $where)
+    function hapus_data($where, $table)
     {
-        // idnya
         $this->db->where($where);
-
-        // tabelnya
-        $this->db->delete($table);
+        $status = $this->db->delete($table);
+        return $status;
     }
 
     function get_data($table, $where)
@@ -25,9 +24,10 @@ class M_login extends CI_Model
         return $this->db->get_where($table, $where);
     }
 
-    function update_data($where, $data, $table)
+    function update_data($where, $table, $data)
     {
         $this->db->where($where);
-        $this->db->update($table, $data);
+        $status = $this->db->update($table, $data);
+        return $status;
     }
 }

@@ -11,7 +11,7 @@ class Login extends REST_Controller
     function __construct($config = 'rest')
     {
         parent::__construct($config);
-        $this->load->model("api/M_login");
+        $this->load->model("api/M_universal");
     }
 
     function masuk_post()
@@ -33,13 +33,13 @@ class Login extends REST_Controller
         );
 
         // mengambil jumlah baris
-        $cek = $this->M_login->get_data('internal', $where)->num_rows();
+        $cek = $this->M_universal->get_data('internal', $where)->num_rows();
 
         // cek apakah ada data dari username
         if ($cek > 0) {
 
             // mengambil data dari database berdasarkan username
-            $query = $this->M_login->get_data('internal', $where);
+            $query = $this->M_universal->get_data('internal', $where);
 
             // mengeluarkan data dari database
             foreach ($query->result_array() as $row) {
@@ -73,13 +73,13 @@ class Login extends REST_Controller
         } else {
 
             // mengambil jumlah baris
-            $cek = $this->M_login->get_data('eksternal', $where)->num_rows();
+            $cek = $this->M_universal->get_data('eksternal', $where)->num_rows();
 
             // cek apakah ada data dari username
             if ($cek > 0) {
 
                 // mengambil data dari database berdasarkan username
-                $query = $this->M_login->get_data('eksternal', $where);
+                $query = $this->M_universal->get_data('eksternal', $where);
 
                 // mengeluarkan data dari database
                 foreach ($query->result_array() as $row) {
