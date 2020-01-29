@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Jan 2020 pada 09.10
+-- Waktu pembuatan: 29 Jan 2020 pada 09.15
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.0
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `detail_prove` (
   `id_detail_prove` int(5) NOT NULL,
   `id_prove` int(5) NOT NULL,
-  `id_eksternal` int(3) NOT NULL,
+  `id_eksternal` char(5) NOT NULL,
   `rating` int(1) NOT NULL,
   `deskripsi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -41,8 +41,8 @@ CREATE TABLE `detail_prove` (
 --
 
 INSERT INTO `detail_prove` (`id_detail_prove`, `id_prove`, `id_eksternal`, `rating`, `deskripsi`) VALUES
-(1, 1, 2, 0, ''),
-(2, 1, 3, 0, '');
+(1, 1, '2', 0, ''),
+(2, 1, '3', 0, '');
 
 -- --------------------------------------------------------
 
@@ -118,7 +118,7 @@ INSERT INTO `internal` (`id_internal`, `nama`, `no_hp`, `akun_line`, `username`,
 
 CREATE TABLE `jadwal_bank_software` (
   `id_jadwal_bs` int(3) NOT NULL,
-  `id_internal` int(3) NOT NULL,
+  `id_internal` char(5) NOT NULL,
   `hari` enum('Senin','Selasa','Rabu','Kamis','Jumat') NOT NULL,
   `jam_mulai` varchar(10) NOT NULL,
   `jam_selesai` varchar(10) NOT NULL,
@@ -131,8 +131,8 @@ CREATE TABLE `jadwal_bank_software` (
 --
 
 INSERT INTO `jadwal_bank_software` (`id_jadwal_bs`, `id_internal`, `hari`, `jam_mulai`, `jam_selesai`, `status_booking`, `status_aktif`) VALUES
-(1, 1, 'Senin', '07:00', '09:00', 'Free', 'Aktif'),
-(2, 1, 'Selasa', '08:30', '09:30', 'Free', 'Aktif');
+(1, '1', 'Senin', '07:00', '09:00', 'Free', 'Aktif'),
+(2, '1', 'Selasa', '08:30', '09:30', 'Free', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -142,7 +142,7 @@ INSERT INTO `jadwal_bank_software` (`id_jadwal_bs`, `id_internal`, `hari`, `jam_
 
 CREATE TABLE `jadwal_prove` (
   `id_jadwal_prove` int(3) NOT NULL,
-  `id_internal` int(3) NOT NULL,
+  `id_internal` char(5) NOT NULL,
   `hari` enum('Senin','Selasa','Rabu','Kamis','Jumat') NOT NULL,
   `jam_mulai` varchar(10) NOT NULL,
   `jam_selesai` varchar(10) NOT NULL,
@@ -156,14 +156,14 @@ CREATE TABLE `jadwal_prove` (
 --
 
 INSERT INTO `jadwal_prove` (`id_jadwal_prove`, `id_internal`, `hari`, `jam_mulai`, `jam_selesai`, `status_booking`, `status_aktif`, `terakhir_dibooking`) VALUES
-(1, 1, 'Senin', '07:00', '09:00', 'Free', 'Tidak Aktif', '0000-00-00'),
-(2, 1, 'Selasa', '11:00', '12:00', 'Free', 'Aktif', '0000-00-00'),
-(3, 1, 'Rabu', '13:00', '15:00', 'Free', 'Aktif', '0000-00-00'),
-(5, 1, 'Kamis', '08:30', '09:30', 'Free', 'Tidak Aktif', '0000-00-00'),
-(6, 1, 'Jumat', '14:30', '15:30', 'Free', 'Aktif', '0000-00-00'),
-(7, 1, 'Senin', '12:00', '13:00', 'Free', 'Tidak Aktif', '0000-00-00'),
-(8, 1, 'Selasa', '07:00', '09:00', 'Free', 'Aktif', '0000-00-00'),
-(9, 1, 'Rabu', '07:00', '09:00', 'Free', 'Aktif', '0000-00-00');
+(1, '1', 'Senin', '07:00', '09:00', 'Free', 'Tidak Aktif', '0000-00-00'),
+(2, '1', 'Selasa', '11:00', '12:00', 'Free', 'Aktif', '0000-00-00'),
+(3, '1', 'Rabu', '13:00', '15:00', 'Free', 'Aktif', '0000-00-00'),
+(5, '1', 'Kamis', '08:30', '09:30', 'Free', 'Tidak Aktif', '0000-00-00'),
+(6, '1', 'Jumat', '14:30', '15:30', 'Free', 'Aktif', '0000-00-00'),
+(7, '1', 'Senin', '12:00', '13:00', 'Free', 'Tidak Aktif', '0000-00-00'),
+(8, '1', 'Selasa', '07:00', '09:00', 'Free', 'Aktif', '0000-00-00'),
+(9, '1', 'Rabu', '07:00', '09:00', 'Free', 'Aktif', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -191,8 +191,8 @@ INSERT INTO `materi_prove` (`id_materi_prove`, `nama`) VALUES
 
 CREATE TABLE `prove` (
   `id_prove` int(5) NOT NULL,
-  `id_eksternal` int(3) NOT NULL,
-  `id_internal` int(3) NOT NULL,
+  `id_eksternal` char(5) NOT NULL,
+  `id_internal` char(5) NOT NULL,
   `id_materi_prove` int(3) NOT NULL,
   `id_jadwal_prove` int(3) NOT NULL,
   `deskripsi_materi` tinytext NOT NULL,
@@ -208,7 +208,7 @@ CREATE TABLE `prove` (
 --
 
 INSERT INTO `prove` (`id_prove`, `id_eksternal`, `id_internal`, `id_materi_prove`, `id_jadwal_prove`, `deskripsi_materi`, `tanggal_booking`, `tanggal_prove`, `kode_prove`, `kata_sandi`, `status_prove`) VALUES
-(1, 1, 1, 3, 0, 'Bab rumus micro', '0000-00-00', '0000-00-00', '', '', 'Belum Selesai');
+(1, '1', '1', 3, 0, 'Bab rumus micro', '0000-00-00', '0000-00-00', '', '', 'Belum Selesai');
 
 -- --------------------------------------------------------
 
