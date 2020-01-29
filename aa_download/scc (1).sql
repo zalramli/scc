@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Jan 2020 pada 10.32
+-- Waktu pembuatan: 29 Jan 2020 pada 09.10
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.0
 
@@ -31,16 +31,18 @@ SET time_zone = "+00:00";
 CREATE TABLE `detail_prove` (
   `id_detail_prove` int(5) NOT NULL,
   `id_prove` int(5) NOT NULL,
-  `id_eksternal` int(3) NOT NULL
+  `id_eksternal` int(3) NOT NULL,
+  `rating` int(1) NOT NULL,
+  `deskripsi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `detail_prove`
 --
 
-INSERT INTO `detail_prove` (`id_detail_prove`, `id_prove`, `id_eksternal`) VALUES
-(1, 1, 2),
-(2, 1, 3);
+INSERT INTO `detail_prove` (`id_detail_prove`, `id_prove`, `id_eksternal`, `rating`, `deskripsi`) VALUES
+(1, 1, 2, 0, ''),
+(2, 1, 3, 0, '');
 
 -- --------------------------------------------------------
 
@@ -49,14 +51,14 @@ INSERT INTO `detail_prove` (`id_detail_prove`, `id_prove`, `id_eksternal`) VALUE
 --
 
 CREATE TABLE `eksternal` (
-  `id_eksternal` int(5) NOT NULL,
+  `id_eksternal` char(5) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `no_hp` varchar(15) NOT NULL,
   `akun_line` varchar(30) NOT NULL,
   `username` varchar(30) NOT NULL,
   `password` varchar(60) NOT NULL,
   `angkatan` varchar(4) NOT NULL,
-  `foto` varchar(6) NOT NULL
+  `foto` char(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -64,8 +66,8 @@ CREATE TABLE `eksternal` (
 --
 
 INSERT INTO `eksternal` (`id_eksternal`, `nama`, `no_hp`, `akun_line`, `username`, `password`, `angkatan`, `foto`) VALUES
-(1, 'Ali Akbar', '89121212', 'ali_akbar', 'ali_akbar', 'aliakbar123', '2018', ''),
-(2, 'Misbakhul', '877571232', 'misbakhul', 'misbah', 'misbah', '2019', '');
+('1', 'Ali Akbar', '89121212', 'ali_akbar', 'ali_akbar', 'aliakbar123', '2018', ''),
+('2', 'Misbakhul', '877571232', 'misbakhul', 'misbah', 'misbah', '2019', '');
 
 -- --------------------------------------------------------
 
@@ -74,7 +76,7 @@ INSERT INTO `eksternal` (`id_eksternal`, `nama`, `no_hp`, `akun_line`, `username
 --
 
 CREATE TABLE `internal` (
-  `id_internal` int(3) NOT NULL,
+  `id_internal` char(5) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `no_hp` varchar(15) NOT NULL,
   `akun_line` varchar(30) NOT NULL,
@@ -83,7 +85,7 @@ CREATE TABLE `internal` (
   `hak_akses` enum('Kadiv','Sekdiv','Bendahara','Staff Ahli','Manager','Staff') NOT NULL,
   `jabatan_managerial` enum('TD','HRD','PR','Kosong') NOT NULL,
   `status_sj` enum('Senior','Junior') NOT NULL,
-  `foto` varchar(4) NOT NULL
+  `foto` char(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -91,22 +93,22 @@ CREATE TABLE `internal` (
 --
 
 INSERT INTO `internal` (`id_internal`, `nama`, `no_hp`, `akun_line`, `username`, `password`, `hak_akses`, `jabatan_managerial`, `status_sj`, `foto`) VALUES
-(1, 'Hasri Wiji Aqsari', '082234641698', 'hasriwiji08', 'hasri_wiji', 'Hasri121198', 'Kadiv', 'TD', 'Senior', '0'),
-(2, 'Tiza', '082111231232', 'tizaaja', 'tizaa', 'tizaa', 'Sekdiv', 'HRD', 'Senior', '0'),
-(4, 'Aubert Oktaviantono', '081331913541', 'kosong', 'aubert_oktaviantono@scc-himastaits.com', 'scc123', 'Staff', 'TD', 'Junior', '0'),
-(5, 'Yuniar Mega Kartikasari', '081905217438', 'kosong', 'yuniar_mega@scc-himastaits.com', 'scc123', 'Staff', 'TD', 'Junior', '0'),
-(6, 'Nauli Mazaya Siregar', '085726898883', 'kosong', 'nauli_mazaya@scc-himastaits.com', 'scc123', 'Staff', 'TD', 'Junior', '0'),
-(7, 'Inka Nurul Alfiana', '082336050265', 'kosong', 'inka_nurul@scc-himastaits.com', 'scc123', 'Staff', 'TD', 'Junior', '0'),
-(8, 'Eva Marella', '087860473988', 'kosong', 'eva_marella@scc-himastaits.com', 'scc123', 'Staff', 'TD', 'Junior', '0'),
-(9, 'Sarnita Sadya', '081288551389', 'kosong', 'sarnita_sadya@scc-himastaits.com', 'scc123', 'Staff', 'TD', 'Junior', '0'),
-(10, 'Vanda Fitriyanah', '082234755001', 'kosong', 'vanda_fitriyanah@scc-himastaits.com', 'scc123', 'Staff', 'HRD', 'Junior', '0'),
-(12, 'Lidya Cahya Aurellia', '081332280585', 'kosong', 'lidya_cahya@scc-himastaits.com', 'scc123', 'Staff', 'HRD', 'Junior', '0'),
-(13, 'Putri Hidayati Rohmah', '089504631309', 'kosong', 'putri_hidayati@scc-himastaits.com', 'scc123', 'Staff', 'HRD', 'Junior', '0'),
-(14, 'Syafniya Zilfah Aniesiy', '089510777046', 'kosong', 'syafniya_zilfah@scc-himastaits.com', 'scc123', 'Staff', 'HRD', 'Junior', '0'),
-(15, 'Kevin Agung Fernanda Rifki', '083830818118', 'kosong', 'kevin_agung@scc-himastaits.com', 'scc123', 'Staff', 'PR', 'Junior', '0'),
-(16, 'Ichwanul Kahfi Prasetya', '082335791531', 'kosong', 'ichwanul_kahfi@scc-himastaits.com', 'scc123', 'Staff', 'PR', 'Junior', '0'),
-(17, 'Shecilia Nur Salsalbila', '081217529139', 'kosong', 'shecilia_salsabila@scc-himastaits.com', 'scc123', 'Staff', 'PR', 'Junior', '0'),
-(18, 'Seza Dwiwulan Ramadini', '082336964693', 'kosong', 'seza_dwiwulan@scc-himastaits.com', 'scc123', 'Bendahara', 'Kosong', 'Junior', '0');
+('1', 'Hasri Wiji Aqsari', '082234641698', 'hasriwiji08', 'hasri_wiji', 'Hasri121198', 'Kadiv', 'TD', 'Senior', ''),
+('10', 'Vanda Fitriyanah', '082234755001', 'kosong', 'vanda_fitriyanah@scc-himastaits.com', 'scc123', 'Staff', 'HRD', 'Junior', ''),
+('12', 'Lidya Cahya Aurellia', '081332280585', 'kosong', 'lidya_cahya@scc-himastaits.com', 'scc123', 'Staff', 'HRD', 'Junior', ''),
+('13', 'Putri Hidayati Rohmah', '089504631309', 'kosong', 'putri_hidayati@scc-himastaits.com', 'scc123', 'Staff', 'HRD', 'Junior', ''),
+('14', 'Syafniya Zilfah Aniesiy', '089510777046', 'kosong', 'syafniya_zilfah@scc-himastaits.com', 'scc123', 'Staff', 'HRD', 'Junior', ''),
+('15', 'Kevin Agung Fernanda Rifki', '083830818118', 'kosong', 'kevin_agung@scc-himastaits.com', 'scc123', 'Staff', 'PR', 'Junior', ''),
+('16', 'Ichwanul Kahfi Prasetya', '082335791531', 'kosong', 'ichwanul_kahfi@scc-himastaits.com', 'scc123', 'Staff', 'PR', 'Junior', ''),
+('17', 'Shecilia Nur Salsalbila', '081217529139', 'kosong', 'shecilia_salsabila@scc-himastaits.com', 'scc123', 'Staff', 'PR', 'Junior', ''),
+('18', 'Seza Dwiwulan Ramadini', '082336964693', 'kosong', 'seza_dwiwulan@scc-himastaits.com', 'scc123', 'Bendahara', 'Kosong', 'Junior', ''),
+('2', 'Tiza', '082111231232', 'tizaaja', 'tizaa', 'tizaa', 'Sekdiv', 'HRD', 'Senior', ''),
+('4', 'Aubert Oktaviantono', '081331913541', 'kosong', 'aubert_oktaviantono@scc-himastaits.com', 'scc123', 'Staff', 'TD', 'Junior', ''),
+('5', 'Yuniar Mega Kartikasari', '081905217438', 'kosong', 'yuniar_mega@scc-himastaits.com', 'scc123', 'Staff', 'TD', 'Junior', ''),
+('6', 'Nauli Mazaya Siregar', '085726898883', 'kosong', 'nauli_mazaya@scc-himastaits.com', 'scc123', 'Staff', 'TD', 'Junior', ''),
+('7', 'Inka Nurul Alfiana', '082336050265', 'kosong', 'inka_nurul@scc-himastaits.com', 'scc123', 'Staff', 'TD', 'Junior', ''),
+('8', 'Eva Marella', '087860473988', 'kosong', 'eva_marella@scc-himastaits.com', 'scc123', 'Staff', 'TD', 'Junior', ''),
+('9', 'Sarnita Sadya', '081288551389', 'kosong', 'sarnita_sadya@scc-himastaits.com', 'scc123', 'Staff', 'TD', 'Junior', '');
 
 -- --------------------------------------------------------
 
@@ -141,27 +143,27 @@ INSERT INTO `jadwal_bank_software` (`id_jadwal_bs`, `id_internal`, `hari`, `jam_
 CREATE TABLE `jadwal_prove` (
   `id_jadwal_prove` int(3) NOT NULL,
   `id_internal` int(3) NOT NULL,
-  `hari_mulai` enum('Senin','Selasa','Rabu','Kamis','Jumat') NOT NULL,
-  `hari_selesai` enum('Senin','Selasa','Rabu','Kamis','Jumat') NOT NULL,
+  `hari` enum('Senin','Selasa','Rabu','Kamis','Jumat') NOT NULL,
   `jam_mulai` varchar(10) NOT NULL,
   `jam_selesai` varchar(10) NOT NULL,
   `status_booking` enum('Free','Unfree') NOT NULL,
-  `status_aktif` enum('Aktif','Tidak Aktif') NOT NULL
+  `status_aktif` enum('Aktif','Tidak Aktif') NOT NULL,
+  `terakhir_dibooking` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `jadwal_prove`
 --
 
-INSERT INTO `jadwal_prove` (`id_jadwal_prove`, `id_internal`, `hari_mulai`, `hari_selesai`, `jam_mulai`, `jam_selesai`, `status_booking`, `status_aktif`) VALUES
-(1, 1, 'Senin', 'Senin', '07:00', '09:00', 'Free', 'Aktif'),
-(2, 1, 'Selasa', 'Senin', '11:00', '12:00', 'Free', 'Aktif'),
-(3, 1, 'Rabu', 'Senin', '13:00', '15:00', 'Free', 'Aktif'),
-(5, 1, 'Kamis', 'Senin', '08:30', '09:30', 'Free', 'Aktif'),
-(6, 1, 'Jumat', 'Senin', '14:30', '15:30', 'Free', 'Aktif'),
-(7, 1, 'Senin', 'Senin', '12:00', '13:00', 'Free', 'Tidak Aktif'),
-(8, 1, 'Selasa', 'Senin', '07:00', '09:00', 'Free', 'Aktif'),
-(9, 1, 'Rabu', 'Senin', '07:00', '09:00', 'Free', 'Aktif');
+INSERT INTO `jadwal_prove` (`id_jadwal_prove`, `id_internal`, `hari`, `jam_mulai`, `jam_selesai`, `status_booking`, `status_aktif`, `terakhir_dibooking`) VALUES
+(1, 1, 'Senin', '07:00', '09:00', 'Free', 'Tidak Aktif', '0000-00-00'),
+(2, 1, 'Selasa', '11:00', '12:00', 'Free', 'Aktif', '0000-00-00'),
+(3, 1, 'Rabu', '13:00', '15:00', 'Free', 'Aktif', '0000-00-00'),
+(5, 1, 'Kamis', '08:30', '09:30', 'Free', 'Tidak Aktif', '0000-00-00'),
+(6, 1, 'Jumat', '14:30', '15:30', 'Free', 'Aktif', '0000-00-00'),
+(7, 1, 'Senin', '12:00', '13:00', 'Free', 'Tidak Aktif', '0000-00-00'),
+(8, 1, 'Selasa', '07:00', '09:00', 'Free', 'Aktif', '0000-00-00'),
+(9, 1, 'Rabu', '07:00', '09:00', 'Free', 'Aktif', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -190,12 +192,14 @@ INSERT INTO `materi_prove` (`id_materi_prove`, `nama`) VALUES
 CREATE TABLE `prove` (
   `id_prove` int(5) NOT NULL,
   `id_eksternal` int(3) NOT NULL,
+  `id_internal` int(3) NOT NULL,
   `id_materi_prove` int(3) NOT NULL,
+  `id_jadwal_prove` int(3) NOT NULL,
   `deskripsi_materi` tinytext NOT NULL,
-  `tanggal_prove` datetime NOT NULL,
   `tanggal_booking` date NOT NULL,
-  `jam_mulai` time NOT NULL,
-  `jam_selesai` time NOT NULL,
+  `tanggal_prove` date NOT NULL,
+  `kode_prove` varchar(10) NOT NULL,
+  `kata_sandi` varchar(10) NOT NULL,
   `status_prove` enum('Selesai','Belum Selesai') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -203,8 +207,8 @@ CREATE TABLE `prove` (
 -- Dumping data untuk tabel `prove`
 --
 
-INSERT INTO `prove` (`id_prove`, `id_eksternal`, `id_materi_prove`, `deskripsi_materi`, `tanggal_prove`, `tanggal_booking`, `jam_mulai`, `jam_selesai`, `status_prove`) VALUES
-(1, 1, 3, 'Bab rumus micro', '0000-00-00 00:00:00', '0000-00-00', '00:00:00', '00:00:00', 'Belum Selesai');
+INSERT INTO `prove` (`id_prove`, `id_eksternal`, `id_internal`, `id_materi_prove`, `id_jadwal_prove`, `deskripsi_materi`, `tanggal_booking`, `tanggal_prove`, `kode_prove`, `kata_sandi`, `status_prove`) VALUES
+(1, 1, 1, 3, 0, 'Bab rumus micro', '0000-00-00', '0000-00-00', '', '', 'Belum Selesai');
 
 -- --------------------------------------------------------
 
@@ -285,18 +289,6 @@ ALTER TABLE `software`
 --
 ALTER TABLE `detail_prove`
   MODIFY `id_detail_prove` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT untuk tabel `eksternal`
---
-ALTER TABLE `eksternal`
-  MODIFY `id_eksternal` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT untuk tabel `internal`
---
-ALTER TABLE `internal`
-  MODIFY `id_internal` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `jadwal_bank_software`
