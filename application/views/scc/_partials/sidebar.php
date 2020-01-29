@@ -54,6 +54,18 @@
 			?> -->
 
 	<li class="nav-item">
+		<a class="nav-link" href="<?= base_url('admin/internal'); ?>">
+			<i class="fas fa-user"></i>
+			<span>Anggota Internal</span></a>
+	</li>
+
+	<li class="nav-item">
+		<a class="nav-link" href="<?= base_url('admin/eksternal'); ?>">
+			<i class="fas fa-user"></i>
+			<span>Anggota Eksternal</span></a>
+	</li>
+
+	<li class="nav-item">
 		<a class="nav-link" href="<?= base_url('admin/prove'); ?>">
 			<i class="fas fa-user"></i>
 			<span>Prove</span></a>
@@ -69,18 +81,6 @@
 		<a class="nav-link" href="<?= base_url('admin/materi_prove'); ?>">
 			<i class="fas fa-user"></i>
 			<span>Materi Prove</span></a>
-	</li>
-
-	<li class="nav-item">
-		<a class="nav-link" href="<?= base_url('admin/internal'); ?>">
-			<i class="fas fa-user"></i>
-			<span>Anggota Internal</span></a>
-	</li>
-
-	<li class="nav-item">
-		<a class="nav-link" href="<?= base_url('admin/eksternal'); ?>">
-			<i class="fas fa-user"></i>
-			<span>Anggota Eksternal</span></a>
 	</li>
 
 	<li class="nav-item">
