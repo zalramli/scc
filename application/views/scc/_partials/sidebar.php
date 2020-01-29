@@ -16,75 +16,55 @@
 		Sistem Informasi Komunitas
 	</div>
 	<!-- Nav Item - Tables -->
-	<!-- <?php 
-	$eksternal = base_url('admin/eksternal');
-	$internal = base_url('admin/eksternal');
-	$prove = base_url('admin/prove');
-	$jadwal_prove = base_url('admin/jadwal_prove');
-	$jadwal_bs = base_url('admin/jadwal_bs');
-		if($this->session->userdata('nama') == 'Hasri Wiji Aqsari')
-		{
-			echo '<li class="nav-item">
-				<a class="nav-link" href="'.$internal.'">
+	<!-- <?php
+			$eksternal = base_url('admin/eksternal');
+			$internal = base_url('admin/eksternal');
+			$prove = base_url('admin/prove');
+			$jadwal_prove = base_url('admin/jadwal_prove');
+			$jadwal_bs = base_url('admin/jadwal_bs');
+			if ($this->session->userdata('nama') == 'Hasri Wiji Aqsari') {
+				echo '<li class="nav-item">
+				<a class="nav-link" href="' . $internal . '">
 			<i class="fas fa-user"></i>
 			<span>Anggota Internal</span></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="'.$eksternal.'">
+				<a class="nav-link" href="' . $eksternal . '">
 			<i class="fas fa-user"></i>
 			<span>Anggota Eksternal</span></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="'.$prove.'">
+				<a class="nav-link" href="' . $prove . '">
 			<i class="fas fa-user"></i>
 			<span>Prove</span></a>
 			</li>';
-		
-		}
-		else if($this->session->userdata('nama') == 'Ichwanul Kahfi Prasetya')
-		{
-			echo '<li class="nav-item">
-				<a class="nav-link" href="'.$jadwal_bs.'">
+			} else if ($this->session->userdata('nama') == 'Ichwanul Kahfi Prasetya') {
+				echo '<li class="nav-item">
+				<a class="nav-link" href="' . $jadwal_bs . '">
 			<i class="fas fa-user"></i>
 			<span>Jadwal Bank Software</span></a>
 			</li>';
-
-		}
-		else if($this->session->userdata('nama') == 'Eva Marella')
-		{
-			echo '<li class="nav-item">
-					<a class="nav-link" href="'.$jadwal_prove.'">
+			} else if ($this->session->userdata('nama') == 'Eva Marella') {
+				echo '<li class="nav-item">
+					<a class="nav-link" href="' . $jadwal_prove . '">
 			<i class="fas fa-user"></i>
 			<span>Jadwal Prove</span></a>
 			</li>';
+			}
+			?> -->
 
-		}
-	?> -->
-	<li class="nav-item">
-		<a class="nav-link" href="<?= base_url('admin/internal'); ?>">
-			<i class="fas fa-user"></i>
-			<span>Anggota Internal</span></a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="<?= base_url('admin/eksternal'); ?>">
-			<i class="fas fa-user"></i>
-			<span>Anggota Eksternal</span></a>
-	</li>
 	<li class="nav-item">
 		<a class="nav-link" href="<?= base_url('admin/prove'); ?>">
 			<i class="fas fa-user"></i>
 			<span>Prove</span></a>
 	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="<?= base_url('admin/jadwal_bs'); ?>">
-			<i class="fas fa-user"></i>
-			<span>Jadwal Bank Software</span></a>
-	</li>
+
 	<li class="nav-item">
 		<a class="nav-link" href="<?= base_url('admin/jadwal_prove'); ?>">
 			<i class="fas fa-user"></i>
 			<span>Jadwal Prove</span></a>
 	</li>
+
 	<li class="nav-item">
 		<a class="nav-link" href="<?= base_url('admin/materi_prove'); ?>">
 			<i class="fas fa-user"></i>
@@ -92,13 +72,28 @@
 	</li>
 
 	<li class="nav-item">
+		<a class="nav-link" href="<?= base_url('admin/internal'); ?>">
+			<i class="fas fa-user"></i>
+			<span>Anggota Internal</span></a>
+	</li>
+
+	<li class="nav-item">
+		<a class="nav-link" href="<?= base_url('admin/eksternal'); ?>">
+			<i class="fas fa-user"></i>
+			<span>Anggota Eksternal</span></a>
+	</li>
+
+	<li class="nav-item">
+		<a class="nav-link" href="<?= base_url('admin/jadwal_bs'); ?>">
+			<i class="fas fa-user"></i>
+			<span>Jadwal Bank Software</span></a>
+	</li>
+
+	<li class="nav-item">
 		<a class="nav-link" href="<?= base_url('admin/software'); ?>">
 			<i class="fas fa-user"></i>
 			<span>List Software</span></a>
 	</li>
-
-
-
 
 	<!-- Divider -->
 	<hr class="sidebar-divider d-none d-md-block">
