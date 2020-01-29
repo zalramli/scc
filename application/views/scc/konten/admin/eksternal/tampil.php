@@ -1,11 +1,11 @@
-<?php if($this->session->flashdata('success')) : ?>
-<div class="pesan-sukses" data-flashdata="<?= $this->session->flashdata('success'); ?>"></div>
+<?php if ($this->session->flashdata('success')) : ?>
+	<div class="pesan-sukses" data-flashdata="<?= $this->session->flashdata('success'); ?>"></div>
 <?php endif; ?>
-<?php if($this->session->flashdata('update')) : ?>
-<div class="pesan-update" data-flashdata="<?= $this->session->flashdata('update'); ?>"></div>
+<?php if ($this->session->flashdata('update')) : ?>
+	<div class="pesan-update" data-flashdata="<?= $this->session->flashdata('update'); ?>"></div>
 <?php endif; ?>
-<?php if($this->session->flashdata('hapus')) : ?>
-<div class="pesan-hapus" data-flashdata="<?= $this->session->flashdata('hapus'); ?>"></div>
+<?php if ($this->session->flashdata('hapus')) : ?>
+	<div class="pesan-hapus" data-flashdata="<?= $this->session->flashdata('hapus'); ?>"></div>
 <?php endif; ?>
 <div class="container-fluid">
 	<div class="card shadow mb-4">
@@ -28,21 +28,20 @@
 					</thead>
 					<tbody>
 						<?php
-						$no=1;
-						foreach($record as $data):
-                        ?>
-						<tr>
-							<td class="text-center"><?= $no++ ?></td>
-							<td><?= $data->nama ?></td>
-							<td><?= $data->angkatan ?></td>
-							<td><?= $data->no_hp ?></td>
-							<td><?= $data->akun_line ?></td>
-							<td><?= $data->username ?></td>
-							<td class="text-center">
-								<a href="<?= base_url('admin/eksternal/delete/'.$data->id_eksternal) ?>"
-									class="btn btn-sm btn-danger tombol-hapus">Hapus</a>
-							</td>
-						</tr>
+						$no = 1;
+						foreach ($record as $data) :
+						?>
+							<tr>
+								<td class="text-center"><?= $no++ ?></td>
+								<td><?= $data->nama ?></td>
+								<td><?= $data->angkatan ?></td>
+								<td><?= $data->no_hp ?></td>
+								<td><?= $data->akun_line ?></td>
+								<td><?= $data->username ?></td>
+								<td class="text-center">
+									<a href="<?= base_url('admin/eksternal/delete/' . $data->id_eksternal) ?>" class="btn btn-sm btn-danger tombol-hapus">Hapus</a>
+								</td>
+							</tr>
 						<?php endforeach; ?>
 					</tbody>
 				</table>
@@ -50,9 +49,9 @@
 		</div>
 	</div>
 </div>
-<script src="<?= base_url(); ?>assets/sb_admin_2/vendor/jquery/jquery.min.js"></script>
+<script src="<?= base_url(); ?>_assets/sb_admin_2/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
-	$('.tombol-hapus').on('click', function (e) {
+	$('.tombol-hapus').on('click', function(e) {
 		e.preventDefault();
 		var href = $(this).attr('href');
 		Swal.fire({
@@ -74,5 +73,4 @@
 			}
 		})
 	});
-
 </script>

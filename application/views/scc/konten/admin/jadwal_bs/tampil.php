@@ -1,11 +1,11 @@
-<?php if($this->session->flashdata('success')) : ?>
-<div class="pesan-sukses" data-flashdata="<?= $this->session->flashdata('success'); ?>"></div>
+<?php if ($this->session->flashdata('success')) : ?>
+	<div class="pesan-sukses" data-flashdata="<?= $this->session->flashdata('success'); ?>"></div>
 <?php endif; ?>
-<?php if($this->session->flashdata('update')) : ?>
-<div class="pesan-update" data-flashdata="<?= $this->session->flashdata('update'); ?>"></div>
+<?php if ($this->session->flashdata('update')) : ?>
+	<div class="pesan-update" data-flashdata="<?= $this->session->flashdata('update'); ?>"></div>
 <?php endif; ?>
-<?php if($this->session->flashdata('hapus')) : ?>
-<div class="pesan-hapus" data-flashdata="<?= $this->session->flashdata('hapus'); ?>"></div>
+<?php if ($this->session->flashdata('hapus')) : ?>
+	<div class="pesan-hapus" data-flashdata="<?= $this->session->flashdata('hapus'); ?>"></div>
 <?php endif; ?>
 <div class="container-fluid">
 	<div class="card shadow mb-4">
@@ -13,11 +13,9 @@
 			<h5 class="m-0 font-weight-bold text-primary">Jadwal Bank Software</h5>
 		</div>
 		<div class="card-body">
-			<button type="button" class="btn btn-sm btn-primary mb-3" data-toggle="modal"
-				data-target=".bd-example-modal-lg">Tambah Jadwal</button>
+			<button type="button" class="btn btn-sm btn-primary mb-3" data-toggle="modal" data-target=".bd-example-modal-lg">Tambah Jadwal</button>
 
-			<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-				aria-hidden="true">
+			<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -43,8 +41,7 @@
 									<div class="row">
 										<div class="col-sm-6">
 											<label for="inputEmail3">Jam Mulai</label>
-											<select name="jam_mulai" class="form-control form-control-sm"
-												id="inputEmail5" required>
+											<select name="jam_mulai" class="form-control form-control-sm" id="inputEmail5" required>
 												<option value="07">07</option>
 												<option value="08">08</option>
 												<option value="09">09</option>
@@ -59,8 +56,7 @@
 										<div class="col-sm-6">
 											<label for="inputEmail3">Menit Mulai</label>
 
-											<select name="menit_mulai" class="form-control form-control-sm"
-												id="inputEmail5" required>
+											<select name="menit_mulai" class="form-control form-control-sm" id="inputEmail5" required>
 												<option value="00">00</option>
 												<option value="15">15</option>
 												<option value="30">30</option>
@@ -74,8 +70,7 @@
 									<div class="row">
 										<div class="col-sm-6">
 											<label for="inputEmail3">Jam Selesai</label>
-											<select name="jam_selesai" class="form-control form-control-sm"
-												id="inputEmail5" required>
+											<select name="jam_selesai" class="form-control form-control-sm" id="inputEmail5" required>
 												<option value="07">07</option>
 												<option value="08">08</option>
 												<option value="09">09</option>
@@ -90,8 +85,7 @@
 										<div class="col-sm-6">
 											<label for="inputEmail3">Menit Selesai</label>
 
-											<select name="menit_selesai" class="form-control form-control-sm"
-												id="inputEmail5" required>
+											<select name="menit_selesai" class="form-control form-control-sm" id="inputEmail5" required>
 												<option value="00">00</option>
 												<option value="15">15</option>
 												<option value="30">30</option>
@@ -119,21 +113,19 @@
 						</div>
 						<ul class="list-group list-group-flush">
 							<?php
-                                    $no=1;
-                                    foreach($record_senin as $data_senin):
-                                ?>
-							<li class="list-group-item" id="table1">
-								<?= $data_senin->jam_mulai.' - '.$data_senin->jam_selesai ?>
-								<select class="float-right status_senin">
-									<option value="<?= $data_senin->id_jadwal_bs ?>-Aktif"
-										<?php if($data_senin->status_aktif== 'Aktif') echo 'selected'; ?>>Aktif
-									</option>
-									<option value="<?= $data_senin->id_jadwal_bs ?>-Tidak Aktif"
-										<?php if($data_senin->status_aktif== 'Tidak Aktif') echo 'selected'; ?>>
-										Tidak Aktif
-									</option>
-								</select>
-							</li>
+							$no = 1;
+							foreach ($record_senin as $data_senin) :
+							?>
+								<li class="list-group-item" id="table1">
+									<?= $data_senin->jam_mulai . ' - ' . $data_senin->jam_selesai ?>
+									<select class="float-right status_senin">
+										<option value="<?= $data_senin->id_jadwal_bs ?>-Aktif" <?php if ($data_senin->status_aktif == 'Aktif') echo 'selected'; ?>>Aktif
+										</option>
+										<option value="<?= $data_senin->id_jadwal_bs ?>-Tidak Aktif" <?php if ($data_senin->status_aktif == 'Tidak Aktif') echo 'selected'; ?>>
+											Tidak Aktif
+										</option>
+									</select>
+								</li>
 							<?php endforeach; ?>
 
 						</ul>
@@ -146,21 +138,19 @@
 						</div>
 						<ul class="list-group list-group-flush">
 							<?php
-                                    $no=1;
-                                    foreach($record_selasa as $data_selasa):
-                                ?>
-							<li class="list-group-item">
-								<?= $data_selasa->jam_mulai.' - '.$data_selasa->jam_selesai ?>
-								<select class="float-right status_selasa">
-									<option value="<?= $data_selasa->id_jadwal_bs ?>-Aktif"
-										<?php if($data_selasa->status_aktif== 'Aktif') echo 'selected'; ?>>Aktif
-									</option>
-									<option value="<?= $data_selasa->id_jadwal_bs ?>-Tidak Aktif"
-										<?php if($data_selasa->status_aktif== 'Tidak Aktif') echo 'selected'; ?>>
-										Tidak Aktif
-									</option>
-								</select>
-							</li>
+							$no = 1;
+							foreach ($record_selasa as $data_selasa) :
+							?>
+								<li class="list-group-item">
+									<?= $data_selasa->jam_mulai . ' - ' . $data_selasa->jam_selesai ?>
+									<select class="float-right status_selasa">
+										<option value="<?= $data_selasa->id_jadwal_bs ?>-Aktif" <?php if ($data_selasa->status_aktif == 'Aktif') echo 'selected'; ?>>Aktif
+										</option>
+										<option value="<?= $data_selasa->id_jadwal_bs ?>-Tidak Aktif" <?php if ($data_selasa->status_aktif == 'Tidak Aktif') echo 'selected'; ?>>
+											Tidak Aktif
+										</option>
+									</select>
+								</li>
 							<?php endforeach; ?>
 
 						</ul>
@@ -173,21 +163,19 @@
 						</div>
 						<ul class="list-group list-group-flush">
 							<?php
-                                    $no=1;
-                                    foreach($record_rabu as $data_rabu):
-                                ?>
-							<li class="list-group-item">
-								<?= $data_rabu->jam_mulai.' - '.$data_rabu->jam_selesai ?>
-								<select class="float-right status_rabu">
-									<option value="<?= $data_rabu->id_jadwal_bs ?>-Aktif"
-										<?php if($data_rabu->status_aktif== 'Aktif') echo 'selected'; ?>>Aktif
-									</option>
-									<option value="<?= $data_rabu->id_jadwal_bs ?>-Tidak Aktif"
-										<?php if($data_rabu->status_aktif== 'Tidak Aktif') echo 'selected'; ?>>
-										Tidak Aktif
-									</option>
-								</select>
-							</li>
+							$no = 1;
+							foreach ($record_rabu as $data_rabu) :
+							?>
+								<li class="list-group-item">
+									<?= $data_rabu->jam_mulai . ' - ' . $data_rabu->jam_selesai ?>
+									<select class="float-right status_rabu">
+										<option value="<?= $data_rabu->id_jadwal_bs ?>-Aktif" <?php if ($data_rabu->status_aktif == 'Aktif') echo 'selected'; ?>>Aktif
+										</option>
+										<option value="<?= $data_rabu->id_jadwal_bs ?>-Tidak Aktif" <?php if ($data_rabu->status_aktif == 'Tidak Aktif') echo 'selected'; ?>>
+											Tidak Aktif
+										</option>
+									</select>
+								</li>
 							<?php endforeach; ?>
 
 						</ul>
@@ -200,21 +188,19 @@
 						</div>
 						<ul class="list-group list-group-flush">
 							<?php
-                                    $no=1;
-                                    foreach($record_kamis as $data_kamis):
-                                ?>
-							<li class="list-group-item">
-								<?= $data_kamis->jam_mulai.' - '.$data_kamis->jam_selesai ?>
-								<select class="float-right status_kamis">
-									<option value="<?= $data_kamis->id_jadwal_bs ?>-Aktif"
-										<?php if($data_kamis->status_aktif== 'Aktif') echo 'selected'; ?>>Aktif
-									</option>
-									<option value="<?= $data_kamis->id_jadwal_bs ?>-Tidak Aktif"
-										<?php if($data_kamis->status_aktif== 'Tidak Aktif') echo 'selected'; ?>>
-										Tidak Aktif
-									</option>
-								</select>
-							</li>
+							$no = 1;
+							foreach ($record_kamis as $data_kamis) :
+							?>
+								<li class="list-group-item">
+									<?= $data_kamis->jam_mulai . ' - ' . $data_kamis->jam_selesai ?>
+									<select class="float-right status_kamis">
+										<option value="<?= $data_kamis->id_jadwal_bs ?>-Aktif" <?php if ($data_kamis->status_aktif == 'Aktif') echo 'selected'; ?>>Aktif
+										</option>
+										<option value="<?= $data_kamis->id_jadwal_bs ?>-Tidak Aktif" <?php if ($data_kamis->status_aktif == 'Tidak Aktif') echo 'selected'; ?>>
+											Tidak Aktif
+										</option>
+									</select>
+								</li>
 							<?php endforeach; ?>
 
 						</ul>
@@ -227,21 +213,19 @@
 						</div>
 						<ul class="list-group list-group-flush">
 							<?php
-                                    $no=1;
-                                    foreach($record_jumat as $data_jumat):
-                                ?>
-							<li class="list-group-item">
-								<?= $data_jumat->jam_mulai.' - '.$data_jumat->jam_selesai ?>
-								<select class="float-right status_jumat">
-									<option value="<?= $data_jumat->id_jadwal_bs ?>-Aktif"
-										<?php if($data_jumat->status_aktif== 'Aktif') echo 'selected'; ?>>Aktif
-									</option>
-									<option value="<?= $data_jumat->id_jadwal_bs ?>-Tidak Aktif"
-										<?php if($data_jumat->status_aktif== 'Tidak Aktif') echo 'selected'; ?>>
-										Tidak Aktif
-									</option>
-								</select>
-							</li>
+							$no = 1;
+							foreach ($record_jumat as $data_jumat) :
+							?>
+								<li class="list-group-item">
+									<?= $data_jumat->jam_mulai . ' - ' . $data_jumat->jam_selesai ?>
+									<select class="float-right status_jumat">
+										<option value="<?= $data_jumat->id_jadwal_bs ?>-Aktif" <?php if ($data_jumat->status_aktif == 'Aktif') echo 'selected'; ?>>Aktif
+										</option>
+										<option value="<?= $data_jumat->id_jadwal_bs ?>-Tidak Aktif" <?php if ($data_jumat->status_aktif == 'Tidak Aktif') echo 'selected'; ?>>
+											Tidak Aktif
+										</option>
+									</select>
+								</li>
 							<?php endforeach; ?>
 
 						</ul>
@@ -250,9 +234,9 @@
 			</div>
 		</div>
 	</div>
-	<script src="<?= base_url(); ?>assets/sb_admin_2/vendor/jquery/jquery.min.js"></script>
+	<script src="<?= base_url(); ?>_assets/sb_admin_2/vendor/jquery/jquery.min.js"></script>
 	<script>
-		$('.status_senin').change(function () {
+		$('.status_senin').change(function() {
 			var id = this.value;
 			$.ajax({
 				url: "<?php echo base_url() . 'admin/jadwal_bs/update_jadwal_senin'; ?>",
@@ -260,12 +244,12 @@
 				data: {
 					id: id
 				},
-				success: function (data) {
+				success: function(data) {
 					location.reload();
 				}
 			});
 		});
-		$('.status_selasa').change(function () {
+		$('.status_selasa').change(function() {
 			var id = this.value;
 			$.ajax({
 				url: "<?php echo base_url() . 'admin/jadwal_bs/update_jadwal_selasa'; ?>",
@@ -273,12 +257,12 @@
 				data: {
 					id: id
 				},
-				success: function (data) {
+				success: function(data) {
 					location.reload();
 				}
 			});
 		});
-		$('.status_rabu').change(function () {
+		$('.status_rabu').change(function() {
 			var id = this.value;
 			$.ajax({
 				url: "<?php echo base_url() . 'admin/jadwal_bs/update_jadwal_rabu'; ?>",
@@ -286,12 +270,12 @@
 				data: {
 					id: id
 				},
-				success: function (data) {
+				success: function(data) {
 					location.reload();
 				}
 			});
 		});
-		$('.status_kamis').change(function () {
+		$('.status_kamis').change(function() {
 			var id = this.value;
 			$.ajax({
 				url: "<?php echo base_url() . 'admin/jadwal_bs/update_jadwal_kamis'; ?>",
@@ -299,12 +283,12 @@
 				data: {
 					id: id
 				},
-				success: function (data) {
+				success: function(data) {
 					location.reload();
 				}
 			});
 		});
-		$('.status_jumat').change(function () {
+		$('.status_jumat').change(function() {
 			var id = this.value;
 			$.ajax({
 				url: "<?php echo base_url() . 'admin/jadwal_bs/update_jadwal_jumat'; ?>",
@@ -312,10 +296,9 @@
 				data: {
 					id: id
 				},
-				success: function (data) {
+				success: function(data) {
 					location.reload();
 				}
 			});
 		});
-
 	</script>

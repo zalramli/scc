@@ -1,14 +1,14 @@
-<?php if($this->session->flashdata('password')) : ?>
-<div class="pesan-password" data-flashdata="<?= $this->session->flashdata('password'); ?>"></div>
+<?php if ($this->session->flashdata('password')) : ?>
+	<div class="pesan-password" data-flashdata="<?= $this->session->flashdata('password'); ?>"></div>
 <?php endif; ?>
-<?php if($this->session->flashdata('akses')) : ?>
-<div class="pesan-akses" data-flashdata="<?= $this->session->flashdata('akses'); ?>"></div>
+<?php if ($this->session->flashdata('akses')) : ?>
+	<div class="pesan-akses" data-flashdata="<?= $this->session->flashdata('akses'); ?>"></div>
 <?php endif; ?>
 <div class="row">
 	<div class="col-lg-6 d-none d-lg-block">
 		<div class="text-center mt-5">
 			<h2>SCC Web Apps</h2>
-			<img width="250px" heigh="250px" src="<?= base_url() ?>assets/sb_admin_2/img/logo-fix.png" alt="">
+			<img width="250px" heigh="250px" src="<?= base_url() ?>_assets/sb_admin_2/img/logo-fix.png" alt="">
 		</div>
 	</div>
 	<div class="col-lg-6">
@@ -16,14 +16,13 @@
 			<div class="text-center">
 				<h1 class="h4 text-gray-900 mb-4">Login User</h1>
 			</div>
-			<?php $attribute = array( 'class' => 'user'); echo form_open('login/store',$attribute); ?>
+			<?php $attribute = array('class' => 'user');
+			echo form_open('login/store', $attribute); ?>
 			<div class="form-group">
-				<input type="text" name="username" class="form-control form-control-user" id="exampleInputEmail"
-					aria-describedby="emailHelp" placeholder="Masukan Username" required>
+				<input type="text" name="username" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Masukan Username" required>
 			</div>
 			<div class="form-group">
-				<input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword"
-					placeholder="Masukan password" required>
+				<input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Masukan password" required>
 			</div>
 			<button type="submit" class="btn btn-primary btn-user btn-block">
 				Login

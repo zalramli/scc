@@ -20,33 +20,30 @@
 					</thead>
 					<tbody>
 						<?php
-						$no=1;
-						foreach($record as $data):
-                        ?>
-						<tr>
-							<td class="text-center"><?= $no++ ?></td>
-							<td><?= $data->nama_eksternal ?></td>
-							<td><?= $data->angkatan ?></td>
-							<td><?= $data->nama_internal ?></td>
-							<td><?= $data->nama_materi ?></td>
-							<td><?= $data->deskripsi_materi ?></td>
-							<td>
-								<?php if($data->status_prove == "Selesai")
-                                {
-                                    echo '<span class="badge badge-success">Done</span>';
-                                }
-                                else {
-                                    echo '<span class="badge badge-danger">unfinished</span>';
-                                }   
-                            ?>
-							</td>
-							<td>
-								<a href="#" class="btn-sm btn-info" id="btn_search" data-toggle="modal"
-									data-target="#exampleModalCenter" data-idprove="<?= $data->id_prove ?>">
-									Detail
-								</a>
-							</td>
-						</tr>
+						$no = 1;
+						foreach ($record as $data) :
+						?>
+							<tr>
+								<td class="text-center"><?= $no++ ?></td>
+								<td><?= $data->nama_eksternal ?></td>
+								<td><?= $data->angkatan ?></td>
+								<td><?= $data->nama_internal ?></td>
+								<td><?= $data->nama_materi ?></td>
+								<td><?= $data->deskripsi_materi ?></td>
+								<td>
+									<?php if ($data->status_prove == "Selesai") {
+										echo '<span class="badge badge-success">Done</span>';
+									} else {
+										echo '<span class="badge badge-danger">unfinished</span>';
+									}
+									?>
+								</td>
+								<td>
+									<a href="#" class="btn-sm btn-info" id="btn_search" data-toggle="modal" data-target="#exampleModalCenter" data-idprove="<?= $data->id_prove ?>">
+										Detail
+									</a>
+								</td>
+							</tr>
 						<?php endforeach; ?>
 					</tbody>
 				</table>
@@ -54,8 +51,7 @@
 		</div>
 	</div>
 </div>
-<div class="modal fade  bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
-	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade  bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -82,9 +78,9 @@
 		</div>
 	</div>
 </div>
-<script src="<?= base_url(); ?>assets/sb_admin_2/vendor/jquery/jquery.min.js"></script>
+<script src="<?= base_url(); ?>_assets/sb_admin_2/vendor/jquery/jquery.min.js"></script>
 <script>
-	$('#btn_search').on('click', function () {
+	$('#btn_search').on('click', function() {
 		var id_prove = $(this).data("idprove");
 		var table;
 		table = $('.table_1').DataTable({
@@ -101,12 +97,12 @@
 			data: {
 				id_prove: id_prove
 			},
-			success: function (hasil) {
+			success: function(hasil) {
 				var obj = JSON.parse(hasil);
 				let data = obj['tbl_data'];
 				if (data != '') {
 					var no = 1;
-					$.each(data, function (i, item) {
+					$.each(data, function(i, item) {
 						var nama = data[i].nama;
 						var angkatan = data[i].angkatan;
 						table.row.add([no, nama, angkatan]);
@@ -119,5 +115,4 @@
 			}
 		});
 	});
-
 </script>

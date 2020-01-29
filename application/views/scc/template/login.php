@@ -10,17 +10,14 @@
 	<meta name="author" content="">
 
 	<title>SCC</title>
-	<link rel="icon" href="<?= base_url() ?>assets/sb_admin_2/img/logo-fix.png" type="image/x-icon">
+	<link rel="icon" href="<?= base_url() ?>_assets/sb_admin_2/img/logo-fix.png" type="image/x-icon">
 
 	<!-- Custom fonts for this template-->
-	<link href="<?= base_url() ?>assets/sb_admin_2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-		type="text/css">
-	<link
-		href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-		rel="stylesheet">
+	<link href="<?= base_url() ?>_assets/sb_admin_2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
 	<!-- Custom styles for this template-->
-	<link href="<?= base_url() ?>assets/sb_admin_2/css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="<?= base_url() ?>_assets/sb_admin_2/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -49,25 +46,24 @@
 
 
 	<!-- Bootstrap core JavaScript-->
-	<script src="<?= base_url() ?>assets/sb_admin_2/vendor/jquery/jquery.min.js"></script>
-	<script src="<?= base_url() ?>assets/sb_admin_2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="<?= base_url() ?>_assets/sb_admin_2/vendor/jquery/jquery.min.js"></script>
+	<script src="<?= base_url() ?>_assets/sb_admin_2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Core plugin JavaScript-->
-	<script src="<?= base_url() ?>assets/sb_admin_2/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script src="<?= base_url() ?>_assets/sb_admin_2/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 	<!-- Custom scripts for all pages-->
-	<script src="<?= base_url() ?>assets/sb_admin_2/js/sb-admin-2.min.js"></script>
+	<script src="<?= base_url() ?>_assets/sb_admin_2/js/sb-admin-2.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function () {
+		$(document).ready(function() {
 			$('.nrp').mask('00000000000000');
 			$('.hp').mask('000000000000000');
 		})
-
 	</script>
 	<script>
-		$('.karakter').keypress(function (e) {
+		$('.karakter').keypress(function(e) {
 			var regex = new RegExp(/^[a-zA-Z\s]+$/);
 			var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
 			if (regex.test(str)) {
@@ -77,10 +73,9 @@
 				return false;
 			}
 		});
-
 	</script>
 	<script>
-		$('.karakterAngka').keypress(function (e) {
+		$('.karakterAngka').keypress(function(e) {
 			var regex = new RegExp(/^[a-z0-9\s]+$/i);
 			var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
 			if (regex.test(str)) {
@@ -90,7 +85,6 @@
 				return false;
 			}
 		});
-
 	</script>
 	<script type="text/javascript">
 		// crud sukses 
@@ -131,7 +125,6 @@
 				'success'
 			)
 		}
-
 	</script>
 
 </body>
