@@ -130,12 +130,12 @@
 				android:layout_height="wrap_content">
 
 				<EditText
-					android:focusable="false"
 					android:id="@+id/edt_hak_akses"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
+					android:focusable="false"
 					android:hint="Hak Akses ..."
-					android:inputType="number" />
+					android:inputType="none"/>
 
 			</com.google.android.material.textfield.TextInputLayout>
 
@@ -144,12 +144,12 @@
 				android:layout_height="wrap_content">
 
 				<EditText
-					android:focusable="false"
 					android:id="@+id/edt_jabatan_managerial"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
+					android:focusable="false"
 					android:hint="Jabatan Managerial ..."
-					android:inputType="number" />
+					android:inputType="none" />
 
 			</com.google.android.material.textfield.TextInputLayout>
 
@@ -158,12 +158,12 @@
 				android:layout_height="wrap_content">
 
 				<EditText
-					android:focusable="false"
 					android:id="@+id/edt_status_sj"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
+					android:focusable="false"
 					android:hint="Status SJ ..."
-					android:inputType="number" />
+					android:inputType="none" />
 
 			</com.google.android.material.textfield.TextInputLayout>
 

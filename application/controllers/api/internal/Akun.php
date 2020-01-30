@@ -112,9 +112,6 @@ class Akun extends REST_Controller
                 'no_hp'         => $no_hp,
                 'akun_line'        => $akun_line,
                 'username'      => $username,
-                'hak_akses'      => $hak_akses,
-                'jabatan_managerial'      => $jabatan_managerial,
-                'status_sj'      => $status_sj,
                 'foto'          => $nama_foto
             );
         } else {
@@ -125,9 +122,6 @@ class Akun extends REST_Controller
                 'akun_line'     => $akun_line,
                 'username'      => $username,
                 'password'      => $password,
-                'hak_akses'      => $hak_akses,
-                'jabatan_managerial'      => $jabatan_managerial,
-                'status_sj'      => $status_sj,
                 'foto'          => $nama_foto
             );
         }
