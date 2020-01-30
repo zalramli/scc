@@ -39,7 +39,7 @@ public class InternalAkunEditPresenter implements IInternalAkunEditPresenter {
 	@Override
 	public void inisiasiAwal(String id_internal) {
 		String base_url = baseUrl.getUrlData();
-		String URL_DATA = base_url + "eksternal/akun/ambil_data_eksternal"; // url http request
+		String URL_DATA = base_url + "internal/akun/ambil_data_internal"; // url http request
 
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
 			new Response.Listener<String>() {
@@ -50,7 +50,7 @@ public class InternalAkunEditPresenter implements IInternalAkunEditPresenter {
 						String success = jsonObject.getString("success");
 						String message = jsonObject.getString("message");
 
-						JSONArray jsonArray = jsonObject.getJSONArray("eksternal");
+						JSONArray jsonArray = jsonObject.getJSONArray("internal");
 
 						if (success.equals("1")) {
 							for (int i = 0; i < jsonArray.length(); i++) {
@@ -65,7 +65,7 @@ public class InternalAkunEditPresenter implements IInternalAkunEditPresenter {
 								String status_sj = object.getString("status_sj").trim();
 								String foto = object.getString("foto").trim();
 
-								String alamat_foto = baseUrl.getUrlUpload() + "image/eksternal/" + foto + ".jpg";
+								String alamat_foto = baseUrl.getUrlUpload() + "image/internal/" + foto + ".jpg";
 
 								internalAkunEditView.setNilaiDefault(nama, no_hp, akun_line, username, hak_akses, jabatan_managerial, status_sj, alamat_foto);
 							}
@@ -100,7 +100,7 @@ public class InternalAkunEditPresenter implements IInternalAkunEditPresenter {
 	@Override
 	public void onUpdate(String id_internal, String nama, String no_hp, String akun_line, String username, String password, String hak_akses, String jabatan_managerial, String status_sj, String foto) {
 		String base_url = baseUrl.getUrlData();
-		String URL_DATA = base_url + "eksternal/akun/update_eksternal"; // url http request
+		String URL_DATA = base_url + "internal/akun/update_internal"; // url http request
 
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
 			new Response.Listener<String>() {

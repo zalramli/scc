@@ -130,6 +130,7 @@
 				android:layout_height="wrap_content">
 
 				<EditText
+					android:focusable="false"
 					android:id="@+id/edt_hak_akses"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
@@ -143,6 +144,7 @@
 				android:layout_height="wrap_content">
 
 				<EditText
+					android:focusable="false"
 					android:id="@+id/edt_jabatan_managerial"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
@@ -156,6 +158,7 @@
 				android:layout_height="wrap_content">
 
 				<EditText
+					android:focusable="false"
 					android:id="@+id/edt_status_sj"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"

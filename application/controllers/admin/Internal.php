@@ -41,7 +41,8 @@ class Internal extends CI_Controller
             'password' => $password,
             'hak_akses' => $hak_akses,
             'jabatan_managerial' => $jabatan_managerial,
-            'status_sj' => $status_sj
+            'status_sj' => $status_sj,
+            'foto'      => "DEFIN"
         );
         $this->M_crud->input_data('internal', $data);
         $this->session->set_flashdata('success', 'Ditambahkan');
