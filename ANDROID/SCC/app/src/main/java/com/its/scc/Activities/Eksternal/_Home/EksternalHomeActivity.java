@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.DialogInterface;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.its.scc.Activities.Eksternal.AkunEdit.EksternalAkunEditActivity;
+import com.its.scc.Activities.Eksternal.ListMateri.EksternalListMateriActivity;
 import com.its.scc.Activities.Eksternal._Home.view.IEksternalHomeView;
 import com.its.scc.Controllers.SessionManager;
 import com.its.scc.R;
@@ -32,15 +34,19 @@ public class EksternalHomeActivity extends AppCompatActivity implements View.OnC
 
 	SessionManager sessionManager;
 
+	CardView cvLinkProve;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eksternal_home);
 
-		sessionManager = new SessionManager(this);
-
 		drawerLayout = findViewById(R.id.drawer_layout_eksternal_home);
 		navigationView = findViewById(R.id.navigation_view_eksternal);
+
+		sessionManager = new SessionManager(this);
+
+		cvLinkProve = findViewById(R.id.cv_link_prove); // link card view prove
 
 		actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
 		drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -69,11 +75,17 @@ public class EksternalHomeActivity extends AppCompatActivity implements View.OnC
 				return true;
 			}
 		});
+
+		cvLinkProve.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
-
+		if (v.getId() == R.id.cv_link_prove) {
+			Intent intent = new Intent();
+			intent = new Intent(getApplicationContext(), EksternalListMateriActivity.class);
+			startActivity(intent);
+		}
 	}
 
 	@Override

@@ -10,6 +10,8 @@ import com.its.scc.R;
 
 public class EksternalListInternalActivity extends AppCompatActivity implements View.OnClickListener , IEksternalListInternalView {
 
+	public static final String EXTRA_ID_MATERI_PROVE = "EXTRA_ID_MATERI_PROVE";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
