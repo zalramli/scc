@@ -44,7 +44,7 @@ public class AdapterListMateri extends RecyclerView.Adapter<AdapterListMateri.Li
 
 	@Override
 	public void onBindViewHolder(@NonNull AdapterListMateri.ListMateriViewHolder holder, int position) {
-		holder.txtNama.setText(dataModelArrayList.get(position).getNama());
+		holder.tvNama.setText(dataModelArrayList.get(position).getNama());
 	}
 
 	@Override
@@ -54,12 +54,12 @@ public class AdapterListMateri extends RecyclerView.Adapter<AdapterListMateri.Li
 
 	public class ListMateriViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-		TextView txtNama;
+		TextView tvNama;
 
 		public ListMateriViewHolder(@NonNull View itemView) {
 			super(itemView);
 
-			txtNama = itemView.findViewById(R.id.txt_nama);
+			tvNama = itemView.findViewById(R.id.tv_nama);
 
 			ButterKnife.bind(this, itemView);
 			itemView.setOnClickListener(this);

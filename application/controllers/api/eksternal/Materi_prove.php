@@ -49,42 +49,42 @@ class Materi_prove extends REST_Controller
         }
     }
 
-    function ambil_data_materi_prove_post()
-    {
-        $id_materi_prove = $this->post('id_materi_prove');
+    // function ambil_data_materi_prove_post()
+    // {
+    //     $id_materi_prove = $this->post('id_materi_prove');
 
-        // variable array
-        $result = array();
-        $result['materi_prove'] = array();
+    //     // variable array
+    //     $result = array();
+    //     $result['materi_prove'] = array();
 
-        $data_id = array(
-            'id_materi_prove' => $id_materi_prove
-        );
+    //     $data_id = array(
+    //         'id_materi_prove' => $id_materi_prove
+    //     );
 
-        // mengambil data dari database
-        $query = $this->M_universal->get_data('materi_prove', $data_id);
-        if ($query->num_rows() > 0) {
+    //     // mengambil data dari database
+    //     $query = $this->M_universal->get_data('materi_prove', $data_id);
+    //     if ($query->num_rows() > 0) {
 
-            // mengeluarkan data dari database
-            foreach ($query->result_array() as $row) {
+    //         // mengeluarkan data dari database
+    //         foreach ($query->result_array() as $row) {
 
-                // ambil detail data db
-                $data = array(
-                    'nama' => $row["nama"],
-                );
+    //             // ambil detail data db
+    //             $data = array(
+    //                 'nama' => $row["nama"],
+    //             );
 
-                array_push($result['materi_prove'], $data);
+    //             array_push($result['materi_prove'], $data);
 
-                // membuat array untuk di transfer
-                $result["success"] = "1";
-                $result["message"] = "Berhasil Mengambil Data";
-                $this->response($result, 200);
-            }
-        } else {
-            // membuat array untuk di transfer ke API
-            $result["success"] = "0";
-            $result["message"] = "Data Tidak Ditemukan";
-            $this->response($result, 200);
-        }
-    }
+    //             // membuat array untuk di transfer
+    //             $result["success"] = "1";
+    //             $result["message"] = "Berhasil Mengambil Data";
+    //             $this->response($result, 200);
+    //         }
+    //     } else {
+    //         // membuat array untuk di transfer ke API
+    //         $result["success"] = "0";
+    //         $result["message"] = "Data Tidak Ditemukan";
+    //         $this->response($result, 200);
+    //     }
+    // }
 }
