@@ -5,13 +5,12 @@
 	<div class="pesan-akses" data-flashdata="<?= $this->session->flashdata('akses'); ?>"></div>
 <?php endif; ?>
 <div class="row">
-	<div class="col-lg-6 d-none d-lg-block">
+	<div class="col-lg-5 d-none d-lg-block">
 		<div class="text-center mt-5">
-			<h2>SCC Web Apps</h2>
-			<img width="250px" heigh="250px" src="<?= base_url() ?>_assets/sb_admin_2/img/logo-fix.png" alt="">
+			<img width="250px" heigh="250px" src="<?= base_url() ?>_assets/logo/logo.png" alt="">
 		</div>
 	</div>
-	<div class="col-lg-6">
+	<div class="col-lg-7">
 		<div class="p-5">
 			<div class="text-center">
 				<h1 class="h4 text-gray-900 mb-4">Login User</h1>

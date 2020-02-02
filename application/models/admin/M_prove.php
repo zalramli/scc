@@ -6,7 +6,8 @@ class M_prove extends CI_Model
         $this->db->select('id_prove,deskripsi_materi,status_prove, eksternal.nama AS nama_eksternal,internal.nama AS nama_internal, angkatan,materi_prove.nama AS nama_materi,angkatan');
         $this->db->from('prove');
         $this->db->join('eksternal', 'eksternal.id_eksternal = prove.id_eksternal');
-        $this->db->join('internal', 'internal.id_internal = prove.id_internal');
+        $this->db->join('jadwal_prove', 'prove.id_jadwal_prove = jadwal_prove.id_jadwal_prove');
+        $this->db->join('internal', 'jadwal_prove.id_internal = jadwal_prove.id_internal');
         $this->db->join('materi_prove', 'materi_prove.id_materi_prove = prove.id_materi_prove');
         return $query = $this->db->get()->result();
     }

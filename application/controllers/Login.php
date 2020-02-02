@@ -20,13 +20,15 @@ class Login extends CI_Controller
                 $id_internal = $row->id_internal;
                 $username = $row->username;
                 $nama = $row->nama;
+                $foto = $row->foto;
                 $password = $row->password;
             }
             if ($userpass == $password) {
                 $data_session = array(
                     'id_internal' => $id_internal,
                     'username' => $username,
-                    'nama' => $nama
+                    'nama' => $nama,
+                    'foto' => $foto
                 );
                 $this->session->set_userdata($data_session);
                 if ($row->nama == 'Hasri Wiji Aqsari')

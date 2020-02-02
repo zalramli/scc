@@ -16,12 +16,14 @@
 		Sistem Informasi Komunitas
 	</div>
 	<!-- Nav Item - Tables -->
-	<!-- <?php
+	<?php
 			$eksternal = base_url('admin/eksternal');
-			$internal = base_url('admin/eksternal');
+			$internal = base_url('admin/internal');
 			$prove = base_url('admin/prove');
 			$jadwal_prove = base_url('admin/jadwal_prove');
 			$jadwal_bs = base_url('admin/jadwal_bs');
+			$materi_prove = base_url('admin/materi_prove');
+			$software = base_url('admin/software');
 			if ($this->session->userdata('nama') == 'Hasri Wiji Aqsari') {
 				echo '<li class="nav-item">
 				<a class="nav-link" href="' . $internal . '">
@@ -43,17 +45,29 @@
 				<a class="nav-link" href="' . $jadwal_bs . '">
 			<i class="fas fa-user"></i>
 			<span>Jadwal Bank Software</span></a>
-			</li>';
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="'.$software.'">
+					<i class="fas fa-user"></i>
+					<span>List Software</span></a>
+			</li>
+			';
 			} else if ($this->session->userdata('nama') == 'Eva Marella') {
 				echo '<li class="nav-item">
 					<a class="nav-link" href="' . $jadwal_prove . '">
 			<i class="fas fa-user"></i>
 			<span>Jadwal Prove</span></a>
-			</li>';
+			</li>
+			<li class="nav-item">
+			<a class="nav-link" href="'.$materi_prove.'">
+			<i class="fas fa-user"></i>
+			<span>Materi Prove</span></a>
+			</li>
+			';
 			}
-			?> -->
+			?>
 
-	<li class="nav-item">
+	<!-- <li class="nav-item">
 		<a class="nav-link" href="<?= base_url('admin/internal'); ?>">
 			<i class="fas fa-user"></i>
 			<span>Anggota Internal</span></a>
@@ -89,11 +103,18 @@
 			<span>Jadwal Bank Software</span></a>
 	</li>
 
+	</li>
+			<li class="nav-item">
+			<a class="nav-link" href="'.$materi_prove.'">
+			<i class="fas fa-user"></i>
+			<span>Materi Prove</span></a>
+	</li>
+		
 	<li class="nav-item">
 		<a class="nav-link" href="<?= base_url('admin/software'); ?>">
 			<i class="fas fa-user"></i>
 			<span>List Software</span></a>
-	</li>
+	</li> -->
 
 	<!-- Divider -->
 	<hr class="sidebar-divider d-none d-md-block">
