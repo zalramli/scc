@@ -18,8 +18,23 @@ class Internal extends REST_Controller
     {
         $id_materi_prove = $this->post('id_materi_prove');
 
-        // mengambil data dari database
-        $query = $this->M_universal->tampil_data('internal');
+        $where_senior = array(
+            'status_sj' => "Senior"
+        );
+
+        $where_junior = array(
+            'status_sj' => "Junior"
+        );
+
+        $query = $this->M_universal->tampil_data('internal'); // nilai default tampil semua 
+
+        if ($id_materi_prove == "3" || $id_materi_prove == "4" || $id_materi_prove == "5") {
+            // jika access/ axcel / c++
+            $query = $this->M_universal->get_data('internal', $where_junior);
+        } else if ($id_materi_prove == "6") {
+            // jika RStudio
+            $query = $this->M_universal->get_data('internal', $where_senior);
+        }
 
         // variable array
         $result = array();
