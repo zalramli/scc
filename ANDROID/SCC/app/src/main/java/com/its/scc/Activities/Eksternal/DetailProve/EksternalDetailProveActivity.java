@@ -31,11 +31,6 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements I
 	}
 
 	@Override
-	public void showDateDialog() {
-
-	}
-
-	@Override
 	public void backPressed() {
 
 	}

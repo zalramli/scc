@@ -7,7 +7,5 @@ public interface IEksternalDetailProveView {
 
 	void onErrorMessage(String message);
 
-	void showDateDialog();
-
 	void backPressed();
 }
