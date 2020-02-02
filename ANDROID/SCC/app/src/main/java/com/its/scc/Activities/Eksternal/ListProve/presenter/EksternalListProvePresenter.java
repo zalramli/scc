@@ -95,7 +95,7 @@ public class EksternalListProvePresenter implements IEksternalListProvePresenter
 								playerModel.setTanggal_prove(tanggal_prove);
 								playerModel.setKode_prove(kode_prove);
 								playerModel.setKata_sandi(kata_sandi);
-								playerModel.setKata_sandi(status_prove);
+								playerModel.setStatus_prove(status_prove);
 
 								dataModelArrayList.add(playerModel);
 							}
@@ -123,7 +123,7 @@ public class EksternalListProvePresenter implements IEksternalListProvePresenter
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String, String> params = new HashMap<>();
 				params.put("id", id);
-				params.put("ha_akses", hakAkses);
+				params.put("hak_akses", hakAkses);
 				return params;
 			}
 		};
