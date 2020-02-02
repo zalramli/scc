@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:alpha="0.2"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_android" />
+			android:src="@drawable/logo" />
 
         <TextView
             android:id="@+id/caption2"
