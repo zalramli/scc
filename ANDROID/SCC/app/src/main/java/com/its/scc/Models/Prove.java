@@ -3,6 +3,8 @@ package com.its.scc.Models;
 public class Prove {
 	String id_prove, id_eksternal, id_internal, id_materi_prove, id_jadwal_prove, deskripsi_materi, tanggal_booking, tanggal_prove, kode_prove, kata_sandi, status_prove;
 
+	String nama_eksternal, nama_internal, nama_materi_prove, hari, jam_mulai, jam_selesai;
+
 	public String getId_prove() {
 		return id_prove;
 	}
@@ -89,5 +91,53 @@ public class Prove {
 
 	public void setStatus_prove(String status_prove) {
 		this.status_prove = status_prove;
+	}
+
+	public String getNama_eksternal() {
+		return nama_eksternal;
+	}
+
+	public void setNama_eksternal(String nama_eksternal) {
+		this.nama_eksternal = nama_eksternal;
+	}
+
+	public String getNama_internal() {
+		return nama_internal;
+	}
+
+	public void setNama_internal(String nama_internal) {
+		this.nama_internal = nama_internal;
+	}
+
+	public String getNama_materi_prove() {
+		return nama_materi_prove;
+	}
+
+	public void setNama_materi_prove(String nama_materi_prove) {
+		this.nama_materi_prove = nama_materi_prove;
+	}
+
+	public String getHari() {
+		return hari;
+	}
+
+	public void setHari(String hari) {
+		this.hari = hari;
+	}
+
+	public String getJam_mulai() {
+		return jam_mulai;
+	}
+
+	public void setJam_mulai(String jam_mulai) {
+		this.jam_mulai = jam_mulai;
+	}
+
+	public String getJam_selesai() {
+		return jam_selesai;
+	}
+
+	public void setJam_selesai(String jam_selesai) {
+		this.jam_selesai = jam_selesai;
 	}
 }
