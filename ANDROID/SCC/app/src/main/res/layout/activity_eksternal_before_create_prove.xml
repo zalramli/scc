@@ -13,11 +13,11 @@
 		android:layout_alignParentTop="true">
 
 		<androidx.appcompat.widget.Toolbar
-			app:theme="@style/ToolbarTheme"
-			app:titleTextColor="@color/white"
 			android:id="@+id/toolbar"
 			android:layout_width="match_parent"
-			android:layout_height="?attr/actionBarSize">
+			android:layout_height="?attr/actionBarSize"
+			app:theme="@style/ToolbarTheme"
+			app:titleTextColor="@color/white">
 
 		</androidx.appcompat.widget.Toolbar>
 
@@ -39,14 +39,14 @@
 				android:layout_height="wrap_content">
 
 				<TextView
-					android:textStyle="bold"
-					android:textAlignment="center"
 					android:id="@+id/tv_nama_materi"
 					android:layout_width="match_parent"
 					android:layout_height="40sp"
 					android:gravity="center_vertical"
 					android:text="Nama Materi"
-					android:textSize="17sp" />
+					android:textAlignment="center"
+					android:textSize="17sp"
+					android:textStyle="bold" />
 
 			</com.google.android.material.textfield.TextInputLayout>
 
@@ -106,11 +106,33 @@
 
 			</com.google.android.material.textfield.TextInputLayout>
 
-			<Button
-				android:id="@+id/btn_submit"
+			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="Simpan" />
+				android:orientation="horizontal">
+
+				<Button
+					android:id="@+id/btn_batal"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginRight="5dp"
+					android:layout_weight="1"
+					android:drawableStart="@drawable/ic_close"
+					android:drawableLeft="@drawable/ic_close"
+					android:text="Batal" />
+
+				<Button
+					android:id="@+id/btn_submit"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="5dp"
+					android:layout_weight="1"
+					android:drawableStart="@drawable/ic_add"
+					android:drawableLeft="@drawable/ic_add"
+					android:text="Simpan" />
+
+			</LinearLayout>
+			
 		</LinearLayout>
 
 	</ScrollView>

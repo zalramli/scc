@@ -16,7 +16,8 @@
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme"
 		android:usesCleartextTraffic="true">
-		<activity android:name=".Activities.Eksternal.BeforeCreateProve.EksternalBeforeCreateProveActivity"></activity>
+		<activity android:name=".EksternalListProveActivity"></activity>
+		<activity android:name=".Activities.Eksternal.BeforeCreateProve.EksternalBeforeCreateProveActivity" />
 		<activity android:name=".Activities.Eksternal.DetailProve.EksternalDetailProveActivity" />
 		<activity android:name=".Activities.Eksternal.ListJadwal.EksternalListJadwalActivity" />
 		<activity android:name=".Activities.Internal.AkunEdit.InternalAkunEditActivity" />
