@@ -32,7 +32,6 @@ class Prove extends REST_Controller
 
         $data = array(
             'id_eksternal'   => $id_eksternal,
-            'id_internal'   => $id_internal,
             'id_materi_prove'   => $id_materi_prove,
             'id_jadwal_prove'   => $id_jadwal_prove,
             'deskripsi_materi'   => $deskripsi_materi,
@@ -42,8 +41,6 @@ class Prove extends REST_Controller
             'kata_sandi'   => $kata_sandi,
             'status_prove'   => "Belum Selesai"
         );
-
-        echo $data;
 
         $where_jadwal_prove = array(
             'id_jadwal_prove' => $id_jadwal_prove,
