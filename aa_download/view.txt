@@ -1,0 +1,2 @@
+CREATE VIEW list_jadwal AS
+SELECT * FROM jadwal_prove ORDER BY hari;

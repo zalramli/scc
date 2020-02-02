@@ -1,4 +1,4 @@
-package com.its.scc.Activities.Eksternal.ListInternal;
+package com.its.scc.Activities.Eksternal.ListJadwal;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -6,35 +6,33 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.its.scc.Activities.Eksternal.ListInternal.presenter.EksternalListInternalPresenter;
-import com.its.scc.Activities.Eksternal.ListInternal.presenter.IEksternalListInternalPresenter;
-import com.its.scc.Activities.Eksternal.ListInternal.view.IEksternalListInternalView;
-import com.its.scc.Activities.Eksternal.ListJadwal.EksternalListJadwalActivity;
-import com.its.scc.Activities.Eksternal.ListMateri.presenter.EksternalListMateriPresenter;
-import com.its.scc.Adapters.AdapterListInternal;
-import com.its.scc.Adapters.AdapterListMateri;
-import com.its.scc.Models.Internal;
+import com.its.scc.Activities.Eksternal.ListJadwal.presenter.EksternalListJadwalPresenter;
+import com.its.scc.Activities.Eksternal.ListJadwal.presenter.IEksternalListJadwalPresenter;
+import com.its.scc.Activities.Eksternal.ListJadwal.view.IEksternalListJadwalView;
+import com.its.scc.Adapters.AdapterListJadwal;
+import com.its.scc.Models.Jadwal;
 import com.its.scc.R;
 
 import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
 
-public class EksternalListInternalActivity extends AppCompatActivity implements View.OnClickListener, IEksternalListInternalView {
+public class EksternalListJadwalActivity extends AppCompatActivity implements View.OnClickListener, IEksternalListJadwalView {
 
 	public static final String EXTRA_ID_MATERI_PROVE = "EXTRA_ID_MATERI_PROVE";
+	public static final String EXTRA_ID_INTERNAL = "EXTRA_ID_INTERNAL";
 	String id_materi_prove = "";
+	String id_internal = "";
 
-	IEksternalListInternalPresenter eksternalListInternalPresenter;
+	IEksternalListJadwalPresenter eksternalListJadwalPresenter;
 
-	private AdapterListInternal adapterListInternal;
+	private AdapterListJadwal adapterListJadwal;
 	private RecyclerView recyclerView;
 
 	Toolbar toolbar;
@@ -44,12 +42,10 @@ public class EksternalListInternalActivity extends AppCompatActivity implements 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_eksternal_list_internal);
+		setContentView(R.layout.activity_eksternal_list_jadwal);
 
 		id_materi_prove = getIntent().getStringExtra(EXTRA_ID_MATERI_PROVE);
-
-		eksternalListInternalPresenter = new EksternalListInternalPresenter(this, this);
-		eksternalListInternalPresenter.inisiasiAwal(id_materi_prove);
+		id_internal = getIntent().getStringExtra(EXTRA_ID_INTERNAL);
 
 		recyclerView = findViewById(R.id.recycle_view);
 
@@ -58,11 +54,14 @@ public class EksternalListInternalActivity extends AppCompatActivity implements 
 
 		swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
 
+		eksternalListJadwalPresenter = new EksternalListJadwalPresenter(this, this);
+		eksternalListJadwalPresenter.inisiasiAwal(id_internal);
+
 		swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 			@Override
 			public void onRefresh() {
 				// Your code to make your refresh action
-				eksternalListInternalPresenter.inisiasiAwal(id_materi_prove);
+				eksternalListJadwalPresenter.inisiasiAwal(id_internal);
 
 				// CallYourRefreshingMethod();
 				final Handler handler = new Handler();
@@ -92,21 +91,21 @@ public class EksternalListInternalActivity extends AppCompatActivity implements 
 	}
 
 	@Override
-	public void onSetupListView(ArrayList<Internal> dataModelArrayList) {
-		adapterListInternal = new AdapterListInternal(this, dataModelArrayList);
-		GridLayoutManager layoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
-		recyclerView.setAdapter(adapterListInternal);
+	public void onSetupListView(ArrayList<Jadwal> dataModelArrayList) {
+		adapterListJadwal = new AdapterListJadwal(this, dataModelArrayList);
+		GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
+		recyclerView.setAdapter(adapterListJadwal);
 		recyclerView.setLayoutManager(layoutManager);
 		recyclerView.setNestedScrollingEnabled(true);
-		adapterListInternal.notifyDataSetChanged();
+		adapterListJadwal.notifyDataSetChanged();
 
-		adapterListInternal.setOnItemClickListener(new AdapterListInternal.ClickListener() {
+		adapterListJadwal.setOnItemClickListener(new AdapterListJadwal.ClickListener() {
 			@Override
 			public void onClick(View view, int position) {
-				Intent intent = new Intent(getApplicationContext(), EksternalListJadwalActivity.class);
-				intent.putExtra(EksternalListJadwalActivity.EXTRA_ID_MATERI_PROVE, id_materi_prove);
-				intent.putExtra(EksternalListJadwalActivity.EXTRA_ID_INTERNAL, dataModelArrayList.get(position).getId_internal());
-				startActivity(intent);
+//				Intent intent = new Intent(getApplicationContext(), EksternalListInternalActivity.class);
+//				intent.putExtra(EksternalListInternalActivity.EXTRA_ID_MATERI_PROVE, dataModelArrayList.get(position).getId_materi_prove());
+//				startActivity(intent);
+				onSuccessMessage(dataModelArrayList.get(position).getJam_mulai());
 			}
 		});
 	}
@@ -135,6 +134,6 @@ public class EksternalListInternalActivity extends AppCompatActivity implements 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		eksternalListInternalPresenter.inisiasiAwal(id_materi_prove);
+		eksternalListJadwalPresenter.inisiasiAwal(id_internal);
 	}
 }

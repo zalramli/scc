@@ -16,7 +16,8 @@
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme"
 		android:usesCleartextTraffic="true">
-		<activity android:name=".Activities.Internal.AkunEdit.InternalAkunEditActivity"></activity>
+		<activity android:name=".Activities.Eksternal.ListJadwal.EksternalListJadwalActivity"></activity>
+		<activity android:name=".Activities.Internal.AkunEdit.InternalAkunEditActivity" />
 		<activity android:name=".Activities.Eksternal.AkunEdit.EksternalAkunEditActivity" />
 		<activity android:name=".Activities._Pendaftaran.PendaftaranActivity" />
 		<activity android:name=".Activities.Eksternal.ListMateri.EksternalListMateriActivity" />
