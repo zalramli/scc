@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -22,8 +23,10 @@ import com.its.scc.Activities.Eksternal.BeforeCreateProve.presenter.IEksternalBe
 import com.its.scc.Activities.Eksternal.BeforeCreateProve.view.IEksternalBeforeCreateProveView;
 import com.its.scc.R;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import es.dmoral.toasty.Toasty;
@@ -57,6 +60,9 @@ public class EksternalBeforeCreateProveActivity extends AppCompatActivity implem
 
 	private DatePickerDialog datePickerDialog;
 	private SimpleDateFormat dateFormatter;
+	private SimpleDateFormat dayFormatter;
+
+	String selected_hari = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +82,7 @@ public class EksternalBeforeCreateProveActivity extends AppCompatActivity implem
 		initActionBar();
 
 		dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);//"dd-MM-yyyy" "yyyy-MM-dd"
+		dayFormatter = new SimpleDateFormat("EEE", Locale.US);//"dd-MM-yyyy" "yyyy-MM-dd"
 
 		eksternalBeforeCreateProvePresenter = new EksternalBeforeCreateProvePresenter(this, this);
 
@@ -156,10 +163,41 @@ public class EksternalBeforeCreateProveActivity extends AppCompatActivity implem
 				/**
 				 * Update TextView dengan tanggal yang kita pilih
 				 */
+
+				selected_hari = dayFormatter.format(newDate.getTime());
+				// Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
+
+				if (selected_hari.equals("Sun")){
+					selected_hari="Minggu";
+				} else if(selected_hari.equals("Mon")){
+					selected_hari = "Senin";
+				} else if(selected_hari.equals("Tue")){
+					selected_hari = "Selasa";
+				} else if(selected_hari.equals("Wed")){
+					selected_hari = "Rabu";
+				} else if(selected_hari.equals("Thu")){
+					selected_hari = "Kamis";
+				} else if(selected_hari.equals("Fri")){
+					selected_hari = "Jumat";
+				} else if(selected_hari.equals("Sat")){
+					selected_hari = "Sabtu";
+				}
+
 				tvTanggalProve.setText(dateFormatter.format(newDate.getTime()));
 			}
 
 		}, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+
+		// membuat minimal date hari +1
+		newCalendar.add(Calendar.DATE, 1);
+		datePickerDialog.getDatePicker().setMinDate(newCalendar.getTimeInMillis());
+
+		// membuat maximal date hari +13
+		newCalendar.add(Calendar.DATE, 13);
+		datePickerDialog.getDatePicker().setMaxDate(newCalendar.getTimeInMillis());
+
+		// mengembalikan date seperti semula
+		newCalendar.add(Calendar.DATE, -14);
 
 		/**
 		 * Tampilkan DatePicker dialog
@@ -185,15 +223,22 @@ public class EksternalBeforeCreateProveActivity extends AppCompatActivity implem
 					if (TextUtils.isEmpty(inputDeskripsiMateri)) {
 						isEmpty = true;
 						edtDeskripsiMateri.setError("Isi Data Dengan Lengkap");
-					} else if (TextUtils.isEmpty(inputTanggalProve)) {
+					} else if (inputTanggalProve.equals("Tanggal Prove")) {
 						isEmpty = true;
-						tvTanggalProve.setError("Isi Data Dengan Lengkap");
+						tvTanggalProve.setError("Pilih Tanggal Kapan Prove !");
+						onErrorMessage("Pilih Tanggal Kapan Prove !");
 					}
 
 					try {
 
 						if (!isEmpty) {
-//							eksternalBeforeCreateProvePresenter.onSubmit();
+							if (selected_hari.equals(hari_jadwal)){
+								onSuccessMessage("berhasil");
+							}
+							else{
+								tvTanggalProve.setError("Pilih Hari Sesuai Jadwal Yang Tersedia !");
+								onErrorMessage("Pilih Hari Sesuai Jadwal Yang Tersedia !");
+							}
 						}
 
 					} catch (Exception e) {
