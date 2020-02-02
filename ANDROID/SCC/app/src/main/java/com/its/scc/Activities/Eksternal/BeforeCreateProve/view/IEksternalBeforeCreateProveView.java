@@ -14,4 +14,6 @@ public interface IEksternalBeforeCreateProveView {
 	void showDialog();
 
 	void backPressed();
+
+	void keHalamanLain();
 }

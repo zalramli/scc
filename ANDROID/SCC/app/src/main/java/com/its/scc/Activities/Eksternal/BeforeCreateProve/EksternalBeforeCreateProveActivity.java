@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.its.scc.Activities.Eksternal.BeforeCreateProve.presenter.EksternalBeforeCreateProvePresenter;
 import com.its.scc.Activities.Eksternal.BeforeCreateProve.presenter.IEksternalBeforeCreateProvePresenter;
 import com.its.scc.Activities.Eksternal.BeforeCreateProve.view.IEksternalBeforeCreateProveView;
+import com.its.scc.Activities.Eksternal.ListProve.EksternalListProveActivity;
+import com.its.scc.Activities.Eksternal._Home.EksternalHomeActivity;
 import com.its.scc.Controllers.SessionManager;
 import com.its.scc.R;
 
@@ -124,6 +126,7 @@ public class EksternalBeforeCreateProveActivity extends AppCompatActivity implem
 			showDialog();
 		}
 		if (v.getId() == R.id.btn_batal) {
+			keHalamanLain();
 		}
 	}
 
@@ -257,7 +260,7 @@ public class EksternalBeforeCreateProveActivity extends AppCompatActivity implem
 								eksternalBeforeCreateProvePresenter.onSubmit(id_eksternal, id_internal, id_materi_prove, id_jadwal, inputDeskripsiMateri, inputTanggalProve);
 							} else {
 								tvTanggalProve.setError("Pilih Hari Sesuai Jadwal Yang Tersedia !");
-								onErrorMessage("Pilih Hari Sesuai Jadwal Yang Tersedia !");
+								onErrorMessage("Hari Dalam Tanggal Prove Tidak Sesuai Jadwal !");
 							}
 						}
 
@@ -279,7 +282,16 @@ public class EksternalBeforeCreateProveActivity extends AppCompatActivity implem
 
 	@Override
 	public void backPressed() {
-		onBackPressed();
+		Intent intent = new Intent(getApplicationContext(), EksternalListProveActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
+	}
+
+	@Override
+	public void keHalamanLain() {
+		Intent intent = new Intent(getApplicationContext(), EksternalHomeActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
 	}
 
 	@Override

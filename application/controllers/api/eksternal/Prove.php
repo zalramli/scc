@@ -28,7 +28,7 @@ class Prove extends REST_Controller
         $tanggal_booking =  date('Y-m-d');
 
         $kode_prove = $this->M_prove->get_kode_prove();
-        $kata_sandi = $this->M_prove->get_kata_sandi();
+        $kata_sandi = $this->M_prove->get_kata_sandi(5);
 
         $data = array(
             'id_eksternal'   => $id_eksternal,
@@ -43,7 +43,7 @@ class Prove extends REST_Controller
             'status_prove'   => "Belum Selesai",
         );
 
-        $insert =  $this->M_prove->input_data('prove', $data);
+        $insert =  $this->M_universal->input_data('prove', $data);
         if ($insert) {
 
             // membuat array untuk di transfer ke API
@@ -61,7 +61,7 @@ class Prove extends REST_Controller
     function list_prove_get()
     {
         // mengambil data dari database
-        $query = $this->M_prove->tampil_data('prove');
+        $query = $this->M_universal->tampil_data('prove');
 
         // variable array
         $result = array();
@@ -109,7 +109,7 @@ class Prove extends REST_Controller
         );
 
         // mengambil data dari database
-        $query = $this->M_prove->get_data('prove', $data_id);
+        $query = $this->M_universal->get_data('prove', $data_id);
         if ($query->num_rows() > 0) {
 
             // mengeluarkan data dari database
@@ -172,7 +172,7 @@ class Prove extends REST_Controller
             'id_prove' => $id_prove
         );
 
-        $update =  $this->M_prove->update_data($where, 'prove', $data);
+        $update =  $this->M_universal->update_data($where, 'prove', $data);
         if ($update) {
 
             // membuat array untuk di transfer ke API
@@ -196,7 +196,7 @@ class Prove extends REST_Controller
             'id_prove' => $id_prove
         );
 
-        $hapus =  $this->M_prove->hapus_data($where, "prove");
+        $hapus =  $this->M_universal->hapus_data($where, "prove");
         if ($hapus) {
 
             // membuat array untuk di transfer ke API
