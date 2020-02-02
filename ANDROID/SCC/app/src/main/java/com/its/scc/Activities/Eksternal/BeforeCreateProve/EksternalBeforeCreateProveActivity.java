@@ -21,12 +21,14 @@ import android.widget.Toast;
 import com.its.scc.Activities.Eksternal.BeforeCreateProve.presenter.EksternalBeforeCreateProvePresenter;
 import com.its.scc.Activities.Eksternal.BeforeCreateProve.presenter.IEksternalBeforeCreateProvePresenter;
 import com.its.scc.Activities.Eksternal.BeforeCreateProve.view.IEksternalBeforeCreateProveView;
+import com.its.scc.Controllers.SessionManager;
 import com.its.scc.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 import es.dmoral.toasty.Toasty;
@@ -56,7 +58,7 @@ public class EksternalBeforeCreateProveActivity extends AppCompatActivity implem
 
 	TextView tvNamaMateri, tvDetailProve, tvNamaInternal, tvTanggalProve;
 	EditText edtDeskripsiMateri;
-	Button btnSubmit;
+	Button btnSubmit, btnBatal;
 
 	private DatePickerDialog datePickerDialog;
 	private SimpleDateFormat dateFormatter;
@@ -64,10 +66,22 @@ public class EksternalBeforeCreateProveActivity extends AppCompatActivity implem
 
 	String selected_hari = "";
 
+	SessionManager sessionManager;
+	String id_eksternal = "";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eksternal_before_create_prove);
+
+		sessionManager = new SessionManager(this);
+		HashMap<String, String> user = sessionManager.getDataUser();
+
+		String hakAkses = user.get(sessionManager.HAK_AKSES);
+
+		if (hakAkses.equals("eksternal")) {
+			id_eksternal = user.get(sessionManager.ID_USER);
+		}
 
 		id_materi_prove = getIntent().getStringExtra(EXTRA_ID_MATERI_PROVE);
 		nama_materi_prove = getIntent().getStringExtra(EXTRA_NAMA_MATERI_PROVE);
@@ -92,11 +106,13 @@ public class EksternalBeforeCreateProveActivity extends AppCompatActivity implem
 		tvTanggalProve = findViewById(R.id.tv_tanggal_prove);
 		edtDeskripsiMateri = findViewById(R.id.edt_deskripsi_materi);
 		btnSubmit = findViewById(R.id.btn_submit);
+		btnBatal = findViewById(R.id.btn_batal);
 
 		setNilaiDefault();
 
 		tvTanggalProve.setOnClickListener(this);
 		btnSubmit.setOnClickListener(this);
+		btnBatal.setOnClickListener(this);
 	}
 
 	@Override
@@ -106,6 +122,8 @@ public class EksternalBeforeCreateProveActivity extends AppCompatActivity implem
 		}
 		if (v.getId() == R.id.btn_submit) {
 			showDialog();
+		}
+		if (v.getId() == R.id.btn_batal) {
 		}
 	}
 
@@ -167,19 +185,19 @@ public class EksternalBeforeCreateProveActivity extends AppCompatActivity implem
 				selected_hari = dayFormatter.format(newDate.getTime());
 				// Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
 
-				if (selected_hari.equals("Sun")){
-					selected_hari="Minggu";
-				} else if(selected_hari.equals("Mon")){
+				if (selected_hari.equals("Sun")) {
+					selected_hari = "Minggu";
+				} else if (selected_hari.equals("Mon")) {
 					selected_hari = "Senin";
-				} else if(selected_hari.equals("Tue")){
+				} else if (selected_hari.equals("Tue")) {
 					selected_hari = "Selasa";
-				} else if(selected_hari.equals("Wed")){
+				} else if (selected_hari.equals("Wed")) {
 					selected_hari = "Rabu";
-				} else if(selected_hari.equals("Thu")){
+				} else if (selected_hari.equals("Thu")) {
 					selected_hari = "Kamis";
-				} else if(selected_hari.equals("Fri")){
+				} else if (selected_hari.equals("Fri")) {
 					selected_hari = "Jumat";
-				} else if(selected_hari.equals("Sat")){
+				} else if (selected_hari.equals("Sat")) {
 					selected_hari = "Sabtu";
 				}
 
@@ -227,15 +245,17 @@ public class EksternalBeforeCreateProveActivity extends AppCompatActivity implem
 						isEmpty = true;
 						tvTanggalProve.setError("Pilih Tanggal Kapan Prove !");
 						onErrorMessage("Pilih Tanggal Kapan Prove !");
+					} else if (TextUtils.isEmpty(id_eksternal)) {
+						isEmpty = true;
+						onErrorMessage("Error , Lakukan Login Kembali 1");
 					}
 
 					try {
 
 						if (!isEmpty) {
-							if (selected_hari.equals(hari_jadwal)){
-								onSuccessMessage("berhasil");
-							}
-							else{
+							if (selected_hari.equals(hari_jadwal)) {
+								eksternalBeforeCreateProvePresenter.onSubmit(id_eksternal, id_internal, id_materi_prove, id_jadwal, inputDeskripsiMateri, inputTanggalProve);
+							} else {
 								tvTanggalProve.setError("Pilih Hari Sesuai Jadwal Yang Tersedia !");
 								onErrorMessage("Pilih Hari Sesuai Jadwal Yang Tersedia !");
 							}
