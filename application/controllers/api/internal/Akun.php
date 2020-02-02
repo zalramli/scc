@@ -101,8 +101,6 @@ class Akun extends REST_Controller
 
             $path2 = "./upload/image/internal/$nama_foto.jpg";
             file_put_contents($path2, base64_decode($foto));
-        } else {
-            $nama_foto = "DEFIN";
         }
 
         if (empty($password)) {
