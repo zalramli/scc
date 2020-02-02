@@ -1,12 +1,14 @@
 package com.its.scc.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.its.scc.Controllers.BaseUrl;
@@ -62,6 +64,11 @@ public class AdapterListProve extends RecyclerView.Adapter<AdapterListProve.List
 		holder.tvNamaInternal.setText("Pembimbing : " + nama_internal);
 		holder.tvStatusProve.setText("Status : " + status_prove);
 
+		if (status_prove.equals("Belum Selesai")){
+			holder.cvItemAdapterListProve.setCardBackgroundColor(Color.RED);
+		} else if (status_prove.equals("Batal")){
+			holder.cvItemAdapterListProve.setCardBackgroundColor(Color.GRAY);
+		}
 	}
 
 	@Override
@@ -72,6 +79,7 @@ public class AdapterListProve extends RecyclerView.Adapter<AdapterListProve.List
 	public class ListProveViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 		TextView tvNamaMateri, tvDetailJadwal, tvTanggalProve, tvKodeProve, tvKataSandi, tvNamaInternal, tvStatusProve;
+		CardView cvItemAdapterListProve;
 
 		public ListProveViewHolder(@NonNull View itemView) {
 			super(itemView);
@@ -84,6 +92,8 @@ public class AdapterListProve extends RecyclerView.Adapter<AdapterListProve.List
 			tvKataSandi = itemView.findViewById(R.id.tv_kata_sandi);
 			tvNamaInternal = itemView.findViewById(R.id.tv_nama_internal);
 			tvStatusProve = itemView.findViewById(R.id.tv_status_prove);
+
+			cvItemAdapterListProve = itemView.findViewById(R.id.cv_item_adapter_list_prove);
 
 			ButterKnife.bind(this, itemView);
 			itemView.setOnClickListener(this);

@@ -40,32 +40,77 @@ class Prove extends REST_Controller
             'tanggal_prove'   => $tanggal_prove,
             'kode_prove'   => $kode_prove,
             'kata_sandi'   => $kata_sandi,
-            'status_prove'   => "Belum Selesai",
+            'status_prove'   => "Belum Selesai"
         );
 
-        $insert =  $this->M_universal->input_data('prove', $data);
-        if ($insert) {
+        echo $data;
+
+        $where_jadwal_prove = array(
+            'id_jadwal_prove' => $id_jadwal_prove,
+            'status_booking' => "Free"
+        );
+
+        // mengambil data dari database cek apakah free
+        $query = $this->M_universal->get_data('jadwal_prove', $where_jadwal_prove);
+        if ($query->num_rows() > 0) {
+
+            $insert =  $this->M_universal->input_data('prove', $data);
+            if ($insert) {
+
+                $where = array(
+                    'id_jadwal_prove' =>  $id_jadwal_prove
+                );
+
+                $data_update = array(
+                    'status_booking' => 'Unfree',
+                    'terakhir_dibooking' => $tanggal_booking
+                );
+
+                $update = $this->M_universal->update_data($where, 'jadwal_prove', $data_update);
+
+                // membuat array untuk di transfer ke API
+                $result["success"] = "1";
+                $result["message"] = "Berhasil Membuat Prove";
+                $this->response($result, 200);
+            } else {
+
+                // membuat array untuk di transfer ke API
+                $result["success"] = "0";
+                $result["message"] = "Coba Lagi, Server Error";
+                $this->response(array($result, 200));
+            }
+        } else {
 
             // membuat array untuk di transfer ke API
-            $result["success"] = "1";
-            $result["message"] = "Berhasil Membuat Prove";
-            $this->response($result, 200);
-        } else {
-            // membuat array untuk di transfer ke API
             $result["success"] = "0";
-            $result["message"] = "Coba Lagi, Server Error";
+            $result["message"] = "Jadwal Sudah dipesan ! , Coba jadwal Lainnya";
             $this->response(array($result, 200));
         }
     }
 
-    function list_prove_get()
+    function list_prove_post()
     {
         // mengambil data dari database
-        $query = $this->M_universal->tampil_data('prove');
+        $id = $this->post('id');
+        $hak_akses = $this->post('hak_akses');
+
+        $query = "";
+
+        if ($hak_akses == "eksternal") {
+            $where = array(
+                'id_eksternal' => $id
+            );
+            $query = $this->M_universal->get_data('list_prove', $where);
+        } else if ($hak_akses == "internal") {
+            $where = array(
+                'id_internal' => $id
+            );
+            $query = $this->M_universal->get_data('list_prove', $where);
+        }
 
         // variable array
         $result = array();
-        $result['prove'] = array();
+        $result['list_prove'] = array();
 
         if ($query->num_rows() > 0) {
 
@@ -75,23 +120,35 @@ class Prove extends REST_Controller
                 // ambil detail data db
                 $data = array(
                     'id_prove' => $row["id_prove"],
-                    'nama' => $row["nama"],
-                    'username' => $row["username"],
-                    'alamat' => $row["alamat"],
-                    'no_hp' => $row["no_hp"]
+                    'id_eksternal' => $row["id_eksternal"],
+                    'nama_eksternal' => $row["nama_eksternal"],
+                    'id_internal' => $row["id_internal"],
+                    'nama_internal' => $row["nama_internal"],
+                    'id_materi_prove' => $row["id_materi_prove"],
+                    'nama_materi_prove' => $row["nama_materi_prove"],
+                    'id_jadwal_prove' => $row["id_jadwal_prove"],
+                    'hari' => $row["hari"],
+                    'jam_mulai' => $row["jam_mulai"],
+                    'jam_selesai' => $row["jam_selesai"],
+                    'deskripsi_materi' => $row["deskripsi_materi"],
+                    'tanggal_booking' => $row["tanggal_booking"],
+                    'tanggal_prove' => $row["tanggal_prove"],
+                    'kode_prove' => $row["kode_prove"],
+                    'kata_sandi' => $row["kata_sandi"],
+                    'status_prove' => $row["status_prove"]
                 );
 
-                array_push($result['prove'], $data);
-
-                // membuat array untuk di transfer
-                $result["success"] = "1";
-                $result["message"] = "success berhasil mengambil data";
-                $this->response($result, 200);
+                array_push($result['list_prove'], $data);
             }
+
+            // membuat array untuk di transfer
+            $result["success"] = "1";
+            $result["message"] = "Success Mengambil Data";
+            $this->response($result, 200);
         } else {
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
-            $result["message"] = "error data tidak ada";
+            $result["message"] = "Data List Prove Tidak Ditemukan";
             $this->response($result, 200);
         }
     }
