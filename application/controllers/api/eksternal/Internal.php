@@ -59,12 +59,12 @@ class Internal extends REST_Controller
                 );
 
                 array_push($result['internal'], $data);
-
-                // membuat array untuk di transfer
-                $result["success"] = "1";
-                $result["message"] = "Berhasil Mengambil Data";
-                $this->response($result, 200);
             }
+
+            // membuat array untuk di transfer
+            $result["success"] = "1";
+            $result["message"] = "Berhasil Mengambil Data";
+            $this->response($result, 200);
         } else {
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
