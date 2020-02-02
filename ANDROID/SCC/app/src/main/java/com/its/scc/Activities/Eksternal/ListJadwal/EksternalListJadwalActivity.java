@@ -105,7 +105,14 @@ public class EksternalListJadwalActivity extends AppCompatActivity implements Vi
 //				Intent intent = new Intent(getApplicationContext(), EksternalListInternalActivity.class);
 //				intent.putExtra(EksternalListInternalActivity.EXTRA_ID_MATERI_PROVE, dataModelArrayList.get(position).getId_materi_prove());
 //				startActivity(intent);
-				onSuccessMessage(dataModelArrayList.get(position).getJam_mulai());
+
+				String status_booking = dataModelArrayList.get(position).getStatus_booking();
+
+				if(status_booking.equals("Free")){
+					onSuccessMessage(dataModelArrayList.get(position).getJam_mulai());
+				} else{
+					onErrorMessage("Jadwal Sudah Dipesan !");
+				}
 			}
 		});
 	}

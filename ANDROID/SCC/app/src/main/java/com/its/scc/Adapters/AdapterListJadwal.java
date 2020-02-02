@@ -1,12 +1,14 @@
 package com.its.scc.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.its.scc.Controllers.BaseUrl;
@@ -50,7 +52,12 @@ public class AdapterListJadwal extends RecyclerView.Adapter<AdapterListJadwal.Li
 		String jam_selesai = dataModelArrayList.get(position).getJam_selesai();
 		holder.tvJam.setText("( " + jam_mulai + " sampai " + jam_selesai + " )");
 
-		holder.tvStatusBooking.setText(dataModelArrayList.get(position).getStatus_booking());
+		String status_booking  = dataModelArrayList.get(position).getStatus_booking();
+		holder.tvStatusBooking.setText(status_booking);
+
+		if (!status_booking.equals("Free")){
+			holder.cvItemAdapterListJadwal.setCardBackgroundColor(Color.RED);
+		}
 	}
 
 	@Override
@@ -60,6 +67,7 @@ public class AdapterListJadwal extends RecyclerView.Adapter<AdapterListJadwal.Li
 
 	public class ListJadwalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+		CardView cvItemAdapterListJadwal;
 		TextView tvHari, tvJam, tvStatusBooking;
 
 		public ListJadwalViewHolder(@NonNull View itemView) {
@@ -68,6 +76,8 @@ public class AdapterListJadwal extends RecyclerView.Adapter<AdapterListJadwal.Li
 			tvHari = itemView.findViewById(R.id.tv_hari);
 			tvJam = itemView.findViewById(R.id.tv_jam);
 			tvStatusBooking = itemView.findViewById(R.id.tv_status_booking);
+
+			cvItemAdapterListJadwal = itemView.findViewById(R.id.cv_item_adapter_list_jadwal);
 
 			ButterKnife.bind(this, itemView);
 			itemView.setOnClickListener(this);
