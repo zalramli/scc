@@ -30,7 +30,9 @@ import es.dmoral.toasty.Toasty;
 public class EksternalListInternalActivity extends AppCompatActivity implements View.OnClickListener, IEksternalListInternalView {
 
 	public static final String EXTRA_ID_MATERI_PROVE = "EXTRA_ID_MATERI_PROVE";
+	public static final String EXTRA_NAMA_MATERI_PROVE = "EXTRA_NAMA_MATERI_PROVE";
 	String id_materi_prove = "";
+	String nama_materi_prove = "";
 
 	IEksternalListInternalPresenter eksternalListInternalPresenter;
 
@@ -47,6 +49,7 @@ public class EksternalListInternalActivity extends AppCompatActivity implements 
 		setContentView(R.layout.activity_eksternal_list_internal);
 
 		id_materi_prove = getIntent().getStringExtra(EXTRA_ID_MATERI_PROVE);
+		nama_materi_prove = getIntent().getStringExtra(EXTRA_NAMA_MATERI_PROVE);
 
 		eksternalListInternalPresenter = new EksternalListInternalPresenter(this, this);
 		eksternalListInternalPresenter.inisiasiAwal(id_materi_prove);
@@ -105,7 +108,9 @@ public class EksternalListInternalActivity extends AppCompatActivity implements 
 			public void onClick(View view, int position) {
 				Intent intent = new Intent(getApplicationContext(), EksternalListJadwalActivity.class);
 				intent.putExtra(EksternalListJadwalActivity.EXTRA_ID_MATERI_PROVE, id_materi_prove);
+				intent.putExtra(EksternalListJadwalActivity.EXTRA_NAMA_MATERI_PROVE, nama_materi_prove);
 				intent.putExtra(EksternalListJadwalActivity.EXTRA_ID_INTERNAL, dataModelArrayList.get(position).getId_internal());
+				intent.putExtra(EksternalListJadwalActivity.EXTRA_NAMA_INTERNAL, dataModelArrayList.get(position).getNama());
 				startActivity(intent);
 			}
 		});

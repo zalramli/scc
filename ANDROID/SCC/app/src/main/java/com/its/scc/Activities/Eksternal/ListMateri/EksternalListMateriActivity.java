@@ -98,6 +98,7 @@ public class EksternalListMateriActivity extends AppCompatActivity implements Vi
 			public void onClick(View view, int position) {
 				Intent intent = new Intent(getApplicationContext(), EksternalListInternalActivity.class);
 				intent.putExtra(EksternalListInternalActivity.EXTRA_ID_MATERI_PROVE, dataModelArrayList.get(position).getId_materi_prove());
+				intent.putExtra(EksternalListInternalActivity.EXTRA_NAMA_MATERI_PROVE, dataModelArrayList.get(position).getNama());
 				startActivity(intent);
 			}
 		});
