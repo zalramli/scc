@@ -108,10 +108,10 @@ public class EksternalListJadwalActivity extends AppCompatActivity implements Vi
 
 				String status_booking = dataModelArrayList.get(position).getStatus_booking();
 
-				if(status_booking.equals("Free")){
-					onSuccessMessage(dataModelArrayList.get(position).getJam_mulai());
-				} else{
+				if (!status_booking.equals("Free")) {
 					onErrorMessage("Jadwal Sudah Dipesan !");
+				} else {
+					onSuccessMessage(dataModelArrayList.get(position).getJam_mulai());
 				}
 			}
 		});
