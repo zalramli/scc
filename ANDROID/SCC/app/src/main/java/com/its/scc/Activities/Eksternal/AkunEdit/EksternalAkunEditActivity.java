@@ -163,7 +163,11 @@ public class EksternalAkunEditActivity extends AppCompatActivity implements View
 					try {
 
 						if (!isEmpty && !isInvalidKonfirmasi) {
-							eksternalAkunPresenter.onUpdate(id_eksternal, inputNama, inputNoHp, inputAkunLine, inputUsername, inputPassword, inputAngkatan, inputFoto);
+							if (inputUsername.substring(0, 3).equals("026")) {
+								eksternalAkunPresenter.onUpdate(id_eksternal, inputNama, inputNoHp, inputAkunLine, inputUsername, inputPassword, inputAngkatan, inputFoto);
+							} else {
+								onErrorMessage("Masukkan Username Sesuai Format NIM ! (026XXXXX)");
+							}
 						}
 
 					} catch (Exception e) {

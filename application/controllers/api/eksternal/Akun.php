@@ -73,6 +73,29 @@ class Akun extends REST_Controller
 
         $data = array();
 
+        if (empty($password)) {
+            $data = array(
+                'id_eksternal'   => $id_eksternal,
+                'nama'          => $nama,
+                'no_hp'         => $no_hp,
+                'akun_line'        => $akun_line,
+                'username'      => $username,
+                'angkatan'      => $angkatan,
+                'foto'          => $nama_foto
+            );
+        } else {
+            $data = array(
+                'id_eksternal'  => $id_eksternal,
+                'nama'          => $nama,
+                'no_hp'         => $no_hp,
+                'akun_line'     => $akun_line,
+                'username'      => $username,
+                'password'      => $password,
+                'angkatan'      => $angkatan,
+                'foto'          => $nama_foto
+            );
+        }
+
         $where = array(
             'id_eksternal' => $id_eksternal
         );
@@ -97,31 +120,6 @@ class Akun extends REST_Controller
 
             $path2 = "./upload/image/eksternal/$nama_foto.jpg";
             file_put_contents($path2, base64_decode($foto));
-        } else {
-            $nama_foto = "DEFEK";
-        }
-
-        if (empty($password)) {
-            $data = array(
-                'id_eksternal'   => $id_eksternal,
-                'nama'          => $nama,
-                'no_hp'         => $no_hp,
-                'akun_line'        => $akun_line,
-                'username'      => $username,
-                'angkatan'      => $angkatan,
-                'foto'          => $nama_foto
-            );
-        } else {
-            $data = array(
-                'id_eksternal'  => $id_eksternal,
-                'nama'          => $nama,
-                'no_hp'         => $no_hp,
-                'akun_line'     => $akun_line,
-                'username'      => $username,
-                'password'      => $password,
-                'angkatan'      => $angkatan,
-                'foto'          => $nama_foto
-            );
         }
 
         $update =  $this->M_universal->update_data($where, 'eksternal', $data);

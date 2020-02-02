@@ -152,7 +152,12 @@ public class PendaftaranActivity extends AppCompatActivity implements View.OnCli
 					try {
 
 						if (!isEmpty && !isInvalidKonfirmasi) {
-							pendaftaranPresenter.onSubmit(inputNama, inputNoHp, inputAkunLine, inputUsername, inputPassword, inputAngkatan, inputFoto);
+
+							if (inputUsername.substring(0,3).equals("026")){
+								pendaftaranPresenter.onSubmit(inputNama, inputNoHp, inputAkunLine, inputUsername, inputPassword, inputAngkatan, inputFoto);
+							} else {
+								onErrorMessage("Masukkan Username Sesuai Format NIM ! (026XXXXX)");
+							}
 						}
 
 					} catch (Exception e) {
