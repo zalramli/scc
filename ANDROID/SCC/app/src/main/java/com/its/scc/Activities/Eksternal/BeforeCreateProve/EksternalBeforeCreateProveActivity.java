@@ -82,7 +82,7 @@ public class EksternalBeforeCreateProveActivity extends AppCompatActivity implem
 		initActionBar();
 
 		dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);//"dd-MM-yyyy" "yyyy-MM-dd"
-		dayFormatter = new SimpleDateFormat("EEE", Locale.US);//"dd-MM-yyyy" "yyyy-MM-dd"
+		dayFormatter = new SimpleDateFormat("EEE", Locale.US);//hari dalam english
 
 		eksternalBeforeCreateProvePresenter = new EksternalBeforeCreateProvePresenter(this, this);
 
