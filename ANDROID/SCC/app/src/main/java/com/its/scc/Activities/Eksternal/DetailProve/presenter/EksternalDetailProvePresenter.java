@@ -18,4 +18,9 @@ public class EksternalDetailProvePresenter implements IEksternalDetailProvePrese
 
 		baseUrl =  new BaseUrl();
 	}
+
+	@Override
+	public void onLoadSemuaData(String id_prove) {
+
+	}
 }

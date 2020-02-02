@@ -18,6 +18,7 @@ class Prove extends REST_Controller
     function tambah_prove_post()
     {
         // ambil data
+        $id_prove =  $this->M_prove->get_kode_prove();
         $id_eksternal = $this->post('id_eksternal');
         $id_internal = $this->post('id_internal');
         $id_materi_prove = $this->post('id_materi_prove');
@@ -31,6 +32,7 @@ class Prove extends REST_Controller
         $kata_sandi = $this->M_prove->get_kata_sandi(5);
 
         $data = array(
+            'id_prove'   => $id_prove,
             'id_eksternal'   => $id_eksternal,
             'id_materi_prove'   => $id_materi_prove,
             'id_jadwal_prove'   => $id_jadwal_prove,
@@ -53,6 +55,14 @@ class Prove extends REST_Controller
 
             $insert =  $this->M_universal->input_data('prove', $data);
             if ($insert) {
+
+                // detail 
+                $data = array(
+                    'id_prove'   => $id_prove,
+                    'id_eksternal'   => $id_eksternal
+                );
+
+                $insert =  $this->M_universal->input_data('detail_prove', $data);
 
                 $where = array(
                     'id_jadwal_prove' =>  $id_jadwal_prove
