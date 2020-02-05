@@ -29,6 +29,7 @@ import es.dmoral.toasty.Toasty;
 
 public class EksternalListProveActivity extends AppCompatActivity implements View.OnClickListener, IEksternalListProveView {
 
+	public static final String EXTRA_TUJUAN = "EXTRA_TUJUAN";
 	IEksternalListProvePresenter eksternalListProvePresenter;
 
 	private AdapterListProve adapterListProve;

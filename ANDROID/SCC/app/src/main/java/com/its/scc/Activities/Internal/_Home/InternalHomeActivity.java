@@ -169,6 +169,12 @@ public class InternalHomeActivity extends AppCompatActivity implements View.OnCl
 			showDialog();
 			return true;
 		}
+		if (id == R.id.menu_pemberitahuan) {
+			intent = new Intent(getApplicationContext(), EksternalListProveActivity.class);
+			intent.putExtra(EksternalListProveActivity.EXTRA_TUJUAN, "ke_pemberitahuan");
+			startActivity(intent);
+			return true;
+		}
 
 		return super.onOptionsItemSelected(item);
 	}
