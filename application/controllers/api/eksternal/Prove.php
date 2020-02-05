@@ -172,11 +172,8 @@ class Prove extends REST_Controller
                         'kata_sandi' => $row["kata_sandi"],
                         'status_prove' => $row["status_prove"]
                     );
+                    array_push($result['list_prove'], $data);
                 }
-
-
-
-                array_push($result['list_prove'], $data);
             }
 
             // membuat array untuk di transfer
