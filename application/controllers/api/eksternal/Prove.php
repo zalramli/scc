@@ -176,53 +176,82 @@ class Prove extends REST_Controller
         }
     }
 
-    function update_prove_post()
+    function update_detail_prove_post()
     {
         $id_prove = $this->post('id_prove');
-        $nama = $this->post('nama');
-        $username = $this->post('username');
-        $password = $this->post('password');
-        $alamat = $this->post('alamat');
-        $no_hp = $this->post('no_hp');
+        $id_eksternal = $this->post('id_eksternal');
+        $rating = $this->post('rating');
 
-        $data = array();
-
-        if (empty($password)) {
-            $data = array(
-                'id_prove' => $id_prove,
-                'nama'          => $nama,
-                'username'      => $username,
-                'alamat'        => $alamat,
-                'no_hp'         => $no_hp
-            );
-        } else {
-            $data = array(
-                'id_prove' => $id_prove,
-                'nama'          => $nama,
-                'username'      => $username,
-                'password'      => password_hash($password, PASSWORD_DEFAULT),
-                'alamat'        => $alamat,
-                'no_hp'         => $no_hp
-            );
-        }
-
-        $where = array(
-            'id_prove' => $id_prove
+        $data = array(
+            'rating'        => $rating
         );
 
-        $update =  $this->M_universal->update_data($where, 'prove', $data);
+        $where = array(
+            'id_prove'      => $id_prove,
+            'id_eksternal'  => $id_eksternal,
+        );
+
+        $update =  $this->M_universal->update_data($where, 'detail_prove', $data);
+
         if ($update) {
+
+            // mengakhiri prove
+            $data = array(
+                'status_prove'        => "Selesai"
+            );
+
+            $where = array(
+                'id_prove'      => $id_prove
+            );
+
+            $update =  $this->M_universal->update_data($where, 'prove', $data);
+
+            if ($update) {
+
+                // membuat array untuk di transfer ke API
+                $result["success"] = "1";
+                $result["message"] = "Berhasil";
+                $this->response($result, 200);
+            } else {
+
+                // membuat array untuk di transfer ke API
+                $result["success"] = "0";
+                $result["message"] = "Terjadi Kesalahan Server";
+                $this->response($result, 200);
+            }
+        } else {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "Terjadi Kesalahan Server";
+            $this->response($result, 200);
+        }
+    }
+
+    function delete_detail_prove_post()
+    {
+        $id_prove = $this->post('id_prove');
+        $id_eksternal = $this->post('id_eksternal');
+
+        $where = array(
+            'id_prove' => $id_prove,
+            'id_eksternal' => $id_eksternal
+        );
+
+        $hapus =  $this->M_universal->hapus_data($where, "detail_prove");
+
+        if ($hapus) {
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";
-            $result["message"] = "success";
+            $result["message"] = "Berhasil Keluar Dari Pertemuan Prove";
             $this->response($result, 200);
         } else {
 
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
-            $result["message"] = "error";
-            $this->response(array($result, 502));
+            $result["message"] = "Terjadi Kesalahan Server";
+            $this->response($result, 200);
         }
     }
 }

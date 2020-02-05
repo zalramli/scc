@@ -113,7 +113,7 @@ public class EksternalDetailProvePresenter implements IEksternalDetailProvePrese
 	@Override
 	public void onKeluarProve(String id_prove, String id_eksternal) {
 		String base_url = baseUrl.getUrlData();
-		String URL_DATA = base_url + "eksternal/prove/keluar_prove"; // url http request
+		String URL_DATA = base_url + "eksternal/prove/delete_detail_prove"; // url http request
 
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
 			new Response.Listener<String>() {
@@ -159,7 +159,7 @@ public class EksternalDetailProvePresenter implements IEksternalDetailProvePrese
 	@Override
 	public void onChangeRating(String id_prove, String id_eksternal, String rating) {
 		String base_url = baseUrl.getUrlData();
-		String URL_DATA = base_url + "eksternal/prove/keluar_prove"; // url http request
+		String URL_DATA = base_url + "eksternal/prove/update_detail_prove"; // url http request
 
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
 			new Response.Listener<String>() {
@@ -171,7 +171,6 @@ public class EksternalDetailProvePresenter implements IEksternalDetailProvePrese
 						String message = jsonObject.getString("message");
 
 						if (success.equals("1")) {
-							eksternalDetailProveView.onSuccessMessage(message);
 							eksternalDetailProveView.backPressed();
 						} else {
 							eksternalDetailProveView.onErrorMessage(message);

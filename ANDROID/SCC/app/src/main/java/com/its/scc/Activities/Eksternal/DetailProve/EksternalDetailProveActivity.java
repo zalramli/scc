@@ -204,7 +204,7 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 
 							id_eksternal = user.get(sessionManager.ID_USER);
 
-							// eksternalDetailProvePresenter.onKeluarProve(id_prove, id_eksternal);
+							eksternalDetailProvePresenter.onKeluarProve(id_prove, id_eksternal);
 
 						} else {
 							onErrorMessage("Harus Login Sebagai Eksternal !");
