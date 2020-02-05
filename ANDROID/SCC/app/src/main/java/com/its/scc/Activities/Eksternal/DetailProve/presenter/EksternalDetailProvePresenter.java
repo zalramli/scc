@@ -111,7 +111,7 @@ public class EksternalDetailProvePresenter implements IEksternalDetailProvePrese
 	}
 
 	@Override
-	public void onKeluarProve(String id_prove, String id_eksternal) {
+	public void onKeluarProve(String id_prove, String id_eksternal,String id_jadwal_prove) {
 		String base_url = baseUrl.getUrlData();
 		String URL_DATA = base_url + "eksternal/prove/delete_detail_prove"; // url http request
 
@@ -148,6 +148,7 @@ public class EksternalDetailProvePresenter implements IEksternalDetailProvePrese
 				Map<String, String> params = new HashMap<>();
 				params.put("id_prove", id_prove);
 				params.put("id_eksternal", id_eksternal);
+				params.put("id_jadwal_prove", id_jadwal_prove);
 				return params;
 			}
 		};

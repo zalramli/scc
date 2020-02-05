@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import com.its.scc.Activities.Eksternal.DetailProve.presenter.EksternalDetailProvePresenter;
 import com.its.scc.Activities.Eksternal.DetailProve.presenter.IEksternalDetailProvePresenter;
 import com.its.scc.Activities.Eksternal.DetailProve.view.IEksternalDetailProveView;
+import com.its.scc.Activities.Eksternal.ListProve.EksternalListProveActivity;
 import com.its.scc.Adapters.AdapterListEksternal;
 import com.its.scc.Controllers.SessionManager;
 import com.its.scc.Models.Eksternal;
@@ -206,7 +208,7 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 
 							id_eksternal = user.get(sessionManager.ID_USER);
 
-							eksternalDetailProvePresenter.onKeluarProve(id_prove, id_eksternal);
+							eksternalDetailProvePresenter.onKeluarProve(id_prove, id_eksternal,id_jadwal_prove);
 
 						} else {
 							onErrorMessage("Harus Login Sebagai Eksternal !");
@@ -305,6 +307,13 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 	@Override
 	public void backPressed() {
 		onBackPressed();
+	}
+
+	@Override
+	public void keHalamanLain() {
+		Intent intent = new Intent(getApplicationContext(), EksternalListProveActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
 	}
 
 	@Override

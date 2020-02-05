@@ -244,6 +244,7 @@ class Prove extends REST_Controller
     {
         $id_prove = $this->post('id_prove');
         $id_eksternal = $this->post('id_eksternal');
+        $id_jadwal_prove = $this->post('id_jadwal_prove');
 
         $where = array(
             'id_prove' => $id_prove,
@@ -265,6 +266,17 @@ class Prove extends REST_Controller
 
                 // menghapus yang tidak ada detail
                 $hapus =  $this->M_universal->hapus_data($where, "prove");
+
+                // untuk mengubah jadwal status booking
+                $where = array(
+                    'id_jadwal_prove' =>  $id_jadwal_prove
+                );
+
+                $data_update = array(
+                    'status_booking' => 'Free'
+                );
+
+                $update = $this->M_universal->update_data($where, 'jadwal_prove', $data_update);
             }
 
             // membuat array untuk di transfer ke API
@@ -290,7 +302,8 @@ class Prove extends REST_Controller
 
         // cek apakah ada kode_prove
         $where = array(
-            'kode_prove' => $kode_prove
+            'kode_prove' => $kode_prove,
+            'status_prove' => "Belum Selesai"
         );
 
         $query = $this->M_universal->get_data('prove', $where);
@@ -318,6 +331,53 @@ class Prove extends REST_Controller
             $result["success"] = "0";
             $result["message"] = "Tidak Ditemukan Kode Prove : " . $kode_prove;
             $this->response($result, 200);
+        }
+    }
+
+    function tambah_detail_prove_post()
+    {
+        $id_prove = $this->post('kode_prove');
+        $id_eksternal = $this->post('id_eksternal');
+
+        // variable array
+        $result = array();
+        $result['detail_prove'] = array();
+
+        // cek apakah ada kode_prove
+        $where = array(
+            'id_prove' => $id_prove,
+            'id_eksternal' => $id_eksternal
+        );
+
+        $query = $this->M_universal->get_data('detail_prove', $where);
+
+        if ($query->num_rows() > 0) { // jika ada
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "Anda Sudah Terdaftar Dalam Anggota Prove";
+            $this->response($result, 200);
+        } else {
+
+            // detail prove tambah
+            $data = array(
+                'id_prove'   => $id_prove,
+                'id_eksternal'   => $id_eksternal
+            );
+
+            $insert =  $this->M_universal->input_data('detail_prove', $data);
+
+            if ($insert) {
+                // membuat array untuk di transfer ke API
+                $result["success"] = "1";
+                $result["message"] = "Berhasil Masuk Prove";
+                $this->response($result, 200);
+            } else {
+                // membuat array untuk di transfer ke API
+                $result["success"] = "0";
+                $result["message"] = "Terjadi Kesalahan Server";
+                $this->response($result, 200);
+            }
         }
     }
 }

@@ -2,7 +2,7 @@ CREATE VIEW list_jadwal AS
 SELECT * FROM jadwal_prove ORDER BY hari;
 
 CREATE VIEW list_prove AS
-SELECT p.id_prove , e.id_eksternal , e.nama AS nama_eksternal ,i.id_internal , i.nama AS nama_internal , mp.id_materi_prove , mp.nama AS nama_materi_prove , jp.id_jadwal_prove , jp.hari , jp.jam_mulai , jp.jam_selesai , p.deskripsi_materi , p.tanggal_booking , p.tanggal_prove , p.kode_prove , p.kata_sandi , p.status_prove
+SELECT dp.id_prove , dp.id_eksternal , e.nama AS nama_eksternal ,i.id_internal , i.nama AS nama_internal , mp.id_materi_prove , mp.nama AS nama_materi_prove , jp.id_jadwal_prove , jp.hari , jp.jam_mulai , jp.jam_selesai , p.deskripsi_materi , p.tanggal_booking , p.tanggal_prove , p.kode_prove , p.kata_sandi , p.status_prove
 FROM prove p JOIN eksternal e USING(id_eksternal) JOIN jadwal_prove jp USING(id_jadwal_prove) JOIN internal i USING(id_internal) JOIN materi_prove mp USING(id_materi_prove) JOIN detail_prove dp USING(id_prove)
 ORDER BY p.id_prove DESC
 

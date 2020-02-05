@@ -13,13 +13,11 @@ import com.android.volley.toolbox.Volley;
 import com.its.scc.Activities.Eksternal.MasukKelasStep1.EksternalMasukKelasStep1Activity;
 import com.its.scc.Activities.Eksternal._Home.view.IEksternalHomeView;
 import com.its.scc.Controllers.BaseUrl;
-import com.its.scc.Models.Prove;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,7 +61,7 @@ public class EksternalHomePresenter implements IEksternalHomePresenter {
 								kata_sandi = dataobj.getString("kata_sandi");
 							}
 
-							eksternalHomeView.onSuccessMessage(kata_sandi);
+							eksternalHomeView.onSuccessMessage("Masukkan Kata Sandi");
 
 							Intent intent = new Intent();
 							intent = new Intent(context, EksternalMasukKelasStep1Activity.class);

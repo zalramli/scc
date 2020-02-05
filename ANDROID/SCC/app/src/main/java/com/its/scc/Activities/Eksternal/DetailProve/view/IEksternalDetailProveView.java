@@ -20,4 +20,6 @@ public interface IEksternalDetailProveView {
 	void showDialogRating();
 
 	void backPressed();
+
+	void keHalamanLain();
 }
