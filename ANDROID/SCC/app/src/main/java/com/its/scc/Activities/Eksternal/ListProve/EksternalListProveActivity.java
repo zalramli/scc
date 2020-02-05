@@ -30,6 +30,8 @@ import es.dmoral.toasty.Toasty;
 public class EksternalListProveActivity extends AppCompatActivity implements View.OnClickListener, IEksternalListProveView {
 
 	public static final String EXTRA_TUJUAN = "EXTRA_TUJUAN";
+	String tujuan = "";
+
 	IEksternalListProvePresenter eksternalListProvePresenter;
 
 	private AdapterListProve adapterListProve;
@@ -49,13 +51,15 @@ public class EksternalListProveActivity extends AppCompatActivity implements Vie
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eksternal_list_prove);
 
+		tujuan = getIntent().getStringExtra(EXTRA_TUJUAN);
+
 		sessionManager = new SessionManager(this);
 		HashMap<String, String> user = sessionManager.getDataUser();
 		id = user.get(sessionManager.ID_USER);
 		hakAkses = user.get(sessionManager.HAK_AKSES);
 
 		eksternalListProvePresenter = new EksternalListProvePresenter(this, this);
-		eksternalListProvePresenter.inisiasiAwal(id, hakAkses);
+		eksternalListProvePresenter.inisiasiAwal(id, hakAkses, tujuan);
 
 		recyclerView = findViewById(R.id.recycle_view);
 
@@ -68,7 +72,7 @@ public class EksternalListProveActivity extends AppCompatActivity implements Vie
 			@Override
 			public void onRefresh() {
 				// Your code to make your refresh action
-				eksternalListProvePresenter.inisiasiAwal(id, hakAkses);
+				eksternalListProvePresenter.inisiasiAwal(id, hakAkses, tujuan);
 
 				// CallYourRefreshingMethod();
 				final Handler handler = new Handler();
@@ -150,6 +154,6 @@ public class EksternalListProveActivity extends AppCompatActivity implements Vie
 	@Override
 	protected void onResume() {
 		super.onResume();
-		eksternalListProvePresenter.inisiasiAwal(id, hakAkses);
+		eksternalListProvePresenter.inisiasiAwal(id, hakAkses, tujuan);
 	}
 }

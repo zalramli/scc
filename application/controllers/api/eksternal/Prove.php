@@ -176,6 +176,73 @@ class Prove extends REST_Controller
         }
     }
 
+    function list_prove_hanya_belum_selesai_post()
+    {
+        // mengambil data dari database
+        $id = $this->post('id');
+        $hak_akses = $this->post('hak_akses');
+
+        $query = "";
+
+        if ($hak_akses == "eksternal") {
+            $where = array(
+                'id_eksternal' => $id,
+                'status_prove' => "Belum Selesai"
+            );
+            $query = $this->M_universal->get_data('list_prove', $where);
+        } else if ($hak_akses == "internal") {
+            $where = array(
+                'id_internal' => $id,
+                'status_prove' => "Belum Selesai"
+            );
+            $query = $this->M_universal->get_data('list_prove', $where);
+        }
+
+        // variable array
+        $result = array();
+        $result['list_prove'] = array();
+
+        if ($query->num_rows() > 0) {
+
+            // mengeluarkan data dari database
+            foreach ($query->result_array() as $row) {
+
+                // ambil detail data db
+                $data = array(
+                    'id_prove' => $row["id_prove"],
+                    'id_eksternal' => $row["id_eksternal"],
+                    'nama_eksternal' => $row["nama_eksternal"],
+                    'id_internal' => $row["id_internal"],
+                    'nama_internal' => $row["nama_internal"],
+                    'id_materi_prove' => $row["id_materi_prove"],
+                    'nama_materi_prove' => $row["nama_materi_prove"],
+                    'id_jadwal_prove' => $row["id_jadwal_prove"],
+                    'hari' => $row["hari"],
+                    'jam_mulai' => $row["jam_mulai"],
+                    'jam_selesai' => $row["jam_selesai"],
+                    'deskripsi_materi' => $row["deskripsi_materi"],
+                    'tanggal_booking' => $row["tanggal_booking"],
+                    'tanggal_prove' => $row["tanggal_prove"],
+                    'kode_prove' => $row["kode_prove"],
+                    'kata_sandi' => $row["kata_sandi"],
+                    'status_prove' => $row["status_prove"]
+                );
+
+                array_push($result['list_prove'], $data);
+            }
+
+            // membuat array untuk di transfer
+            $result["success"] = "1";
+            $result["message"] = "Success Mengambil Data";
+            $this->response($result, 200);
+        } else {
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "Data List Prove Tidak Ditemukan";
+            $this->response($result, 200);
+        }
+    }
+
     function update_detail_prove_post()
     {
         $id_prove = $this->post('id_prove');
@@ -379,5 +446,36 @@ class Prove extends REST_Controller
                 $this->response($result, 200);
             }
         }
+    }
+
+    function validasi_prove_gagal_post()
+    {
+        $id_prove = $this->post('id_prove');
+        $id_jadwal_prove = $this->post('id_jadwal_prove');
+
+        $where = array(
+            'id_prove' => $id_prove
+        );
+
+        // $hapus =  $this->M_universal->hapus_data($where, "detail_prove");
+
+        // menghapus yang tidak ada detail
+        $hapus =  $this->M_universal->hapus_data($where, "prove");
+
+        // untuk mengubah jadwal status booking
+        $where = array(
+            'id_jadwal_prove' =>  $id_jadwal_prove
+        );
+
+        $data_update = array(
+            'status_booking' => 'Free'
+        );
+
+        $update = $this->M_universal->update_data($where, 'jadwal_prove', $data_update);
+
+        // membuat array untuk di transfer ke API
+        $result["success"] = "1";
+        $result["message"] = "Berhasil Keluar Dari Pertemuan Prove";
+        $this->response($result, 200);
     }
 }

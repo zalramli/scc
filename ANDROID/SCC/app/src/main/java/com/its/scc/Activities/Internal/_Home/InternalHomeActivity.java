@@ -84,6 +84,7 @@ public class InternalHomeActivity extends AppCompatActivity implements View.OnCl
 		if (v.getId() == R.id.cv_link_list_prove) {
 			Intent intent = new Intent();
 			intent = new Intent(getApplicationContext(), EksternalListProveActivity.class);
+			intent.putExtra(EksternalListProveActivity.EXTRA_TUJUAN, "kosong");
 			startActivity(intent);
 		}
 		if (v.getId() == R.id.cv_link_prove) {

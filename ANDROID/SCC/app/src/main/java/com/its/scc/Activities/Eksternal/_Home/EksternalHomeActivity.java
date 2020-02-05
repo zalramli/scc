@@ -111,6 +111,7 @@ public class EksternalHomeActivity extends AppCompatActivity implements View.OnC
 		if (v.getId() == R.id.cv_link_list_prove) {
 			Intent intent = new Intent();
 			intent = new Intent(getApplicationContext(), EksternalListProveActivity.class);
+			intent.putExtra(EksternalListProveActivity.EXTRA_TUJUAN, "kosong");
 			startActivity(intent);
 		}
 		if (v.getId() == R.id.i_btn_cari_kode_prove) {
