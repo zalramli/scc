@@ -60,11 +60,12 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 
 	private SwipeRefreshLayout swipeRefreshLayout;
 
-	TextView tvNamaMateri, tvDetailJadwal, tvTanggalProve, tvKodeProve, tvKataSandi, tvNamaInternal, tvStatusProve, tvRating;
+	TextView tvNamaMateri, tvDetailJadwal, tvTanggalProve, tvKodeProve, tvKataSandi, tvNamaInternal, tvStatusProve, tvRating,tvKeluar;
 
 	ImageView ivKeluar, ivRating;
 
 	SessionManager sessionManager;
+	String hak_akses = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,8 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 		setContentView(R.layout.activity_eksternal_detail_prove);
 
 		sessionManager = new SessionManager(this);
+		HashMap<String, String> user = sessionManager.getDataUser();
+		hak_akses = user.get(sessionManager.HAK_AKSES);
 
 		tvNamaMateri = findViewById(R.id.tv_nama_materi);
 		tvDetailJadwal = findViewById(R.id.tv_detail_jadwal);
@@ -81,6 +84,7 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 		tvNamaInternal = findViewById(R.id.tv_nama_internal);
 		tvStatusProve = findViewById(R.id.tv_status_prove);
 		tvRating = findViewById(R.id.tv_rating);
+		tvKeluar = findViewById(R.id.tv_keluar);
 
 		ivRating = findViewById(R.id.iv_rating);
 		ivKeluar = findViewById(R.id.iv_keluar);
@@ -152,6 +156,14 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 
 	@Override
 	public void setNilaiDefault() {
+
+		if (hak_akses.equals("internal")) {
+			ivKeluar.setVisibility(View.GONE);
+			ivRating.setVisibility(View.GONE);
+			tvKeluar.setVisibility(View.GONE);
+			tvRating.setVisibility(View.GONE);
+		}
+
 		tvNamaMateri.setText(nama_materi_prove);
 		tvDetailJadwal.setText("Jadwal : " + hari_jadwal + " ( " + jam_mulai + " - " + jam_selesai + " )");
 		tvTanggalProve.setText("Tanggal Prove : " + tanggal_prove);
@@ -201,14 +213,11 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 					try {
 
 						HashMap<String, String> user = sessionManager.getDataUser();
-						String hak_akses = user.get(sessionManager.HAK_AKSES);
 						String id_eksternal = "";
 
 						if (hak_akses.equals("eksternal")) {
-
 							id_eksternal = user.get(sessionManager.ID_USER);
-
-							eksternalDetailProvePresenter.onKeluarProve(id_prove, id_eksternal,id_jadwal_prove);
+							eksternalDetailProvePresenter.onKeluarProve(id_prove, id_eksternal, id_jadwal_prove);
 
 						} else {
 							onErrorMessage("Harus Login Sebagai Eksternal !");
