@@ -453,14 +453,16 @@ class Prove extends REST_Controller
         $id_prove = $this->post('id_prove');
         $id_jadwal_prove = $this->post('id_jadwal_prove');
 
+        // untuk mengubah jadwal status prove
         $where = array(
             'id_prove' => $id_prove
         );
 
-        // $hapus =  $this->M_universal->hapus_data($where, "detail_prove");
+        $data_update = array(
+            'status_prove' => 'Batal'
+        );
 
-        // menghapus yang tidak ada detail
-        $hapus =  $this->M_universal->hapus_data($where, "prove");
+        $update =  $this->M_universal->update_data($where, "prove", $data_update);
 
         // untuk mengubah jadwal status booking
         $where = array(
@@ -475,7 +477,7 @@ class Prove extends REST_Controller
 
         // membuat array untuk di transfer ke API
         $result["success"] = "1";
-        $result["message"] = "Berhasil Keluar Dari Pertemuan Prove";
+        $result["message"] = "Berhasil Validasi";
         $this->response($result, 200);
     }
 }
