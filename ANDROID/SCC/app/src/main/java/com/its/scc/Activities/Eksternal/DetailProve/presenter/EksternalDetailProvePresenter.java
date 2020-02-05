@@ -111,7 +111,7 @@ public class EksternalDetailProvePresenter implements IEksternalDetailProvePrese
 	}
 
 	@Override
-	public void onKeluarProve(String id_eksternal, String id_prove) {
+	public void onKeluarProve(String id_prove, String id_eksternal) {
 		String base_url = baseUrl.getUrlData();
 		String URL_DATA = base_url + "eksternal/prove/keluar_prove"; // url http request
 
@@ -146,8 +146,55 @@ public class EksternalDetailProvePresenter implements IEksternalDetailProvePrese
 			@Override
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String, String> params = new HashMap<>();
-				params.put("id_eksternal", id_eksternal);
 				params.put("id_prove", id_prove);
+				params.put("id_eksternal", id_eksternal);
+				return params;
+			}
+		};
+
+		RequestQueue requestQueue = Volley.newRequestQueue(context);
+		requestQueue.add(stringRequest);
+	}
+
+	@Override
+	public void onChangeRating(String id_prove, String id_eksternal, String rating) {
+		String base_url = baseUrl.getUrlData();
+		String URL_DATA = base_url + "eksternal/prove/keluar_prove"; // url http request
+
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
+			new Response.Listener<String>() {
+				@Override
+				public void onResponse(String response) {
+					try {
+						JSONObject jsonObject = new JSONObject(response);
+						String success = jsonObject.getString("success");
+						String message = jsonObject.getString("message");
+
+						if (success.equals("1")) {
+							eksternalDetailProveView.onSuccessMessage(message);
+							eksternalDetailProveView.backPressed();
+						} else {
+							eksternalDetailProveView.onErrorMessage(message);
+						}
+
+					} catch (JSONException e) {
+						e.printStackTrace();
+						eksternalDetailProveView.onErrorMessage("Kesalahan Menerima Data : " + e.toString());
+					}
+				}
+			},
+			new Response.ErrorListener() {
+				@Override
+				public void onErrorResponse(VolleyError error) {
+					eksternalDetailProveView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
+				}
+			}) {
+			@Override
+			protected Map<String, String> getParams() throws AuthFailureError {
+				Map<String, String> params = new HashMap<>();
+				params.put("id_prove", id_prove);
+				params.put("id_eksternal", id_eksternal);
+				params.put("rating", rating);
 				return params;
 			}
 		};

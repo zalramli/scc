@@ -57,7 +57,7 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 
 	private SwipeRefreshLayout swipeRefreshLayout;
 
-	TextView tvNamaMateri, tvDetailJadwal, tvTanggalProve, tvKodeProve, tvKataSandi, tvNamaInternal, tvStatusProve;
+	TextView tvNamaMateri, tvDetailJadwal, tvTanggalProve, tvKodeProve, tvKataSandi, tvNamaInternal, tvStatusProve, tvRating;
 
 	ImageView ivKeluar, ivRating;
 
@@ -77,6 +77,7 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 		tvKataSandi = findViewById(R.id.tv_kata_sandi);
 		tvNamaInternal = findViewById(R.id.tv_nama_internal);
 		tvStatusProve = findViewById(R.id.tv_status_prove);
+		tvRating = findViewById(R.id.tv_rating);
 
 		ivRating = findViewById(R.id.iv_rating);
 		ivKeluar = findViewById(R.id.iv_keluar);
@@ -168,12 +169,7 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 		adapterListEksternal.setOnItemClickListener(new AdapterListEksternal.ClickListener() {
 			@Override
 			public void onClick(View view, int position) {
-//				Intent intent = new Intent(getApplicationContext(), EksternalListJadwalActivity.class);
-//				intent.putExtra(EksternalListJadwalActivity.EXTRA_ID_MATERI_PROVE, id_materi_prove);
-//				intent.putExtra(EksternalListJadwalActivity.EXTRA_NAMA_MATERI_PROVE, nama_materi_prove);
-//				intent.putExtra(EksternalListJadwalActivity.EXTRA_ID_INTERNAL, dataModelArrayList.get(position).getId_internal());
-//				intent.putExtra(EksternalListJadwalActivity.EXTRA_NAMA_INTERNAL, dataModelArrayList.get(position).getNama());
-//				startActivity(intent);
+
 			}
 		});
 	}
@@ -205,8 +201,11 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 						String id_eksternal = "";
 
 						if (hak_akses.equals("eksternal")) {
+
 							id_eksternal = user.get(sessionManager.ID_USER);
-							eksternalDetailProvePresenter.onKeluarProve(id_eksternal, id_prove);
+
+							// eksternalDetailProvePresenter.onKeluarProve(id_prove, id_eksternal);
+
 						} else {
 							onErrorMessage("Harus Login Sebagai Eksternal !");
 						}
@@ -266,8 +265,24 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 		popDialog.setPositiveButton(android.R.string.ok,
 			new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
-					tvNamaInternal.setText(String.valueOf(rating.getProgress()));
-					dialog.dismiss();
+
+					String val_rating = String.valueOf(rating.getProgress());
+
+					HashMap<String, String> user = sessionManager.getDataUser();
+					String hak_akses = user.get(sessionManager.HAK_AKSES);
+					String id_eksternal = "";
+
+					if (hak_akses.equals("eksternal")) {
+
+						id_eksternal = user.get(sessionManager.ID_USER);
+
+						eksternalDetailProvePresenter.onChangeRating(id_prove, id_eksternal, val_rating);
+						onSuccessMessage("Anda Sudah Menyelesaikan Prove, Terima Kasih :)");
+						backPressed();
+
+					} else {
+						onErrorMessage("Harus Login Sebagai Eksternal !");
+					}
 				}
 
 			})

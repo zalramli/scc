@@ -176,48 +176,6 @@ class Prove extends REST_Controller
         }
     }
 
-    function ambil_data_prove_post()
-    {
-        $id_prove = $this->post('id_prove');
-
-        // variable array
-        $result = array();
-        $result['prove'] = array();
-
-        $data_id = array(
-            'id_prove' => $id_prove
-        );
-
-        // mengambil data dari database
-        $query = $this->M_universal->get_data('prove', $data_id);
-        if ($query->num_rows() > 0) {
-
-            // mengeluarkan data dari database
-            foreach ($query->result_array() as $row) {
-
-                // ambil detail data db
-                $data = array(
-                    'nama' => $row["nama"],
-                    'username' => $row["username"],
-                    'alamat' => $row["alamat"],
-                    'no_hp' => $row["no_hp"]
-                );
-
-                array_push($result['prove'], $data);
-
-                // membuat array untuk di transfer
-                $result["success"] = "1";
-                $result["message"] = "success berhasil mengambil data";
-                $this->response($result, 200);
-            }
-        } else {
-            // membuat array untuk di transfer ke API
-            $result["success"] = "0";
-            $result["message"] = "error data tidak ada";
-            $this->response($result, 502);
-        }
-    }
-
     function update_prove_post()
     {
         $id_prove = $this->post('id_prove');
@@ -254,30 +212,6 @@ class Prove extends REST_Controller
 
         $update =  $this->M_universal->update_data($where, 'prove', $data);
         if ($update) {
-
-            // membuat array untuk di transfer ke API
-            $result["success"] = "1";
-            $result["message"] = "success";
-            $this->response($result, 200);
-        } else {
-
-            // membuat array untuk di transfer ke API
-            $result["success"] = "0";
-            $result["message"] = "error";
-            $this->response(array($result, 502));
-        }
-    }
-
-    function delete_prove_post()
-    {
-        $id_prove = $this->post('id');
-
-        $where = array(
-            'id_prove' => $id_prove
-        );
-
-        $hapus =  $this->M_universal->hapus_data($where, "prove");
-        if ($hapus) {
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";
