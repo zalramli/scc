@@ -36,6 +36,7 @@ import es.dmoral.toasty.Toasty;
 public class EksternalDetailProveActivity extends AppCompatActivity implements View.OnClickListener, IEksternalDetailProveView {
 
 	public static final String EXTRA_ID_PROVE = "EXTRA_ID_PROVE";
+	public static final String EXTRA_ID_JADWAL_PROVE = "EXTRA_ID_JADWAL_PROVE";
 	public static final String EXTRA_NAMA_MATERI_PROVE = "EXTRA_NAMA_MATERI_PROVE";
 	public static final String EXTRA_HARI = "EXTRA_HARI";
 	public static final String EXTRA_JAM_MULAI = "EXTRA_JAM_MULAI";
@@ -46,7 +47,7 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 	public static final String EXTRA_NAMA_INTERNAL = "EXTRA_NAMA_INTERNAL";
 	public static final String EXTRA_STATUS_PROVE = "EXTRA_STATUS_PROVE";
 
-	String id_prove, nama_materi_prove, hari_jadwal, jam_mulai, jam_selesai, tanggal_prove, kode_prove, kata_sandi, nama_internal, status_prove;
+	String id_prove, id_jadwal_prove, nama_materi_prove, hari_jadwal, jam_mulai, jam_selesai, tanggal_prove, kode_prove, kata_sandi, nama_internal, status_prove;
 
 	IEksternalDetailProvePresenter eksternalDetailProvePresenter;
 
@@ -83,6 +84,7 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 		ivKeluar = findViewById(R.id.iv_keluar);
 
 		id_prove = getIntent().getStringExtra(EXTRA_ID_PROVE);
+		id_jadwal_prove = getIntent().getStringExtra(EXTRA_ID_JADWAL_PROVE);
 		nama_materi_prove = getIntent().getStringExtra(EXTRA_NAMA_MATERI_PROVE);
 		hari_jadwal = getIntent().getStringExtra(EXTRA_HARI);
 		jam_mulai = getIntent().getStringExtra(EXTRA_JAM_MULAI);
@@ -276,7 +278,7 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 
 						id_eksternal = user.get(sessionManager.ID_USER);
 
-						eksternalDetailProvePresenter.onChangeRating(id_prove, id_eksternal, val_rating);
+						eksternalDetailProvePresenter.onChangeRating(id_prove, id_eksternal, val_rating, id_jadwal_prove);
 						onSuccessMessage("Anda Sudah Menyelesaikan Prove, Terima Kasih :)");
 						backPressed();
 

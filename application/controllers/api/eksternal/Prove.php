@@ -181,6 +181,7 @@ class Prove extends REST_Controller
         $id_prove = $this->post('id_prove');
         $id_eksternal = $this->post('id_eksternal');
         $rating = $this->post('rating');
+        $id_jadwal_prove = $this->post('id_jadwal_prove');
 
         $data = array(
             'rating'        => $rating
@@ -195,7 +196,7 @@ class Prove extends REST_Controller
 
         if ($update) {
 
-            // mengakhiri prove
+            // untuk mengubah prove status prove
             $data = array(
                 'status_prove'        => "Selesai"
             );
@@ -207,6 +208,17 @@ class Prove extends REST_Controller
             $update =  $this->M_universal->update_data($where, 'prove', $data);
 
             if ($update) {
+
+                // untuk mengubah jadwal status booking
+                $where = array(
+                    'id_jadwal_prove' =>  $id_jadwal_prove
+                );
+
+                $data_update = array(
+                    'status_booking' => 'Free'
+                );
+
+                $update = $this->M_universal->update_data($where, 'jadwal_prove', $data_update);
 
                 // membuat array untuk di transfer ke API
                 $result["success"] = "1";
@@ -241,6 +253,19 @@ class Prove extends REST_Controller
         $hapus =  $this->M_universal->hapus_data($where, "detail_prove");
 
         if ($hapus) {
+
+            // cek apakah ada anggota detail ?
+            $where = array(
+                'id_prove' => $id_prove
+            );
+
+            $query = $this->M_universal->get_data('detail_prove', $where);
+
+            if ($query->num_rows() < 1) { // jika tidak ada
+
+                // menghapus yang tidak ada detail
+                $hapus =  $this->M_universal->hapus_data($where, "prove");
+            }
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";

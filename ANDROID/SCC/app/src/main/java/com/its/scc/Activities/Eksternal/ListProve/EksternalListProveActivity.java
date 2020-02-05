@@ -110,6 +110,7 @@ public class EksternalListProveActivity extends AppCompatActivity implements Vie
 			public void onClick(View view, int position) {
 				Intent intent = new Intent(getApplicationContext(), EksternalDetailProveActivity.class);
 				intent.putExtra(EksternalDetailProveActivity.EXTRA_ID_PROVE, dataModelArrayList.get(position).getId_prove());
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_ID_JADWAL_PROVE, dataModelArrayList.get(position).getId_jadwal_prove());
 				intent.putExtra(EksternalDetailProveActivity.EXTRA_NAMA_MATERI_PROVE, dataModelArrayList.get(position).getNama_materi_prove());
 				intent.putExtra(EksternalDetailProveActivity.EXTRA_HARI, dataModelArrayList.get(position).getHari());
 				intent.putExtra(EksternalDetailProveActivity.EXTRA_JAM_MULAI, dataModelArrayList.get(position).getJam_mulai());

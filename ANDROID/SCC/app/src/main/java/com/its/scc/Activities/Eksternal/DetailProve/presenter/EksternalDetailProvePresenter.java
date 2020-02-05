@@ -157,7 +157,7 @@ public class EksternalDetailProvePresenter implements IEksternalDetailProvePrese
 	}
 
 	@Override
-	public void onChangeRating(String id_prove, String id_eksternal, String rating) {
+	public void onChangeRating(String id_prove, String id_eksternal, String rating, String id_jadwal_prove) {
 		String base_url = baseUrl.getUrlData();
 		String URL_DATA = base_url + "eksternal/prove/update_detail_prove"; // url http request
 
@@ -194,6 +194,7 @@ public class EksternalDetailProvePresenter implements IEksternalDetailProvePrese
 				params.put("id_prove", id_prove);
 				params.put("id_eksternal", id_eksternal);
 				params.put("rating", rating);
+				params.put("id_jadwal_prove", id_jadwal_prove);
 				return params;
 			}
 		};
