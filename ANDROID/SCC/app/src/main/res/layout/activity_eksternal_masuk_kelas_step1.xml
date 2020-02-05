@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".Activities.Eksternal.MasukKelasStep1.EksternalMasukKelasStep1Activity">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_marginBottom="20dp"
+		android:orientation="vertical">
+
+		<androidx.cardview.widget.CardView
+			android:layout_width="match_parent"
+			android:layout_height="175dp"
+			android:layout_marginLeft="20dp"
+			android:layout_marginTop="20dp"
+			android:layout_marginRight="20dp"
+			app:cardCornerRadius="15dp"
+			app:cardElevation="5dp">
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent">
+
+				<View
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:background="@drawable/background_login_1"
+					android:visibility="visible" />
+
+				<ImageView
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:alpha="0.2"
+					android:scaleType="centerCrop"
+					android:src="@drawable/bg_learning_1" />
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerHorizontal="true"
+					android:layout_margin="10dp"
+					android:text="Masuk Ke Prove Dengan Menggunakan Kode"
+					android:textColor="@color/white" />
+
+				<TextView
+					android:id="@+id/tv_kode_prove"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentTop="true"
+					android:layout_centerHorizontal="true"
+					android:layout_marginTop="35sp"
+					android:text="Kode Masuk : KODE PROVE"
+					android:textColor="@color/white"
+					android:textSize="20dp"
+					android:textStyle="bold" />
+
+				<androidx.cardview.widget.CardView
+					android:id="@+id/cv_password"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_below="@id/tv_kode_prove"
+					android:layout_centerHorizontal="true"
+					android:layout_marginTop="15dp"
+					app:cardBackgroundColor="@color/white"
+					app:cardCornerRadius="10dp">
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_margin="3dp"
+						android:orientation="horizontal">
+
+						<EditText
+							android:id="@+id/edt_kata_sandi"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:hint="KATA SANDI"
+							android:textAlignment="center"
+							android:textColor="@color/colorPrimaryDark2" />
+
+						<ImageButton
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:layout_weight="3"
+							android:src="@drawable/ic_search" />
+
+					</LinearLayout>
+
+
+				</androidx.cardview.widget.CardView>
+
+				<!--				<Button-->
+				<!--					android:layout_width="100dp"-->
+				<!--					android:layout_height="wrap_content"-->
+				<!--					android:layout_below="@id/cv_password"-->
+				<!--					android:layout_centerInParent="true"-->
+				<!--					android:layout_margin="10dp"-->
+				<!--					android:background="@color/white"-->
+				<!--					android:text="Masuk"-->
+				<!--					android:textColor="@color/colorPrimary"-->
+				<!--					android:textSize="14dp"-->
+				<!--					android:textStyle="bold" />-->
+
+			</RelativeLayout>
+
+		</androidx.cardview.widget.CardView>
+
+	</LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
