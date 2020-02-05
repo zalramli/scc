@@ -279,4 +279,45 @@ class Prove extends REST_Controller
             $this->response($result, 200);
         }
     }
+
+    function cek_kode_prove_post()
+    {
+        $kode_prove = $this->post('kode_prove');
+
+        // variable array
+        $result = array();
+        $result['prove'] = array();
+
+        // cek apakah ada kode_prove
+        $where = array(
+            'kode_prove' => $kode_prove
+        );
+
+        $query = $this->M_universal->get_data('prove', $where);
+
+        if ($query->num_rows() > 0) { // jika ada
+
+            // mengeluarkan data dari database
+            foreach ($query->result_array() as $row) {
+
+                // ambil detail data db
+                $data = array(
+                    'kata_sandi' => $row["kata_sandi"]
+                );
+
+                array_push($result['prove'], $data);
+            }
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "Berhasil";
+            $this->response($result, 200);
+        } else {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "Tidak Ditemukan Kode Prove : " . $kode_prove;
+            $this->response($result, 200);
+        }
+    }
 }

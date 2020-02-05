@@ -115,7 +115,6 @@ public class EksternalHomeActivity extends AppCompatActivity implements View.OnC
 		}
 		if (v.getId() == R.id.i_btn_cari_kode_prove) {
 			kode_prove = edtKodeProve.getText().toString().trim();
-
 			eksternalHomePresenter.onSubmit(kode_prove);
 		}
 	}
