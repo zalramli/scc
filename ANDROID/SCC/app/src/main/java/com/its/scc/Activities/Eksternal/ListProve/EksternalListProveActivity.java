@@ -120,7 +120,6 @@ public class EksternalListProveActivity extends AppCompatActivity implements Vie
 				intent.putExtra(EksternalDetailProveActivity.EXTRA_NAMA_INTERNAL, dataModelArrayList.get(position).getNama_internal());
 				intent.putExtra(EksternalDetailProveActivity.EXTRA_STATUS_PROVE, dataModelArrayList.get(position).getStatus_prove());
 				startActivity(intent);
-				onSuccessMessage(dataModelArrayList.get(position).getKode_prove());
 			}
 		});
 	}
