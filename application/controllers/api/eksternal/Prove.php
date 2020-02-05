@@ -13,6 +13,7 @@ class Prove extends REST_Controller
         parent::__construct($config);
         $this->load->model("api/M_universal");
         $this->load->model("api/M_prove");
+        date_default_timezone_set('Asia/Jakarta');
     }
 
     function tambah_prove_post()
@@ -140,26 +141,40 @@ class Prove extends REST_Controller
             // mengeluarkan data dari database
             foreach ($query->result_array() as $row) {
 
-                // ambil detail data db
-                $data = array(
-                    'id_prove' => $row["id_prove"],
-                    'id_eksternal' => $row["id_eksternal"],
-                    'nama_eksternal' => $row["nama_eksternal"],
-                    'id_internal' => $row["id_internal"],
-                    'nama_internal' => $row["nama_internal"],
-                    'id_materi_prove' => $row["id_materi_prove"],
-                    'nama_materi_prove' => $row["nama_materi_prove"],
-                    'id_jadwal_prove' => $row["id_jadwal_prove"],
-                    'hari' => $row["hari"],
-                    'jam_mulai' => $row["jam_mulai"],
-                    'jam_selesai' => $row["jam_selesai"],
-                    'deskripsi_materi' => $row["deskripsi_materi"],
-                    'tanggal_booking' => $row["tanggal_booking"],
-                    'tanggal_prove' => $row["tanggal_prove"],
-                    'kode_prove' => $row["kode_prove"],
-                    'kata_sandi' => $row["kata_sandi"],
-                    'status_prove' => $row["status_prove"]
-                );
+                $tgl_prove = $row["tanggal_prove"];
+                $id_prove = $row["id_prove"];
+                $id_jadwal_prove = $row["id_jadwal_prove"];
+
+                $status_prove = $row["status_prove"];
+
+                $data = array();
+
+                if ($tgl_prove < date('Y-m-d') && $status_prove == "Belum Selesai") {
+                    $this->validasi_prove_gagal($id_prove, $id_jadwal_prove);
+                } else {
+                    // ambil detail data db
+                    $data = array(
+                        'id_prove' => $row["id_prove"],
+                        'id_eksternal' => $row["id_eksternal"],
+                        'nama_eksternal' => $row["nama_eksternal"],
+                        'id_internal' => $row["id_internal"],
+                        'nama_internal' => $row["nama_internal"],
+                        'id_materi_prove' => $row["id_materi_prove"],
+                        'nama_materi_prove' => $row["nama_materi_prove"],
+                        'id_jadwal_prove' => $row["id_jadwal_prove"],
+                        'hari' => $row["hari"],
+                        'jam_mulai' => $row["jam_mulai"],
+                        'jam_selesai' => $row["jam_selesai"],
+                        'deskripsi_materi' => $row["deskripsi_materi"],
+                        'tanggal_booking' => $row["tanggal_booking"],
+                        'tanggal_prove' => $row["tanggal_prove"],
+                        'kode_prove' => $row["kode_prove"],
+                        'kata_sandi' => $row["kata_sandi"],
+                        'status_prove' => $row["status_prove"]
+                    );
+                }
+
+
 
                 array_push($result['list_prove'], $data);
             }
@@ -448,11 +463,8 @@ class Prove extends REST_Controller
         }
     }
 
-    function validasi_prove_gagal_post()
+    function validasi_prove_gagal($id_prove, $id_jadwal_prove)
     {
-        $id_prove = $this->post('id_prove');
-        $id_jadwal_prove = $this->post('id_jadwal_prove');
-
         // untuk mengubah jadwal status prove
         $where = array(
             'id_prove' => $id_prove

@@ -12,6 +12,7 @@ class Eksternal extends REST_Controller
     {
         parent::__construct($config);
         $this->load->model("api/M_universal");
+        date_default_timezone_set('Asia/Jakarta');
     }
 
     function list_eksternal_post()

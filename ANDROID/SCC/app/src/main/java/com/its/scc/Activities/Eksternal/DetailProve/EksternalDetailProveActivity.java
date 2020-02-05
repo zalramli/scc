@@ -60,7 +60,7 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 
 	private SwipeRefreshLayout swipeRefreshLayout;
 
-	TextView tvNamaMateri, tvDetailJadwal, tvTanggalProve, tvKodeProve, tvKataSandi, tvNamaInternal, tvStatusProve, tvRating,tvKeluar;
+	TextView tvNamaMateri, tvDetailJadwal, tvTanggalProve, tvKodeProve, tvKataSandi, tvNamaInternal, tvStatusProve, tvRating, tvKeluar;
 
 	ImageView ivKeluar, ivRating;
 
@@ -157,7 +157,7 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 	@Override
 	public void setNilaiDefault() {
 
-		if (hak_akses.equals("internal")) {
+		if (hak_akses.equals("internal") || status_prove.equals("Batal")) {
 			ivKeluar.setVisibility(View.GONE);
 			ivRating.setVisibility(View.GONE);
 			tvKeluar.setVisibility(View.GONE);
