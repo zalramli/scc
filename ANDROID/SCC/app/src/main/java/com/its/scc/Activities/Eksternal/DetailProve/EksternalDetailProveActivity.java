@@ -1,12 +1,22 @@
 package com.its.scc.Activities.Eksternal.DetailProve;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.TextUtils;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.its.scc.Activities.Eksternal.DetailProve.presenter.EksternalDetailProvePresenter;
 import com.its.scc.Activities.Eksternal.DetailProve.presenter.IEksternalDetailProvePresenter;
 import com.its.scc.Activities.Eksternal.DetailProve.view.IEksternalDetailProveView;
 import com.its.scc.Adapters.AdapterListEksternal;
@@ -15,7 +25,22 @@ import com.its.scc.R;
 
 import java.util.ArrayList;
 
+import es.dmoral.toasty.Toasty;
+
 public class EksternalDetailProveActivity extends AppCompatActivity implements IEksternalDetailProveView {
+
+	public static final String EXTRA_ID_PROVE = "EXTRA_ID_PROVE";
+	public static final String EXTRA_NAMA_MATERI_PROVE = "EXTRA_NAMA_MATERI_PROVE";
+	public static final String EXTRA_HARI = "EXTRA_HARI";
+	public static final String EXTRA_JAM_MULAI = "EXTRA_JAM_MULAI";
+	public static final String EXTRA_JAM_SELESAI = "EXTRA_JAM_SELESAI";
+	public static final String EXTRA_TANGGAL_PROVE = "EXTRA_TANGGAL_PROVE";
+	public static final String EXTRA_KODE_PROVE = "EXTRA_KODE_PROVE";
+	public static final String EXTRA_KATA_SANDI = "EXTRA_KATA_SANDI";
+	public static final String EXTRA_NAMA_INTERNAL = "EXTRA_NAMA_INTERNAL";
+	public static final String EXTRA_STATUS_PROVE = "EXTRA_STATUS_PROVE";
+
+	String id_prove, nama_materi_prove, hari_jadwal, jam_mulai, jam_selesai, tanggal_prove, kode_prove, kata_sandi, nama_internal, status_prove;
 
 	IEksternalDetailProvePresenter eksternalDetailProvePresenter;
 
@@ -26,44 +51,162 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements I
 
 	private SwipeRefreshLayout swipeRefreshLayout;
 
+	TextView tvNamaMateri, tvDetailJadwal, tvTanggalProve, tvKodeProve, tvKataSandi, tvNamaInternal, tvStatusProve;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eksternal_detail_prove);
+
+		tvNamaMateri = findViewById(R.id.tv_nama_materi);
+		tvDetailJadwal = findViewById(R.id.tv_detail_jadwal);
+		tvTanggalProve = findViewById(R.id.tv_tanggal_prove);
+		tvKodeProve = findViewById(R.id.tv_kode_prove);
+		tvKataSandi = findViewById(R.id.tv_kata_sandi);
+		tvNamaInternal = findViewById(R.id.tv_nama_internal);
+		tvStatusProve = findViewById(R.id.tv_status_prove);
+
+		id_prove = getIntent().getStringExtra(EXTRA_ID_PROVE);
+		nama_materi_prove = getIntent().getStringExtra(EXTRA_NAMA_MATERI_PROVE);
+		hari_jadwal =  getIntent().getStringExtra(EXTRA_HARI);
+		jam_mulai = getIntent().getStringExtra(EXTRA_JAM_MULAI);
+		jam_selesai = getIntent().getStringExtra(EXTRA_JAM_SELESAI);
+		tanggal_prove = getIntent().getStringExtra(EXTRA_TANGGAL_PROVE);
+		kode_prove = getIntent().getStringExtra(EXTRA_KODE_PROVE);
+		kata_sandi = getIntent().getStringExtra(EXTRA_KATA_SANDI);
+		nama_internal = getIntent().getStringExtra(EXTRA_NAMA_INTERNAL);
+		status_prove = getIntent().getStringExtra(EXTRA_STATUS_PROVE);
+
+		eksternalDetailProvePresenter = new EksternalDetailProvePresenter(this, this);
+		eksternalDetailProvePresenter.onLoadSemuaData(id_prove);
+
+		recyclerView = findViewById(R.id.recycle_view);
+
+		toolbar = findViewById(R.id.toolbar);
+
+		swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+
+		swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+			@Override
+			public void onRefresh() {
+				// Your code to make your refresh action
+				eksternalDetailProvePresenter.onLoadSemuaData(id_prove);
+
+				// CallYourRefreshingMethod();
+				final Handler handler = new Handler();
+				handler.postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						if (swipeRefreshLayout.isRefreshing()) {
+							swipeRefreshLayout.setRefreshing(false);
+						}
+					}
+				}, 1000);
+			}
+		});
+
+		setNilaiDefault();
+		initActionBar();
 	}
 
 	@Override
 	public void initActionBar() {
-
+		setSupportActionBar(toolbar);
+		if (getSupportActionBar() != null) {
+			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		}
 	}
 
 	@Override
 	public void setNilaiDefault() {
-
+		tvNamaMateri.setText(nama_materi_prove);
+		tvDetailJadwal.setText("Jadwal : " + hari_jadwal + " ( " + jam_mulai + " - " + jam_selesai + " )");
+		tvTanggalProve.setText("Tanggal Prove : " + tanggal_prove);
+		tvKodeProve.setText("Kode Prove : " + kode_prove);
+		tvKataSandi.setText("Kata Sandi : " + kata_sandi);
+		tvNamaInternal.setText("Pembimbing : " + nama_internal);
+		tvStatusProve.setText("Status : " + status_prove);
 	}
 
 	@Override
 	public void onSetupListView(ArrayList<Eksternal> dataModelArrayList) {
+		adapterListEksternal = new AdapterListEksternal(this, dataModelArrayList);
+		GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
+		recyclerView.setAdapter(adapterListEksternal);
+		recyclerView.setLayoutManager(layoutManager);
+		recyclerView.setNestedScrollingEnabled(true);
+		adapterListEksternal.notifyDataSetChanged();
 
+		adapterListEksternal.setOnItemClickListener(new AdapterListEksternal.ClickListener() {
+			@Override
+			public void onClick(View view, int position) {
+//				Intent intent = new Intent(getApplicationContext(), EksternalListJadwalActivity.class);
+//				intent.putExtra(EksternalListJadwalActivity.EXTRA_ID_MATERI_PROVE, id_materi_prove);
+//				intent.putExtra(EksternalListJadwalActivity.EXTRA_NAMA_MATERI_PROVE, nama_materi_prove);
+//				intent.putExtra(EksternalListJadwalActivity.EXTRA_ID_INTERNAL, dataModelArrayList.get(position).getId_internal());
+//				intent.putExtra(EksternalListJadwalActivity.EXTRA_NAMA_INTERNAL, dataModelArrayList.get(position).getNama());
+//				startActivity(intent);
+			}
+		});
 	}
 
 	@Override
 	public void onSuccessMessage(String message) {
-
+		Toasty.success(this, message, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onErrorMessage(String message) {
-
+		Toasty.error(this, message, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void showDialog() {
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+			this);
+		alertDialogBuilder.setTitle("Ingin Keluar Prove ?");
+		alertDialogBuilder
+			.setMessage("Klik Ya untuk Keluar !")
+			.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
 
+					try {
+
+					} catch (Exception e) {
+						onErrorMessage("Terjadi Kesalahan " + e.toString());
+					}
+
+				}
+			})
+			.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+					dialog.cancel();
+				}
+			});
+
+		AlertDialog alertDialog = alertDialogBuilder.create();
+		alertDialog.show();
 	}
 
 	@Override
 	public void backPressed() {
+		onBackPressed();
+	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+
+			case android.R.id.home:
+				onBackPressed();
+				break;
+		}
+		return true;
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		eksternalDetailProvePresenter.onLoadSemuaData(id_prove);
 	}
 }

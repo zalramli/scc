@@ -6,12 +6,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.its.scc.Activities.Eksternal.DetailProve.EksternalDetailProveActivity;
 import com.its.scc.Activities.Eksternal.ListProve.presenter.EksternalListProvePresenter;
 import com.its.scc.Activities.Eksternal.ListProve.presenter.IEksternalListProvePresenter;
 import com.its.scc.Activities.Eksternal.ListProve.view.IEksternalListProveView;
@@ -106,10 +108,18 @@ public class EksternalListProveActivity extends AppCompatActivity implements Vie
 		adapterListProve.setOnItemClickListener(new AdapterListProve.ClickListener() {
 			@Override
 			public void onClick(View view, int position) {
-//				Intent intent = new Intent(getApplicationContext(), EksternalListInternalActivity.class);
-//				intent.putExtra(EksternalListInternalActivity.EXTRA_ID_MATERI_PROVE, dataModelArrayList.get(position).getId_materi_prove());
-//				intent.putExtra(EksternalListInternalActivity.EXTRA_NAMA_MATERI_PROVE, dataModelArrayList.get(position).getNama());
-//				startActivity(intent);
+				Intent intent = new Intent(getApplicationContext(), EksternalDetailProveActivity.class);
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_ID_PROVE, dataModelArrayList.get(position).getId_prove());
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_NAMA_MATERI_PROVE, dataModelArrayList.get(position).getNama_materi_prove());
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_HARI, dataModelArrayList.get(position).getHari());
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_JAM_MULAI, dataModelArrayList.get(position).getJam_mulai());
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_JAM_SELESAI, dataModelArrayList.get(position).getJam_selesai());
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_TANGGAL_PROVE, dataModelArrayList.get(position).getTanggal_prove());
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_KODE_PROVE, dataModelArrayList.get(position).getKode_prove());
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_KATA_SANDI, dataModelArrayList.get(position).getKata_sandi());
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_NAMA_INTERNAL, dataModelArrayList.get(position).getNama_internal());
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_STATUS_PROVE, dataModelArrayList.get(position).getStatus_prove());
+				startActivity(intent);
 				onSuccessMessage(dataModelArrayList.get(position).getKode_prove());
 			}
 		});
