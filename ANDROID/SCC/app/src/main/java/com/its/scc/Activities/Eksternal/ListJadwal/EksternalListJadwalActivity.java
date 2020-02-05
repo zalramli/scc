@@ -112,7 +112,7 @@ public class EksternalListJadwalActivity extends AppCompatActivity implements Vi
 			public void onClick(View view, int position) {
 				String status_booking = dataModelArrayList.get(position).getStatus_booking();
 				if (!status_booking.equals("Free")) {
-					onErrorMessage("Jadwal Sudah Dipesan !");
+					onErrorMessage("Jadwal Sudah Tidak Tersedia !");
 				} else {
 					Intent intent = new Intent(getApplicationContext(), EksternalBeforeCreateProveActivity.class);
 					intent.putExtra(EksternalBeforeCreateProveActivity.EXTRA_ID_MATERI_PROVE, id_materi_prove);

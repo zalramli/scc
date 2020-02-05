@@ -53,45 +53,61 @@ class Prove extends REST_Controller
         $query = $this->M_universal->get_data('jadwal_prove', $where_jadwal_prove);
         if ($query->num_rows() > 0) {
 
-            $insert =  $this->M_universal->input_data('prove', $data);
-            if ($insert) {
+            // cek apakah ada list prove yang dia sudah buat dan belum selesai ?
+            $where_id_eksternal = array(
+                'id_eksternal' => $id_eksternal,
+                'status_prove' => "Belum Selesai"
+            );
 
-                // detail 
-                $data = array(
-                    'id_prove'   => $id_prove,
-                    'id_eksternal'   => $id_eksternal
-                );
-
-                $insert =  $this->M_universal->input_data('detail_prove', $data);
-
-                $where = array(
-                    'id_jadwal_prove' =>  $id_jadwal_prove
-                );
-
-                $data_update = array(
-                    'status_booking' => 'Unfree',
-                    'terakhir_dibooking' => $tanggal_booking
-                );
-
-                $update = $this->M_universal->update_data($where, 'jadwal_prove', $data_update);
-
-                // membuat array untuk di transfer ke API
-                $result["success"] = "1";
-                $result["message"] = "Berhasil Membuat Prove";
-                $this->response($result, 200);
-            } else {
+            $query = $this->M_universal->get_data('list_prove', $where_id_eksternal);
+            if ($query->num_rows() > 0) {
 
                 // membuat array untuk di transfer ke API
                 $result["success"] = "0";
-                $result["message"] = "Coba Lagi, Server Error";
-                $this->response(array($result, 200));
+                $result["message"] = "Prove Anda Sebelumnya Masih Belum Selesai !";
+                $this->response($result, 200);
+            } else {
+
+                $insert =  $this->M_universal->input_data('prove', $data);
+                if ($insert) {
+
+                    // detail prove tambah
+                    $data = array(
+                        'id_prove'   => $id_prove,
+                        'id_eksternal'   => $id_eksternal
+                    );
+
+                    $insert =  $this->M_universal->input_data('detail_prove', $data);
+
+                    $where = array(
+                        'id_jadwal_prove' =>  $id_jadwal_prove
+                    );
+
+                    $data_update = array(
+                        'status_booking' => 'Unfree',
+                        'terakhir_dibooking' => $tanggal_booking
+                    );
+
+                    $update = $this->M_universal->update_data($where, 'jadwal_prove', $data_update);
+
+                    // membuat array untuk di transfer ke API
+                    $result["success"] = "1";
+                    $result["message"] = "Berhasil Membuat Prove";
+                    $this->response($result, 200);
+                } else {
+
+                    // membuat array untuk di transfer ke API
+                    $result["success"] = "0";
+                    $result["message"] = "Coba Lagi, Server Error";
+                    $this->response($result, 200);
+                }
             }
         } else {
 
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
             $result["message"] = "Jadwal Sudah dipesan ! , Coba jadwal Lainnya";
-            $this->response(array($result, 200));
+            $this->response($result, 200);
         }
     }
 
