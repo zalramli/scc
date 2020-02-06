@@ -85,9 +85,8 @@ class Jadwal_prove extends CI_Controller {
     }
     function update_jadwal_senin()
     {
-        $id = $this->input->post('id');
-        $id_prove = substr($id,0,1);
-        $ubah_status = substr($id,2);
+        $id_prove = $this->input->post('id');
+        $ubah_status = $this->input->post('value');
 
         $where = array(
             'id_jadwal_prove' => $id_prove
@@ -97,15 +96,14 @@ class Jadwal_prove extends CI_Controller {
         );
 
         $this->M_crud->update_data($where,'jadwal_prove',$data);
-        echo $ubah_status;
+        echo $id_prove;
 
     }
 
     function update_jadwal_selasa()
     {
-        $id = $this->input->post('id');
-        $id_prove = substr($id,0,1);
-        $ubah_status = substr($id,2);
+        $id_prove = $this->input->post('id');
+        $ubah_status = $this->input->post('value');
 
         $where = array(
         'id_jadwal_prove' => $id_prove
@@ -120,15 +118,14 @@ class Jadwal_prove extends CI_Controller {
     }
     function update_jadwal_rabu()
     {
-        $id = $this->input->post('id');
-        $id_prove = substr($id,0,1);
-        $ubah_status = substr($id,2);
+        $id_prove = $this->input->post('id');
+        $ubah_status = $this->input->post('value');
 
         $where = array(
-        'id_jadwal_prove' => $id_prove
+            'id_jadwal_prove' => $id_prove
         );
         $data = array(
-        'status_aktif' => $ubah_status
+            'status_aktif' => $ubah_status
         );
 
         $this->M_crud->update_data($where,'jadwal_prove',$data);
@@ -137,9 +134,8 @@ class Jadwal_prove extends CI_Controller {
 
     function update_jadwal_kamis()
     {
-        $id = $this->input->post('id');
-        $id_prove = substr($id,0,1);
-        $ubah_status = substr($id,2);
+        $id_prove = $this->input->post('id');
+        $ubah_status = $this->input->post('value');
 
         $where = array(
         'id_jadwal_prove' => $id_prove
@@ -155,9 +151,8 @@ class Jadwal_prove extends CI_Controller {
 
     function update_jadwal_jumat()
     {
-        $id = $this->input->post('id');
-        $id_prove = substr($id,0,1);
-        $ubah_status = substr($id,2);
+        $id_prove = $this->input->post('id');
+        $ubah_status = $this->input->post('value');
 
         $where = array(
         'id_jadwal_prove' => $id_prove
