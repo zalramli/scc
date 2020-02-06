@@ -6,12 +6,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.its.scc.Activities.Eksternal.DetailProve.EksternalDetailProveActivity;
 import com.its.scc.Activities.Eksternal.ListProve.presenter.EksternalListProvePresenter;
 import com.its.scc.Activities.Eksternal.ListProve.presenter.IEksternalListProvePresenter;
 import com.its.scc.Activities.Eksternal.ListProve.view.IEksternalListProveView;
@@ -26,6 +28,9 @@ import java.util.HashMap;
 import es.dmoral.toasty.Toasty;
 
 public class EksternalListProveActivity extends AppCompatActivity implements View.OnClickListener, IEksternalListProveView {
+
+	public static final String EXTRA_TUJUAN = "EXTRA_TUJUAN";
+	String tujuan = "";
 
 	IEksternalListProvePresenter eksternalListProvePresenter;
 
@@ -46,13 +51,15 @@ public class EksternalListProveActivity extends AppCompatActivity implements Vie
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eksternal_list_prove);
 
+		tujuan = getIntent().getStringExtra(EXTRA_TUJUAN);
+
 		sessionManager = new SessionManager(this);
 		HashMap<String, String> user = sessionManager.getDataUser();
 		id = user.get(sessionManager.ID_USER);
 		hakAkses = user.get(sessionManager.HAK_AKSES);
 
 		eksternalListProvePresenter = new EksternalListProvePresenter(this, this);
-		eksternalListProvePresenter.inisiasiAwal(id, hakAkses);
+		eksternalListProvePresenter.inisiasiAwal(id, hakAkses, tujuan);
 
 		recyclerView = findViewById(R.id.recycle_view);
 
@@ -65,7 +72,7 @@ public class EksternalListProveActivity extends AppCompatActivity implements Vie
 			@Override
 			public void onRefresh() {
 				// Your code to make your refresh action
-				eksternalListProvePresenter.inisiasiAwal(id, hakAkses);
+				eksternalListProvePresenter.inisiasiAwal(id, hakAkses, tujuan);
 
 				// CallYourRefreshingMethod();
 				final Handler handler = new Handler();
@@ -106,11 +113,19 @@ public class EksternalListProveActivity extends AppCompatActivity implements Vie
 		adapterListProve.setOnItemClickListener(new AdapterListProve.ClickListener() {
 			@Override
 			public void onClick(View view, int position) {
-//				Intent intent = new Intent(getApplicationContext(), EksternalListInternalActivity.class);
-//				intent.putExtra(EksternalListInternalActivity.EXTRA_ID_MATERI_PROVE, dataModelArrayList.get(position).getId_materi_prove());
-//				intent.putExtra(EksternalListInternalActivity.EXTRA_NAMA_MATERI_PROVE, dataModelArrayList.get(position).getNama());
-//				startActivity(intent);
-				onSuccessMessage(dataModelArrayList.get(position).getKode_prove());
+				Intent intent = new Intent(getApplicationContext(), EksternalDetailProveActivity.class);
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_ID_PROVE, dataModelArrayList.get(position).getId_prove());
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_ID_JADWAL_PROVE, dataModelArrayList.get(position).getId_jadwal_prove());
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_NAMA_MATERI_PROVE, dataModelArrayList.get(position).getNama_materi_prove());
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_HARI, dataModelArrayList.get(position).getHari());
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_JAM_MULAI, dataModelArrayList.get(position).getJam_mulai());
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_JAM_SELESAI, dataModelArrayList.get(position).getJam_selesai());
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_TANGGAL_PROVE, dataModelArrayList.get(position).getTanggal_prove());
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_KODE_PROVE, dataModelArrayList.get(position).getKode_prove());
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_KATA_SANDI, dataModelArrayList.get(position).getKata_sandi());
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_NAMA_INTERNAL, dataModelArrayList.get(position).getNama_internal());
+				intent.putExtra(EksternalDetailProveActivity.EXTRA_STATUS_PROVE, dataModelArrayList.get(position).getStatus_prove());
+				startActivity(intent);
 			}
 		});
 	}
@@ -139,6 +154,6 @@ public class EksternalListProveActivity extends AppCompatActivity implements Vie
 	@Override
 	protected void onResume() {
 		super.onResume();
-		eksternalListProvePresenter.inisiasiAwal(id, hakAkses);
+		eksternalListProvePresenter.inisiasiAwal(id, hakAkses, tujuan);
 	}
 }

@@ -12,6 +12,7 @@ class Materi_prove extends REST_Controller
     {
         parent::__construct($config);
         $this->load->model("api/M_universal");
+        date_default_timezone_set('Asia/Jakarta');
     }
 
     function list_materi_prove_get()

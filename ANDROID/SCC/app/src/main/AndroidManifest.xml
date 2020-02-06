@@ -16,7 +16,8 @@
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme"
 		android:usesCleartextTraffic="true">
-		<activity android:name=".Activities.Eksternal.ListProve.EksternalListProveActivity"></activity>
+		<activity android:name=".Activities.Eksternal.MasukKelasStep1.EksternalMasukKelasStep1Activity"></activity>
+		<activity android:name=".Activities.Eksternal.ListProve.EksternalListProveActivity" />
 		<activity android:name=".Activities.Eksternal.BeforeCreateProve.EksternalBeforeCreateProveActivity" />
 		<activity android:name=".Activities.Eksternal.DetailProve.EksternalDetailProveActivity" />
 		<activity android:name=".Activities.Eksternal.ListJadwal.EksternalListJadwalActivity" />

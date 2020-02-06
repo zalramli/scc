@@ -46,6 +46,12 @@
 				android:src="@drawable/ic_account_circle"
 				app:civ_border_color="#fff"
 				app:civ_border_width="2dp" />
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="Upload Foto Profil"
+				android:gravity="center"
+				></TextView>
 
 			<com.google.android.material.textfield.TextInputLayout
 				android:layout_width="match_parent"
@@ -55,7 +61,7 @@
 					android:id="@+id/edt_nama"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:hint="Nama ..." />
+					android:hint="Nama Lengkap" />
 
 			</com.google.android.material.textfield.TextInputLayout>
 
@@ -64,10 +70,11 @@
 				android:layout_height="wrap_content">
 
 				<EditText
+					android:inputType="number"
 					android:id="@+id/edt_no_hp"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:hint="No Hp ..." />
+					android:hint="No Hp" />
 
 			</com.google.android.material.textfield.TextInputLayout>
 
@@ -79,7 +86,7 @@
 					android:id="@+id/edt_akun_line"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:hint="Akun Line ..." />
+					android:hint="ID Line" />
 
 			</com.google.android.material.textfield.TextInputLayout>
 
@@ -88,10 +95,11 @@
 				android:layout_height="wrap_content">
 
 				<EditText
+					android:inputType="number"
 					android:id="@+id/edt_username"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:hint="Username (NIM) ..." />
+					android:hint="Username (NRP)" />
 
 			</com.google.android.material.textfield.TextInputLayout>
 
@@ -104,7 +112,7 @@
 					android:id="@+id/edt_password"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:hint="Password ..."
+					android:hint="Password"
 					android:imeOptions="actionNext"
 					android:inputType="textPassword" />
 
@@ -119,7 +127,7 @@
 					android:id="@+id/edt_konfirmasi_password"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:hint="Konfirmasi Password ..."
+					android:hint="Konfirmasi Password"
 					android:imeOptions="actionNext"
 					android:inputType="textPassword" />
 
@@ -133,7 +141,7 @@
 					android:id="@+id/edt_angkatan"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:hint="Tahun Angkatan (20XX) ..."
+					android:hint="Tahun Angkatan (20XX)"
 					android:inputType="number" />
 
 			</com.google.android.material.textfield.TextInputLayout>
@@ -142,7 +150,9 @@
 				android:id="@+id/btn_daftar"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="Daftar" />
+				android:background="@color/colorPrimary3"
+				android:text="Daftar"
+				android:textColor="@color/white" />
 		</LinearLayout>
 
 	</androidx.core.widget.NestedScrollView>

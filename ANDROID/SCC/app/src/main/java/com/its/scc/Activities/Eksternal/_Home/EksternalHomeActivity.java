@@ -13,12 +13,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.its.scc.Activities.Eksternal.AkunEdit.EksternalAkunEditActivity;
 import com.its.scc.Activities.Eksternal.ListMateri.EksternalListMateriActivity;
 import com.its.scc.Activities.Eksternal.ListProve.EksternalListProveActivity;
+import com.its.scc.Activities.Eksternal._Home.presenter.EksternalHomePresenter;
+import com.its.scc.Activities.Eksternal._Home.presenter.IEksternalHomePresenter;
 import com.its.scc.Activities.Eksternal._Home.view.IEksternalHomeView;
 import com.its.scc.Controllers.SessionManager;
 import com.its.scc.R;
@@ -35,7 +39,15 @@ public class EksternalHomeActivity extends AppCompatActivity implements View.OnC
 
 	SessionManager sessionManager;
 
-	CardView cvLinkProve,cvLinkListProve;
+	CardView cvLinkProve, cvLinkListProve;
+
+	EditText edtKodeProve;
+
+	ImageButton iBtnCariKodeProve;
+
+	IEksternalHomePresenter eksternalHomePresenter;
+
+	String kode_prove = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +61,12 @@ public class EksternalHomeActivity extends AppCompatActivity implements View.OnC
 
 		cvLinkProve = findViewById(R.id.cv_link_prove); // link card view prove
 		cvLinkListProve = findViewById(R.id.cv_link_list_prove); // link card view prove
+
+		edtKodeProve = findViewById(R.id.edt_kode_prove);
+
+		iBtnCariKodeProve = findViewById(R.id.i_btn_cari_kode_prove);
+
+		eksternalHomePresenter = new EksternalHomePresenter(this, this);
 
 		actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
 		drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -80,6 +98,7 @@ public class EksternalHomeActivity extends AppCompatActivity implements View.OnC
 
 		cvLinkProve.setOnClickListener(this);
 		cvLinkListProve.setOnClickListener(this);
+		iBtnCariKodeProve.setOnClickListener(this);
 	}
 
 	@Override
@@ -92,7 +111,12 @@ public class EksternalHomeActivity extends AppCompatActivity implements View.OnC
 		if (v.getId() == R.id.cv_link_list_prove) {
 			Intent intent = new Intent();
 			intent = new Intent(getApplicationContext(), EksternalListProveActivity.class);
+			intent.putExtra(EksternalListProveActivity.EXTRA_TUJUAN, "kosong");
 			startActivity(intent);
+		}
+		if (v.getId() == R.id.i_btn_cari_kode_prove) {
+			kode_prove = edtKodeProve.getText().toString().trim();
+			eksternalHomePresenter.onSubmit(kode_prove);
 		}
 	}
 

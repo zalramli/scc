@@ -15,7 +15,11 @@ public interface IEksternalDetailProveView {
 
 	void onErrorMessage(String message);
 
-	void showDialog();
+	void showDialogKeluar();
+
+	void showDialogRating();
 
 	void backPressed();
+
+	void keHalamanLain();
 }

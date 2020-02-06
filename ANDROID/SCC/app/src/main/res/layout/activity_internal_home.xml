@@ -12,6 +12,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:fitsSystemWindows="true"
+		android:background="@color/colorBg"
 		app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 		<LinearLayout
@@ -38,6 +39,7 @@
 				android:clickable="true"
 				android:focusable="true"
 				android:foreground="?attr/selectableItemBackground"
+				android:visibility="gone"
 				app:cardBackgroundColor="@color/white"
 				app:cardCornerRadius="5dp"
 				app:cardElevation="5dp">
@@ -47,9 +49,9 @@
 					android:layout_height="match_parent">
 
 					<LinearLayout
-						android:layout_centerInParent="true"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
+						android:layout_centerInParent="true"
 						android:orientation="horizontal">
 
 						<ImageView
@@ -81,6 +83,7 @@
 				android:orientation="horizontal">
 
 				<androidx.cardview.widget.CardView
+					android:id="@+id/cv_link_prove"
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"
 					android:layout_marginRight="8dp"
@@ -161,6 +164,7 @@
 				android:textSize="14dp" />
 
 			<androidx.cardview.widget.CardView
+				android:id="@+id/cv_link_list_prove"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginLeft="16dp"

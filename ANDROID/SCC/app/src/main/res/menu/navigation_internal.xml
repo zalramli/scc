@@ -24,7 +24,7 @@
 		android:checkableBehavior="single">
 		<item
 			android:id="@+id/absensi"
-			android:icon="@drawable/ic_check_white_48dp"
+			android:icon="@drawable/ic_check_black"
 			android:title="Absensi Rapat" />
 	</group>
 

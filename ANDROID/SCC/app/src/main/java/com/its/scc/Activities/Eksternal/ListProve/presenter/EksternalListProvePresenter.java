@@ -39,9 +39,16 @@ public class EksternalListProvePresenter implements IEksternalListProvePresenter
 	}
 
 	@Override
-	public void inisiasiAwal(String id , String hakAkses) {
+	public void inisiasiAwal(String id, String hakAkses, String tujuan) {
 		String base_url = baseUrl.getUrlData();
-		String URL_DATA = base_url + "eksternal/prove/list_prove"; // url http request
+
+		String URL_DATA = "";
+
+		if (tujuan.equals("ke_pemberitahuan")) {
+			URL_DATA = base_url + "eksternal/prove/list_prove_hanya_belum_selesai"; // url http request
+		} else {
+			URL_DATA = base_url + "eksternal/prove/list_prove"; // url http request
+		}
 
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
 			new Response.Listener<String>() {

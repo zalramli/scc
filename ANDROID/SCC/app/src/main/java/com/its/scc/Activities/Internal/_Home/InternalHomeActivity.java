@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.DialogInterface;
@@ -14,6 +15,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
+import com.its.scc.Activities.Eksternal.ListJadwal.EksternalListJadwalActivity;
+import com.its.scc.Activities.Eksternal.ListMateri.EksternalListMateriActivity;
+import com.its.scc.Activities.Eksternal.ListProve.EksternalListProveActivity;
 import com.its.scc.Activities.Internal.AkunEdit.InternalAkunEditActivity;
 import com.its.scc.Activities.Internal._Home.view.IInternalHomeView;
 import com.its.scc.Controllers.SessionManager;
@@ -27,7 +31,10 @@ public class InternalHomeActivity extends AppCompatActivity implements View.OnCl
 	private ActionBarDrawerToggle actionBarDrawerToggle;
 	private NavigationView navigationView;
 
+	CardView cvLinkProve, cvLinkListProve;
+
 	SessionManager sessionManager;
+	String id_internal = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +44,12 @@ public class InternalHomeActivity extends AppCompatActivity implements View.OnCl
 		drawerLayout = findViewById(R.id.drawer_layout_internal_home);
 		navigationView = findViewById(R.id.navigation_view_internal);
 
+		cvLinkListProve = findViewById(R.id.cv_link_list_prove); // link card view prove
+		cvLinkProve = findViewById(R.id.cv_link_prove); // link card view prove
+
 		sessionManager = new SessionManager(this);
+		HashMap<String, String> user = sessionManager.getDataUser();
+		id_internal = user.get(sessionManager.ID_USER);
 
 		actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
 		drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -47,10 +59,14 @@ public class InternalHomeActivity extends AppCompatActivity implements View.OnCl
 			@Override
 			public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 				int id = item.getItemId();
-				Intent intent = new Intent();
 				switch (id) {
-					case R.id.absensi:
-
+					case R.id.jadwal_prove:
+						Intent intent = new Intent(getApplicationContext(), EksternalListJadwalActivity.class);
+						intent.putExtra(EksternalListJadwalActivity.EXTRA_ID_MATERI_PROVE, "kosong");
+						intent.putExtra(EksternalListJadwalActivity.EXTRA_NAMA_MATERI_PROVE, "kosong");
+						intent.putExtra(EksternalListJadwalActivity.EXTRA_ID_INTERNAL, id_internal);
+						intent.putExtra(EksternalListJadwalActivity.EXTRA_NAMA_INTERNAL, "kosong");
+						startActivity(intent);
 						break;
 					default:
 						return true;
@@ -58,11 +74,24 @@ public class InternalHomeActivity extends AppCompatActivity implements View.OnCl
 				return true;
 			}
 		});
+
+		cvLinkListProve.setOnClickListener(this);
+		cvLinkProve.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
-
+		if (v.getId() == R.id.cv_link_list_prove) {
+			Intent intent = new Intent();
+			intent = new Intent(getApplicationContext(), EksternalListProveActivity.class);
+			intent.putExtra(EksternalListProveActivity.EXTRA_TUJUAN, "kosong");
+			startActivity(intent);
+		}
+		if (v.getId() == R.id.cv_link_prove) {
+			Intent intent = new Intent();
+			intent = new Intent(getApplicationContext(), EksternalListMateriActivity.class);
+			startActivity(intent);
+		}
 	}
 
 	@Override
@@ -132,16 +161,19 @@ public class InternalHomeActivity extends AppCompatActivity implements View.OnCl
 			return true;
 		}
 		if (id == R.id.menu_akun_saya) {
-			HashMap<String, String> user = sessionManager.getDataUser();
-			String id_eksternal = user.get(sessionManager.ID_USER);
-
 			intent = new Intent(getApplicationContext(), InternalAkunEditActivity.class);
-			intent.putExtra(InternalAkunEditActivity.EXTRA_ID_INTERNAL, id_eksternal);
+			intent.putExtra(InternalAkunEditActivity.EXTRA_ID_INTERNAL, id_internal);
 			startActivity(intent);
 			return true;
 		}
 		if (id == R.id.menu_keluar) {
 			showDialog();
+			return true;
+		}
+		if (id == R.id.menu_pemberitahuan) {
+			intent = new Intent(getApplicationContext(), EksternalListProveActivity.class);
+			intent.putExtra(EksternalListProveActivity.EXTRA_TUJUAN, "ke_pemberitahuan");
+			startActivity(intent);
 			return true;
 		}
 

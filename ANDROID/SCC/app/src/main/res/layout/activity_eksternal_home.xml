@@ -5,7 +5,7 @@
 	android:id="@+id/drawer_layout_eksternal_home"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/colorAccent"
+	android:background="@color/colorBg"
 	tools:context=".Activities.Eksternal._Home.EksternalHomeActivity">
 
 	<androidx.core.widget.NestedScrollView
@@ -82,6 +82,7 @@
 							android:orientation="horizontal">
 
 							<EditText
+								android:id="@+id/edt_kode_prove"
 								android:textColor="@color/colorPrimaryDark2"
 								android:layout_width="match_parent"
 								android:layout_height="wrap_content"
@@ -90,6 +91,7 @@
 								android:textAlignment="center" />
 
 							<ImageButton
+								android:id="@+id/i_btn_cari_kode_prove"
 								android:layout_width="match_parent"
 								android:layout_height="match_parent"
 								android:layout_weight="3"

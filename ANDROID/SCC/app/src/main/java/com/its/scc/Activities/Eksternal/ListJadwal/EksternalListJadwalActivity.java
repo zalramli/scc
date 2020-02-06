@@ -18,10 +18,12 @@ import com.its.scc.Activities.Eksternal.ListJadwal.presenter.EksternalListJadwal
 import com.its.scc.Activities.Eksternal.ListJadwal.presenter.IEksternalListJadwalPresenter;
 import com.its.scc.Activities.Eksternal.ListJadwal.view.IEksternalListJadwalView;
 import com.its.scc.Adapters.AdapterListJadwal;
+import com.its.scc.Controllers.SessionManager;
 import com.its.scc.Models.Jadwal;
 import com.its.scc.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import es.dmoral.toasty.Toasty;
 
@@ -45,10 +47,17 @@ public class EksternalListJadwalActivity extends AppCompatActivity implements Vi
 
 	private SwipeRefreshLayout swipeRefreshLayout;
 
+	SessionManager sessionManager;
+	String hakAkses = "";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eksternal_list_jadwal);
+
+		sessionManager = new SessionManager(this);
+		HashMap<String, String> user = sessionManager.getDataUser();
+		hakAkses = user.get(sessionManager.HAK_AKSES);
 
 		id_materi_prove = getIntent().getStringExtra(EXTRA_ID_MATERI_PROVE);
 		nama_materi_prove = getIntent().getStringExtra(EXTRA_NAMA_MATERI_PROVE);
@@ -111,19 +120,22 @@ public class EksternalListJadwalActivity extends AppCompatActivity implements Vi
 			@Override
 			public void onClick(View view, int position) {
 				String status_booking = dataModelArrayList.get(position).getStatus_booking();
-				if (!status_booking.equals("Free")) {
-					onErrorMessage("Jadwal Sudah Dipesan !");
-				} else {
-					Intent intent = new Intent(getApplicationContext(), EksternalBeforeCreateProveActivity.class);
-					intent.putExtra(EksternalBeforeCreateProveActivity.EXTRA_ID_MATERI_PROVE, id_materi_prove);
-					intent.putExtra(EksternalBeforeCreateProveActivity.EXTRA_NAMA_MATERI_PROVE, nama_materi_prove);
-					intent.putExtra(EksternalBeforeCreateProveActivity.EXTRA_ID_INTERNAL, id_internal);
-					intent.putExtra(EksternalBeforeCreateProveActivity.EXTRA_NAMA_INTERNAL, nama_internal);
-					intent.putExtra(EksternalBeforeCreateProveActivity.EXTRA_ID_JADWAL, dataModelArrayList.get(position).getId_jadwal_prove());
-					intent.putExtra(EksternalBeforeCreateProveActivity.EXTRA_HARI_JADWAL, dataModelArrayList.get(position).getHari());
-					intent.putExtra(EksternalBeforeCreateProveActivity.EXTRA_JAM_MULAI, dataModelArrayList.get(position).getJam_mulai());
-					intent.putExtra(EksternalBeforeCreateProveActivity.EXTRA_JAM_SELESAI, dataModelArrayList.get(position).getJam_selesai());
-					startActivity(intent);
+
+				if (hakAkses.equals("eksternal")) {
+					if (!status_booking.equals("Free")) {
+						onErrorMessage("Jadwal Sudah Tidak Tersedia !");
+					} else {
+						Intent intent = new Intent(getApplicationContext(), EksternalBeforeCreateProveActivity.class);
+						intent.putExtra(EksternalBeforeCreateProveActivity.EXTRA_ID_MATERI_PROVE, id_materi_prove);
+						intent.putExtra(EksternalBeforeCreateProveActivity.EXTRA_NAMA_MATERI_PROVE, nama_materi_prove);
+						intent.putExtra(EksternalBeforeCreateProveActivity.EXTRA_ID_INTERNAL, id_internal);
+						intent.putExtra(EksternalBeforeCreateProveActivity.EXTRA_NAMA_INTERNAL, nama_internal);
+						intent.putExtra(EksternalBeforeCreateProveActivity.EXTRA_ID_JADWAL, dataModelArrayList.get(position).getId_jadwal_prove());
+						intent.putExtra(EksternalBeforeCreateProveActivity.EXTRA_HARI_JADWAL, dataModelArrayList.get(position).getHari());
+						intent.putExtra(EksternalBeforeCreateProveActivity.EXTRA_JAM_MULAI, dataModelArrayList.get(position).getJam_mulai());
+						intent.putExtra(EksternalBeforeCreateProveActivity.EXTRA_JAM_SELESAI, dataModelArrayList.get(position).getJam_selesai());
+						startActivity(intent);
+					}
 				}
 			}
 		});

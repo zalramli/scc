@@ -2,4 +2,9 @@
 	<string name="app_name">SCC</string>
 	<string name="Open">open</string>
 	<string name="Close">close</string>
+
+	<string name="my_own_message">1</string>
+	<string name="my_own_cancel">2</string>
+	<string name="my_own_thanks">3</string>
+	<string name="my_own_rate">4</string>
 </resources>
