@@ -67,6 +67,14 @@
 							android:textColor="@color/white"
 							android:textSize="16dp" />
 
+						<TextView
+							android:id="@+id/tv_no_hp"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:text="No Hp"
+							android:textColor="@color/white"
+							android:textSize="16dp" />
+
 					</LinearLayout>
 
 				</LinearLayout>

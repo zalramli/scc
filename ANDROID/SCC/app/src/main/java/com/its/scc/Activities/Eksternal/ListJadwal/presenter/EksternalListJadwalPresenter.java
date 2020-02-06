@@ -82,7 +82,7 @@ public class EksternalListJadwalPresenter implements IEksternalListJadwalPresent
 							}
 
 							eksternalListJadwalView.onSetupListView(dataModelArrayList);
-							eksternalListJadwalView.onSuccessMessage("Pilih Jadwal Prove!");
+							// eksternalListJadwalView.onSuccessMessage("Pilih Jadwal Prove!");
 						} else {
 							dataModelArrayList = new ArrayList<>();
 							eksternalListJadwalView.onSetupListView(dataModelArrayList);

@@ -67,7 +67,7 @@ public class EksternalListMateriPresenter implements IEksternalListMateriPresent
 						}
 
 						eksternalListMateriView.onSetupListView(dataModelArrayList);
-						eksternalListMateriView.onSuccessMessage("Pilih Salah Satu Materi Prove !");
+						// eksternalListMateriView.onSuccessMessage("Pilih Salah Satu Materi Prove !");
 					} else {
 						dataModelArrayList = new ArrayList<>();
 						eksternalListMateriView.onSetupListView(dataModelArrayList);

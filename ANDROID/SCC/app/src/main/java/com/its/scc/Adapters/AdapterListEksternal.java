@@ -51,12 +51,14 @@ public class AdapterListEksternal extends RecyclerView.Adapter<AdapterListEkster
 		String nama = dataModelArrayList.get(position).getNama();
 		String username = dataModelArrayList.get(position).getUsername();
 		String akun_line = dataModelArrayList.get(position).getAkun_line();
+		String no_hp = dataModelArrayList.get(position).getNo_hp();
 
 		holder.tvNama.setText(nama + " / " + username);
 		holder.tvAkunLine.setText("Akun Line : " + akun_line);
+		holder.tvNoHp.setText("No Hp : " + no_hp);
 
 		String alamat = baseUrl.getUrlUpload() + "image/eksternal/" + dataModelArrayList.get(position).getFoto() + ".jpg";
-		Picasso.get().load(alamat).placeholder(R.drawable.ic_account_circle).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(holder.ivFoto);
+		Picasso.get().load(alamat).resize(300, 300).centerInside().placeholder(R.drawable.ic_account_circle).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(holder.ivFoto);
 	}
 
 	@Override
@@ -67,7 +69,7 @@ public class AdapterListEksternal extends RecyclerView.Adapter<AdapterListEkster
 	public class ListEksternalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 		ImageView ivFoto;
-		TextView tvNama, tvAkunLine;
+		TextView tvNama, tvAkunLine, tvNoHp;
 
 		public ListEksternalViewHolder(@NonNull View itemView) {
 			super(itemView);
@@ -75,6 +77,7 @@ public class AdapterListEksternal extends RecyclerView.Adapter<AdapterListEkster
 			ivFoto = itemView.findViewById(R.id.iv_foto);
 			tvNama = itemView.findViewById(R.id.tv_nama);
 			tvAkunLine = itemView.findViewById(R.id.tv_akun_line);
+			tvNoHp = itemView.findViewById(R.id.tv_no_hp);
 
 			ButterKnife.bind(this, itemView);
 			itemView.setOnClickListener(this);

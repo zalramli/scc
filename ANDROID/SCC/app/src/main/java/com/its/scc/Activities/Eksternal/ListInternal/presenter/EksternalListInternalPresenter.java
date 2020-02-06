@@ -84,7 +84,7 @@ public class EksternalListInternalPresenter implements IEksternalListInternalPre
 							}
 
 							eksternalListInternalView.onSetupListView(dataModelArrayList);
-							eksternalListInternalView.onSuccessMessage("Pilih Salah Satu pembimbing Materi!");
+							// eksternalListInternalView.onSuccessMessage("Pilih Salah Satu pembimbing Materi!");
 						} else {
 							dataModelArrayList = new ArrayList<>();
 							eksternalListInternalView.onSetupListView(dataModelArrayList);

@@ -55,7 +55,7 @@ public class AdapterListInternal extends RecyclerView.Adapter<AdapterListInterna
 		holder.tvAkunLine.setText("Akun Line : " + akun_line);
 
 		String alamat = baseUrl.getUrlUpload() + "image/internal/" + dataModelArrayList.get(position).getFoto() + ".jpg";
-		Picasso.get().load(alamat).placeholder(R.drawable.ic_account_circle).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(holder.ivFoto);
+		Picasso.get().load(alamat).resize(300, 600).centerInside().placeholder(R.drawable.ic_account_circle).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(holder.ivFoto);
 	}
 
 	@Override

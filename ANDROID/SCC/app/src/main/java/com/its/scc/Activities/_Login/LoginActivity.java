@@ -13,11 +13,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.its.scc.Activities.Eksternal._Home.EksternalHomeActivity;
+import com.its.scc.Activities.Internal._Home.InternalHomeActivity;
 import com.its.scc.Activities._Login.presenter.ILoginPresenter;
 import com.its.scc.Activities._Login.presenter.LoginPresenter;
 import com.its.scc.Activities._Login.view.ILoginView;
 import com.its.scc.Activities._Pendaftaran.PendaftaranActivity;
+import com.its.scc.Controllers.SessionManager;
 import com.its.scc.R;
+
+import java.util.HashMap;
 
 import es.dmoral.toasty.Toasty;
 
@@ -30,6 +35,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 	Toolbar toolbar;
 
 	CardView cvLinkDaftar;
+
+	SessionManager sessionManager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +52,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 		cvLinkDaftar = findViewById(R.id.cv_link_daftar);
 
 		initActionBar();
+
+		// logic jika sudah login
+		sessionManager = new SessionManager(this);
+		boolean status_login = sessionManager.getStatusLogin();
+		if (status_login) {
+			HashMap<String, String> user = sessionManager.getDataUser();
+			String hakAkses = user.get(sessionManager.HAK_AKSES);
+
+			Intent intent = new Intent();
+
+			if (hakAkses.equals("internal")) {
+				intent = new Intent(getApplicationContext(), InternalHomeActivity.class);
+			} else if (hakAkses.equals("eksternal")) {
+				intent = new Intent(getApplicationContext(), EksternalHomeActivity.class);
+			}
+		}
 
 		btn_login.setOnClickListener(this);
 		cvLinkDaftar.setOnClickListener(this);

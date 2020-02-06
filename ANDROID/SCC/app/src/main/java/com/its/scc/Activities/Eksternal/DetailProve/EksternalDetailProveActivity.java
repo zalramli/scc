@@ -3,12 +3,14 @@ package com.its.scc.Activities.Eksternal.DetailProve;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -64,6 +66,8 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 
 	ImageView ivKeluar, ivRating;
 
+	CardView cvItemAdapterListProve;
+
 	SessionManager sessionManager;
 	String hak_akses = "";
 
@@ -88,6 +92,8 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 
 		ivRating = findViewById(R.id.iv_rating);
 		ivKeluar = findViewById(R.id.iv_keluar);
+
+		cvItemAdapterListProve = findViewById(R.id.cv_item_adapter_list_prove);
 
 		id_prove = getIntent().getStringExtra(EXTRA_ID_PROVE);
 		id_jadwal_prove = getIntent().getStringExtra(EXTRA_ID_JADWAL_PROVE);
@@ -162,6 +168,13 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 			ivRating.setVisibility(View.GONE);
 			tvKeluar.setVisibility(View.GONE);
 			tvRating.setVisibility(View.GONE);
+		}
+
+		// warna cardview jika status
+		if (status_prove.equals("Belum Selesai")){
+			cvItemAdapterListProve.setCardBackgroundColor(Color.RED);
+		} else if (status_prove.equals("Batal")){
+			cvItemAdapterListProve.setCardBackgroundColor(Color.GRAY);
 		}
 
 		tvNamaMateri.setText(nama_materi_prove);

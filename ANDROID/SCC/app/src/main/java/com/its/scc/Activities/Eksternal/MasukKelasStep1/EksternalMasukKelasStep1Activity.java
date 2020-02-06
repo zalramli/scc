@@ -94,6 +94,7 @@ public class EksternalMasukKelasStep1Activity extends AppCompatActivity implemen
 	@Override
 	public void keHalamanLain() {
 		Intent intent = new Intent(getApplicationContext(), EksternalListProveActivity.class);
+		intent.putExtra(EksternalListProveActivity.EXTRA_TUJUAN, "kosong");
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(intent);
 	}
