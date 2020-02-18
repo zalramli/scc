@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class EksternalListJadwalBSActivity extends AppCompatActivity implements View.OnClickListener , EksternalListJadwalBSView {
 
-	
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
