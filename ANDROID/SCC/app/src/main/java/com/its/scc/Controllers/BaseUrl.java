@@ -4,7 +4,7 @@ public class BaseUrl {
 	String urlData;
 	String urlUpload;
 
-	String ipAddress = "https://scc-himastaits.com/";
+	String ipAddress = "http://192.168.137.1/scc/";
 
 	public BaseUrl() {
 		urlData = ipAddress + "api/";
