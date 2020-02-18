@@ -17,8 +17,13 @@ class Jadwal_bs extends REST_Controller
 
     function list_jadwal_bs_get()
     {
+
+        $where = array(
+            'status_aktif' => "Aktif"
+        );
+
         // mengambil data dari database
-        $query = $this->M_universal->tampil_data('jadwal_bank_software');
+        $query = $this->M_universal->get_data('jadwal_bank_software', $where);
 
         // variable array
         $result = array();

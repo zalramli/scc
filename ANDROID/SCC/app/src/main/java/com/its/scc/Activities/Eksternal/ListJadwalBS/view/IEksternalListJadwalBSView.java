@@ -4,7 +4,7 @@ import com.its.scc.Models.JadwalBS;
 
 import java.util.ArrayList;
 
-public interface EksternalListJadwalBSView {
+public interface IEksternalListJadwalBSView {
 	void initActionBar();
 
 	void onSetupListView(ArrayList<JadwalBS> dataModelArrayList);

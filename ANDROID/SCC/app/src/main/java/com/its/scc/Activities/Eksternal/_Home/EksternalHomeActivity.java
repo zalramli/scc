@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.its.scc.Activities.Eksternal.AkunEdit.EksternalAkunEditActivity;
+import com.its.scc.Activities.Eksternal.ListJadwalBS.EksternalListJadwalBSActivity;
 import com.its.scc.Activities.Eksternal.ListMateri.EksternalListMateriActivity;
 import com.its.scc.Activities.Eksternal.ListProve.EksternalListProveActivity;
 import com.its.scc.Activities.Eksternal._Home.presenter.EksternalHomePresenter;
@@ -39,7 +40,7 @@ public class EksternalHomeActivity extends AppCompatActivity implements View.OnC
 
 	SessionManager sessionManager;
 
-	CardView cvLinkProve, cvLinkListProve;
+	CardView cvLinkProve, cvLinkListProve, cvLinkBs;
 
 	EditText edtKodeProve;
 
@@ -61,6 +62,7 @@ public class EksternalHomeActivity extends AppCompatActivity implements View.OnC
 
 		cvLinkProve = findViewById(R.id.cv_link_prove); // link card view prove
 		cvLinkListProve = findViewById(R.id.cv_link_list_prove); // link card view prove
+		cvLinkBs = findViewById(R.id.cv_link_bs);
 
 		edtKodeProve = findViewById(R.id.edt_kode_prove);
 
@@ -98,6 +100,7 @@ public class EksternalHomeActivity extends AppCompatActivity implements View.OnC
 
 		cvLinkProve.setOnClickListener(this);
 		cvLinkListProve.setOnClickListener(this);
+		cvLinkBs.setOnClickListener(this);
 		iBtnCariKodeProve.setOnClickListener(this);
 	}
 
@@ -117,6 +120,11 @@ public class EksternalHomeActivity extends AppCompatActivity implements View.OnC
 		if (v.getId() == R.id.i_btn_cari_kode_prove) {
 			kode_prove = edtKodeProve.getText().toString().trim();
 			eksternalHomePresenter.onSubmit(kode_prove);
+		}
+		if (v.getId() == R.id.cv_link_bs) {
+			Intent intent = new Intent();
+			intent = new Intent(getApplicationContext(), EksternalListJadwalBSActivity.class);
+			startActivity(intent);
 		}
 	}
 
