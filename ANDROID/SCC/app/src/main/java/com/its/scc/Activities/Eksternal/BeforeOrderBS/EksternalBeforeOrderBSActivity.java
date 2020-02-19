@@ -18,8 +18,10 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.its.scc.Activities.Eksternal.BeforeOrderBS.presenter.IEksternalBeforeOrderBSPresenter;
 import com.its.scc.Activities.Eksternal.BeforeOrderBS.view.IEksternalBeforeOrderBSView;
+import com.its.scc.Activities.Eksternal.ListSoftware.EksternalListSoftwareActivity;
 import com.its.scc.Activities.Eksternal._Home.EksternalHomeActivity;
 import com.its.scc.Controllers.SessionManager;
 import com.its.scc.Models.Software;
@@ -58,6 +60,8 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 	TextView tvDetailBs, tvTanggalBs;
 	Button btnBatal, btnSubmit;
 
+	FloatingActionButton fab;
+
 	String selected_hari = "";
 
 	SessionManager sessionManager;
@@ -81,6 +85,8 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 		btnBatal = findViewById(R.id.btn_batal);
 		btnSubmit = findViewById(R.id.btn_submit);
 
+		fab = findViewById(R.id.fab);
+
 		toolbar = findViewById(R.id.toolbar);
 		initActionBar();
 
@@ -89,6 +95,7 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 		tvTanggalBs.setOnClickListener(this);
 		btnSubmit.setOnClickListener(this);
 		btnBatal.setOnClickListener(this);
+		fab.setOnClickListener(this);
 	}
 
 	@Override
@@ -101,6 +108,10 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 		}
 		if (v.getId() == R.id.btn_batal) {
 			keHalamanLain();
+		}
+		if (v.getId() == R.id.fab) {
+			Intent intent = new Intent(getApplicationContext(), EksternalListSoftwareActivity.class);
+			startActivity(intent);
 		}
 	}
 

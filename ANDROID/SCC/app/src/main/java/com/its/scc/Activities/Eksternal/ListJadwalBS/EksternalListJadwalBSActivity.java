@@ -96,7 +96,6 @@ public class EksternalListJadwalBSActivity extends AppCompatActivity implements 
 		adapterListJadwalBS.setOnItemClickListener(new AdapterListJadwalBS.ClickListener() {
 			@Override
 			public void onClick(View view, int position) {
-				onSuccessMessage(dataModelArrayList.get(position).getId_jadwal_bs());
 				Intent intent = new Intent(getApplicationContext(), EksternalBeforeOrderBSActivity.class);
 				intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_ID_JADWAL_BS, dataModelArrayList.get(position).getId_jadwal_bs());
 				intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_ID_INTERNAL, dataModelArrayList.get(position).getId_internal());
