@@ -110,7 +110,6 @@ public class EksternalListJadwalBSActivity extends AppCompatActivity implements 
 		});
 	}
 
-
 	@Override
 	public void onSuccessMessage(String message) {
 		Toasty.success(this, message, Toast.LENGTH_SHORT).show();

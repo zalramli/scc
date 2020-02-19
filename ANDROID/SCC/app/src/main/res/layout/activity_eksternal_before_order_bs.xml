@@ -54,7 +54,7 @@
 						android:layout_height="wrap_content">
 
 						<TextView
-							android:id="@+id/tv_detail_prove"
+							android:id="@+id/tv_detail_bs"
 							android:layout_width="match_parent"
 							android:layout_height="40sp"
 							android:gravity="center_vertical"
