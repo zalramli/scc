@@ -20,12 +20,17 @@ public class EksternalBeforeOrderBSPresenter implements IEksternalBeforeOrderBSP
 	}
 
 	@Override
-	public void onSubmit(String kode_bank_s, String id_eksternal, String id_jadwal_bs, String tanggal_booking, String tanggal_bs, String status_bs) {
+	public void onSubmit(String id_eksternal, String id_jadwal_bs, String tanggal_bs) {
 
 	}
 
 	@Override
 	public void onSubmitDetail(String id_detail_bs, String kode_bank_s, String id_softwate) {
+
+	}
+
+	@Override
+	public void onLoadSemuaData() {
 
 	}
 }

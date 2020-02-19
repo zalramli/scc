@@ -1,21 +1,33 @@
 package com.its.scc.Activities.Eksternal.BeforeOrderBS;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.its.scc.Activities.Eksternal.BeforeOrderBS.presenter.IEksternalBeforeOrderBSPresenter;
 import com.its.scc.Activities.Eksternal.BeforeOrderBS.view.IEksternalBeforeOrderBSView;
+import com.its.scc.Activities.Eksternal._Home.EksternalHomeActivity;
+import com.its.scc.Controllers.SessionManager;
+import com.its.scc.Models.Software;
 import com.its.scc.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 import es.dmoral.toasty.Toasty;
 
@@ -43,6 +55,14 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 	private SimpleDateFormat dateFormatter;
 	private SimpleDateFormat dayFormatter;
 
+	TextView tvDetailBs, tvTanggalBs;
+	Button btnBatal, btnSubmit;
+
+	String selected_hari = "";
+
+	SessionManager sessionManager;
+	String id_eksternal = "";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,13 +76,32 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 		status_booking = getIntent().getStringExtra(EXTRA_STATUS_BOOKING);
 		status_aktif = getIntent().getStringExtra(EXTRA_STATUS_AKTIF);
 
+		tvDetailBs = findViewById(R.id.tv_detail_bs);
+		tvTanggalBs = findViewById(R.id.tv_tanggal_bs);
+		btnBatal = findViewById(R.id.btn_batal);
+		btnSubmit = findViewById(R.id.btn_submit);
+
 		toolbar = findViewById(R.id.toolbar);
 		initActionBar();
+
+		setNilaiDefault();
+
+		tvTanggalBs.setOnClickListener(this);
+		btnSubmit.setOnClickListener(this);
+		btnBatal.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
-
+		if (v.getId() == R.id.tv_tanggal_bs) {
+			showDateDialog();
+		}
+		if (v.getId() == R.id.btn_submit) {
+			showDialog();
+		}
+		if (v.getId() == R.id.btn_batal) {
+			keHalamanLain();
+		}
 	}
 
 	@Override
@@ -75,6 +114,11 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 
 	@Override
 	public void setNilaiDefault() {
+		tvDetailBs.setText(hari + " ( " + jam_mulai + " - " + jam_selesai + " )");
+	}
+
+	@Override
+	public void onSetupListView(ArrayList<Software> dataModelArrayList) {
 
 	}
 
@@ -90,22 +134,139 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 
 	@Override
 	public void showDateDialog() {
+		/**
+		 * Calendar untuk mendapatkan tanggal sekarang
+		 */
+		Calendar newCalendar = Calendar.getInstance();
 
+		/**
+		 * Initiate DatePicker dialog
+		 */
+		datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+
+			@Override
+			public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+				/**
+				 * Method ini dipanggil saat kita selesai memilih tanggal di DatePicker
+				 */
+
+				/**
+				 * Set Calendar untuk menampung tanggal yang dipilih
+				 */
+				Calendar newDate = Calendar.getInstance();
+				newDate.set(year, monthOfYear, dayOfMonth);
+
+				/**
+				 * Update TextView dengan tanggal yang kita pilih
+				 */
+
+				selected_hari = dayFormatter.format(newDate.getTime());
+				// Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
+
+				if (selected_hari.equals("Sun")) {
+					selected_hari = "Minggu";
+				} else if (selected_hari.equals("Mon")) {
+					selected_hari = "Senin";
+				} else if (selected_hari.equals("Tue")) {
+					selected_hari = "Selasa";
+				} else if (selected_hari.equals("Wed")) {
+					selected_hari = "Rabu";
+				} else if (selected_hari.equals("Thu")) {
+					selected_hari = "Kamis";
+				} else if (selected_hari.equals("Fri")) {
+					selected_hari = "Jumat";
+				} else if (selected_hari.equals("Sat")) {
+					selected_hari = "Sabtu";
+				}
+
+				tvTanggalBs.setText(dateFormatter.format(newDate.getTime()));
+			}
+
+		}, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+
+		// membuat minimal date hari +1
+		newCalendar.add(Calendar.DATE, 1);
+		datePickerDialog.getDatePicker().setMinDate(newCalendar.getTimeInMillis());
+
+		// membuat maximal date hari +13
+		newCalendar.add(Calendar.DATE, 13);
+		datePickerDialog.getDatePicker().setMaxDate(newCalendar.getTimeInMillis());
+
+		// mengembalikan date seperti semula
+		newCalendar.add(Calendar.DATE, -14);
+
+		/**
+		 * Tampilkan DatePicker dialog
+		 */
+		datePickerDialog.show();
 	}
 
 	@Override
 	public void showDialog() {
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+			this);
+		alertDialogBuilder.setTitle("Ingin Membuat Bank Software ?");
+		alertDialogBuilder
+			.setMessage("Klik Ya untuk melakukan Bank Software !")
+			.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
 
+					String inputTanggalBS = tvTanggalBs.getText().toString().trim();
+
+					boolean isEmpty = false;
+
+					if (inputTanggalBS.equals("Tanggal Bank Software")) {
+						isEmpty = true;
+						tvTanggalBs.setError("Pilih Tanggal Kapan Bank Software !");
+						onErrorMessage("Pilih Tanggal Kapan Bank Software !");
+					} else if (TextUtils.isEmpty(id_eksternal)) {
+						isEmpty = true;
+						onErrorMessage("Error , Lakukan Login Kembali !");
+					}
+
+					try {
+
+						if (!isEmpty) {
+							if (selected_hari.equals(hari)) {
+								eksternalBeforeOrderBSPresenter.onSubmit(id_eksternal, id_jadwal_bs, inputTanggalBS);
+							} else {
+								tvTanggalBs.setError("Pilih Hari Sesuai Jadwal Yang Tersedia !");
+								onErrorMessage("Hari Dalam Tanggal Bank Software Tidak Sesuai Jadwal !");
+							}
+						}
+
+					} catch (Exception e) {
+						onErrorMessage("Terjadi Kesalahan Daftar " + e.toString());
+					}
+
+				}
+			})
+			.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+					dialog.cancel();
+				}
+			});
+
+		AlertDialog alertDialog = alertDialogBuilder.create();
+		alertDialog.show();
 	}
 
 	@Override
 	public void backPressed() {
 
+//		Intent intent = new Intent(getApplicationContext(), EksternalListProveActivity.class);
+//		intent.putExtra(EksternalListProveActivity.EXTRA_TUJUAN, "kosong");
+//		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//		startActivity(intent);
+
 	}
 
 	@Override
 	public void keHalamanLain() {
-
+		Intent intent = new Intent(getApplicationContext(), EksternalHomeActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
 	}
 
 	@Override

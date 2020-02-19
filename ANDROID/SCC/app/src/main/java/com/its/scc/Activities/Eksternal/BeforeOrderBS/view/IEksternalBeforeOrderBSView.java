@@ -1,9 +1,15 @@
 package com.its.scc.Activities.Eksternal.BeforeOrderBS.view;
 
+import com.its.scc.Models.Software;
+
+import java.util.ArrayList;
+
 public interface IEksternalBeforeOrderBSView {
 	void initActionBar();
 
 	void setNilaiDefault();
+
+	void onSetupListView(ArrayList<Software> dataModelArrayList);
 
 	void onSuccessMessage(String message);
 
