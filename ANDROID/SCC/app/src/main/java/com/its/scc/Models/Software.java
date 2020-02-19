@@ -1,14 +1,14 @@
 package com.its.scc.Models;
 
 public class Software {
-	String id_softwate, nama;
+	String id_software, nama;
 
-	public String getId_softwate() {
-		return id_softwate;
+	public String getId_software() {
+		return id_software;
 	}
 
-	public void setId_softwate(String id_softwate) {
-		this.id_softwate = id_softwate;
+	public void setId_software(String id_software) {
+		this.id_software = id_software;
 	}
 
 	public String getNama() {
