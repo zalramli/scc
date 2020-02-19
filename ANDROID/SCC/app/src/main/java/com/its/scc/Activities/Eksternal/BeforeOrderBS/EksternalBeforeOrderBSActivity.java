@@ -254,7 +254,7 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 
 						if (!isEmpty) {
 							if (selected_hari.equals(hari)) {
-								eksternalBeforeOrderBSPresenter.onSubmit(id_eksternal, id_jadwal_bs, inputTanggalBS);
+								// eksternalBeforeOrderBSPresenter.onSubmit(id_eksternal, id_jadwal_bs, inputTanggalBS);
 							} else {
 								tvTanggalBs.setError("Pilih Hari Sesuai Jadwal Yang Tersedia !");
 								onErrorMessage("Hari Dalam Tanggal Bank Software Tidak Sesuai Jadwal !");
