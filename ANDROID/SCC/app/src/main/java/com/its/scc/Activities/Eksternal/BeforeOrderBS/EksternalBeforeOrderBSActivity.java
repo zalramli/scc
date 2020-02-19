@@ -30,6 +30,8 @@ import com.its.scc.R;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Locale;
 
 import es.dmoral.toasty.Toasty;
 
@@ -71,6 +73,18 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eksternal_before_order_bs);
+
+		dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);//"dd-MM-yyyy" "yyyy-MM-dd"
+		dayFormatter = new SimpleDateFormat("EEE", Locale.US);//hari dalam english
+
+		sessionManager = new SessionManager(this);
+		HashMap<String, String> user = sessionManager.getDataUser();
+
+		String hakAkses = user.get(sessionManager.HAK_AKSES);
+
+		if (hakAkses.equals("eksternal")) {
+			id_eksternal = user.get(sessionManager.ID_USER);
+		}
 
 		id_jadwal_bs = getIntent().getStringExtra(EXTRA_ID_JADWAL_BS);
 		id_internal = getIntent().getStringExtra(EXTRA_ID_INTERNAL);
