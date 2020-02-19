@@ -17,4 +17,9 @@ public class EksternalBeforeOrderBSPresenter implements IEksternalBeforeOrderBSP
 
 		baseUrl = new BaseUrl();
 	}
+
+	@Override
+	public void onSubmit(String kode_bank_s, String id_eksternal, String id_jadwal_bs, String tanggal_booking, String tanggal_bs, String status_bs) {
+
+	}
 }
