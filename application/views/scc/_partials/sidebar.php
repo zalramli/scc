@@ -39,7 +39,28 @@
 				<a class="nav-link" href="' . $prove . '">
 			<i class="fas fa-user"></i>
 			<span>Prove</span></a>
-			</li>';
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="' . $jadwal_bs . '">
+			<i class="fas fa-user"></i>
+			<span>Jadwal Bank Software</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="'.$software.'">
+					<i class="fas fa-user"></i>
+					<span>List Software</span></a>
+			</li>
+			<li class="nav-item">
+					<a class="nav-link" href="' . $jadwal_prove . '">
+			<i class="fas fa-user"></i>
+			<span>Jadwal Prove</span></a>
+			</li>
+			<li class="nav-item">
+			<a class="nav-link" href="'.$materi_prove.'">
+			<i class="fas fa-user"></i>
+			<span>Materi Prove</span></a>
+			</li>
+			';
 			} else if ($this->session->userdata('nama') == 'Ichwanul Kahfi Prasetya') {
 				echo '<li class="nav-item">
 				<a class="nav-link" href="' . $jadwal_bs . '">

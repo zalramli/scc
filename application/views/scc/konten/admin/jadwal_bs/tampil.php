@@ -19,7 +19,7 @@
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Tambah Jadwal Prove</h5>
+							<h5 class="modal-title">Tambah Jadwal Bank Software</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
@@ -42,15 +42,16 @@
 										<div class="col-sm-6">
 											<label for="inputEmail3">Jam Mulai</label>
 											<select name="jam_mulai" class="form-control form-control-sm" id="inputEmail5" required>
-												<option value="07">07</option>
 												<option value="08">08</option>
 												<option value="09">09</option>
-												<option value="10">11</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
 												<option value="12">12</option>
 												<option value="13">13</option>
 												<option value="14">14</option>
 												<option value="15">15</option>
 												<option value="16">16</option>
+												<option value="17">17</option>
 											</select>
 										</div>
 										<div class="col-sm-6">
@@ -71,15 +72,16 @@
 										<div class="col-sm-6">
 											<label for="inputEmail3">Jam Selesai</label>
 											<select name="jam_selesai" class="form-control form-control-sm" id="inputEmail5" required>
-												<option value="07">07</option>
 												<option value="08">08</option>
 												<option value="09">09</option>
-												<option value="10">11</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
 												<option value="12">12</option>
 												<option value="13">13</option>
 												<option value="14">14</option>
 												<option value="15">15</option>
 												<option value="16">16</option>
+												<option value="17">17</option>
 											</select>
 										</div>
 										<div class="col-sm-6">
@@ -118,10 +120,10 @@
 							?>
 								<li class="list-group-item" id="table1">
 									<?= $data_senin->jam_mulai . ' - ' . $data_senin->jam_selesai ?>
-									<select class="float-right status_senin">
-										<option value="<?= $data_senin->id_jadwal_bs ?>-Aktif" <?php if ($data_senin->status_aktif == 'Aktif') echo 'selected'; ?>>Aktif
+									<select id="<?= $data_senin->id_jadwal_bs ?>" class="float-right status_senin">
+										<option value="Aktif" <?php if ($data_senin->status_aktif == 'Aktif') echo 'selected'; ?>>Aktif
 										</option>
-										<option value="<?= $data_senin->id_jadwal_bs ?>-Tidak Aktif" <?php if ($data_senin->status_aktif == 'Tidak Aktif') echo 'selected'; ?>>
+										<option value="Tidak Aktif" <?php if ($data_senin->status_aktif == 'Tidak Aktif') echo 'selected'; ?>>
 											Tidak Aktif
 										</option>
 									</select>
@@ -143,10 +145,10 @@
 							?>
 								<li class="list-group-item">
 									<?= $data_selasa->jam_mulai . ' - ' . $data_selasa->jam_selesai ?>
-									<select class="float-right status_selasa">
-										<option value="<?= $data_selasa->id_jadwal_bs ?>-Aktif" <?php if ($data_selasa->status_aktif == 'Aktif') echo 'selected'; ?>>Aktif
+									<select id="<?= $data_selasa->id_jadwal_bs ?>" class="float-right status_selasa">
+										<option value="Aktif" <?php if ($data_selasa->status_aktif == 'Aktif') echo 'selected'; ?>>Aktif
 										</option>
-										<option value="<?= $data_selasa->id_jadwal_bs ?>-Tidak Aktif" <?php if ($data_selasa->status_aktif == 'Tidak Aktif') echo 'selected'; ?>>
+										<option value="Tidak Aktif" <?php if ($data_selasa->status_aktif == 'Tidak Aktif') echo 'selected'; ?>>
 											Tidak Aktif
 										</option>
 									</select>
@@ -168,10 +170,10 @@
 							?>
 								<li class="list-group-item">
 									<?= $data_rabu->jam_mulai . ' - ' . $data_rabu->jam_selesai ?>
-									<select class="float-right status_rabu">
-										<option value="<?= $data_rabu->id_jadwal_bs ?>-Aktif" <?php if ($data_rabu->status_aktif == 'Aktif') echo 'selected'; ?>>Aktif
+									<select id="<?= $data_rabu->id_jadwal_bs ?>" class="float-right status_rabu">
+										<option value="Aktif" <?php if ($data_rabu->status_aktif == 'Aktif') echo 'selected'; ?>>Aktif
 										</option>
-										<option value="<?= $data_rabu->id_jadwal_bs ?>-Tidak Aktif" <?php if ($data_rabu->status_aktif == 'Tidak Aktif') echo 'selected'; ?>>
+										<option value="Tidak Aktif" <?php if ($data_rabu->status_aktif == 'Tidak Aktif') echo 'selected'; ?>>
 											Tidak Aktif
 										</option>
 									</select>
@@ -193,10 +195,10 @@
 							?>
 								<li class="list-group-item">
 									<?= $data_kamis->jam_mulai . ' - ' . $data_kamis->jam_selesai ?>
-									<select class="float-right status_kamis">
-										<option value="<?= $data_kamis->id_jadwal_bs ?>-Aktif" <?php if ($data_kamis->status_aktif == 'Aktif') echo 'selected'; ?>>Aktif
+									<select id="<?= $data_kamis->id_jadwal_bs ?>" class="float-right status_kamis">
+										<option value="Aktif" <?php if ($data_kamis->status_aktif == 'Aktif') echo 'selected'; ?>>Aktif
 										</option>
-										<option value="<?= $data_kamis->id_jadwal_bs ?>-Tidak Aktif" <?php if ($data_kamis->status_aktif == 'Tidak Aktif') echo 'selected'; ?>>
+										<option value="Tidak Aktif" <?php if ($data_kamis->status_aktif == 'Tidak Aktif') echo 'selected'; ?>>
 											Tidak Aktif
 										</option>
 									</select>
@@ -218,10 +220,10 @@
 							?>
 								<li class="list-group-item">
 									<?= $data_jumat->jam_mulai . ' - ' . $data_jumat->jam_selesai ?>
-									<select class="float-right status_jumat">
-										<option value="<?= $data_jumat->id_jadwal_bs ?>-Aktif" <?php if ($data_jumat->status_aktif == 'Aktif') echo 'selected'; ?>>Aktif
+									<select id="<?= $data_jumat->id_jadwal_bs ?>" class="float-right status_jumat">
+										<option value="Aktif" <?php if ($data_jumat->status_aktif == 'Aktif') echo 'selected'; ?>>Aktif
 										</option>
-										<option value="<?= $data_jumat->id_jadwal_bs ?>-Tidak Aktif" <?php if ($data_jumat->status_aktif == 'Tidak Aktif') echo 'selected'; ?>>
+										<option value="Tidak Aktif" <?php if ($data_jumat->status_aktif == 'Tidak Aktif') echo 'selected'; ?>>
 											Tidak Aktif
 										</option>
 									</select>
@@ -237,12 +239,14 @@
 	<script src="<?= base_url(); ?>_assets/sb_admin_2/vendor/jquery/jquery.min.js"></script>
 	<script>
 		$('.status_senin').change(function() {
-			var id = this.value;
+			var value = this.value;
+			var id = $(this).attr("id");
 			$.ajax({
 				url: "<?php echo base_url() . 'admin/jadwal_bs/update_jadwal_senin'; ?>",
 				method: "POST",
 				data: {
-					id: id
+					id: id,
+					value:value
 				},
 				success: function(data) {
 					location.reload();
@@ -250,12 +254,14 @@
 			});
 		});
 		$('.status_selasa').change(function() {
-			var id = this.value;
+			var value = this.value;
+			var id = $(this).attr("id");
 			$.ajax({
 				url: "<?php echo base_url() . 'admin/jadwal_bs/update_jadwal_selasa'; ?>",
 				method: "POST",
 				data: {
-					id: id
+					id: id,
+					value:value
 				},
 				success: function(data) {
 					location.reload();
@@ -263,12 +269,14 @@
 			});
 		});
 		$('.status_rabu').change(function() {
-			var id = this.value;
+			var value = this.value;
+			var id = $(this).attr("id");
 			$.ajax({
 				url: "<?php echo base_url() . 'admin/jadwal_bs/update_jadwal_rabu'; ?>",
 				method: "POST",
 				data: {
-					id: id
+					id: id,
+					value:value
 				},
 				success: function(data) {
 					location.reload();
@@ -276,12 +284,14 @@
 			});
 		});
 		$('.status_kamis').change(function() {
-			var id = this.value;
+			var value = this.value;
+			var id = $(this).attr("id");
 			$.ajax({
 				url: "<?php echo base_url() . 'admin/jadwal_bs/update_jadwal_kamis'; ?>",
 				method: "POST",
 				data: {
-					id: id
+					id: id,
+					value:value
 				},
 				success: function(data) {
 					location.reload();
@@ -289,12 +299,14 @@
 			});
 		});
 		$('.status_jumat').change(function() {
-			var id = this.value;
+			var value = this.value;
+			var id = $(this).attr("id");
 			$.ajax({
 				url: "<?php echo base_url() . 'admin/jadwal_bs/update_jadwal_jumat'; ?>",
 				method: "POST",
 				data: {
-					id: id
+					id: id,
+					value:value
 				},
 				success: function(data) {
 					location.reload();
