@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.its.scc.Activities.Eksternal.BeforeOrderBS.EksternalBeforeOrderBSActivity;
 import com.its.scc.Activities.Eksternal.ListJadwalBS.presenter.EksternalListJadwalBSPresenter;
 import com.its.scc.Activities.Eksternal.ListJadwalBS.presenter.IEksternalListJadwalBSPresenter;
 import com.its.scc.Activities.Eksternal.ListJadwalBS.view.IEksternalListJadwalBSView;
@@ -96,10 +97,15 @@ public class EksternalListJadwalBSActivity extends AppCompatActivity implements 
 			@Override
 			public void onClick(View view, int position) {
 				onSuccessMessage(dataModelArrayList.get(position).getId_jadwal_bs());
-//				Intent intent = new Intent(getApplicationContext(), EksternalListInternalActivity.class);
-//				intent.putExtra(EksternalListInternalActivity.EXTRA_ID_MATERI_PROVE, dataModelArrayList.get(position).getId_materi_prove());
-//				intent.putExtra(EksternalListInternalActivity.EXTRA_NAMA_MATERI_PROVE, dataModelArrayList.get(position).getNama());
-//				startActivity(intent);
+				Intent intent = new Intent(getApplicationContext(), EksternalBeforeOrderBSActivity.class);
+				intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_ID_JADWAL_BS, dataModelArrayList.get(position).getId_jadwal_bs());
+				intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_ID_INTERNAL, dataModelArrayList.get(position).getId_internal());
+				intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_HARI, dataModelArrayList.get(position).getHari());
+				intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_JAM_MULAI, dataModelArrayList.get(position).getJam_mulai());
+				intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_JAM_SELESAI, dataModelArrayList.get(position).getJam_selesai());
+				intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_STATUS_BOOKING, dataModelArrayList.get(position).getStatus_booking());
+				intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_STATUS_AKTIF, dataModelArrayList.get(position).getStatus_aktif());
+				startActivity(intent);
 			}
 		});
 	}

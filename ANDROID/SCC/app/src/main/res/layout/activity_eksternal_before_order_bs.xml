@@ -1,9 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	tools:context=".Activities.Eksternal.BeforeOrderBS.EksternalBeforeOrderBSActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+	<com.google.android.material.appbar.AppBarLayout
+		android:id="@+id/app_bar_layout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentTop="true">
+
+		<androidx.appcompat.widget.Toolbar
+			app:theme="@style/ToolbarTheme"
+			app:titleTextColor="@color/white"
+			android:id="@+id/toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize">
+
+		</androidx.appcompat.widget.Toolbar>
+
+	</com.google.android.material.appbar.AppBarLayout>
+
+	<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+		android:id="@+id/swipe_refresh_layout"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/app_bar_layout">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:padding="10dp">
+
+			<androidx.cardview.widget.CardView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				app:cardBackgroundColor="@color/colorPrimary"
+				app:cardCornerRadius="5dp"
+				app:cardElevation="5dp">
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_margin="5dp"
+					android:orientation="vertical"
+					android:padding="5dp">
+
+					<TextView
+						android:id="@+id/tv_nama_pelajaran"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginBottom="5dp"
+						android:text="Nama Pelajaran"
+						android:textAlignment="center"
+						android:textColor="@color/white"
+						android:textSize="20dp"
+						android:textStyle="bold" />
+
+					<TextView
+						android:id="@+id/tv_nama_pengajar"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="Nama Pengajar"
+						android:textColor="@color/white"
+						android:textSize="15dp" />
+
+					<TextView
+						android:id="@+id/tv_hari"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="Hari"
+						android:textColor="@color/white"
+						android:textSize="15dp" />
+
+					<TextView
+						android:id="@+id/tv_jam"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="Jam Mulai - Jam Berakhir"
+						android:textColor="@color/white"
+						android:textSize="15dp" />
+
+					<TextView
+						android:id="@+id/tv_harga_fee"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="Harga Fee"
+						android:textColor="@color/white"
+						android:textSize="15dp" />
+
+					<TextView
+						android:id="@+id/tv_harga_spp"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="Harga Spp"
+						android:textColor="@color/white"
+						android:textSize="15dp" />
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="10dp"
+						android:orientation="horizontal">
+
+						<Button
+							android:textColor="@color/red"
+							android:id="@+id/btn_absen"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:background="@drawable/button_white"
+							android:text="Klik Untuk Memulai Pertemuan !!"
+							android:visibility="gone"/>
+
+					</LinearLayout>
+
+				</LinearLayout>
+
+
+			</androidx.cardview.widget.CardView>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:layout_marginTop="15dp"
+				android:text="List Software :"
+				android:textSize="20dp"
+				android:textStyle="bold" />
+
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/recycle_view"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_marginTop="10dp"
+				android:clipToPadding="false"
+				android:scrollbars="none">
+			</androidx.recyclerview.widget.RecyclerView>
+
+		</LinearLayout>
+
+	</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+	<com.google.android.material.floatingactionbutton.FloatingActionButton
+		android:id="@+id/fab"
+		android:scaleType="center"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentBottom="true"
+		android:layout_margin="16dp"
+		android:contentDescription="Tambah Data"
+		android:src="@drawable/ic_add_circle" />
+
+</RelativeLayout>
