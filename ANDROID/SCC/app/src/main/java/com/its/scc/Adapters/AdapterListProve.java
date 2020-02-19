@@ -11,8 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.its.scc.Controllers.BaseUrl;
-import com.its.scc.Controllers.SessionManager;
 import com.its.scc.Models.Prove;
 import com.its.scc.R;
 
@@ -25,16 +23,11 @@ public class AdapterListProve extends RecyclerView.Adapter<AdapterListProve.List
 	Context context;
 	ArrayList<Prove> dataModelArrayList;
 
-	SessionManager sessionManager;
-	BaseUrl baseUrl;
 	private static ClickListener clickListener;
 
 	public AdapterListProve(Context context, ArrayList<Prove> dataModelArrayList) {
 		this.context = context;
 		this.dataModelArrayList = dataModelArrayList;
-
-		sessionManager = new SessionManager(context);
-		baseUrl = new BaseUrl();
 	}
 
 	@NonNull

@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.its.scc.Controllers.BaseUrl;
-import com.its.scc.Controllers.SessionManager;
 import com.its.scc.Models.Eksternal;
 import com.its.scc.R;
 import com.squareup.picasso.MemoryPolicy;
@@ -27,7 +26,6 @@ public class AdapterListEksternal extends RecyclerView.Adapter<AdapterListEkster
 	Context context;
 	ArrayList<Eksternal> dataModelArrayList;
 
-	SessionManager sessionManager;
 	BaseUrl baseUrl;
 	private static ClickListener clickListener;
 
@@ -35,7 +33,6 @@ public class AdapterListEksternal extends RecyclerView.Adapter<AdapterListEkster
 		this.context = context;
 		this.dataModelArrayList = dataModelArrayList;
 
-		sessionManager = new SessionManager(context);
 		baseUrl = new BaseUrl();
 	}
 

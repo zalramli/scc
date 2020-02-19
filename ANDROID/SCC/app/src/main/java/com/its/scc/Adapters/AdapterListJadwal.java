@@ -11,8 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.its.scc.Controllers.BaseUrl;
-import com.its.scc.Controllers.SessionManager;
 import com.its.scc.Models.Jadwal;
 import com.its.scc.R;
 
@@ -25,16 +23,11 @@ public class AdapterListJadwal extends RecyclerView.Adapter<AdapterListJadwal.Li
 	Context context;
 	ArrayList<Jadwal> dataModelArrayList;
 
-	SessionManager sessionManager;
-	BaseUrl baseUrl;
 	private static ClickListener clickListener;
 
 	public AdapterListJadwal(Context context, ArrayList<Jadwal> dataModelArrayList) {
 		this.context = context;
 		this.dataModelArrayList = dataModelArrayList;
-
-		sessionManager = new SessionManager(context);
-		baseUrl = new BaseUrl();
 	}
 
 	@NonNull

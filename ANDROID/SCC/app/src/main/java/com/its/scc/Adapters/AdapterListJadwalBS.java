@@ -1,7 +1,6 @@
 package com.its.scc.Adapters;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.its.scc.Controllers.BaseUrl;
-import com.its.scc.Controllers.SessionManager;
 import com.its.scc.Models.JadwalBS;
 import com.its.scc.R;
 
@@ -25,16 +22,11 @@ public class AdapterListJadwalBS extends RecyclerView.Adapter<AdapterListJadwalB
 	Context context;
 	ArrayList<JadwalBS> dataModelArrayList;
 
-	SessionManager sessionManager;
-	BaseUrl baseUrl;
 	private static ClickListener clickListener;
 
 	public AdapterListJadwalBS(Context context, ArrayList<JadwalBS> dataModelArrayList) {
 		this.context = context;
 		this.dataModelArrayList = dataModelArrayList;
-
-		sessionManager = new SessionManager(context);
-		baseUrl = new BaseUrl();
 	}
 
 	@NonNull

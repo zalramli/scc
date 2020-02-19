@@ -9,8 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.its.scc.Controllers.BaseUrl;
-import com.its.scc.Controllers.SessionManager;
 import com.its.scc.Models.MateriProve;
 import com.its.scc.R;
 
@@ -23,16 +21,11 @@ public class AdapterListMateri extends RecyclerView.Adapter<AdapterListMateri.Li
 	Context context;
 	ArrayList<MateriProve> dataModelArrayList;
 
-	SessionManager sessionManager;
-	BaseUrl baseUrl;
 	private static ClickListener clickListener;
 
 	public AdapterListMateri(Context context, ArrayList<MateriProve> dataModelArrayList) {
 		this.context = context;
 		this.dataModelArrayList = dataModelArrayList;
-
-		sessionManager = new SessionManager(context);
-		baseUrl = new BaseUrl();
 	}
 
 	@NonNull
