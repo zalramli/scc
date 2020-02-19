@@ -33,7 +33,7 @@
 					android:id="@+id/tv_nama"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:text="Nama Materi"
+					android:text="Nama Software"
 					android:textColor="@color/white"
 					android:textSize="16dp"
 					android:textStyle="bold" />
@@ -41,7 +41,6 @@
 			</LinearLayout>
 
 		</LinearLayout>
-
 	</androidx.cardview.widget.CardView>
 
 </LinearLayout>

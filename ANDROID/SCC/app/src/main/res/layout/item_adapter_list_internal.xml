@@ -52,4 +52,5 @@
 			android:textSize="12dp" />
 
 	</RelativeLayout>
+
 </androidx.cardview.widget.CardView>

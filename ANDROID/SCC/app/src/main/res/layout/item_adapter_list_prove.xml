@@ -109,8 +109,9 @@
 				</LinearLayout>
 
 			</LinearLayout>
-		</RelativeLayout>
-	</androidx.cardview.widget.CardView>
 
+		</RelativeLayout>
+
+	</androidx.cardview.widget.CardView>
 
 </LinearLayout>
