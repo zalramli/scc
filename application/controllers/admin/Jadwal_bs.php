@@ -59,7 +59,7 @@ class Jadwal_bs extends CI_Controller
         $selesai = $jam_selesai . ':' . $menit_selesai;
 
         $data = array(
-            'id_internal' => "IN001",
+            'id_internal' => $this->session->userdata('id_internal'),
             'hari' => $hari,
             'jam_mulai' => $mulai,
             'jam_selesai' => $selesai,
@@ -73,9 +73,8 @@ class Jadwal_bs extends CI_Controller
 
     function update_jadwal_senin()
     {
-        $id = $this->input->post('id');
-        $id_jadwal_bs = substr($id, 0, 1);
-        $ubah_status = substr($id, 2);
+        $id_jadwal_bs = $this->input->post('id');
+        $ubah_status = $this->input->post('value');
 
         $where = array(
             'id_jadwal_bs' => $id_jadwal_bs
@@ -90,9 +89,8 @@ class Jadwal_bs extends CI_Controller
 
     function update_jadwal_selasa()
     {
-        $id = $this->input->post('id');
-        $id_jadwal_bs = substr($id, 0, 1);
-        $ubah_status = substr($id, 2);
+        $id_jadwal_bs = $this->input->post('id');
+        $ubah_status = $this->input->post('value');
 
         $where = array(
             'id_jadwal_bs' => $id_jadwal_bs
@@ -107,9 +105,8 @@ class Jadwal_bs extends CI_Controller
 
     function update_jadwal_rabu()
     {
-        $id = $this->input->post('id');
-        $id_jadwal_bs = substr($id, 0, 1);
-        $ubah_status = substr($id, 2);
+        $id_jadwal_bs = $this->input->post('id');
+        $ubah_status = $this->input->post('value');
 
         $where = array(
             'id_jadwal_bs' => $id_jadwal_bs
@@ -124,9 +121,8 @@ class Jadwal_bs extends CI_Controller
 
     function update_jadwal_kamis()
     {
-        $id = $this->input->post('id');
-        $id_jadwal_bs = substr($id, 0, 1);
-        $ubah_status = substr($id, 2);
+        $id_jadwal_bs = $this->input->post('id');
+        $ubah_status = $this->input->post('value');
 
         $where = array(
             'id_jadwal_bs' => $id_jadwal_bs
@@ -141,9 +137,8 @@ class Jadwal_bs extends CI_Controller
 
     function update_jadwal_jumat()
     {
-        $id = $this->input->post('id');
-        $id_jadwal_bs = substr($id, 0, 1);
-        $ubah_status = substr($id, 2);
+        $id_jadwal_bs = $this->input->post('id');
+        $ubah_status = $this->input->post('value');
 
         $where = array(
             'id_jadwal_bs' => $id_jadwal_bs
