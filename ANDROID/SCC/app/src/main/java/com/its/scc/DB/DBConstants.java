@@ -1,6 +1,6 @@
-package com.its.scc.DB.CartSoftware;
+package com.its.scc.DB;
 
-public class DBCartSoftware {
+public class DBConstants {
 
 	// db name
 	public static final String DB_NAME = "SCC";
