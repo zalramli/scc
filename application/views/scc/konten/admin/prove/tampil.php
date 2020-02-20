@@ -8,14 +8,14 @@
 				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 					<thead>
 						<tr>
-							<th width="5%" class="text-center">No</th>
-							<th width="20%">Nama Peminta</th>
-							<th width="5%">Angkatan</th>
-							<th width="25%">Pembimbing</th>
-							<th width="10%">Materi</th>
-							<th width="15%">Deskripsi BAB</th>
-							<th width="10%">Status</th>
-							<th width="10%">Detail</th>
+							<th class="text-center">No</th>
+							<th class="text-center">Nama Peminta</th>
+							<th class="text-center">Tanggal</th>
+							<th class="text-center">Pembimbing</th>
+							<th class="text-center">Materi</th>
+							<th class="text-center">Deskripsi BAB</th>
+							<th class="text-center">Status</th>
+							<th class="text-center">Detail</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -26,7 +26,7 @@
 							<tr>
 								<td class="text-center"><?= $no++ ?></td>
 								<td><?= $data->nama_eksternal ?></td>
-								<td><?= $data->angkatan ?></td>
+								<td><?= date('d-m-Y',strtotime($data->tanggal_prove)) ?></td>
 								<td><?= $data->nama_internal ?></td>
 								<td><?= $data->nama_materi ?></td>
 								<td><?= $data->deskripsi_materi ?></td>
@@ -68,6 +68,7 @@
 								<th class="text-center">No</th>
 								<th class="text-center">Nama</th>
 								<th class="text-center">Angkatan</th>
+								<th class="text-center">Rating</th>
 							</tr>
 						</thead>
 						<tbody id="daftar_barang">
@@ -105,7 +106,8 @@
 					$.each(data, function(i, item) {
 						var nama = data[i].nama;
 						var angkatan = data[i].angkatan;
-						table.row.add([no, nama, angkatan]);
+						var rating = data[i].rating;
+						table.row.add([no, nama, angkatan,rating]);
 						no = no + 1;
 					});
 				} else {
