@@ -66,4 +66,31 @@ class Bank_software extends REST_Controller
             }
         }
     }
+
+    function tambah_detail_bank_software_post()
+    {
+        // ambil data
+        $kode_bank_s = $this->post('kode_bank_s');
+        $id_software = $this->post('id_software');
+
+        $data = array(
+            'kode_bank_s'   => $kode_bank_s,
+            'id_software'   => $id_software
+        );
+
+        $insert =  $this->M_universal->input_data('detail_bs', $data);
+        if ($insert) {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "Berhasil";
+            $this->response($result, 200);
+        } else {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "Coba Lagi, Server Error";
+            $this->response($result, 200);
+        }
+    }
 }
