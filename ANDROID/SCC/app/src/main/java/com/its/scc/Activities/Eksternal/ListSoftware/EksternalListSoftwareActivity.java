@@ -16,6 +16,7 @@ import com.its.scc.Activities.Eksternal.ListSoftware.presenter.EksternalListSoft
 import com.its.scc.Activities.Eksternal.ListSoftware.presenter.IEksternalListSoftwarePresenter;
 import com.its.scc.Activities.Eksternal.ListSoftware.view.IEksternalListSoftwareView;
 import com.its.scc.Adapters.AdapterListSoftware;
+import com.its.scc.DB.DatabaseHelper;
 import com.its.scc.Models.Software;
 import com.its.scc.R;
 
@@ -34,10 +35,18 @@ public class EksternalListSoftwareActivity extends AppCompatActivity implements 
 
 	private SwipeRefreshLayout swipeRefreshLayout;
 
+	DatabaseHelper dbHelper;
+
+	String id_software = "";
+	String nama = "";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eksternal_list_software);
+
+		// initiate database object in main function
+		dbHelper = new DatabaseHelper(this);
 
 		eksternalListSoftwarePresenter = new EksternalListSoftwarePresenter(this, this);
 		eksternalListSoftwarePresenter.onLoadSemuaData();
@@ -84,8 +93,8 @@ public class EksternalListSoftwareActivity extends AppCompatActivity implements 
 
 	@Override
 	public void onSetupListView(ArrayList<Software> dataModelArrayList) {
-		adapterListSoftware = new AdapterListSoftware(this,dataModelArrayList);
-		GridLayoutManager layoutManager = new GridLayoutManager(this,1,GridLayoutManager.VERTICAL,false);
+		adapterListSoftware = new AdapterListSoftware(this, dataModelArrayList);
+		GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
 		recyclerView.setAdapter(adapterListSoftware);
 		recyclerView.setLayoutManager(layoutManager);
 		recyclerView.setNestedScrollingEnabled(true);
@@ -95,7 +104,16 @@ public class EksternalListSoftwareActivity extends AppCompatActivity implements 
 			@Override
 			public void onClick(View view, int position) {
 				// menambah item dalam db android
-				// onBackPressed();
+				id_software = dataModelArrayList.get(position).getId_software();
+				nama = dataModelArrayList.get(position).getNama();
+
+				long id = dbHelper.insertInfo(
+					"" + id_software,
+					"" + nama
+				);
+
+				onSuccessMessage("id :" + id);
+				onBackPressed();
 			}
 		});
 	}
