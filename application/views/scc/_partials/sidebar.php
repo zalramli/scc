@@ -74,7 +74,13 @@
 			</li>
 			';
 			} else if ($this->session->userdata('nama') == 'Eva Marella') {
-				echo '<li class="nav-item">
+				echo '
+			<li class="nav-item">
+			<a class="nav-link" href="' . $prove . '">
+			<i class="fas fa-user"></i>
+			<span>Prove</span></a>
+			</li>
+				<li class="nav-item">
 					<a class="nav-link" href="' . $jadwal_prove . '">
 			<i class="fas fa-user"></i>
 			<span>Jadwal Prove</span></a>
