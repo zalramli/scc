@@ -46,4 +46,9 @@ public class EksternalBeforeOrderBSPresenter implements IEksternalBeforeOrderBSP
 			eksternalBeforeOrderBSView.onErrorMessage("Tambah List Software !");
 		}
 	}
+
+	@Override
+	public void onDelete(String id) {
+		databaseHelper.deleteInfo(id);
+	}
 }

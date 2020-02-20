@@ -19,6 +19,8 @@ public interface IEksternalBeforeOrderBSView {
 
 	void showDialog();
 
+	void showDeleteDialog(final String id_sql);
+
 	void backPressed();
 
 	void keHalamanLain();

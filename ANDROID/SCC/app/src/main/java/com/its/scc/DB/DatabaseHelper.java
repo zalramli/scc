@@ -79,4 +79,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.close();
 		return dataModelArrayList;
 	}
+
+	public void deleteInfo(String id) {
+
+		SQLiteDatabase db = getWritableDatabase();
+		db.delete(DBConstants.TABLE_NAME, DBConstants.C_ID + " = ? ", new String[]{id});
+		db.close();
+	}
 }

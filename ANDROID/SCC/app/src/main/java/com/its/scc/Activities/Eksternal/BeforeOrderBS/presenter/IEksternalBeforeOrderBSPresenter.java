@@ -6,4 +6,6 @@ public interface IEksternalBeforeOrderBSPresenter {
 	void onSubmitDetail(String kode_bank_s, String id_softwate);
 
 	void onLoadSemuaData(); // software
+
+	void onDelete(String id);
 }

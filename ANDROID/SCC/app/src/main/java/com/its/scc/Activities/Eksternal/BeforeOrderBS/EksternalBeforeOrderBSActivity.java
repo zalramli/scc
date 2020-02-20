@@ -185,7 +185,8 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 		adapterListSoftware.setOnItemClickListener(new AdapterListSoftware.ClickListener() {
 			@Override
 			public void onClick(View view, int position) {
-
+				String id_sql = String.valueOf(dataModelArrayList.get(position).getId());
+				showDeleteDialog(id_sql);
 			}
 		});
 	}
@@ -306,6 +307,38 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 
 					} catch (Exception e) {
 						onErrorMessage("Terjadi Kesalahan Daftar " + e.toString());
+					}
+
+				}
+			})
+			.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+					dialog.cancel();
+				}
+			});
+
+		AlertDialog alertDialog = alertDialogBuilder.create();
+		alertDialog.show();
+	}
+
+	@Override
+	public void showDeleteDialog(final String id_sql) {
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+			this);
+		alertDialogBuilder.setTitle("Menghapus Software ?");
+		alertDialogBuilder
+			.setMessage("Klik Ya untuk Menghapus Software !")
+			.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+
+					try {
+
+						eksternalBeforeOrderBSPresenter.onDelete(id_sql);
+						onResume();
+						onSuccessMessage("Software Terhapus");
+
+					} catch (Exception e) {
+						onErrorMessage("Terjadi Kesalahan Delete : " + e.toString());
 					}
 
 				}
