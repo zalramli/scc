@@ -1,7 +1,16 @@
 package com.its.scc.Models;
 
 public class Software {
+	int id;
 	String id_software, nama;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getId_software() {
 		return id_software;

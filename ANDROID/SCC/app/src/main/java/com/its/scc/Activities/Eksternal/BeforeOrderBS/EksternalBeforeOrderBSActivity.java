@@ -3,6 +3,7 @@ package com.its.scc.Activities.Eksternal.BeforeOrderBS;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -10,6 +11,7 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,10 +21,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.its.scc.Activities.Eksternal.BeforeOrderBS.presenter.EksternalBeforeOrderBSPresenter;
 import com.its.scc.Activities.Eksternal.BeforeOrderBS.presenter.IEksternalBeforeOrderBSPresenter;
 import com.its.scc.Activities.Eksternal.BeforeOrderBS.view.IEksternalBeforeOrderBSView;
 import com.its.scc.Activities.Eksternal.ListSoftware.EksternalListSoftwareActivity;
 import com.its.scc.Activities.Eksternal._Home.EksternalHomeActivity;
+import com.its.scc.Adapters.AdapterListSoftware;
 import com.its.scc.Controllers.SessionManager;
 import com.its.scc.Models.Software;
 import com.its.scc.R;
@@ -49,6 +53,8 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 
 	IEksternalBeforeOrderBSPresenter eksternalBeforeOrderBSPresenter;
 
+	AdapterListSoftware adapterListSoftware;
+
 	private RecyclerView recyclerView;
 
 	Toolbar toolbar;
@@ -73,6 +79,8 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eksternal_before_order_bs);
+
+		eksternalBeforeOrderBSPresenter = new EksternalBeforeOrderBSPresenter(this, this);
 
 		dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);//"dd-MM-yyyy" "yyyy-MM-dd"
 		dayFormatter = new SimpleDateFormat("EEE", Locale.US);//hari dalam english
@@ -101,8 +109,31 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 
 		fab = findViewById(R.id.fab);
 
+		recyclerView = findViewById(R.id.recycle_view);
+
 		toolbar = findViewById(R.id.toolbar);
 		initActionBar();
+
+		swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+
+		swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+			@Override
+			public void onRefresh() {
+				// Your code to make your refresh action
+				eksternalBeforeOrderBSPresenter.onLoadSemuaData();
+
+				// CallYourRefreshingMethod();
+				final Handler handler = new Handler();
+				handler.postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						if (swipeRefreshLayout.isRefreshing()) {
+							swipeRefreshLayout.setRefreshing(false);
+						}
+					}
+				}, 1000);
+			}
+		});
 
 		setNilaiDefault();
 
@@ -144,7 +175,20 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 
 	@Override
 	public void onSetupListView(ArrayList<Software> dataModelArrayList) {
+		adapterListSoftware = new AdapterListSoftware(this, dataModelArrayList);
+		GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
+		recyclerView.setAdapter(adapterListSoftware);
+		recyclerView.setLayoutManager(layoutManager);
+		recyclerView.setNestedScrollingEnabled(true);
+		adapterListSoftware.notifyDataSetChanged();
 
+		adapterListSoftware.setOnItemClickListener(new AdapterListSoftware.ClickListener() {
+			@Override
+			public void onClick(View view, int position) {
+				onSuccessMessage("" + dataModelArrayList.get(position).getId());
+				onSuccessMessage("" + dataModelArrayList.get(position).getNama());
+			}
+		});
 	}
 
 	@Override
@@ -303,5 +347,11 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 				break;
 		}
 		return true;
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		eksternalBeforeOrderBSPresenter.onLoadSemuaData();
 	}
 }

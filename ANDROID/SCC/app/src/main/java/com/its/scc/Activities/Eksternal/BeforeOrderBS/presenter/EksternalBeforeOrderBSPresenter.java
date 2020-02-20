@@ -4,19 +4,28 @@ import android.content.Context;
 
 import com.its.scc.Activities.Eksternal.BeforeOrderBS.view.IEksternalBeforeOrderBSView;
 import com.its.scc.Controllers.BaseUrl;
+import com.its.scc.DB.DBConstants;
+import com.its.scc.DB.DatabaseHelper;
+import com.its.scc.Models.Software;
+
+import java.util.ArrayList;
 
 public class EksternalBeforeOrderBSPresenter implements IEksternalBeforeOrderBSPresenter {
 
 	Context context;
 	IEksternalBeforeOrderBSView eksternalBeforeOrderBSView;
 
+	ArrayList<Software> dataModelArrayList;
+
 	BaseUrl baseUrl;
+	DatabaseHelper databaseHelper;
 
 	public EksternalBeforeOrderBSPresenter(Context context, IEksternalBeforeOrderBSView eksternalBeforeOrderBSView) {
 		this.context = context;
 		this.eksternalBeforeOrderBSView = eksternalBeforeOrderBSView;
 
 		baseUrl = new BaseUrl();
+		databaseHelper = new DatabaseHelper(context);
 	}
 
 	@Override
@@ -31,6 +40,10 @@ public class EksternalBeforeOrderBSPresenter implements IEksternalBeforeOrderBSP
 
 	@Override
 	public void onLoadSemuaData() {
-
+		dataModelArrayList = databaseHelper.getAllData(DBConstants.C_ID + " ASC");
+		eksternalBeforeOrderBSView.onSetupListView(dataModelArrayList);
+		if (dataModelArrayList.size() < 1) {
+			eksternalBeforeOrderBSView.onErrorMessage("Tambah List Software !");
+		}
 	}
 }

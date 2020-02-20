@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.its.scc.Models.TableSoftware;
+import com.its.scc.Models.Software;
 
 import java.util.ArrayList;
 
@@ -46,9 +46,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		return id;
 	}
 
-	public ArrayList<TableSoftware> getAllData(String orderBy) {
+	public ArrayList<Software> getAllData(String orderBy) {
 
-		ArrayList<TableSoftware> arrayList = new ArrayList<>();
+		ArrayList<Software> dataModelArrayList = new ArrayList<>();
 
 		// query for select all
 		String selectQuery = "SELECT * FROM " + DBConstants.TABLE_NAME + " ORDER BY " + orderBy;
@@ -60,20 +60,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 			do {
 
-				TableSoftware tableSoftware = new TableSoftware(
-					"" + cursor.getInt(cursor.getColumnIndex(DBConstants.C_ID)),
-					"" + cursor.getString(cursor.getColumnIndex(DBConstants.C_ID_SOFTWARE)),
-					"" + cursor.getString(cursor.getColumnIndex(DBConstants.C_NAMA))
-				);
+				Software playerModel = new Software();
 
-				arrayList.add(tableSoftware);
+				int id = cursor.getInt(cursor.getColumnIndex(DBConstants.C_ID));
+				String id_software = cursor.getString(cursor.getColumnIndex(DBConstants.C_ID_SOFTWARE));
+				String nama = cursor.getString(cursor.getColumnIndex(DBConstants.C_NAMA));
+
+				playerModel.setId(id);
+				playerModel.setId_software(id_software);
+				playerModel.setNama(nama);
+
+				dataModelArrayList.add(playerModel);
 
 			} while (cursor.moveToNext());
 
 		}
 
 		db.close();
-		return arrayList;
-
+		return dataModelArrayList;
 	}
 }
