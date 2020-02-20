@@ -111,8 +111,7 @@ public class EksternalListSoftwareActivity extends AppCompatActivity implements 
 					"" + id_software,
 					"" + nama
 				);
-
-				onSuccessMessage("id :" + id);
+				
 				onBackPressed();
 			}
 		});

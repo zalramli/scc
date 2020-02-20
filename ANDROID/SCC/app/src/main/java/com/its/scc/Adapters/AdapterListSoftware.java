@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,6 +39,9 @@ public class AdapterListSoftware extends RecyclerView.Adapter<AdapterListSoftwar
 	@Override
 	public void onBindViewHolder(@NonNull AdapterListSoftware.ListSoftwareViewHolder holder, int position) {
 		holder.tvNama.setText(dataModelArrayList.get(position).getNama());
+		if (dataModelArrayList.get(position).getId() > 0){
+			holder.ivDelete.setVisibility(View.VISIBLE);
+		}
 	}
 
 	@Override
@@ -48,11 +52,13 @@ public class AdapterListSoftware extends RecyclerView.Adapter<AdapterListSoftwar
 	public class ListSoftwareViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 		TextView tvNama;
+		ImageView ivDelete;
 
 		public ListSoftwareViewHolder(@NonNull View itemView) {
 			super(itemView);
 
 			tvNama = itemView.findViewById(R.id.tv_nama);
+			ivDelete = itemView.findViewById(R.id.iv_delete);
 
 			ButterKnife.bind(this, itemView);
 			itemView.setOnClickListener(this);

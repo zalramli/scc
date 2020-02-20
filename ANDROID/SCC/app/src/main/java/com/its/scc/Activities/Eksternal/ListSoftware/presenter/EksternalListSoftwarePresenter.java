@@ -57,9 +57,11 @@ public class EksternalListSoftwarePresenter implements IEksternalListSoftwarePre
 							Software playerModel = new Software();
 							JSONObject dataobj = dataArray.getJSONObject(i);
 
+							int id = 0;
 							String id_software = dataobj.getString("id_software");
 							String nama = dataobj.getString("nama");
 
+							playerModel.setId(id);
 							playerModel.setId_software(id_software);
 							playerModel.setNama(nama);
 

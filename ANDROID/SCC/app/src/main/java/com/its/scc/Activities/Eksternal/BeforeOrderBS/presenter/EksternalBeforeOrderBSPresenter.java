@@ -43,7 +43,7 @@ public class EksternalBeforeOrderBSPresenter implements IEksternalBeforeOrderBSP
 		dataModelArrayList = databaseHelper.getAllData(DBConstants.C_ID + " ASC");
 		eksternalBeforeOrderBSView.onSetupListView(dataModelArrayList);
 		if (dataModelArrayList.size() < 1) {
-			eksternalBeforeOrderBSView.onErrorMessage("Tambah List Software !");
+			eksternalBeforeOrderBSView.onErrorMessage("Detail List Software Kosong !");
 		}
 	}
 
