@@ -34,7 +34,7 @@ public class EksternalBeforeOrderBSPresenter implements IEksternalBeforeOrderBSP
 	}
 
 	@Override
-	public void onSubmitDetail(String id_detail_bs, String kode_bank_s, String id_softwate) {
+	public void onSubmitDetail(String kode_bank_s, String id_softwate) {
 
 	}
 

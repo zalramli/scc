@@ -185,8 +185,7 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 		adapterListSoftware.setOnItemClickListener(new AdapterListSoftware.ClickListener() {
 			@Override
 			public void onClick(View view, int position) {
-				onSuccessMessage("" + dataModelArrayList.get(position).getId());
-				onSuccessMessage("" + dataModelArrayList.get(position).getNama());
+
 			}
 		});
 	}
