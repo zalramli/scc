@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
+import com.its.scc.Activities.Eksternal.ListBankSoftware.EksternalListBankSoftwareActivity;
 import com.its.scc.Activities.Eksternal.ListJadwal.EksternalListJadwalActivity;
 import com.its.scc.Activities.Eksternal.ListMateri.EksternalListMateriActivity;
 import com.its.scc.Activities.Eksternal.ListProve.EksternalListProveActivity;
@@ -31,7 +32,7 @@ public class InternalHomeActivity extends AppCompatActivity implements View.OnCl
 	private ActionBarDrawerToggle actionBarDrawerToggle;
 	private NavigationView navigationView;
 
-	CardView cvLinkProve, cvLinkListProve;
+	CardView cvLinkProve, cvLinkListProve,cvLinkListBankSoftware;
 
 	SessionManager sessionManager;
 	String id_internal = "";
@@ -44,8 +45,9 @@ public class InternalHomeActivity extends AppCompatActivity implements View.OnCl
 		drawerLayout = findViewById(R.id.drawer_layout_internal_home);
 		navigationView = findViewById(R.id.navigation_view_internal);
 
-		cvLinkListProve = findViewById(R.id.cv_link_list_prove); // link card view prove
 		cvLinkProve = findViewById(R.id.cv_link_prove); // link card view prove
+		cvLinkListProve = findViewById(R.id.cv_link_list_prove); // link card view prove
+		cvLinkListBankSoftware= findViewById(R.id.cv_link_list_bank_software); // link card view prove
 
 		sessionManager = new SessionManager(this);
 		HashMap<String, String> user = sessionManager.getDataUser();
@@ -75,21 +77,28 @@ public class InternalHomeActivity extends AppCompatActivity implements View.OnCl
 			}
 		});
 
-		cvLinkListProve.setOnClickListener(this);
 		cvLinkProve.setOnClickListener(this);
+		cvLinkListProve.setOnClickListener(this);
+		cvLinkListBankSoftware.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
+		if (v.getId() == R.id.cv_link_prove) {
+			Intent intent = new Intent();
+			intent = new Intent(getApplicationContext(), EksternalListMateriActivity.class);
+			startActivity(intent);
+		}
 		if (v.getId() == R.id.cv_link_list_prove) {
 			Intent intent = new Intent();
 			intent = new Intent(getApplicationContext(), EksternalListProveActivity.class);
 			intent.putExtra(EksternalListProveActivity.EXTRA_TUJUAN, "kosong");
 			startActivity(intent);
 		}
-		if (v.getId() == R.id.cv_link_prove) {
+		if (v.getId() == R.id.cv_link_list_bank_software) {
 			Intent intent = new Intent();
-			intent = new Intent(getApplicationContext(), EksternalListMateriActivity.class);
+			intent = new Intent(getApplicationContext(), EksternalListBankSoftwareActivity.class);
+			intent.putExtra(EksternalListBankSoftwareActivity.EXTRA_TUJUAN, "kosong");
 			startActivity(intent);
 		}
 	}

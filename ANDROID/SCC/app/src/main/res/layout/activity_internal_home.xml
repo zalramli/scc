@@ -215,6 +215,7 @@
 			</androidx.cardview.widget.CardView>
 
 			<androidx.cardview.widget.CardView
+				android:id="@+id/cv_link_list_bank_software"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginLeft="16dp"

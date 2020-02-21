@@ -6,7 +6,7 @@
 	android:orientation="vertical">
 
 	<androidx.cardview.widget.CardView
-		android:id="@+id/cv_item_adapter_list_prove"
+		android:id="@+id/cv_item_adapter_list_bank_software"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginLeft="10sp"
@@ -14,8 +14,8 @@
 		android:layout_marginRight="10sp"
 		android:focusable="true"
 		android:foreground="?attr/selectableItemBackground"
-		app:cardCornerRadius="10dp"
 		app:cardBackgroundColor="@color/colorPrimaryDark2"
+		app:cardCornerRadius="10dp"
 		app:cardElevation="5dp">
 
 		<RelativeLayout
@@ -36,11 +36,12 @@
 					android:orientation="vertical">
 
 					<TextView
-						android:id="@+id/tv_nama_materi"
+						android:id="@+id/tv_tanggal_bank_software"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:gravity="center"
-						android:text="Nama Materi"
+						android:layout_weight="1"
+						android:text="Tanggal BS : yyyy-mm-dd "
+						android:textAlignment="center"
 						android:textColor="@color/white"
 						android:textSize="16dp"
 						android:textStyle="bold" />
@@ -49,55 +50,24 @@
 						android:id="@+id/tv_detail_jadwal"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginBottom="7dp"
 						android:layout_weight="1"
 						android:gravity="center"
 						android:text="(Hari, jam_mulai - jam_selesai)"
 						android:textColor="@color/white"
-						android:textSize="15dp" />
+						android:textSize="16dp" />
 
 					<TextView
-						android:id="@+id/tv_tanggal_prove"
+						android:id="@+id/tv_nama_eksternal"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
-						android:text="Tanggal Prove : yyyy-mm-dd "
+						android:text="Nama : Eksternal"
 						android:textAlignment="center"
 						android:textColor="@color/white"
 						android:textSize="16dp" />
 
 					<TextView
-						android:id="@+id/tv_kode_prove"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:layout_weight="1"
-						android:text="Kode Prove : XXXX"
-						android:textAlignment="center"
-						android:textColor="@color/white"
-						android:textSize="16dp" />
-
-					<TextView
-						android:id="@+id/tv_kata_sandi"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:layout_weight="1"
-						android:text="Kata Sandi : XXXX"
-						android:textAlignment="center"
-						android:textColor="@color/white"
-						android:textSize="16dp" />
-
-					<TextView
-						android:id="@+id/tv_nama_internal"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:layout_weight="1"
-						android:text="Pembimbing : Nama Internal"
-						android:textAlignment="center"
-						android:textColor="@color/white"
-						android:textSize="16dp" />
-
-					<TextView
-						android:id="@+id/tv_status_prove"
+						android:id="@+id/tv_status_bank_software"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
