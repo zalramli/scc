@@ -46,6 +46,7 @@ class Bank_software extends REST_Controller
 
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
+            $result["kode_bank_s"] = "null";
             $result["message"] = "Bank Software Anda Sebelumnya Masih Belum Selesai !";
             $this->response($result, 200);
         } else {
@@ -55,12 +56,14 @@ class Bank_software extends REST_Controller
 
                 // membuat array untuk di transfer ke API
                 $result["success"] = "1";
+                $result["kode_bank_s"] = $kode_bank_s;
                 $result["message"] = "Berhasil Membuat Bank Software";
                 $this->response($result, 200);
             } else {
 
                 // membuat array untuk di transfer ke API
                 $result["success"] = "0";
+                $result["kode_bank_s"] = "null";
                 $result["message"] = "Coba Lagi, Server Error";
                 $this->response($result, 200);
             }

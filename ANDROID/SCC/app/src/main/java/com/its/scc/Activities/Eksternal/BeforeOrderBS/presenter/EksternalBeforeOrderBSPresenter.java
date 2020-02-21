@@ -53,10 +53,22 @@ public class EksternalBeforeOrderBSPresenter implements IEksternalBeforeOrderBSP
 						JSONObject jsonObject = new JSONObject(response);
 						String success = jsonObject.getString("success");
 						String message = jsonObject.getString("message");
+						String kode_bank_s = jsonObject.getString("kode_bank_s");
 
 						if (success.equals("1")) {
+
+							// input detail transaksi
+							dataModelArrayList = databaseHelper.getAllData(DBConstants.C_ID + " ASC");
+							for (int i = 0; i < dataModelArrayList.size(); i++) {
+
+								String id_software = dataModelArrayList.get(i).getId_software();
+
+								onSubmitDetail(kode_bank_s, id_software);
+							}
+
 							eksternalBeforeOrderBSView.onSuccessMessage(message);
 							eksternalBeforeOrderBSView.backPressed();
+
 						} else {
 							eksternalBeforeOrderBSView.onErrorMessage(message);
 						}
