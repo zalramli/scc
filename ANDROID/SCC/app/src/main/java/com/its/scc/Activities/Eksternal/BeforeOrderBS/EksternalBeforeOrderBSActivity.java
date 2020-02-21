@@ -355,10 +355,10 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 	@Override
 	public void backPressed() {
 
-//		Intent intent = new Intent(getApplicationContext(), EksternalListProveActivity.class);
-//		intent.putExtra(EksternalListProveActivity.EXTRA_TUJUAN, "kosong");
-//		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//		startActivity(intent);
+		Intent intent = new Intent(getApplicationContext(), EksternalHomeActivity.class);
+//		intent.putExtra(EksternalHomeActivity.EXTRA_TUJUAN, "kosong");
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
 
 	}
 

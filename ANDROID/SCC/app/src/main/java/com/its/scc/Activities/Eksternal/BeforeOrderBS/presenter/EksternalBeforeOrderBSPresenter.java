@@ -67,6 +67,7 @@ public class EksternalBeforeOrderBSPresenter implements IEksternalBeforeOrderBSP
 							}
 
 							eksternalBeforeOrderBSView.onSuccessMessage(message);
+							databaseHelper.deleteAll(); // delete all data in table
 							eksternalBeforeOrderBSView.backPressed();
 
 						} else {

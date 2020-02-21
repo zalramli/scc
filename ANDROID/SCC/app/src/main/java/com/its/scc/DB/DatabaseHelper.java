@@ -86,4 +86,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.delete(DBConstants.TABLE_NAME, DBConstants.C_ID + " = ? ", new String[]{id});
 		db.close();
 	}
+
+	public void deleteAll(){
+
+		SQLiteDatabase db = getWritableDatabase();
+		db.delete(DBConstants.TABLE_NAME, null, null);
+		db.close();
+	}
 }
