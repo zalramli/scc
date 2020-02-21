@@ -18,4 +18,9 @@ public class EksternalListBankSoftwarePresenter implements IEksternalListBankSof
 
 		baseUrl = new BaseUrl();
 	}
+
+	@Override
+	public void inisiasiAwal(String id, String hakAkses, String tujuan) {
+
+	}
 }
