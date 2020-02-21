@@ -86,7 +86,6 @@
 					android:id="@+id/cv_link_prove"
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"
-					android:layout_marginRight="8dp"
 					android:layout_weight="1"
 					android:clickable="true"
 					android:focusable="true"
@@ -119,6 +118,7 @@
 				</androidx.cardview.widget.CardView>
 
 				<androidx.cardview.widget.CardView
+					android:visibility="gone"
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"
 					android:layout_marginLeft="8dp"
