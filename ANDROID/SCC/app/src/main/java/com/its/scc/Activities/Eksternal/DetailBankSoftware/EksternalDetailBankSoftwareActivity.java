@@ -18,6 +18,6 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 
 	@Override
 	public void onClick(View v) {
-		
+
 	}
 }
