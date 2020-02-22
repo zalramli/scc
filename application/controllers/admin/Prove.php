@@ -30,6 +30,15 @@ class Prove extends CI_Controller {
         echo $data;
     }
 
+    public function delete($id)
+    {
+        $where = array('id_prove' => $id);
+        $this->M_crud->hapus_data($where, 'prove');
+        $this->M_crud->hapus_data($where, 'detail_prove');
+        $this->session->set_flashdata('hapus', 'Dihapus');
+        redirect('admin/materi_prove');
+    }
+
     // public function delete($id)
     // {
     //     $where = array('id_eksternal' => $id);

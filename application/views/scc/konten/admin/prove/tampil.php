@@ -15,7 +15,7 @@
 							<th class="text-center">Materi</th>
 							<th class="text-center">Deskripsi BAB</th>
 							<th class="text-center">Status</th>
-							<th class="text-center">Detail</th>
+							<th class="text-center">Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -41,6 +41,7 @@
 								<td>
 									<a href="#" class="btn-sm btn-info" id="btn_search" data-toggle="modal" data-target="#exampleModalCenter" data-idprove="<?= $data->id_prove ?>">
 										Detail
+									<a href="<?= base_url('admin/prove/delete/' . $data->id_prove) ?>" class="btn btn-sm btn-danger tombol-hapus">Hapus</a>
 									</a>
 								</td>
 							</tr>
@@ -80,6 +81,30 @@
 	</div>
 </div>
 <script src="<?= base_url(); ?>_assets/sb_admin_2/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+	$('.tombol-hapus').on('click', function(e) {
+		e.preventDefault();
+		var href = $(this).attr('href');
+		Swal.fire({
+			title: 'Apakah anda yakin?',
+			text: "Data user akan dihapus",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Hapus'
+		}).then((result) => {
+			if (result.value) {
+				document.location.href = href;
+				// Swal.fire(
+				// 	'Deleted!',
+				// 	'Your file has been deleted.',
+				// 	'success'
+				// )
+			}
+		})
+	});
+</script>
 <script>
 	$('#btn_search').on('click', function() {
 		var id_prove = $(this).data("idprove");
