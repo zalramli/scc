@@ -18,4 +18,19 @@ public class EksternalDetailBankSoftwarePresenter implements IEksternalDetailBan
 
 		baseUrl = new BaseUrl();
 	}
+
+	@Override
+	public void onLoadSemuaData(String kode_bank_s) {
+
+	}
+
+	@Override
+	public void onBatal(String kode_bank_s) {
+
+	}
+
+	@Override
+	public void onSelesai(String kode_bank_s) {
+
+	}
 }
