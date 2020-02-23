@@ -154,6 +154,7 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 	@Override
 	public void setNilaiDefault() {
 		tvDetailBs.setText(hari + " ( " + jam_mulai + " - " + jam_selesai + " )");
+		tvTanggalBs.setText(tanggal_bs);
 	}
 
 	@Override

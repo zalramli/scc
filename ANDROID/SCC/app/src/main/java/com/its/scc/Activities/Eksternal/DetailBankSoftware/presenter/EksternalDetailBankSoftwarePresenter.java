@@ -40,7 +40,7 @@ public class EksternalDetailBankSoftwarePresenter implements IEksternalDetailBan
 	@Override
 	public void onLoadSemuaData(String kode_bank_s) {
 		String base_url = baseUrl.getUrlData();
-		String URL_DATA = base_url + "eksternal/software/list_software"; // url http request
+		String URL_DATA = base_url + "eksternal/software/list_software_by_kode_bank_s"; // url http request
 
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
 			new Response.Listener<String>() {
