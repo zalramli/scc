@@ -17,6 +17,7 @@ import android.view.View;
 import com.google.android.material.navigation.NavigationView;
 import com.its.scc.Activities.Eksternal.ListBankSoftware.EksternalListBankSoftwareActivity;
 import com.its.scc.Activities.Eksternal.ListJadwal.EksternalListJadwalActivity;
+import com.its.scc.Activities.Eksternal.ListJadwalBS.EksternalListJadwalBSActivity;
 import com.its.scc.Activities.Eksternal.ListMateri.EksternalListMateriActivity;
 import com.its.scc.Activities.Eksternal.ListProve.EksternalListProveActivity;
 import com.its.scc.Activities.Internal.AkunEdit.InternalAkunEditActivity;
@@ -61,13 +62,18 @@ public class InternalHomeActivity extends AppCompatActivity implements View.OnCl
 			@Override
 			public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 				int id = item.getItemId();
+				Intent intent = new Intent();
 				switch (id) {
 					case R.id.jadwal_prove:
-						Intent intent = new Intent(getApplicationContext(), EksternalListJadwalActivity.class);
+						intent = new Intent(getApplicationContext(), EksternalListJadwalActivity.class);
 						intent.putExtra(EksternalListJadwalActivity.EXTRA_ID_MATERI_PROVE, "kosong");
 						intent.putExtra(EksternalListJadwalActivity.EXTRA_NAMA_MATERI_PROVE, "kosong");
 						intent.putExtra(EksternalListJadwalActivity.EXTRA_ID_INTERNAL, id_internal);
 						intent.putExtra(EksternalListJadwalActivity.EXTRA_NAMA_INTERNAL, "kosong");
+						startActivity(intent);
+						break;
+					case R.id.jadwal_bs:
+						intent = new Intent(getApplicationContext(), EksternalListJadwalBSActivity.class);
 						startActivity(intent);
 						break;
 					default:

@@ -18,10 +18,12 @@ import com.its.scc.Activities.Eksternal.ListJadwalBS.presenter.EksternalListJadw
 import com.its.scc.Activities.Eksternal.ListJadwalBS.presenter.IEksternalListJadwalBSPresenter;
 import com.its.scc.Activities.Eksternal.ListJadwalBS.view.IEksternalListJadwalBSView;
 import com.its.scc.Adapters.AdapterListJadwalBS;
+import com.its.scc.Controllers.SessionManager;
 import com.its.scc.Models.JadwalBS;
 import com.its.scc.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import es.dmoral.toasty.Toasty;
 
@@ -36,10 +38,17 @@ public class EksternalListJadwalBSActivity extends AppCompatActivity implements 
 
 	private SwipeRefreshLayout swipeRefreshLayout;
 
+	SessionManager sessionManager;
+	String hak_akses = "";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eksternal_list_jadwal_bs);
+
+		sessionManager = new SessionManager(this);
+		HashMap<String, String> user = sessionManager.getDataUser();
+		hak_akses = user.get(sessionManager.HAK_AKSES);
 
 		eksternalListJadwalBSPresenter = new EksternalListJadwalBSPresenter(this, this);
 		eksternalListJadwalBSPresenter.onLoadSemuaData();
@@ -96,15 +105,18 @@ public class EksternalListJadwalBSActivity extends AppCompatActivity implements 
 		adapterListJadwalBS.setOnItemClickListener(new AdapterListJadwalBS.ClickListener() {
 			@Override
 			public void onClick(View view, int position) {
-				Intent intent = new Intent(getApplicationContext(), EksternalBeforeOrderBSActivity.class);
-				intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_ID_JADWAL_BS, dataModelArrayList.get(position).getId_jadwal_bs());
-				intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_ID_INTERNAL, dataModelArrayList.get(position).getId_internal());
-				intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_HARI, dataModelArrayList.get(position).getHari());
-				intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_JAM_MULAI, dataModelArrayList.get(position).getJam_mulai());
-				intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_JAM_SELESAI, dataModelArrayList.get(position).getJam_selesai());
-				intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_STATUS_BOOKING, dataModelArrayList.get(position).getStatus_booking());
-				intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_STATUS_AKTIF, dataModelArrayList.get(position).getStatus_aktif());
-				startActivity(intent);
+
+				if (hak_akses.equals("eksternal")){
+					Intent intent = new Intent(getApplicationContext(), EksternalBeforeOrderBSActivity.class);
+					intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_ID_JADWAL_BS, dataModelArrayList.get(position).getId_jadwal_bs());
+					intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_ID_INTERNAL, dataModelArrayList.get(position).getId_internal());
+					intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_HARI, dataModelArrayList.get(position).getHari());
+					intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_JAM_MULAI, dataModelArrayList.get(position).getJam_mulai());
+					intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_JAM_SELESAI, dataModelArrayList.get(position).getJam_selesai());
+					intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_STATUS_BOOKING, dataModelArrayList.get(position).getStatus_booking());
+					intent.putExtra(EksternalBeforeOrderBSActivity.EXTRA_STATUS_AKTIF, dataModelArrayList.get(position).getStatus_aktif());
+					startActivity(intent);
+				}
 			}
 		});
 	}

@@ -97,7 +97,8 @@
 							android:layout_weight="1"
 							android:drawableStart="@drawable/ic_close"
 							android:drawableLeft="@drawable/ic_close"
-							android:text="Batal" />
+							android:text="Batal"
+							android:visibility="gone" />
 
 						<Button
 							android:id="@+id/btn_selesai"
@@ -107,7 +108,8 @@
 							android:layout_weight="1"
 							android:drawableStart="@drawable/ic_check_black"
 							android:drawableLeft="@drawable/ic_check_black"
-							android:text="Selesai" />
+							android:text="Selesai"
+							android:visibility="gone" />
 
 					</LinearLayout>
 

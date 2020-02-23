@@ -42,62 +42,68 @@ public class EksternalBeforeOrderBSPresenter implements IEksternalBeforeOrderBSP
 
 	@Override
 	public void onSubmit(String id_eksternal, String id_jadwal_bs, String tanggal_bs) {
-		String base_url = baseUrl.getUrlData();
-		String URL_DATA = base_url + "eksternal/bank_software/tambah_bank_software"; // url http request
 
-		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
-			new Response.Listener<String>() {
-				@Override
-				public void onResponse(String response) {
-					try {
-						JSONObject jsonObject = new JSONObject(response);
-						String success = jsonObject.getString("success");
-						String message = jsonObject.getString("message");
-						String kode_bank_s = jsonObject.getString("kode_bank_s");
+		dataModelArrayList = databaseHelper.getAllData(DBConstants.C_ID + " ASC");
 
-						if (success.equals("1")) {
+		if (dataModelArrayList.size() > 0) {
 
-							// input detail transaksi
-							dataModelArrayList = databaseHelper.getAllData(DBConstants.C_ID + " ASC");
-							for (int i = 0; i < dataModelArrayList.size(); i++) {
+			String base_url = baseUrl.getUrlData();
+			String URL_DATA = base_url + "eksternal/bank_software/tambah_bank_software"; // url http request
 
-								String id_software = dataModelArrayList.get(i).getId_software();
+			StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
+				new Response.Listener<String>() {
+					@Override
+					public void onResponse(String response) {
+						try {
+							JSONObject jsonObject = new JSONObject(response);
+							String success = jsonObject.getString("success");
+							String message = jsonObject.getString("message");
+							String kode_bank_s = jsonObject.getString("kode_bank_s");
 
-								onSubmitDetail(kode_bank_s, id_software);
+							if (success.equals("1")) {
+
+								// input detail transaksi
+								for (int i = 0; i < dataModelArrayList.size(); i++) {
+									String id_software = dataModelArrayList.get(i).getId_software();
+									onSubmitDetail(kode_bank_s, id_software);
+								}
+
+								eksternalBeforeOrderBSView.onSuccessMessage(message);
+								databaseHelper.deleteAll(); // delete all data in table
+								eksternalBeforeOrderBSView.backPressed();
+
+							} else {
+								eksternalBeforeOrderBSView.onErrorMessage(message);
 							}
 
-							eksternalBeforeOrderBSView.onSuccessMessage(message);
-							databaseHelper.deleteAll(); // delete all data in table
-							eksternalBeforeOrderBSView.backPressed();
-
-						} else {
-							eksternalBeforeOrderBSView.onErrorMessage(message);
+						} catch (JSONException e) {
+							e.printStackTrace();
+							eksternalBeforeOrderBSView.onErrorMessage("Kesalahan Menerima Data : " + e.toString());
 						}
-
-					} catch (JSONException e) {
-						e.printStackTrace();
-						eksternalBeforeOrderBSView.onErrorMessage("Kesalahan Menerima Data : " + e.toString());
 					}
-				}
-			},
-			new Response.ErrorListener() {
+				},
+				new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						eksternalBeforeOrderBSView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
+					}
+				}) {
 				@Override
-				public void onErrorResponse(VolleyError error) {
-					eksternalBeforeOrderBSView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
+				protected Map<String, String> getParams() throws AuthFailureError {
+					Map<String, String> params = new HashMap<>();
+					params.put("id_eksternal", id_eksternal);
+					params.put("id_jadwal_bs", id_jadwal_bs);
+					params.put("tanggal_bs", tanggal_bs);
+					return params;
 				}
-			}) {
-			@Override
-			protected Map<String, String> getParams() throws AuthFailureError {
-				Map<String, String> params = new HashMap<>();
-				params.put("id_eksternal", id_eksternal);
-				params.put("id_jadwal_bs", id_jadwal_bs);
-				params.put("tanggal_bs", tanggal_bs);
-				return params;
-			}
-		};
+			};
 
-		RequestQueue requestQueue = Volley.newRequestQueue(context);
-		requestQueue.add(stringRequest);
+			RequestQueue requestQueue = Volley.newRequestQueue(context);
+			requestQueue.add(stringRequest);
+
+		} else {
+			eksternalBeforeOrderBSView.onErrorMessage("Tambahkan List Software");
+		}
 	}
 
 	@Override
@@ -150,9 +156,9 @@ public class EksternalBeforeOrderBSPresenter implements IEksternalBeforeOrderBSP
 	public void onLoadSemuaData() {
 		dataModelArrayList = databaseHelper.getAllData(DBConstants.C_ID + " ASC");
 		eksternalBeforeOrderBSView.onSetupListView(dataModelArrayList);
-		if (dataModelArrayList.size() < 1) {
-			eksternalBeforeOrderBSView.onErrorMessage("Detail List Software Kosong !");
-		}
+//		if (dataModelArrayList.size() < 1) {
+//			eksternalBeforeOrderBSView.onErrorMessage("Detail List Software Kosong !");
+//		}
 	}
 
 	@Override

@@ -28,6 +28,7 @@ import com.its.scc.Activities.Eksternal.ListSoftware.EksternalListSoftwareActivi
 import com.its.scc.Activities.Eksternal._Home.EksternalHomeActivity;
 import com.its.scc.Adapters.AdapterListSoftware;
 import com.its.scc.Controllers.SessionManager;
+import com.its.scc.DB.DatabaseHelper;
 import com.its.scc.Models.Software;
 import com.its.scc.R;
 
@@ -75,10 +76,14 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 	SessionManager sessionManager;
 	String id_eksternal = "";
 
+	DatabaseHelper databaseHelper;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eksternal_before_order_bs);
+
+		databaseHelper = new DatabaseHelper(this);
 
 		eksternalBeforeOrderBSPresenter = new EksternalBeforeOrderBSPresenter(this, this);
 
@@ -364,6 +369,8 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 
 	@Override
 	public void keHalamanLain() {
+		databaseHelper.deleteAll(); // delete all data in table
+
 		Intent intent = new Intent(getApplicationContext(), EksternalHomeActivity.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(intent);

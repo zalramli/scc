@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
@@ -136,10 +137,10 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.btn_batal) {
-			showDialogBatal();
+			showDialogBatal(); // hapus
 		}
 		if (v.getId() == R.id.btn_selesai) {
-			showDialogSelesai();
+			showDialogSelesai(); // selesai
 		}
 	}
 
@@ -153,6 +154,22 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 
 	@Override
 	public void setNilaiDefault() {
+
+		// warna cardview jika status
+		if (status_bs.equals("Belum Selesai")) {
+			cvItemAdapterListBankSoftware.setCardBackgroundColor(Color.RED);
+		} else if (status_bs.equals("Batal")) {
+			cvItemAdapterListBankSoftware.setCardBackgroundColor(Color.GRAY);
+		}
+
+		if (hak_akses.equals("internal") && status_bs.equals("Belum Selesai")) {
+			btnSelesai.setVisibility(View.VISIBLE);
+			btnBatal.setVisibility(View.GONE);
+		} else if (hak_akses.equals("eksternal") && status_bs.equals("Belum Selesai")) {
+			btnSelesai.setVisibility(View.GONE);
+			btnBatal.setVisibility(View.VISIBLE);
+		}
+
 		tvDetailBs.setText(hari + " ( " + jam_mulai + " - " + jam_selesai + " )");
 		tvTanggalBs.setText(tanggal_bs);
 	}

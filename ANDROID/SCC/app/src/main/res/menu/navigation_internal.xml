@@ -14,7 +14,7 @@
 		android:id="@+id/group2"
 		android:checkableBehavior="single">
 		<item
-			android:id="@+id/bank_software"
+			android:id="@+id/jadwal_bs"
 			android:icon="@drawable/ic_laptop"
 			android:title="Jadwal Bank Software" />
 	</group>
