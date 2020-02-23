@@ -178,11 +178,11 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 		}
 
 		tvDetailBs.setText(hari + " ( " + jam_mulai + " - " + jam_selesai + " )");
-		tvTanggalBs.setText(tanggal_bs);
+		tvTanggalBs.setText("tanggal BS : " + tanggal_bs);
 
-		tvNamaEksternal.setText(nama + " (" + angkatan + ")");
-		tvNoHp.setText(no_hp);
-		tvAkunLine.setText(akun_line);
+		tvNamaEksternal.setText("Nama : " + nama + " (" + angkatan + ")");
+		tvNoHp.setText("No Hp : " + no_hp);
+		tvAkunLine.setText("Line : " + akun_line);
 	}
 
 	@Override
