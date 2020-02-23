@@ -44,6 +44,8 @@ public class SessionManager {
 		editor.putString(HAK_AKSES, hakAkses);
 		editor.apply();
 
+		databaseHelper.deleteAllUser(); // delete all data in table
+
 		long id = databaseHelper.insertInfoUser(
 			"" + username
 		);
@@ -77,6 +79,8 @@ public class SessionManager {
 	public void logout() {
 		editor.clear();
 		editor.commit();
+
+		databaseHelper.deleteAllUser(); // delete all data in table
 
 		Intent intent = new Intent(context, LoginActivity.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -20,8 +20,12 @@ import com.its.scc.Activities._Login.presenter.LoginPresenter;
 import com.its.scc.Activities._Login.view.ILoginView;
 import com.its.scc.Activities._Pendaftaran.PendaftaranActivity;
 import com.its.scc.Controllers.SessionManager;
+import com.its.scc.DB.DBConstants;
+import com.its.scc.DB.DatabaseHelper;
+import com.its.scc.Models.User;
 import com.its.scc.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import es.dmoral.toasty.Toasty;
@@ -37,6 +41,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 	CardView cvLinkDaftar;
 
 	SessionManager sessionManager;
+
+	ArrayList<User> dataModelArrayList;
+	DatabaseHelper databaseHelper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +73,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 				intent = new Intent(getApplicationContext(), InternalHomeActivity.class);
 			} else if (hakAkses.equals("eksternal")) {
 				intent = new Intent(getApplicationContext(), EksternalHomeActivity.class);
+			}
+		}
+
+		databaseHelper = new DatabaseHelper(this);
+		dataModelArrayList = databaseHelper.getAllDataUser(DBConstants.C_USER_ID + " DESC");
+		if (dataModelArrayList.size() > 0) {
+			for (int i = 0; i < dataModelArrayList.size(); i++) {
+				String username = dataModelArrayList.get(i).getUsername();
+				edtUsername.setText(username);
 			}
 		}
 

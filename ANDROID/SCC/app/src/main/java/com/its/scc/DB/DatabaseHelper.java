@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.its.scc.Models.Software;
+import com.its.scc.Models.User;
 
 import java.util.ArrayList;
 
@@ -111,6 +112,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 		db.close();
 		return id;
+	}
+
+	public ArrayList<User> getAllDataUser(String orderBy) {
+
+		ArrayList<User> dataModelArrayList = new ArrayList<>();
+
+		// query for select all
+		String selectQuery = "SELECT * FROM " + DBConstants.TABLE_NAME_USER + " ORDER BY " + orderBy;
+
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor cursor = db.rawQuery(selectQuery, null);
+
+		if (cursor.moveToNext()) {
+
+			do {
+
+				User playerModel = new User();
+
+				int id = cursor.getInt(cursor.getColumnIndex(DBConstants.C_USER_ID));
+				String username = cursor.getString(cursor.getColumnIndex(DBConstants.C_USER_USERNAME));
+
+				playerModel.setId(id);
+				playerModel.setUsername(username);
+
+				dataModelArrayList.add(playerModel);
+
+			} while (cursor.moveToNext());
+
+		}
+
+		db.close();
+		return dataModelArrayList;
 	}
 
 	public void deleteAllUser(){
