@@ -249,4 +249,63 @@ class Bank_software extends REST_Controller
             $this->response($result, 200);
         }
     }
+
+    function on_hapus_post()
+    {
+        // ambil data
+        $kode_bank_s = $this->post('kode_bank_s');
+
+        $where = array(
+            'kode_bank_s'   => $kode_bank_s
+        );
+
+        $hapus =  $this->M_universal->hapus_data($where, 'bank_software');
+
+        if ($hapus) {
+
+            // hapus detail
+            $hapus =  $this->M_universal->hapus_data($where, 'detail_bs');
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "Berhasil";
+            $this->response($result, 200);
+        } else {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "Coba Lagi, Server Error";
+            $this->response($result, 200);
+        }
+    }
+
+    function on_selesai_post()
+    {
+        // ambil data
+        $kode_bank_s = $this->post('kode_bank_s');
+
+        $where = array(
+            'kode_bank_s'   => $kode_bank_s
+        );
+
+        $data = array(
+            'status_bs'   => "Selesai"
+        );
+
+        $update =  $this->M_universal->update_data($where, 'bank_software', $data);
+
+        if ($update) {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "Berhasil";
+            $this->response($result, 200);
+        } else {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "Coba Lagi, Server Error";
+            $this->response($result, 200);
+        }
+    }
 }

@@ -105,11 +105,93 @@ public class EksternalDetailBankSoftwarePresenter implements IEksternalDetailBan
 
 	@Override
 	public void onHapus(String kode_bank_s) {
+		String base_url = baseUrl.getUrlData();
+		String URL_DATA = base_url + "eksternal/bank_software/on_hapus"; // url http request
 
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
+			new Response.Listener<String>() {
+				@Override
+				public void onResponse(String response) {
+					try {
+
+						JSONObject jsonObject = new JSONObject(response);
+						String success = jsonObject.getString("success");
+						String message = jsonObject.getString("message");
+
+						if (success.equals("1")) {
+							eksternalDetailBankSoftwareView.onSuccessMessage(message);
+							eksternalDetailBankSoftwareView.backPressed();
+						} else {
+							eksternalDetailBankSoftwareView.onErrorMessage(message);
+						}
+
+					} catch (JSONException e) {
+						e.printStackTrace();
+						eksternalDetailBankSoftwareView.onErrorMessage("Kesalahan Menerima Data : " + e.toString());
+					}
+				}
+			},
+			new Response.ErrorListener() {
+				@Override
+				public void onErrorResponse(VolleyError error) {
+					eksternalDetailBankSoftwareView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
+				}
+			}) {
+			@Override
+			protected Map<String, String> getParams() throws AuthFailureError {
+				Map<String, String> params = new HashMap<>();
+				params.put("kode_bank_s", kode_bank_s);
+				return params;
+			}
+		};
+
+		RequestQueue requestQueue = Volley.newRequestQueue(context);
+		requestQueue.add(stringRequest);
 	}
 
 	@Override
 	public void onSelesai(String kode_bank_s) {
+		String base_url = baseUrl.getUrlData();
+		String URL_DATA = base_url + "eksternal/bank_software/on_selesai"; // url http request
 
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
+			new Response.Listener<String>() {
+				@Override
+				public void onResponse(String response) {
+					try {
+
+						JSONObject jsonObject = new JSONObject(response);
+						String success = jsonObject.getString("success");
+						String message = jsonObject.getString("message");
+
+						if (success.equals("1")) {
+							eksternalDetailBankSoftwareView.onSuccessMessage(message);
+							eksternalDetailBankSoftwareView.backPressed();
+						} else {
+							eksternalDetailBankSoftwareView.onErrorMessage(message);
+						}
+
+					} catch (JSONException e) {
+						e.printStackTrace();
+						eksternalDetailBankSoftwareView.onErrorMessage("Kesalahan Menerima Data : " + e.toString());
+					}
+				}
+			},
+			new Response.ErrorListener() {
+				@Override
+				public void onErrorResponse(VolleyError error) {
+					eksternalDetailBankSoftwareView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
+				}
+			}) {
+			@Override
+			protected Map<String, String> getParams() throws AuthFailureError {
+				Map<String, String> params = new HashMap<>();
+				params.put("kode_bank_s", kode_bank_s);
+				return params;
+			}
+		};
+
+		RequestQueue requestQueue = Volley.newRequestQueue(context);
+		requestQueue.add(stringRequest);
 	}
 }
