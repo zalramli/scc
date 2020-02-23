@@ -135,14 +135,14 @@
 						android:orientation="horizontal">
 
 						<Button
-							android:id="@+id/btn_batal"
+							android:id="@+id/btn_hapus"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
 							android:layout_marginRight="5dp"
 							android:layout_weight="1"
 							android:drawableStart="@drawable/ic_close"
 							android:drawableLeft="@drawable/ic_close"
-							android:text="Batal"
+							android:text="Hapus"
 							android:visibility="gone" />
 
 						<Button

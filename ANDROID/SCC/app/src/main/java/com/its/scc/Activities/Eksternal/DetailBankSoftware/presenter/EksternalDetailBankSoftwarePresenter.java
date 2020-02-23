@@ -104,7 +104,7 @@ public class EksternalDetailBankSoftwarePresenter implements IEksternalDetailBan
 	}
 
 	@Override
-	public void onBatal(String kode_bank_s) {
+	public void onHapus(String kode_bank_s) {
 
 	}
 

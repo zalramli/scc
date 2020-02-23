@@ -1,5 +1,6 @@
 package com.its.scc.Activities.Eksternal.DetailBankSoftware;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -7,10 +8,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -64,7 +67,7 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 
 	CardView cvItemAdapterListBankSoftware;
 
-	Button btnBatal, btnSelesai;
+	Button btnHapus, btnSelesai;
 
 	TextView tvDetailBs, tvTanggalBs, tvNamaEksternal, tvNoHp, tvAkunLine;
 
@@ -100,7 +103,7 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 		tvNoHp = findViewById(R.id.tv_no_hp);
 		tvAkunLine = findViewById(R.id.tv_akun_line);
 
-		btnBatal = findViewById(R.id.btn_batal);
+		btnHapus = findViewById(R.id.btn_hapus);
 		btnSelesai = findViewById(R.id.btn_selesai);
 
 		eksternalDetailBankSoftwarePresenter = new EksternalDetailBankSoftwarePresenter(this, this);
@@ -134,14 +137,14 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 		setNilaiDefault();
 		initActionBar();
 
-		btnBatal.setOnClickListener(this);
+		btnHapus.setOnClickListener(this);
 		btnSelesai.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
-		if (v.getId() == R.id.btn_batal) {
-			showDialogBatal(); // hapus
+		if (v.getId() == R.id.btn_hapus) {
+			showDialogHapus(); // hapus
 		}
 		if (v.getId() == R.id.btn_selesai) {
 			showDialogSelesai(); // selesai
@@ -168,10 +171,10 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 
 		if (hak_akses.equals("internal") && status_bs.equals("Belum Selesai")) {
 			btnSelesai.setVisibility(View.VISIBLE);
-			btnBatal.setVisibility(View.GONE);
+			btnHapus.setVisibility(View.GONE);
 		} else if (hak_akses.equals("eksternal") && status_bs.equals("Belum Selesai")) {
 			btnSelesai.setVisibility(View.GONE);
-			btnBatal.setVisibility(View.VISIBLE);
+			btnHapus.setVisibility(View.VISIBLE);
 		}
 
 		tvDetailBs.setText(hari + " ( " + jam_mulai + " - " + jam_selesai + " )");
@@ -210,13 +213,63 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 	}
 
 	@Override
-	public void showDialogBatal() {
+	public void showDialogHapus() {
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+			this);
+		alertDialogBuilder.setTitle("Ingin Membatalkan dan Hapus Bank Software ?");
+		alertDialogBuilder
+			.setMessage("Klik Ya Untuk Hapus Bank Software !")
+			.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
 
+					try {
+
+						eksternalDetailBankSoftwarePresenter.onHapus(kode_bank_s);
+
+					} catch (Exception e) {
+						onErrorMessage("Terjadi Kesalahan Hapus " + e.toString());
+					}
+
+				}
+			})
+			.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+					dialog.cancel();
+				}
+			});
+
+		AlertDialog alertDialog = alertDialogBuilder.create();
+		alertDialog.show();
 	}
 
 	@Override
 	public void showDialogSelesai() {
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+			this);
+		alertDialogBuilder.setTitle("Ingin Menyelesaikan Bank Software ?");
+		alertDialogBuilder
+			.setMessage("Klik Ya Untuk Menyelesaikan Bank Software !")
+			.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
 
+					try {
+
+						eksternalDetailBankSoftwarePresenter.onSelesai(kode_bank_s);
+
+					} catch (Exception e) {
+						onErrorMessage("Terjadi Kesalahan Update " + e.toString());
+					}
+
+				}
+			})
+			.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+					dialog.cancel();
+				}
+			});
+
+		AlertDialog alertDialog = alertDialogBuilder.create();
+		alertDialog.show();
 	}
 
 	@Override
