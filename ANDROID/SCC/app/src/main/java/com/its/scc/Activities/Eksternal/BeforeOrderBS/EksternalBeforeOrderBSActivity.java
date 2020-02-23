@@ -381,6 +381,7 @@ public class EksternalBeforeOrderBSActivity extends AppCompatActivity implements
 		switch (item.getItemId()) {
 
 			case android.R.id.home:
+				databaseHelper.deleteAll(); // delete all data in table
 				onBackPressed();
 				break;
 		}
