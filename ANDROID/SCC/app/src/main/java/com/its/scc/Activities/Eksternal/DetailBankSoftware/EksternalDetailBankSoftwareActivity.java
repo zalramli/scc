@@ -1,15 +1,34 @@
 package com.its.scc.Activities.Eksternal.DetailBankSoftware;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.its.scc.Activities.Eksternal.DetailBankSoftware.presenter.EksternalDetailBankSoftwarePresenter;
+import com.its.scc.Activities.Eksternal.DetailBankSoftware.presenter.IEksternalDetailBankSoftwarePresenter;
 import com.its.scc.Activities.Eksternal.DetailBankSoftware.view.IEksternalDetailBankSoftwareView;
+import com.its.scc.Activities.Eksternal._Home.EksternalHomeActivity;
+import com.its.scc.Adapters.AdapterListSoftware;
+import com.its.scc.Controllers.SessionManager;
 import com.its.scc.Models.Software;
 import com.its.scc.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import es.dmoral.toasty.Toasty;
 
 public class EksternalDetailBankSoftwareActivity extends AppCompatActivity implements View.OnClickListener, IEksternalDetailBankSoftwareView {
 
@@ -30,10 +49,32 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 
 	String kode_bank_s, id_eksternal, nama, no_hp, akun_line, angkatan, foto, id_jadwal_bs, hari, jam_mulai, jam_selesai, tanggal_booking, tanggal_bs, status_bs;
 
+	IEksternalDetailBankSoftwarePresenter eksternalDetailBankSoftwarePresenter;
+
+	private AdapterListSoftware adapterListSoftware;
+	private RecyclerView recyclerView;
+
+	Toolbar toolbar;
+
+	private SwipeRefreshLayout swipeRefreshLayout;
+
+	SessionManager sessionManager;
+	String hak_akses = "";
+
+	CardView cvItemAdapterListBankSoftware;
+
+	Button btnBatal, btnSelesai;
+
+	TextView tvDetailBs, tvTanggalBs;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eksternal_detail_bank_software);
+
+		sessionManager = new SessionManager(this);
+		HashMap<String, String> user = sessionManager.getDataUser();
+		hak_akses = user.get(sessionManager.HAK_AKSES);
 
 		kode_bank_s = getIntent().getStringExtra(EXTRA_KODE_BANK_S);
 		id_eksternal = getIntent().getStringExtra(EXTRA_ID_EKSTERNAL);
@@ -50,37 +91,96 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 		tanggal_bs = getIntent().getStringExtra(EXTRA_TANGGAL_BS);
 		status_bs = getIntent().getStringExtra(EXTRA_STATUS_BS);
 
+		cvItemAdapterListBankSoftware = findViewById(R.id.cv_item_adapter_list_bank_software);
 
+		tvDetailBs = findViewById(R.id.tv_detail_bs);
+		tvTanggalBs = findViewById(R.id.tv_tanggal_bs);
+		btnBatal = findViewById(R.id.btn_batal);
+		btnSelesai = findViewById(R.id.btn_selesai);
+
+		eksternalDetailBankSoftwarePresenter = new EksternalDetailBankSoftwarePresenter(this, this);
+		eksternalDetailBankSoftwarePresenter.onLoadSemuaData(kode_bank_s);
+
+		recyclerView = findViewById(R.id.recycle_view);
+
+		toolbar = findViewById(R.id.toolbar);
+
+		swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+
+		swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+			@Override
+			public void onRefresh() {
+				// Your code to make your refresh action
+				eksternalDetailBankSoftwarePresenter.onLoadSemuaData(kode_bank_s);
+
+				// CallYourRefreshingMethod();
+				final Handler handler = new Handler();
+				handler.postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						if (swipeRefreshLayout.isRefreshing()) {
+							swipeRefreshLayout.setRefreshing(false);
+						}
+					}
+				}, 1000);
+			}
+		});
+
+		setNilaiDefault();
+		initActionBar();
+
+		btnBatal.setOnClickListener(this);
+		btnSelesai.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
-
+		if (v.getId() == R.id.btn_batal) {
+			showDialogBatal();
+		}
+		if (v.getId() == R.id.btn_selesai) {
+			showDialogSelesai();
+		}
 	}
 
 	@Override
 	public void initActionBar() {
-
+		setSupportActionBar(toolbar);
+		if (getSupportActionBar() != null) {
+			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		}
 	}
 
 	@Override
 	public void setNilaiDefault() {
-
+		tvDetailBs.setText(hari + " ( " + jam_mulai + " - " + jam_selesai + " )");
 	}
 
 	@Override
 	public void onSetupListView(ArrayList<Software> dataModelArrayList) {
+		adapterListSoftware = new AdapterListSoftware(this, dataModelArrayList);
+		GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
+		recyclerView.setAdapter(adapterListSoftware);
+		recyclerView.setLayoutManager(layoutManager);
+		recyclerView.setNestedScrollingEnabled(true);
+		adapterListSoftware.notifyDataSetChanged();
 
+		adapterListSoftware.setOnItemClickListener(new AdapterListSoftware.ClickListener() {
+			@Override
+			public void onClick(View view, int position) {
+
+			}
+		});
 	}
 
 	@Override
 	public void onSuccessMessage(String message) {
-
+		Toasty.success(this, message, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onErrorMessage(String message) {
-
+		Toasty.error(this, message, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
@@ -95,11 +195,34 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 
 	@Override
 	public void backPressed() {
-
+		Intent intent = new Intent(getApplicationContext(), EksternalHomeActivity.class);
+//		intent.putExtra(EksternalHomeActivity.EXTRA_TUJUAN, "kosong");
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
 	}
 
 	@Override
 	public void keHalamanLain() {
+		Intent intent = new Intent(getApplicationContext(), EksternalHomeActivity.class);
+//		intent.putExtra(EksternalHomeActivity.EXTRA_TUJUAN, "kosong");
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
+	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+
+			case android.R.id.home:
+				onBackPressed();
+				break;
+		}
+		return true;
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		eksternalDetailBankSoftwarePresenter.onLoadSemuaData(kode_bank_s);
 	}
 }
