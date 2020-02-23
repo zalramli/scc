@@ -66,7 +66,7 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 
 	Button btnBatal, btnSelesai;
 
-	TextView tvDetailBs, tvTanggalBs;
+	TextView tvDetailBs, tvTanggalBs, tvNamaEksternal, tvNoHp, tvAkunLine;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +96,10 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 
 		tvDetailBs = findViewById(R.id.tv_detail_bs);
 		tvTanggalBs = findViewById(R.id.tv_tanggal_bs);
+		tvNamaEksternal = findViewById(R.id.tv_nama_eksternal);
+		tvNoHp = findViewById(R.id.tv_no_hp);
+		tvAkunLine = findViewById(R.id.tv_akun_line);
+
 		btnBatal = findViewById(R.id.btn_batal);
 		btnSelesai = findViewById(R.id.btn_selesai);
 
@@ -172,6 +176,10 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 
 		tvDetailBs.setText(hari + " ( " + jam_mulai + " - " + jam_selesai + " )");
 		tvTanggalBs.setText(tanggal_bs);
+
+		tvNamaEksternal.setText(nama + " (" + angkatan + ")");
+		tvNoHp.setText(no_hp);
+		tvAkunLine.setText(akun_line);
 	}
 
 	@Override
