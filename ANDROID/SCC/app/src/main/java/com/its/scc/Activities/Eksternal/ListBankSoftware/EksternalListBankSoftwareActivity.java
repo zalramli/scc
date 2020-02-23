@@ -6,12 +6,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.its.scc.Activities.Eksternal.DetailBankSoftware.EksternalDetailBankSoftwareActivity;
 import com.its.scc.Activities.Eksternal.ListBankSoftware.presenter.EksternalListBankSoftwarePresenter;
 import com.its.scc.Activities.Eksternal.ListBankSoftware.presenter.IEksternalListBankSoftwarePresenter;
 import com.its.scc.Activities.Eksternal.ListBankSoftware.view.IEksternalListBankSoftwareView;
@@ -56,7 +58,7 @@ public class EksternalListBankSoftwareActivity extends AppCompatActivity impleme
 		id = user.get(sessionManager.ID_USER);
 		hakAkses = user.get(sessionManager.HAK_AKSES);
 
-		eksternalListBankSoftwarePresenter = new EksternalListBankSoftwarePresenter(this,this);
+		eksternalListBankSoftwarePresenter = new EksternalListBankSoftwarePresenter(this, this);
 		eksternalListBankSoftwarePresenter.inisiasiAwal(id, hakAkses, tujuan);
 
 		recyclerView = findViewById(R.id.recycle_view);
@@ -111,21 +113,22 @@ public class EksternalListBankSoftwareActivity extends AppCompatActivity impleme
 		adapterListBankSoftware.setOnItemClickListener(new AdapterListBankSoftware.ClickListener() {
 			@Override
 			public void onClick(View view, int position) {
-				String x = dataModelArrayList.get(position).getKode_bank_s();
-				onSuccessMessage(x);
-//				Intent intent = new Intent(getApplicationContext(), EksternalDetailProveActivity.class);
-//				intent.putExtra(EksternalDetailProveActivity.EXTRA_ID_PROVE, dataModelArrayList.get(position).getId_prove());
-//				intent.putExtra(EksternalDetailProveActivity.EXTRA_ID_JADWAL_PROVE, dataModelArrayList.get(position).getId_jadwal_prove());
-//				intent.putExtra(EksternalDetailProveActivity.EXTRA_NAMA_MATERI_PROVE, dataModelArrayList.get(position).getNama_materi_prove());
-//				intent.putExtra(EksternalDetailProveActivity.EXTRA_HARI, dataModelArrayList.get(position).getHari());
-//				intent.putExtra(EksternalDetailProveActivity.EXTRA_JAM_MULAI, dataModelArrayList.get(position).getJam_mulai());
-//				intent.putExtra(EksternalDetailProveActivity.EXTRA_JAM_SELESAI, dataModelArrayList.get(position).getJam_selesai());
-//				intent.putExtra(EksternalDetailProveActivity.EXTRA_TANGGAL_PROVE, dataModelArrayList.get(position).getTanggal_prove());
-//				intent.putExtra(EksternalDetailProveActivity.EXTRA_KODE_PROVE, dataModelArrayList.get(position).getKode_prove());
-//				intent.putExtra(EksternalDetailProveActivity.EXTRA_KATA_SANDI, dataModelArrayList.get(position).getKata_sandi());
-//				intent.putExtra(EksternalDetailProveActivity.EXTRA_NAMA_INTERNAL, dataModelArrayList.get(position).getNama_internal());
-//				intent.putExtra(EksternalDetailProveActivity.EXTRA_STATUS_PROVE, dataModelArrayList.get(position).getStatus_prove());
-//				startActivity(intent);
+				Intent intent = new Intent(getApplicationContext(), EksternalDetailBankSoftwareActivity.class);
+				intent.putExtra(EksternalDetailBankSoftwareActivity.EXTRA_KODE_BANK_S, dataModelArrayList.get(position).getKode_bank_s());
+				intent.putExtra(EksternalDetailBankSoftwareActivity.EXTRA_ID_EKSTERNAL, dataModelArrayList.get(position).getId_eksternal());
+				intent.putExtra(EksternalDetailBankSoftwareActivity.EXTRA_NAMA, dataModelArrayList.get(position).getNama());
+				intent.putExtra(EksternalDetailBankSoftwareActivity.EXTRA_NO_HP, dataModelArrayList.get(position).getNo_hp());
+				intent.putExtra(EksternalDetailBankSoftwareActivity.EXTRA_AKUN_LINE, dataModelArrayList.get(position).getAkun_line());
+				intent.putExtra(EksternalDetailBankSoftwareActivity.EXTRA_ANGKATAN, dataModelArrayList.get(position).getAngkatan());
+				intent.putExtra(EksternalDetailBankSoftwareActivity.EXTRA_FOTO, dataModelArrayList.get(position).getFoto());
+				intent.putExtra(EksternalDetailBankSoftwareActivity.EXTRA_ID_JADWAL_BS, dataModelArrayList.get(position).getId_jadwal_bs());
+				intent.putExtra(EksternalDetailBankSoftwareActivity.EXTRA_HARI, dataModelArrayList.get(position).getHari());
+				intent.putExtra(EksternalDetailBankSoftwareActivity.EXTRA_JAM_MULAI, dataModelArrayList.get(position).getJam_mulai());
+				intent.putExtra(EksternalDetailBankSoftwareActivity.EXTRA_JAM_SELESAI, dataModelArrayList.get(position).getJam_selesai());
+				intent.putExtra(EksternalDetailBankSoftwareActivity.EXTRA_TANGGAL_BOOKING, dataModelArrayList.get(position).getTanggal_booking());
+				intent.putExtra(EksternalDetailBankSoftwareActivity.EXTRA_TANGGAL_BS, dataModelArrayList.get(position).getTanggal_bs());
+				intent.putExtra(EksternalDetailBankSoftwareActivity.EXTRA_STATUS_BS, dataModelArrayList.get(position).getStatus_bs());
+				startActivity(intent);
 			}
 		});
 	}
