@@ -224,7 +224,7 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 
 					try {
 
-						eksternalDetailBankSoftwarePresenter.onHapus(kode_bank_s);
+						// eksternalDetailBankSoftwarePresenter.onHapus(kode_bank_s);
 
 					} catch (Exception e) {
 						onErrorMessage("Terjadi Kesalahan Hapus " + e.toString());
@@ -254,7 +254,7 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 
 					try {
 
-						eksternalDetailBankSoftwarePresenter.onSelesai(kode_bank_s);
+						// eksternalDetailBankSoftwarePresenter.onSelesai(kode_bank_s);
 
 					} catch (Exception e) {
 						onErrorMessage("Terjadi Kesalahan Update " + e.toString());
