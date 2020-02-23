@@ -195,10 +195,7 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 
 	@Override
 	public void backPressed() {
-		Intent intent = new Intent(getApplicationContext(), EksternalHomeActivity.class);
-//		intent.putExtra(EksternalHomeActivity.EXTRA_TUJUAN, "kosong");
-		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		startActivity(intent);
+		onBackPressed();
 	}
 
 	@Override
