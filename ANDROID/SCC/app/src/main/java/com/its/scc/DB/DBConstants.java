@@ -29,11 +29,11 @@ public class DBConstants {
 	public static final String TABLE_NAME_USER = "USER";
 
 	public static final String C_USER_ID = "USER_ID";
-	public static final String C_USER_NAMA = "USER_NAMA";
+	public static final String C_USER_USERNAME = "USER_USERNAME";
 
 	public static final String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_NAME_USER + " ("
 		+ C_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-		+ C_USER_NAMA + " TEXT"
+		+ C_USER_USERNAME + " TEXT"
 		+ ");";
 	// END untuk Tabel USER
 }

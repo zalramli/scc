@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.widget.Toast;
 
 import com.its.scc.Activities._Login.LoginActivity;
+import com.its.scc.DB.DatabaseHelper;
 
 import java.util.HashMap;
 
@@ -24,11 +25,15 @@ public class SessionManager {
 	public static final String USERNAME = "USERNAME";
 	public static final String HAK_AKSES = "HAK_AKSES";
 
+	DatabaseHelper databaseHelper;
+
 	public SessionManager(Context context) {
 		this.context = context;
 
 		sharedPreferences = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
 		editor = sharedPreferences.edit();
+
+		databaseHelper = new DatabaseHelper(context);
 	}
 
 	public void setSessionLogin(String id_user, String nama, String username, String hakAkses) {
@@ -38,6 +43,10 @@ public class SessionManager {
 		editor.putString(USERNAME, username);
 		editor.putString(HAK_AKSES, hakAkses);
 		editor.apply();
+
+		long id = databaseHelper.insertInfoUser(
+			"" + username
+		);
 	}
 
 	public boolean getStatusLogin() {

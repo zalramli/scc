@@ -22,12 +22,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 
 		db.execSQL(DBConstants.CREATE_TABLE);
+
+		db.execSQL(DBConstants.CREATE_TABLE_USER);
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
 		db.execSQL("DROP TABLE IF EXISTS " + DBConstants.TABLE_NAME);
+
+		db.execSQL("DROP TABLE IF EXISTS " + DBConstants.TABLE_NAME_USER);
 		onCreate(db);
 	}
 
@@ -91,6 +95,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 		SQLiteDatabase db = getWritableDatabase();
 		db.delete(DBConstants.TABLE_NAME, null, null);
+		db.close();
+	}
+
+	// Start untuk user
+	// untuk insert info
+	public long insertInfoUser(String username) {
+
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+
+		values.put(DBConstants.C_USER_USERNAME, username);
+
+		long id = db.insert(DBConstants.TABLE_NAME_USER, null, values);
+
+		db.close();
+		return id;
+	}
+
+	public void deleteAllUser(){
+
+		SQLiteDatabase db = getWritableDatabase();
+		db.delete(DBConstants.TABLE_NAME_USER, null, null);
 		db.close();
 	}
 }
