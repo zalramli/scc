@@ -16,8 +16,8 @@ LIMIT 60;
 
 
 CREATE VIEW list_bank_software AS
-SELECT bs.kode_bank_s , bs.id_eksternal , e.nama , e.no_hp , e.akun_line , e.angkatan ,e.foto , bs.id_jadwal_bs , jbs.hari , jbs.jam_mulai , jbs.jam_selesai , bs.tanggal_booking , bs.tanggal_bs , bs.status_bs
-FROM bank_software bs JOIN jadwal_bank_software jbs USING(id_jadwal_bs) JOIN eksternal e USING(id_eksternal)
+SELECT bs.kode_bank_s , bs.id_eksternal , e.nama , e.no_hp , e.akun_line , e.angkatan ,e.foto , bs.id_jadwal_bs , jbs.hari , jbs.jam_mulai , jbs.jam_selesai , bs.tanggal_booking , bs.tanggal_bs , bs.status_bs, jbs.id_internal , i.nama AS nama_internal
+FROM bank_software bs JOIN jadwal_bank_software jbs USING(id_jadwal_bs) JOIN internal i USING(id_internal) JOIN eksternal e USING(id_eksternal)
 ORDER BY 
 bs.tanggal_bs DESC,
 bs.tanggal_booking DESC,

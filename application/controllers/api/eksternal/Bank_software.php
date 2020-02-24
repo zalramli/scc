@@ -111,7 +111,10 @@ class Bank_software extends REST_Controller
             );
             $query = $this->M_universal->get_data('list_bank_software', $where);
         } else if ($hak_akses == "internal") {
-            $query = $this->M_universal->tampil_data('list_bank_software');
+            $where = array(
+                'id_internal' => $id
+            );
+            $query = $this->M_universal->get_data('list_bank_software', $where);
         }
 
         // variable array
