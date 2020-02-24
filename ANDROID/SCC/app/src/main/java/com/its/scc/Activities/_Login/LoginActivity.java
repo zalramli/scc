@@ -81,7 +81,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 		if (dataModelArrayList.size() > 0) {
 			for (int i = 0; i < dataModelArrayList.size(); i++) {
 				String username = dataModelArrayList.get(i).getUsername();
+				String password = dataModelArrayList.get(i).getPassword();
 				edtUsername.setText(username);
+				edtPassword.setText(password);
 			}
 		}
 

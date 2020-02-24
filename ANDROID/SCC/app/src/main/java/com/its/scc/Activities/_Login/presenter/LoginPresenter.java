@@ -83,7 +83,7 @@ public class LoginPresenter implements ILoginPresenter {
 
 								}
 
-								sessionManager.setSessionLogin(id_user, nama, username, hakAkses);
+								sessionManager.setSessionLogin(id_user, nama, username, hakAkses, password);
 
 								intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 								context.startActivity(intent);

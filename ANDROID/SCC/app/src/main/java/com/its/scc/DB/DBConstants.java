@@ -30,10 +30,12 @@ public class DBConstants {
 
 	public static final String C_USER_ID = "USER_ID";
 	public static final String C_USER_USERNAME = "USER_USERNAME";
+	public static final String C_USER_PASSWORD = "C_USER_PASSWORD";
 
 	public static final String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_NAME_USER + " ("
 		+ C_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-		+ C_USER_USERNAME + " TEXT"
+		+ C_USER_USERNAME + " TEXT , "
+		+ C_USER_PASSWORD + " TEXT"
 		+ ");";
 	// END untuk Tabel USER
 }

@@ -36,7 +36,7 @@ public class SessionManager {
 		databaseHelper = new DatabaseHelper(context);
 	}
 
-	public void setSessionLogin(String id_user, String nama, String username, String hakAkses) {
+	public void setSessionLogin(String id_user, String nama, String username, String hakAkses, String password) {
 		editor.putBoolean(STATUS_LOGIN, true);
 		editor.putString(ID_USER, id_user);
 		editor.putString(NAMA, nama);
@@ -47,7 +47,8 @@ public class SessionManager {
 		databaseHelper.deleteAllUser(); // delete all data in table
 
 		long id = databaseHelper.insertInfoUser(
-			"" + username
+			"" + username,
+			"" + password
 		);
 	}
 

@@ -92,7 +92,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.close();
 	}
 
-	public void deleteAll(){
+	public void deleteAll() {
 
 		SQLiteDatabase db = getWritableDatabase();
 		db.delete(DBConstants.TABLE_NAME, null, null);
@@ -101,12 +101,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	// Start untuk user
 	// untuk insert info
-	public long insertInfoUser(String username) {
+	public long insertInfoUser(String username, String password) {
 
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
 
 		values.put(DBConstants.C_USER_USERNAME, username);
+		values.put(DBConstants.C_USER_PASSWORD, password);
 
 		long id = db.insert(DBConstants.TABLE_NAME_USER, null, values);
 
@@ -132,9 +133,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 				int id = cursor.getInt(cursor.getColumnIndex(DBConstants.C_USER_ID));
 				String username = cursor.getString(cursor.getColumnIndex(DBConstants.C_USER_USERNAME));
+				String password = cursor.getString(cursor.getColumnIndex(DBConstants.C_USER_PASSWORD));
 
 				playerModel.setId(id);
 				playerModel.setUsername(username);
+				playerModel.setPassword(password);
 
 				dataModelArrayList.add(playerModel);
 
@@ -146,7 +149,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		return dataModelArrayList;
 	}
 
-	public void deleteAllUser(){
+	public void deleteAllUser() {
 
 		SQLiteDatabase db = getWritableDatabase();
 		db.delete(DBConstants.TABLE_NAME_USER, null, null);
