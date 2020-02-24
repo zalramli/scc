@@ -83,6 +83,62 @@ class Jadwal_prove extends CI_Controller {
         redirect('admin/jadwal_prove/jadwal/'.$id_internal);
 
     }
+    
+    function hapus_jadwal_senin()
+    {
+        $id_jadwal_prove = $this->input->post('id');
+
+        $where = array(
+            'id_jadwal_prove' => $id_jadwal_prove
+        );
+        
+        $this->M_crud->hapus_data($where, 'jadwal_prove');
+    }
+    
+    function hapus_jadwal_selasa()
+    {
+        $id_jadwal_prove = $this->input->post('id');
+
+        $where = array(
+            'id_jadwal_prove' => $id_jadwal_prove
+        );
+        
+        $this->M_crud->hapus_data($where, 'jadwal_prove');
+    }
+    
+    function hapus_jadwal_rabu()
+    {
+        $id_jadwal_prove = $this->input->post('id');
+
+        $where = array(
+            'id_jadwal_prove' => $id_jadwal_prove
+        );
+        
+        $this->M_crud->hapus_data($where, 'jadwal_prove');
+    }
+    
+    function hapus_jadwal_kamis()
+    {
+        $id_jadwal_prove = $this->input->post('id');
+
+        $where = array(
+            'id_jadwal_prove' => $id_jadwal_prove
+        );
+        
+        $this->M_crud->hapus_data($where, 'jadwal_prove');
+    }
+    
+    function hapus_jadwal_jumat()
+    {
+        $id_jadwal_prove = $this->input->post('id');
+
+        $where = array(
+            'id_jadwal_prove' => $id_jadwal_prove
+        );
+        
+        $this->M_crud->hapus_data($where, 'jadwal_prove');
+    }
+    
     function update_jadwal_senin()
     {
         $id_prove = $this->input->post('id');
