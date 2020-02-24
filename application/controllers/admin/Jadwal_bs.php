@@ -70,6 +70,61 @@ class Jadwal_bs extends CI_Controller
         $this->session->set_flashdata('success', 'Ditambahkan');
         redirect('admin/jadwal_bs');
     }
+    
+    function hapus_jadwal_senin()
+    {
+        $id_jadwal_bs = $this->input->post('id');
+
+        $where = array(
+            'id_jadwal_bs' => $id_jadwal_bs
+        );
+        
+        $this->M_crud->hapus_data($where, 'jadwal_bank_software');
+    }
+    
+    function hapus_jadwal_selasa()
+    {
+        $id_jadwal_bs = $this->input->post('id');
+
+        $where = array(
+            'id_jadwal_bs' => $id_jadwal_bs
+        );
+        
+        $this->M_crud->hapus_data($where, 'jadwal_bank_software');
+    }
+    
+    function hapus_jadwal_rabu()
+    {
+        $id_jadwal_bs = $this->input->post('id');
+
+        $where = array(
+            'id_jadwal_bs' => $id_jadwal_bs
+        );
+        
+        $this->M_crud->hapus_data($where, 'jadwal_bank_software');
+    }
+    
+    function hapus_jadwal_kamis()
+    {
+        $id_jadwal_bs = $this->input->post('id');
+
+        $where = array(
+            'id_jadwal_bs' => $id_jadwal_bs
+        );
+        
+        $this->M_crud->hapus_data($where, 'jadwal_bank_software');
+    }
+    
+    function hapus_jadwal_jumat()
+    {
+        $id_jadwal_bs = $this->input->post('id');
+
+        $where = array(
+            'id_jadwal_bs' => $id_jadwal_bs
+        );
+        
+        $this->M_crud->hapus_data($where, 'jadwal_bank_software');
+    }
 
     function update_jadwal_senin()
     {

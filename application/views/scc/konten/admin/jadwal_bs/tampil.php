@@ -119,14 +119,18 @@
 							foreach ($record_senin as $data_senin) :
 							?>
 								<li class="list-group-item" id="table1">
+								   
 									<?= $data_senin->jam_mulai . ' - ' . $data_senin->jam_selesai ?>
-									<select id="<?= $data_senin->id_jadwal_bs ?>" class="float-right status_senin">
+									<select id="<?= $data_senin->id_jadwal_bs ?>" class="status_senin">
 										<option value="Aktif" <?php if ($data_senin->status_aktif == 'Aktif') echo 'selected'; ?>>Aktif
 										</option>
 										<option value="Tidak Aktif" <?php if ($data_senin->status_aktif == 'Tidak Aktif') echo 'selected'; ?>>
 											Tidak Aktif
 										</option>
 									</select>
+									<a href="#" class="btn-sm btn-danger btn_senin" data-idbs="<?= $data_senin->id_jadwal_bs ?>">
+										<i class="fa fa-trash"></i></a>
+									
 								</li>
 							<?php endforeach; ?>
 
@@ -145,13 +149,15 @@
 							?>
 								<li class="list-group-item">
 									<?= $data_selasa->jam_mulai . ' - ' . $data_selasa->jam_selesai ?>
-									<select id="<?= $data_selasa->id_jadwal_bs ?>" class="float-right status_selasa">
+									<select id="<?= $data_selasa->id_jadwal_bs ?>" class="status_selasa">
 										<option value="Aktif" <?php if ($data_selasa->status_aktif == 'Aktif') echo 'selected'; ?>>Aktif
 										</option>
 										<option value="Tidak Aktif" <?php if ($data_selasa->status_aktif == 'Tidak Aktif') echo 'selected'; ?>>
 											Tidak Aktif
 										</option>
 									</select>
+									<a href="#" class="btn-sm btn-danger btn_selasa" data-idbs="<?= $data_selasa->id_jadwal_bs ?>">
+										<i class="fa fa-trash"></i></a>
 								</li>
 							<?php endforeach; ?>
 
@@ -170,13 +176,15 @@
 							?>
 								<li class="list-group-item">
 									<?= $data_rabu->jam_mulai . ' - ' . $data_rabu->jam_selesai ?>
-									<select id="<?= $data_rabu->id_jadwal_bs ?>" class="float-right status_rabu">
+									<select id="<?= $data_rabu->id_jadwal_bs ?>" class="status_rabu">
 										<option value="Aktif" <?php if ($data_rabu->status_aktif == 'Aktif') echo 'selected'; ?>>Aktif
 										</option>
 										<option value="Tidak Aktif" <?php if ($data_rabu->status_aktif == 'Tidak Aktif') echo 'selected'; ?>>
 											Tidak Aktif
 										</option>
 									</select>
+									<a href="#" class="btn-sm btn-danger btn_rabu" data-idbs="<?= $data_rabu->id_jadwal_bs ?>">
+										<i class="fa fa-trash"></i></a>
 								</li>
 							<?php endforeach; ?>
 
@@ -195,13 +203,15 @@
 							?>
 								<li class="list-group-item">
 									<?= $data_kamis->jam_mulai . ' - ' . $data_kamis->jam_selesai ?>
-									<select id="<?= $data_kamis->id_jadwal_bs ?>" class="float-right status_kamis">
+									<select id="<?= $data_kamis->id_jadwal_bs ?>" class="status_kamis">
 										<option value="Aktif" <?php if ($data_kamis->status_aktif == 'Aktif') echo 'selected'; ?>>Aktif
 										</option>
 										<option value="Tidak Aktif" <?php if ($data_kamis->status_aktif == 'Tidak Aktif') echo 'selected'; ?>>
 											Tidak Aktif
 										</option>
 									</select>
+									<a href="#" class="btn-sm btn-danger btn_kamis" data-idbs="<?= $data_kamis->id_jadwal_bs ?>">
+										<i class="fa fa-trash"></i></a>
 								</li>
 							<?php endforeach; ?>
 
@@ -220,13 +230,15 @@
 							?>
 								<li class="list-group-item">
 									<?= $data_jumat->jam_mulai . ' - ' . $data_jumat->jam_selesai ?>
-									<select id="<?= $data_jumat->id_jadwal_bs ?>" class="float-right status_jumat">
+									<select id="<?= $data_jumat->id_jadwal_bs ?>" class="status_jumat">
 										<option value="Aktif" <?php if ($data_jumat->status_aktif == 'Aktif') echo 'selected'; ?>>Aktif
 										</option>
 										<option value="Tidak Aktif" <?php if ($data_jumat->status_aktif == 'Tidak Aktif') echo 'selected'; ?>>
 											Tidak Aktif
 										</option>
 									</select>
+									<a href="#" class="btn-sm btn-danger btn_jumat" data-idbs="<?= $data_jumat->id_jadwal_bs ?>">
+										<i class="fa fa-trash"></i></a>
 								</li>
 							<?php endforeach; ?>
 
@@ -237,6 +249,77 @@
 		</div>
 	</div>
 	<script src="<?= base_url(); ?>_assets/sb_admin_2/vendor/jquery/jquery.min.js"></script>
+	<script>
+	    $('.btn_senin').click(function() {
+			var id = $(this).data("idbs");
+			$.ajax({
+				url: "<?php echo base_url() . 'admin/jadwal_bs/hapus_jadwal_senin'; ?>",
+				method: "POST",
+				data: {
+					id : id
+				},
+				success: function(data) {
+					location.reload();
+				}
+			});
+		});
+		
+		$('.btn_selasa').click(function() {
+			var id = $(this).data("idbs");
+			$.ajax({
+				url: "<?php echo base_url() . 'admin/jadwal_bs/hapus_jadwal_selasa'; ?>",
+				method: "POST",
+				data: {
+					id : id
+				},
+				success: function(data) {
+					location.reload();
+				}
+			});
+		});
+		
+		$('.btn_rabu').click(function() {
+			var id = $(this).data("idbs");
+			$.ajax({
+				url: "<?php echo base_url() . 'admin/jadwal_bs/hapus_jadwal_rabu'; ?>",
+				method: "POST",
+				data: {
+					id : id
+				},
+				success: function(data) {
+					location.reload();
+				}
+			});
+		});
+		
+		$('.btn_kamis').click(function() {
+			var id = $(this).data("idbs");
+			$.ajax({
+				url: "<?php echo base_url() . 'admin/jadwal_bs/hapus_jadwal_kamis'; ?>",
+				method: "POST",
+				data: {
+					id : id
+				},
+				success: function(data) {
+					location.reload();
+				}
+			});
+		});
+		
+		$('.btn_jumat').click(function() {
+			var id = $(this).data("idbs");
+			$.ajax({
+				url: "<?php echo base_url() . 'admin/jadwal_bs/hapus_jadwal_jumat'; ?>",
+				method: "POST",
+				data: {
+					id : id
+				},
+				success: function(data) {
+					location.reload();
+				}
+			});
+		});
+	</script>
 	<script>
 		$('.status_senin').change(function() {
 			var value = this.value;

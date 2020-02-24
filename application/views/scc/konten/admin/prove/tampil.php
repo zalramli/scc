@@ -39,10 +39,10 @@
 									?>
 								</td>
 								<td>
-									<a href="#" class="btn-sm btn-info" id="btn_search" data-toggle="modal" data-target="#exampleModalCenter" data-idprove="<?= $data->id_prove ?>">
-										Detail
+									<a href="#" class="btn-sm btn-info btn_search" data-toggle="modal" data-target="#exampleModalCenter" data-idprove="<?= $data->id_prove ?>">
+										Detail</a>
 									<a href="<?= base_url('admin/prove/delete/' . $data->id_prove) ?>" class="btn btn-sm btn-danger tombol-hapus">Hapus</a>
-									</a>
+									
 								</td>
 							</tr>
 						<?php endforeach; ?>
@@ -68,6 +68,7 @@
 							<tr>
 								<th class="text-center">No</th>
 								<th class="text-center">Nama</th>
+								<th class="text-center">Akun Line</th>
 								<th class="text-center">Angkatan</th>
 								<th class="text-center">Rating</th>
 							</tr>
@@ -106,7 +107,7 @@
 	});
 </script>
 <script>
-	$('#btn_search').on('click', function() {
+	$('.btn_search').on('click', function() {
 		var id_prove = $(this).data("idprove");
 		var table;
 		table = $('.table_1').DataTable({
@@ -130,9 +131,10 @@
 					var no = 1;
 					$.each(data, function(i, item) {
 						var nama = data[i].nama;
+						var akun_line = data[i].akun_line;
 						var angkatan = data[i].angkatan;
 						var rating = data[i].rating;
-						table.row.add([no, nama, angkatan,rating]);
+						table.row.add([no, nama,akun_line,angkatan,rating]);
 						no = no + 1;
 					});
 				} else {
