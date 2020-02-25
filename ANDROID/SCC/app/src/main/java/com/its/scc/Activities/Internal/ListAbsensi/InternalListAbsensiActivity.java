@@ -1,11 +1,11 @@
-package com.its.scc.Activities.Internal.Absensi;
+package com.its.scc.Activities.Internal.ListAbsensi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
 
-import com.its.scc.Activities.Internal.Absensi.view.IInternalListAbsensiView;
+import com.its.scc.Activities.Internal.ListAbsensi.view.IInternalListAbsensiView;
 import com.its.scc.R;
 
 public class InternalListAbsensiActivity extends AppCompatActivity implements View.OnClickListener , IInternalListAbsensiView {
@@ -18,6 +18,6 @@ public class InternalListAbsensiActivity extends AppCompatActivity implements Vi
 
 	@Override
 	public void onClick(View v) {
-		
+
 	}
 }
