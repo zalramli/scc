@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.its.scc.Activities.Eksternal.ListBankSoftware.EksternalListBankSoftwareActivity;
@@ -27,6 +28,8 @@ import com.its.scc.Controllers.SessionManager;
 import com.its.scc.R;
 
 import java.util.HashMap;
+
+import es.dmoral.toasty.Toasty;
 
 public class InternalHomeActivity extends AppCompatActivity implements View.OnClickListener, IInternalHomeView {
 
@@ -147,12 +150,12 @@ public class InternalHomeActivity extends AppCompatActivity implements View.OnCl
 
 	@Override
 	public void onSuccessMessage(String message) {
-
+		Toasty.success(this, message, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onErrorMessage(String message) {
-
+		Toasty.error(this, message, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
