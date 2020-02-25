@@ -30,7 +30,7 @@ public class AdapterListAbsensi extends RecyclerView.Adapter<AdapterListAbsensi.
 	@NonNull
 	@Override
 	public ListAbsensiViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		View itemView = LayoutInflater.from(context).inflate(R.layout.item_adapter_list_bank_software, parent, false);
+		View itemView = LayoutInflater.from(context).inflate(R.layout.item_adapter_list_absensi, parent, false);
 		return new ListAbsensiViewHolder(itemView);
 	}
 
