@@ -40,8 +40,8 @@
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
+						android:gravity="center"
 						android:text="Tanggal BS : yyyy-mm-dd "
-						android:textAlignment="center"
 						android:textColor="@color/white"
 						android:textSize="16dp"
 						android:textStyle="bold" />
@@ -61,8 +61,8 @@
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
+						android:gravity="center"
 						android:text="Nama : Eksternal"
-						android:textAlignment="center"
 						android:textColor="@color/white"
 						android:textSize="16dp" />
 
@@ -71,8 +71,8 @@
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
+						android:gravity="center"
 						android:text="Status : (Belum Selesai)"
-						android:textAlignment="center"
 						android:textColor="@color/white"
 						android:textSize="16dp" />
 

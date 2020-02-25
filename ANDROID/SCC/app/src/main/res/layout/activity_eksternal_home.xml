@@ -15,9 +15,9 @@
 		app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 		<LinearLayout
-			android:layout_marginBottom="20dp"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
+			android:layout_marginBottom="20dp"
 			android:orientation="vertical">
 
 			<androidx.cardview.widget.CardView
@@ -83,12 +83,12 @@
 
 							<EditText
 								android:id="@+id/edt_kode_prove"
-								android:textColor="@color/colorPrimaryDark2"
 								android:layout_width="match_parent"
 								android:layout_height="wrap_content"
 								android:layout_weight="1"
+								android:gravity="center"
 								android:hint="KODE PROVE"
-								android:textAlignment="center" />
+								android:textColor="@color/colorPrimaryDark2" />
 
 							<ImageButton
 								android:id="@+id/i_btn_cari_kode_prove"

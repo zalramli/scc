@@ -42,9 +42,8 @@
 					android:id="@+id/tv_nama_materi"
 					android:layout_width="match_parent"
 					android:layout_height="40sp"
-					android:gravity="center_vertical"
+					android:gravity="center"
 					android:text="Nama Materi"
-					android:textAlignment="center"
 					android:textSize="17sp"
 					android:textStyle="bold" />
 

@@ -88,8 +88,8 @@
 								android:layout_width="match_parent"
 								android:layout_height="wrap_content"
 								android:layout_weight="1"
+								android:gravity="center"
 								android:text="Tanggal Prove : yyyy-mm-dd "
-								android:textAlignment="center"
 								android:textColor="@color/white"
 								android:textSize="16dp" />
 
@@ -98,8 +98,8 @@
 								android:layout_width="match_parent"
 								android:layout_height="wrap_content"
 								android:layout_weight="1"
+								android:gravity="center"
 								android:text="Kode Prove : XXXX"
-								android:textAlignment="center"
 								android:textColor="@color/white"
 								android:textSize="16dp" />
 
@@ -108,8 +108,8 @@
 								android:layout_width="match_parent"
 								android:layout_height="wrap_content"
 								android:layout_weight="1"
+								android:gravity="center"
 								android:text="Kata Sandi : XXXX"
-								android:textAlignment="center"
 								android:textColor="@color/white"
 								android:textSize="16dp" />
 
@@ -118,8 +118,8 @@
 								android:layout_width="match_parent"
 								android:layout_height="wrap_content"
 								android:layout_weight="1"
+								android:gravity="center"
 								android:text="Pembimbing : Nama Internal"
-								android:textAlignment="center"
 								android:textColor="@color/white"
 								android:textSize="16dp" />
 
@@ -151,15 +151,14 @@
 
 								</LinearLayout>
 
-
 								<TextView
 									android:id="@+id/tv_status_prove"
 									android:layout_width="wrap_content"
 									android:layout_height="wrap_content"
 									android:layout_centerInParent="true"
 									android:layout_weight="1"
+									android:gravity="center"
 									android:text="Status : (Belum Selesai)"
-									android:textAlignment="center"
 									android:textColor="@color/white"
 									android:textSize="16dp" />
 
@@ -186,12 +185,15 @@
 										android:textStyle="bold" />
 
 								</LinearLayout>
+
 							</RelativeLayout>
 
 						</LinearLayout>
 
 					</LinearLayout>
+
 				</RelativeLayout>
+
 			</androidx.cardview.widget.CardView>
 
 			<TextView

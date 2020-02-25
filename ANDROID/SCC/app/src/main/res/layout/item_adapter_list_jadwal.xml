@@ -34,8 +34,8 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_weight="1"
+					android:gravity="center"
 					android:text="Hari"
-					android:textAlignment="center"
 					android:textColor="@color/white"
 					android:textSize="16dp" />
 
@@ -44,8 +44,8 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_weight="1"
+					android:gravity="center"
 					android:text="( Jam Mulai Sampai Jam Selesai )"
-					android:textAlignment="center"
 					android:textColor="@color/white"
 					android:textSize="16dp" />
 
@@ -54,8 +54,8 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_weight="1"
+					android:gravity="center"
 					android:text="Status : Free"
-					android:textAlignment="center"
 					android:textColor="@color/white"
 					android:textSize="16dp" />
 

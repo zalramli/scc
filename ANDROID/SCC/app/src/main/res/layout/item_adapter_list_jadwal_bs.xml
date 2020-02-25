@@ -34,8 +34,8 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_weight="1"
+					android:gravity="center"
 					android:text="Hari"
-					android:textAlignment="center"
 					android:textColor="@color/white"
 					android:textSize="16dp" />
 
@@ -44,20 +44,20 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_weight="1"
+					android:gravity="center"
 					android:text="( Jam Mulai Sampai Jam Selesai )"
-					android:textAlignment="center"
 					android:textColor="@color/white"
 					android:textSize="16dp" />
 
-<!--				<TextView-->
-<!--					android:id="@+id/tv_status_booking"-->
-<!--					android:layout_width="match_parent"-->
-<!--					android:layout_height="wrap_content"-->
-<!--					android:layout_weight="1"-->
-<!--					android:text="Status : Free"-->
-<!--					android:textAlignment="center"-->
-<!--					android:textColor="@color/white"-->
-<!--					android:textSize="16dp" />-->
+				<!--				<TextView-->
+				<!--					android:id="@+id/tv_status_booking"-->
+				<!--					android:layout_width="match_parent"-->
+				<!--					android:layout_height="wrap_content"-->
+				<!--					android:layout_weight="1"-->
+				<!--					android:text="Status : Free"-->
+				<!--					android:gravity="center"-->
+				<!--					android:textColor="@color/white"-->
+				<!--					android:textSize="16dp" />-->
 
 			</LinearLayout>
 

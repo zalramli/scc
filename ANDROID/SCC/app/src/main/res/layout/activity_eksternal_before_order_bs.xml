@@ -57,9 +57,8 @@
 							android:id="@+id/tv_detail_bs"
 							android:layout_width="match_parent"
 							android:layout_height="40sp"
-							android:gravity="center_vertical"
+							android:gravity="center"
 							android:text="Hari , (Jam Mulai - Jam Selesai)"
-							android:textAlignment="center"
 							android:textColor="@color/white"
 							android:textSize="17sp"
 							android:textStyle="bold" />
