@@ -221,4 +221,27 @@ class Jadwal_prove extends CI_Controller {
         echo $ubah_status;
 
     }
+
+    function ubah_aktif($id)
+    {
+        $where = array('id_internal' => $id);
+        $data = array(
+            'status_aktif' => 'Aktif'
+        );
+        $this->M_crud->update_data($where, 'jadwal_prove', $data);
+        $this->session->set_flashdata('update', 'Diubah');
+        redirect('admin/jadwal_prove');
+
+    }
+
+    function ubah_tidak_aktif($id)
+    {
+        $where = array('id_internal' => $id);
+        $data = array(
+            'status_aktif' => 'Tidak Aktif'
+        );
+        $this->M_crud->update_data($where, 'jadwal_prove', $data);
+        $this->session->set_flashdata('update', 'Diubah');
+        redirect('admin/jadwal_prove');
+    }
 }

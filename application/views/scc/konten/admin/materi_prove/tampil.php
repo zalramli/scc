@@ -60,7 +60,7 @@
 								<td><?= $data->nama ?></td>
 								<td class="text-center">
 									<a style="cursor:pointer" class="btn btn-sm btn-warning text-white" data-toggle="modal" data-target="#modal-edit<?= $data->id_materi_prove ?>">Edit</a>
-									<!-- <a href="<?= base_url('admin/materi_prove/delete/' . $data->id_materi_prove) ?>" class="btn btn-sm btn-danger tombol-hapus">Hapus</a> -->
+									<a href="<?= base_url('admin/materi_prove/delete/' . $data->id_materi_prove) ?>" class="btn btn-sm btn-danger tombol-hapus">Hapus</a>
 								</td>
 							</tr>
 						<?php endforeach; ?>
