@@ -19,13 +19,4 @@
 			android:title="Jadwal Bank Software" />
 	</group>
 
-	<group
-		android:id="@+id/group3"
-		android:checkableBehavior="single">
-		<item
-			android:id="@+id/absensi"
-			android:icon="@drawable/ic_check_black"
-			android:title="Absensi Rapat" />
-	</group>
-
 </menu>
