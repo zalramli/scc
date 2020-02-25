@@ -21,7 +21,6 @@ import java.util.HashMap;
 import butterknife.ButterKnife;
 
 public class AdapterListAbsensi extends RecyclerView.Adapter<AdapterListAbsensi.ListAbsensiViewHolder> {
-	// extends RecyclerView.Adapter<AdapterListBankSoftware.ListBankSoftwareViewHolder>
 	Context context;
 	ArrayList<Absensi> dataModelArrayList;
 
@@ -66,9 +65,9 @@ public class AdapterListAbsensi extends RecyclerView.Adapter<AdapterListAbsensi.
 		holder.tvDetailJadwal.setText("( " + tgl_absensi + " ," + jam_mulai + " - " + jam_selesai + " )");
 		holder.tvStatusAbsensi.setText("Status : " + status_absensi);
 
-		if (status_absensi.equals("Belum Selesai")){
+		if (status_absensi.equals("Belum Selesai")) {
 			holder.cvItemAdapterListAbsensi.setCardBackgroundColor(Color.RED);
-		} else if (status_absensi.equals("Batal")){
+		} else if (status_absensi.equals("Batal")) {
 			holder.cvItemAdapterListAbsensi.setCardBackgroundColor(Color.GRAY);
 		}
 	}
