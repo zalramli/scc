@@ -16,7 +16,8 @@
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme"
 		android:usesCleartextTraffic="true">
-		<activity android:name=".Activities.Eksternal.DetailBankSoftware.EksternalDetailBankSoftwareActivity"></activity>
+		<activity android:name=".Activities.Internal.Absensi.InternalListAbsensiActivity"></activity>
+		<activity android:name=".Activities.Eksternal.DetailBankSoftware.EksternalDetailBankSoftwareActivity" />
 		<activity android:name=".Activities.Eksternal.ListBankSoftware.EksternalListBankSoftwareActivity" />
 		<activity android:name=".Activities.Eksternal.ListSoftware.EksternalListSoftwareActivity" />
 		<activity android:name=".Activities.Eksternal.BeforeOrderBS.EksternalBeforeOrderBSActivity" />
