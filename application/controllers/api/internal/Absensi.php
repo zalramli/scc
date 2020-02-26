@@ -32,7 +32,13 @@ class Absensi extends REST_Controller
                 // ambil detail data db
                 $data = array(
                     'id_absensi' => $row["id_absensi"],
-                    'id_internal' => $row["id_internal"]
+                    'id_internal' => $row["id_internal"],
+                    'judul_absensi' => $row["judul_absensi"],
+                    'tgl_absensi' => $row["tgl_absensi"],
+                    'jam_mulai' => $row["jam_mulai"],
+                    'jam_selesai' => $row["jam_selesai"],
+                    'status_absensi' => $row["status_absensi"],
+                    'kata_sandi' => $row["kata_sandi"],
                 );
 
                 array_push($result['absensi'], $data);
