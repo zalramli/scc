@@ -5,7 +5,7 @@
 
     <div class="row align-items-center text-center text-md-left">
         <div class="col-md-6 col-lg-5 mb-5 mb-md-0">
-        <h1>SCC</h1>
+        <h1>Statistics Computer Course</h1>
         <p>
         Divisi Statistics Computer Course (SCC) merupakan salah satu badan semi otonom HIMASTA-ITS yang mewadahi minat anggota HIMASTA-ITS umumnya dan bagi anggota Divisi SCC terhadap komputasi statistika. Kegiatan yang dilakukan oleh Divisi SCC HIMASTA-ITS meliputi pelatihan software statistika, penyedia bank software statistika serta memberikan tutorial penggunaan beberapa software tersebut. Selain itu, SCC HIMASTA-ITS juga mengadakan pelatihan yang ditujukan untuk pelajar dengan tujuan meningkatkan minat komputasi mereka khususnya dibidang statistika. 
 </p>  
@@ -58,7 +58,7 @@
             </div>
             <div class="service-card-body">
             <h3>Belajar Komputasi</h3>
-            <p>Great so dominion two seed give dry rule be fowl him female you will gathered creeping and created air
+            <p>Dapat menambah ilmu tentang komputasi di bidang statistika. 
             </p>
             </div>
         </div>
@@ -70,7 +70,7 @@
             </div>
             <div class="service-card-body">
             <h3>Belajar Berorganisasi</h3>
-            <p>Great so dominion two seed give dry rule be fowl him female you will gathered creeping and created air
+            <p>Dapat melatih mental berbicara di depan publik (Public Speaking)
             </p>
             </div>
         </div>
@@ -82,7 +82,7 @@
             </div>
             <div class="service-card-body">
             <h3>Menambah Relasi</h3>
-            <p>Great so dominion two seed give dry rule be fowl him female you will gathered creeping and created air
+            <p>Mendapatkan banyak relasi didalam maupun diluar kampus.
             </p>
             </div>
         </div>
@@ -180,7 +180,7 @@
         <div class="col-md-6">
         <div class="tour-card">
             <img class="card-img rounded-0" src="<?php echo base_url();?>_assets/safario/img/home/tour1.png" alt="">
-            <div class="tour-card-overlay">
+            <!-- <div class="tour-card-overlay">
             <div class="media">
                 <div class="media-body">
                 <h4>Paris tour offer</h4>
@@ -191,7 +191,7 @@
                 <h4 class="text-primary">$65/day</h4>
                 </div>
             </div>
-            </div>
+            </div> -->
         </div>
         </div>
 
@@ -200,14 +200,14 @@
             <div class="col-lg-10 offset-lg-1">
             <div class="tour-content">
                 <h2>Dokumentasi kegiatan SCC angkatan 2019/2020</h2>
-                <p>Make she'd moved divided air. Whose tree that hath own upon them it multiply was blessed </p>
+                <p>Masih Proses :)</p>
             </div>
             </div>
         </div>
 
         <div class="tour-card">
             <img class="card-img rounded-0" src="<?php echo base_url();?>_assets/safario/img/home/tour2.png" alt="">
-            <div class="tour-card-overlay">
+            <!-- <div class="tour-card-overlay">
             <div class="media">
                 <div class="media-body">
                 <h4>Paris tour offer</h4>
@@ -218,7 +218,7 @@
                 <h4 class="text-primary">$65/day</h4>
                 </div>
             </div>
-            </div>
+            </div> -->
         </div>
         </div>
     </div>
@@ -227,7 +227,7 @@
         <div class="col-md-6 col-lg-7">
         <div class="tour-card">
             <img class="card-img rounded-0" src="<?php echo base_url();?>_assets/safario/img/home/tour3.png" alt="">
-            <div class="tour-card-overlay">
+            <!-- <div class="tour-card-overlay">
             <div class="media">
                 <div class="media-body">
                 <h4>Paris tour offer</h4>
@@ -238,13 +238,13 @@
                 <h4 class="text-primary">$65/day</h4>
                 </div>
             </div>
-            </div>
+            </div> -->
         </div>
         </div>
         <div class="col-md-6 col-lg-5">
         <div class="tour-card">
             <img class="card-img rounded-0" src="<?php echo base_url();?>_assets/safario/img/home/tour4.png" alt="">
-            <div class="tour-card-overlay">
+            <!-- <div class="tour-card-overlay">
             <div class="media">
                 <div class="media-body">
                 <h4>Paris tour offer</h4>
@@ -255,7 +255,7 @@
                 <h4 class="text-primary">$65/day</h4>
                 </div>
             </div>
-            </div>
+            </div> -->
         </div>
         </div>
     </div>

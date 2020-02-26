@@ -4,8 +4,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SCC</title>
-<link rel="icon" href="<?= base_url() ?>_assets/logo/logo.png" type="image/x-icon">
+<title>SCC HIMASTA-ITS</title>
+<link rel="icon" href="<?php echo base_url() ?>_assets/safario/img/logo.png" type="image/x-icon">
 
 <!-- Custom fonts for this template-->
 <link href="<?= base_url(); ?>_assets/sb_admin_2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
