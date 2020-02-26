@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.its.scc.Activities.Eksternal.ListBankSoftware.EksternalListBankSoftwareActivity;
@@ -21,11 +22,14 @@ import com.its.scc.Activities.Eksternal.ListJadwalBS.EksternalListJadwalBSActivi
 import com.its.scc.Activities.Eksternal.ListMateri.EksternalListMateriActivity;
 import com.its.scc.Activities.Eksternal.ListProve.EksternalListProveActivity;
 import com.its.scc.Activities.Internal.AkunEdit.InternalAkunEditActivity;
+import com.its.scc.Activities.Internal.ListAbsensi.InternalListAbsensiActivity;
 import com.its.scc.Activities.Internal._Home.view.IInternalHomeView;
 import com.its.scc.Controllers.SessionManager;
 import com.its.scc.R;
 
 import java.util.HashMap;
+
+import es.dmoral.toasty.Toasty;
 
 public class InternalHomeActivity extends AppCompatActivity implements View.OnClickListener, IInternalHomeView {
 
@@ -33,7 +37,7 @@ public class InternalHomeActivity extends AppCompatActivity implements View.OnCl
 	private ActionBarDrawerToggle actionBarDrawerToggle;
 	private NavigationView navigationView;
 
-	CardView cvLinkProve, cvLinkListProve,cvLinkListBankSoftware;
+	CardView cvLinkProve,cvLinkAbsensi ,cvLinkListProve,cvLinkListBankSoftware;
 
 	SessionManager sessionManager;
 	String id_internal = "";
@@ -47,6 +51,7 @@ public class InternalHomeActivity extends AppCompatActivity implements View.OnCl
 		navigationView = findViewById(R.id.navigation_view_internal);
 
 		cvLinkProve = findViewById(R.id.cv_link_prove); // link card view prove
+		cvLinkAbsensi = findViewById(R.id.cv_link_absensi); // cv_link_absensi
 		cvLinkListProve = findViewById(R.id.cv_link_list_prove); // link card view prove
 		cvLinkListBankSoftware= findViewById(R.id.cv_link_list_bank_software); // link card view prove
 
@@ -84,6 +89,7 @@ public class InternalHomeActivity extends AppCompatActivity implements View.OnCl
 		});
 
 		cvLinkProve.setOnClickListener(this);
+		cvLinkAbsensi.setOnClickListener(this);
 		cvLinkListProve.setOnClickListener(this);
 		cvLinkListBankSoftware.setOnClickListener(this);
 	}
@@ -93,6 +99,11 @@ public class InternalHomeActivity extends AppCompatActivity implements View.OnCl
 		if (v.getId() == R.id.cv_link_prove) {
 			Intent intent = new Intent();
 			intent = new Intent(getApplicationContext(), EksternalListMateriActivity.class);
+			startActivity(intent);
+		}
+		if (v.getId() == R.id.cv_link_absensi) {
+			Intent intent = new Intent();
+			intent = new Intent(getApplicationContext(), InternalListAbsensiActivity.class);
 			startActivity(intent);
 		}
 		if (v.getId() == R.id.cv_link_list_prove) {
@@ -139,12 +150,12 @@ public class InternalHomeActivity extends AppCompatActivity implements View.OnCl
 
 	@Override
 	public void onSuccessMessage(String message) {
-
+		Toasty.success(this, message, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onErrorMessage(String message) {
-
+		Toasty.error(this, message, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override

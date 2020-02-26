@@ -41,7 +41,7 @@
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
 						android:gravity="center"
-						android:text="Judul Absensi"
+						android:text="Judul Absensi (KODE)"
 						android:textColor="@color/white"
 						android:textSize="16dp"
 						android:textStyle="bold" />
