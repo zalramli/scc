@@ -1,190 +1,331 @@
-<div class="about py-5">
-    <div class="py-xl-5 py-lg-3">
-        <div class="abt-top py-xl-5 py-lg-3">
-            <div class="col-lg-6 agileits_works-grid">
-                <h3 class="tittle mb-xl-5 mb-4 text-dark">
-                    <span class="text-uppercase">About Us</span>Travel</h3>
-                <p class="mb-3">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-                    eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                <a href="<?php echo base_url('about') ?>" class="button-w3ls">Read More</a>
-            </div>
-            <div class="col-lg-6 agileits_works-grid1 p-0 text-right mt-lg-0 mt-5">
-                <img src="<?php echo base_url(); ?>_assets/template_web/images/1.jpg" alt="" class="img-fluid first-img" />
-                <img src="<?php echo base_url(); ?>_assets/template_web/images/2.jpg" alt="" class="img-fluid img-posi-2" />
-            </div>
-            <div class="clearfix"></div>
+
+<!--================Hero Banner Area Start =================-->
+<section class="hero-banner magic-ball">
+    <div class="container">
+
+    <div class="row align-items-center text-center text-md-left">
+        <div class="col-md-6 col-lg-5 mb-5 mb-md-0">
+        <h1>SCC</h1>
+        <p>
+        Divisi Statistics Computer Course (SCC) merupakan salah satu badan semi otonom HIMASTA-ITS yang mewadahi minat anggota HIMASTA-ITS umumnya dan bagi anggota Divisi SCC terhadap komputasi statistika. Kegiatan yang dilakukan oleh Divisi SCC HIMASTA-ITS meliputi pelatihan software statistika, penyedia bank software statistika serta memberikan tutorial penggunaan beberapa software tersebut. Selain itu, SCC HIMASTA-ITS juga mengadakan pelatihan yang ditujukan untuk pelajar dengan tujuan meningkatkan minat komputasi mereka khususnya dibidang statistika. 
+</p>  
+        </div>
+        <div class="col-md-6 col-lg-7 col-xl-6 offset-xl-1">
+        <img class="img-fluid" src="<?php echo base_url();?>_assets/safario/img/home/hero-img.png" alt="">
         </div>
     </div>
-</div>
-<!-- //banner bottom -->
-<!-- testimonials -->
-<section class="wthree-row  testi-agile">
-    <div class="layer_testi py-5">
-        <div class="container py-md-5 py-3">
-            <h3 class="tittle text-center text-white">
-                <span class="text-uppercase">Testimoni</span>Apa Kata Mereka</h3>
-            <div class="w3_testimonials_grids w3_testimonials_grids py-lg-5">
-                <div class="testi-slide pt-lg-5">
-                    <div id="owl-demo" class="owl-carouselpb-5">
-                        <div class="item-owl text-center">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="img-agile">
-                                        <img src="<?php echo base_url(); ?>_assets/template_web/images/t1.jpg" alt="" class="img-fluid test-img" />
-                                        <h6 class="mt-3 text-white">Michael Paul</h6>
-                                    </div>
-                                    <div class="test-review test-tooltip1">
-                                        <p class="mx-auto mt-3 text-white">
-                                            <i class="fa fa-quote-left pr-3" aria-hidden="true"></i> Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                                            ut labore et dolore magna aliquyam erat.
-                                            <i class="fa fa-quote-right pl-3" aria-hidden="true"></i>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mt-md-0 mt-5">
-                                    <div class="img-agile">
-                                        <img src="<?php echo base_url(); ?>_assets/template_web/images/t2.jpg" alt="" class="img-fluid test-img" />
-                                        <h6 class="mt-3 text-white">Riya Allen</h6>
-                                    </div>
-                                    <div class="test-review test-tooltip1">
-                                        <p class="mx-auto mt-3 text-white">
-                                            <i class="fa fa-quote-left pr-3" aria-hidden="true"></i> Polite sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                                            et dolore magna aliquyam erat.
-                                            <i class="fa fa-quote-right pl-3" aria-hidden="true"></i>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-owl text-center">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="item-owl">
-                                        <div class="img-agile">
-                                            <img src="<?php echo base_url(); ?>_assets/template_web/images/t3.jpg" alt="" class="img-fluid test-img" />
-                                            <h6 class="mt-3 text-white">Riya Allen</h6>
-                                        </div>
-                                        <div class="test-review test-tooltip1">
-                                            <p class="mx-auto mt-3 text-white">
-                                                <i class="fa fa-quote-left pr-3" aria-hidden="true"></i> Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                                                ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                                                <i class="fa fa-quote-right pl-3" aria-hidden="true"></i>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mt-md-0 mt-5">
-                                    <div class="item-owl">
-                                        <div class="img-agile">
-                                            <img src="<?php echo base_url(); ?>_assets/template_web/images/t4.jpg" alt="" class="img-fluid test-img" />
-                                            <h6 class="mt-3 text-white">Riya Allen</h6>
-                                        </div>
-                                        <div class="test-review test-tooltip1">
-                                            <p class="mx-auto mt-3 text-white">
-                                                <i class="fa fa-quote-left pr-3" aria-hidden="true"></i> Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                                                ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                                                <i class="fa fa-quote-right pl-3" aria-hidden="true"></i>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-owl text-center">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="item-owl">
-                                        <div class="img-agile">
-                                            <img src="<?php echo base_url(); ?>_assets/template_web/images/t1.jpg" alt="" class="img-fluid test-img" />
-                                            <h6 class="mt-3 text-white">Riya Allen</h6>
-                                        </div>
-                                        <div class="test-review test-tooltip1">
-                                            <p class="mx-auto mt-3 text-white">
-                                                <i class="fa fa-quote-left pr-3" aria-hidden="true"></i> Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                                                ut labore et dolore magna aliquyam erat.
-                                                <i class="fa fa-quote-right pl-3" aria-hidden="true"></i>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mt-md-0 mt-5">
-                                    <div class="item-owl">
-                                        <div class="img-agile">
-                                            <img src="<?php echo base_url(); ?>_assets/template_web/images/t2.jpg" alt="" class="img-fluid test-img" />
-                                            <h6 class="mt-3 text-white">Riya Allen</h6>
-                                        </div>
-                                        <div class="test-review test-tooltip1">
-                                            <p class="mx-auto mt-3 text-white">
-                                                <i class="fa fa-quote-left pr-3" aria-hidden="true"></i> Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                                                ut labore et dolore magna aliquyam erat.
-                                                <i class="fa fa-quote-right pl-3" aria-hidden="true"></i>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
-<!-- //testimonials -->
-<!-- news -->
-<div class="blog-w3ls py-5">
-    <div class="container py-xl-5 py-lg-3">
-        <h3 class="tittle mb-xl-5 mb-4 text-center">
-            <span class="text-uppercase">News</span>Latest News</h3>
-        <div class="row package-grids mt-5">
-            <div class="col-md-4 pricing">
-                <div class="pricing1">
-                    <div class="price-top">
-                        <img src="<?php echo base_url(); ?>_assets/template_web/images/g1.jpg" alt="" class="img-fluid" />
-                        <h3>13
-                            <span>Sep</span>
-                        </h3>
-                    </div>
-                    <div class="price-bottom p-4">
-                        <h4 class="text-dark">Sit voluptatem </h4>
-                        <a href="#">
-                            <i class="fas fa-user mr-2"></i>Posted by admin</a>
-                        <p class="mt-3"> Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.</p>
-                    </div>
-                </div>
+<!--================Hero Banner Area End =================-->
+
+<section class="section-margin pb-xl-5">
+    <div class="container">
+    <div class="section-intro text-center pb-90px">
+        <h2>Event SCC</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-lg-12 mb-4 mb-lg-0">
+        <div class="service-card2 text-center">
+            <div class="service-card-img">
+            <img class="img-fluid" src="<?php echo base_url();?>_assets/safario/img/home/event.png" alt="">
             </div>
-            <div class="col-md-4 pricing my-md-0 my-5">
-                <div class="pricing1">
-                    <div class="price-top">
-                        <img src="<?php echo base_url(); ?>_assets/template_web/images/g2.jpg" alt="" class="img-fluid" />
-                        <h3>24
-                            <span>Sep</span>
-                        </h3>
-                    </div>
-                    <div class="price-bottom p-4">
-                        <h4 class="text-dark">Sit voluptatem </h4>
-                        <a href="#">
-                            <i class="fas fa-user mr-2"></i>Posted by admin</a>
-                        <p class="mt-3"> Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 pricing">
-                <div class="pricing1">
-                    <div class="price-top">
-                        <img src="<?php echo base_url(); ?>_assets/template_web/images/g3.jpg" alt="" class="img-fluid" />
-                        <h3>30
-                            <span>Sep</span>
-                        </h3>
-                    </div>
-                    <div class="price-bottom p-4">
-                        <h4 class="text-dark">Sit voluptatem</h4>
-                        <a href="#">
-                            <i class="fas fa-user mr-2"></i>Posted by admin</a>
-                        <p class="mt-3"> Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.</p>
-                    </div>
-                </div>
+            <div class="service-card-body">
+            <h3>&nbsp</h3>
+            <h3>&nbsp</h3>
+            <h2>Coming Soon</h2>
+            <p>Merupakan pelatihan statistika yang ditujukan untuk mahasiswa dan masyarakat umum.
+            </p>
             </div>
         </div>
+        </div>
     </div>
-</div>
+    </div>
+</section>
+<!--================Service Area Start =================-->
+<section class="section-margin pb-xl-5">
+    <div class="container">
+    <div class="section-intro text-center pb-90px">
+        <h2>Keuntungan</h2>
+        <h2>Bergabung SCC</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="service-card text-center">
+            <div class="service-card-img">
+            <img class="img-fluid" src="<?php echo base_url();?>_assets/safario/img/home/komputasi.png" alt="">
+            </div>
+            <div class="service-card-body">
+            <h3>Belajar Komputasi</h3>
+            <p>Great so dominion two seed give dry rule be fowl him female you will gathered creeping and created air
+            </p>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="service-card text-center">
+            <div class="service-card-img">
+            <img class="img-fluid" src="<?php echo base_url();?>_assets/safario/img/home/organisasi.png" alt="">
+            </div>
+            <div class="service-card-body">
+            <h3>Belajar Berorganisasi</h3>
+            <p>Great so dominion two seed give dry rule be fowl him female you will gathered creeping and created air
+            </p>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="service-card text-center">
+            <div class="service-card-img">
+            <img class="img-fluid" src="<?php echo base_url();?>_assets/safario/img/home/relasi.png" alt="">
+            </div>
+            <div class="service-card-body">
+            <h3>Menambah Relasi</h3>
+            <p>Great so dominion two seed give dry rule be fowl him female you will gathered creeping and created air
+            </p>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!--================Service Area End =================-->
+
+
+<!--================Testimonial section Start =================-->
+<section class="bg-gray section-margin pb-xl-5">
+    <div class="container">
+    <div class="section-intro text-center pb-90px mt-5">
+        <img class="section-intro-img">
+        <h2>Testimoni</h2>
+        <p>Apa Kata Mereka?</p>
+    </div>
+
+
+    <div class="owl-carousel owl-theme testimonial pb-xl-5">
+        <div class="testimonial__item">
+        <div class="row">
+            <div class="col-md-3 col-lg-2 align-self-center">
+            <div class="testimonial__img">
+                <img class="card-img rounded-0" src="<?php echo base_url();?>_assets/safario/img/testimonial/t-slider1.png" alt="">
+            </div>
+            </div>
+            <div class="col-md-9 col-lg-10">
+            <div class="testimonial__content mt-3 mt-sm-0">
+                <h3>Rachel Herlinda</h3>
+                <p>Ketua Divisi SCC HIMASTA-ITS 18/19</p>
+                <p class="testimonial__i">Dari awal emang udah tertarik banget sama SCC,suka dunia perkomputasian.
+                Akhirnya masuk juga,diterima jadi staff,dan kebetulan dapat proker yang cukup besar. Dari situ aku
+                banyak banget belajar,bukan hanya sekedar ilmu komputasi aja yang aku dapat,aku juga belajar buat
+                bertanggung jawab dan berorganisasi,dengan asas kekeluargaan yang erat. Inget waktu ngerjain proker
+                sampai nangis-nangis,karena takut banget nggak jalan dan nggak sesuai ekspetasi. Tapi keluarga SCCku
+                selalu ngedukung dan ngesupport penuh,sampai akhirnya terwujud dan melebihi ekspetasi. Ketika aku
+                down,SCC juga yang bisa jadi tempat untuk aku pulang.</p>
+                <span class="testimonial__icon"><i class="ti-quote-right"></i></span>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="testimonial__item">
+        <div class="row">
+            <div class="col-md-3 col-lg-2 align-self-center">
+            <div class="testimonial__img">
+                <img class="card-img rounded-0" src="<?php echo base_url();?>_assets/safario/img/testimonial/t-slider1.png" alt="">
+            </div>
+            </div>
+            <div class="col-md-9 col-lg-10">
+            <div class="testimonial__content mt-3 mt-sm-0">
+                <h3>Shindi Shella</h3>
+                <p>Ketua Divisi SCC HIMASTA-ITS 17/18</p>
+                <p class="testimonial__i">SCC bukan hanya sekedar organisasi yang mengurusi proker dan agenda saja. Saat
+                di SCC kita belajar bersama untuk mendalami statistika di bidang komputasi. Di SCC membuat saya lebih
+                punya kemauan besar untuk meningkatkan ilmu di bidang komputasi. Selain itu saya merasakan bahwa SCC
+                adalah keluarga kedua saya yang selalu menjadi rumah untuk berbagi cerita. Jadi,tidak ada alasan untuk
+                tidak bergabung dengan SCC.</p>
+                <span class="testimonial__icon"><i class="ti-quote-right"></i></span>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="testimonial__item">
+        <div class="row">
+            <div class="col-md-3 col-lg-2 align-self-center">
+            <div class="testimonial__img">
+                <img class="card-img rounded-0" src="<?php echo base_url();?>_assets/safario/img/testimonial/t-slider1.png" alt="">
+            </div>
+            </div>
+            <div class="col-md-9 col-lg-10">
+            <div class="testimonial__content mt-3 mt-sm-0">
+                <h3>Ikacipta Ayu Megaputri</h3>
+                <p>Ketua Divisi SCC HIMASTA-ITS 16/17</p>
+                <p class="testimonial__i">SCC memberi saya pengalaman banyak khusunya dalam hal berbagi ilmu kepada
+                orang lain mengenai komputasi statistik. Melalui SCC,saya belajar bagaimana berorganisasi bersama
+                keluarga.</p>
+                <span class="testimonial__icon"><i class="ti-quote-right"></i></span>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!--================Testimonial section End =================-->
+
+
+<!--================Tour section Start =================-->
+<section class="section-margin pb-xl-5">
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+        <div class="tour-card">
+            <img class="card-img rounded-0" src="<?php echo base_url();?>_assets/safario/img/home/tour1.png" alt="">
+            <div class="tour-card-overlay">
+            <div class="media">
+                <div class="media-body">
+                <h4>Paris tour offer</h4>
+                <small>5 days offer</small>
+                <p>We proper guided our tourist</p>
+                </div>
+                <div class="media-price">
+                <h4 class="text-primary">$65/day</h4>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="col-md-6">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+            <div class="tour-content">
+                <h2>Dokumentasi kegiatan SCC angkatan 2019/2020</h2>
+                <p>Make she'd moved divided air. Whose tree that hath own upon them it multiply was blessed </p>
+            </div>
+            </div>
+        </div>
+
+        <div class="tour-card">
+            <img class="card-img rounded-0" src="<?php echo base_url();?>_assets/safario/img/home/tour2.png" alt="">
+            <div class="tour-card-overlay">
+            <div class="media">
+                <div class="media-body">
+                <h4>Paris tour offer</h4>
+                <small>5 days offer</small>
+                <p>We proper guided our tourist</p>
+                </div>
+                <div class="media-price">
+                <h4 class="text-primary">$65/day</h4>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-lg-7">
+        <div class="tour-card">
+            <img class="card-img rounded-0" src="<?php echo base_url();?>_assets/safario/img/home/tour3.png" alt="">
+            <div class="tour-card-overlay">
+            <div class="media">
+                <div class="media-body">
+                <h4>Paris tour offer</h4>
+                <small>5 days offer</small>
+                <p>We proper guided our tourist</p>
+                </div>
+                <div class="media-price">
+                <h4 class="text-primary">$65/day</h4>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-6 col-lg-5">
+        <div class="tour-card">
+            <img class="card-img rounded-0" src="<?php echo base_url();?>_assets/safario/img/home/tour4.png" alt="">
+            <div class="tour-card-overlay">
+            <div class="media">
+                <div class="media-body">
+                <h4>Paris tour offer</h4>
+                <small>5 days offer</small>
+                <p>We proper guided our tourist</p>
+                </div>
+                <div class="media-price">
+                <h4 class="text-primary">$65/day</h4>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!--================Tour section End =================-->
+
+
+
+<!--================Blog section Start =================-->
+<!-- <section class="section-margin pb-xl-5 bg-gray">
+    <div class="container">
+    <div class="section-intro text-center pb-90px">
+        <img class="section-intro-img">
+        <h2>From our Blog</h2>
+        <p>Fowl have fruit moveth male they are that place you will lesser</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="card-blog">
+            <img class="card-img rounded-0" src="<?php echo base_url();?>_assets/safario/img/blog/blog-1.png" alt="">
+            <div class="card-blog-body">
+            <a href="#">
+                <h4>Forest responds to consultation smoking in al fresco.</h4>
+            </a>
+            <ul class="card-blog-info">
+                <li><a href="#"><span class="align-middle"><i class="ti-notepad"></i></span>Jan 03, 2018</a></li>
+                <li><a href="#"><span class="align-middle"><i class="ti-comments-smiley"></i></span>03 Comments</a></li>
+            </ul>
+            <p>Varius metus morbi ferme libero vehic on porta malesuada ut interdu estmales torquent vehicula
+                parturient </p>
+            </div>
+        </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="card-blog">
+            <img class="card-img rounded-0" src="<?php echo base_url();?>_assets/safario/img/blog/blog-2.png" alt="">
+            <div class="card-blog-body">
+            <a href="#">
+                <h4>Forest responds to consultation smoking in al fresco.</h4>
+            </a>
+            <ul class="card-blog-info">
+                <li><a href="#"><span class="align-middle"><i class="ti-notepad"></i></span>Jan 03, 2018</a></li>
+                <li><a href="#"><span class="align-middle"><i class="ti-comments-smiley"></i></span>03 Comments</a></li>
+            </ul>
+            <p>Varius metus morbi ferme libero vehic on porta malesuada ut interdu estmales torquent vehicula
+                parturient </p>
+            </div>
+        </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="card-blog">
+            <img class="card-img rounded-0" src="<?php echo base_url();?>_assets/safario/img/blog/blog-3.png" alt="">
+            <div class="card-blog-body">
+            <a href="#">
+                <h4>Forest responds to consultation smoking in al fresco.</h4>
+            </a>
+            <ul class="card-blog-info">
+                <li><a href="#"><span class="align-middle"><i class="ti-notepad"></i></span>Jan 03, 2018</a></li>
+                <li><a href="#"><span class="align-middle"><i class="ti-comments-smiley"></i></span>03 Comments</a></li>
+            </ul>
+            <p>Varius metus morbi ferme libero vehic on porta malesuada ut interdu estmales torquent vehicula
+                parturient </p>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</section> -->
+<!--================Blog section End =================-->
