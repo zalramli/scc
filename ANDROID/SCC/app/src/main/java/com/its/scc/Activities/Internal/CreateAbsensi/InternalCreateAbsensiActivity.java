@@ -202,7 +202,7 @@ public class InternalCreateAbsensiActivity extends AppCompatActivity implements 
 
 	@Override
 	public void showHoursPicker() {
-		TimePickerDialog timePickerDialog = new TimePickerDialog(getApplicationContext(),
+		TimePickerDialog timePickerDialog = new TimePickerDialog(InternalCreateAbsensiActivity.this,
 			new TimePickerDialog.OnTimeSetListener() {
 
 				@Override
@@ -217,7 +217,7 @@ public class InternalCreateAbsensiActivity extends AppCompatActivity implements 
 
 	@Override
 	public void showHoursPicker2() {
-		TimePickerDialog timePickerDialog = new TimePickerDialog(getApplicationContext(),
+		TimePickerDialog timePickerDialog = new TimePickerDialog(InternalCreateAbsensiActivity.this,
 			new TimePickerDialog.OnTimeSetListener() {
 
 				@Override

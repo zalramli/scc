@@ -23,7 +23,7 @@ class M_prove extends CI_Model
         return date('ymd') . '-' . $kd; // SELECT SUBSTR('191121-001', 1, 6); dari digit ke 1 sampai digit ke 6 
     }
 
-    function get_kata_sandi($length = 10)
+    function get_kata_sandi($length = 5)
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);

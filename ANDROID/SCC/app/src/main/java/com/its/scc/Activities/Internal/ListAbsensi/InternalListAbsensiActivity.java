@@ -6,12 +6,15 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.its.scc.Activities.Internal.CreateAbsensi.InternalCreateAbsensiActivity;
 import com.its.scc.Activities.Internal.ListAbsensi.presenter.IInternalListAbsensiPresenter;
 import com.its.scc.Activities.Internal.ListAbsensi.presenter.InternalListAbsensiPresenter;
 import com.its.scc.Activities.Internal.ListAbsensi.view.IInternalListAbsensiView;
@@ -35,6 +38,8 @@ public class InternalListAbsensiActivity extends AppCompatActivity implements Vi
 
 	private SwipeRefreshLayout swipeRefreshLayout;
 
+	FloatingActionButton fab;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,6 +52,8 @@ public class InternalListAbsensiActivity extends AppCompatActivity implements Vi
 
 		toolbar = findViewById(R.id.toolbar);
 		initActionBar();
+
+		fab = findViewById(R.id.fab);
 
 		swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
 
@@ -69,11 +76,15 @@ public class InternalListAbsensiActivity extends AppCompatActivity implements Vi
 			}
 		});
 
+		fab.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
-
+		if (v.getId() == R.id.fab) {
+			Intent intent = new Intent(getApplicationContext(), InternalCreateAbsensiActivity.class);
+			startActivity(intent);
+		}
 	}
 
 	@Override

@@ -58,7 +58,7 @@ class Absensi extends REST_Controller
         }
     }
 
-    function tambah_absensi()
+    function tambah_absensi_post()
     {
         $id_absensi = $this->M_absensi->get_id_absensi();
 

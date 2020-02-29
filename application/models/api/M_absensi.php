@@ -24,7 +24,7 @@ class M_absensi extends CI_Model
         return "AB" . date('ymd') . '-' . $kd; // SELECT SUBSTR('AB200221-001', 3, 8); dari digit ke 3 sampai digit ke 8 
     }
 
-    function get_kata_sandi($length = 10)
+    function get_kata_sandi($length = 5)
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
