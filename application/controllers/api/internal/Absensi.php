@@ -12,6 +12,7 @@ class Absensi extends REST_Controller
     {
         parent::__construct($config);
         $this->load->model("api/M_universal");
+        $this->load->model("api/M_absensi");
         date_default_timezone_set('Asia/Jakarta');
     }
 
@@ -53,6 +54,46 @@ class Absensi extends REST_Controller
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
             $result["message"] = "absensi Masih Kosong";
+            $this->response($result, 200);
+        }
+    }
+
+    function tambah_absensi()
+    {
+        $id_absensi = $this->M_absensi->get_id_absensi();
+
+        $id_internal = $this->post('id_internal');
+        $judul_absensi = $this->post('judul_absensi');
+        $tgl_absensi = $this->post('tgl_absensi');
+        $jam_mulai = $this->post('jam_mulai');
+        $jam_selesai = $this->post('jam_selesai');
+
+        $status_absensi = "Belum Selesai";
+        $kata_sandi = $this->M_absensi->get_kata_sandi();
+
+        $data = array(
+            'id_absensi'   => $id_absensi,
+            'id_internal'   => $id_internal,
+            'judul_absensi'   => $judul_absensi,
+            'tgl_absensi'   => $tgl_absensi,
+            'jam_mulai'   => $jam_mulai,
+            'jam_selesai'   => $jam_selesai,
+            'status_absensi'   => $status_absensi,
+            'kata_sandi'   => $kata_sandi,
+        );
+
+        $insert =  $this->M_universal->input_data('absensi', $data);
+        if ($insert) {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "Berhasil Membuat Absensi";
+            $this->response($result, 200);
+        } else {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "Coba Lagi, Server Error";
             $this->response($result, 200);
         }
     }
