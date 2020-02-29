@@ -24,9 +24,10 @@ class M_universal extends CI_Model
         return $this->db->get_where($table, $where);
     }
 
-    function get_data_group_by($table, $where, $group_by)
+    function get_data_group_by($table, $where, $group_by, $order_by)
     {
         $this->db->group_by($group_by);
+        $this->db->order_by($order_by, "DESC");
         return $this->db->get_where($table, $where);
     }
 
