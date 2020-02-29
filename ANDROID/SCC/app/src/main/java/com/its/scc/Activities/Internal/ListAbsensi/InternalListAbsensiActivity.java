@@ -25,6 +25,7 @@ import es.dmoral.toasty.Toasty;
 
 public class InternalListAbsensiActivity extends AppCompatActivity implements View.OnClickListener, IInternalListAbsensiView {
 
+	public static final String EXTRA_TUJUAN = "EXTRA_TUJUAN";
 	IInternalListAbsensiPresenter internalListAbsensiPresenter;
 
 	AdapterListAbsensi adapterListAbsensi;
