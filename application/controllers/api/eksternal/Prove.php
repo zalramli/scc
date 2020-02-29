@@ -129,7 +129,7 @@ class Prove extends REST_Controller
             $where = array(
                 'id_internal' => $id
             );
-            $query = $this->M_universal->get_data('list_prove', $where);
+            $query = $this->M_universal->get_data_group_by('list_prove', $where, "id_prove");
         }
 
         // variable array
