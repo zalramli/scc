@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.its.scc.Activities.Eksternal._Home.EksternalHomeActivity;
@@ -50,6 +52,10 @@ public class InternalCreateAbsensiActivity extends AppCompatActivity implements 
 
 	SessionManager sessionManager;
 	String id_internal = "";
+
+	final Calendar c = Calendar.getInstance();
+	int hour = c.get(Calendar.HOUR_OF_DAY);
+	int minute = c.get(Calendar.MINUTE);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -93,10 +99,10 @@ public class InternalCreateAbsensiActivity extends AppCompatActivity implements 
 			showDateDialog();
 		}
 		if (v.getId() == R.id.tv_jam_mulai) {
-			showTimeDialog();
+			showHoursPicker();
 		}
 		if (v.getId() == R.id.tv_jam_selesai) {
-			showTimeDialog();
+			showHoursPicker2();
 		}
 		if (v.getId() == R.id.btn_submit) {
 			showDialog();
@@ -195,8 +201,33 @@ public class InternalCreateAbsensiActivity extends AppCompatActivity implements 
 	}
 
 	@Override
-	public void showTimeDialog() {
+	public void showHoursPicker() {
+		TimePickerDialog timePickerDialog = new TimePickerDialog(getApplicationContext(),
+			new TimePickerDialog.OnTimeSetListener() {
 
+				@Override
+				public void onTimeSet(TimePicker view, int hourOfDay,
+									  int minute) {
+
+					tvJamMulai.setText(hourOfDay + ":" + minute);
+				}
+			}, hour, minute, true);
+		timePickerDialog.show();
+	}
+
+	@Override
+	public void showHoursPicker2() {
+		TimePickerDialog timePickerDialog = new TimePickerDialog(getApplicationContext(),
+			new TimePickerDialog.OnTimeSetListener() {
+
+				@Override
+				public void onTimeSet(TimePicker view, int hourOfDay,
+									  int minute) {
+
+					tvJamSelesai.setText(hourOfDay + ":" + minute);
+				}
+			}, hour, minute, true);
+		timePickerDialog.show();
 	}
 
 	@Override

@@ -9,7 +9,9 @@ public interface IInternalCreateAbsensiView {
 
 	void showDateDialog();
 
-	void showTimeDialog();
+	void showHoursPicker();
+
+	void showHoursPicker2();
 
 	void showDialog();
 
