@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class InternalDetailAbsensiActivity extends AppCompatActivity implements View.OnClickListener, IInternalDetailAbsensiView {
 
 	public static final String EXTRA_ID_ABSENSI = "EXTRA_ID_ABSENSI";
-	public static final String EXTRA_ID_INTERNAL = "EXTRA_ID_INTERNAL";
+	// public static final String EXTRA_ID_INTERNAL = "EXTRA_ID_INTERNAL";
 	public static final String EXTRA_JUDUL_ABSENSI = "EXTRA_JUDUL_ABSENSI";
 	public static final String EXTRA_TGL_ABSENSI = "EXTRA_TGL_ABSENSI";
 	public static final String EXTRA_JAM_MULAI = "EXTRA_JAM_MULAI";
@@ -53,7 +53,7 @@ public class InternalDetailAbsensiActivity extends AppCompatActivity implements 
 		setContentView(R.layout.activity_internal_detail_absensi);
 
 		id_absensi = getIntent().getStringExtra(EXTRA_ID_ABSENSI);
-		id_internal = getIntent().getStringExtra(EXTRA_ID_INTERNAL);
+		// id_internal = getIntent().getStringExtra(EXTRA_ID_INTERNAL);
 		judul_absensi = getIntent().getStringExtra(EXTRA_JUDUL_ABSENSI);
 		tgl_absensi = getIntent().getStringExtra(EXTRA_TGL_ABSENSI);
 		jam_mulai = getIntent().getStringExtra(EXTRA_JAM_MULAI);

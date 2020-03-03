@@ -14,16 +14,19 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.its.scc.Activities.Internal.CekPasswordAbsensi.InternalCekPasswordAbsensiActivity;
 import com.its.scc.Activities.Internal.CreateAbsensi.InternalCreateAbsensiActivity;
 import com.its.scc.Activities.Internal.DetailAbsensi.InternalDetailAbsensiActivity;
 import com.its.scc.Activities.Internal.ListAbsensi.presenter.IInternalListAbsensiPresenter;
 import com.its.scc.Activities.Internal.ListAbsensi.presenter.InternalListAbsensiPresenter;
 import com.its.scc.Activities.Internal.ListAbsensi.view.IInternalListAbsensiView;
 import com.its.scc.Adapters.AdapterListAbsensi;
+import com.its.scc.Controllers.SessionManager;
 import com.its.scc.Models.Absensi;
 import com.its.scc.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import es.dmoral.toasty.Toasty;
 
@@ -41,10 +44,14 @@ public class InternalListAbsensiActivity extends AppCompatActivity implements Vi
 
 	FloatingActionButton fab;
 
+	SessionManager sessionManager;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_internal_list_absensi);
+
+		sessionManager = new SessionManager(this);
 
 		internalListAbsensiPresenter = new InternalListAbsensiPresenter(this, this);
 		internalListAbsensiPresenter.onLoadSemuaData();
@@ -109,16 +116,29 @@ public class InternalListAbsensiActivity extends AppCompatActivity implements Vi
 			@Override
 			public void onClick(View view, int position) {
 				// lihat detail absensi dan kirim data detail
-				Intent intent = new Intent(getApplicationContext(), InternalDetailAbsensiActivity.class);
-				intent.putExtra(InternalDetailAbsensiActivity.EXTRA_ID_ABSENSI, dataModelArrayList.get(position).getId_absensi());
-				intent.putExtra(InternalDetailAbsensiActivity.EXTRA_ID_INTERNAL, dataModelArrayList.get(position).getId_internal());
-				intent.putExtra(InternalDetailAbsensiActivity.EXTRA_JUDUL_ABSENSI, dataModelArrayList.get(position).getJudul_absensi());
-				intent.putExtra(InternalDetailAbsensiActivity.EXTRA_TGL_ABSENSI, dataModelArrayList.get(position).getTgl_absensi());
-				intent.putExtra(InternalDetailAbsensiActivity.EXTRA_JAM_MULAI, dataModelArrayList.get(position).getJam_mulai());
-				intent.putExtra(InternalDetailAbsensiActivity.EXTRA_JAM_SELESAI, dataModelArrayList.get(position).getJam_selesai());
-				intent.putExtra(InternalDetailAbsensiActivity.EXTRA_STATUS_ABSENSI, dataModelArrayList.get(position).getStatus_absensi());
-				intent.putExtra(InternalDetailAbsensiActivity.EXTRA_KATA_SANDI, dataModelArrayList.get(position).getKata_sandi());
-				startActivity(intent);
+
+				HashMap<String, String> user = sessionManager.getDataUser();
+				String id_internal = user.get(sessionManager.ID_USER);
+
+				String cek_absen = internalListAbsensiPresenter.cekAbsen("" + id_internal);
+
+				if (cek_absen.equals("sudah")) {
+					Intent intent = new Intent(getApplicationContext(), InternalDetailAbsensiActivity.class);
+					intent.putExtra(InternalDetailAbsensiActivity.EXTRA_ID_ABSENSI, dataModelArrayList.get(position).getId_absensi());
+					// intent.putExtra(InternalDetailAbsensiActivity.EXTRA_ID_INTERNAL, dataModelArrayList.get(position).getId_internal());
+					intent.putExtra(InternalDetailAbsensiActivity.EXTRA_JUDUL_ABSENSI, dataModelArrayList.get(position).getJudul_absensi());
+					intent.putExtra(InternalDetailAbsensiActivity.EXTRA_TGL_ABSENSI, dataModelArrayList.get(position).getTgl_absensi());
+					intent.putExtra(InternalDetailAbsensiActivity.EXTRA_JAM_MULAI, dataModelArrayList.get(position).getJam_mulai());
+					intent.putExtra(InternalDetailAbsensiActivity.EXTRA_JAM_SELESAI, dataModelArrayList.get(position).getJam_selesai());
+					intent.putExtra(InternalDetailAbsensiActivity.EXTRA_STATUS_ABSENSI, dataModelArrayList.get(position).getStatus_absensi());
+					intent.putExtra(InternalDetailAbsensiActivity.EXTRA_KATA_SANDI, dataModelArrayList.get(position).getKata_sandi());
+					startActivity(intent);
+				} else {
+					Intent intent = new Intent(getApplicationContext(), InternalCekPasswordAbsensiActivity.class);
+					intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_ID_ABSENSI, dataModelArrayList.get(position).getId_absensi());
+					intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_ID_INTERNAL, id_internal);
+					startActivity(intent);
+				}
 			}
 		});
 	}

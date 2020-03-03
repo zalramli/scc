@@ -10,6 +10,9 @@ import com.its.scc.R;
 
 public class InternalCekPasswordAbsensiActivity extends AppCompatActivity implements View.OnClickListener, IInternalCekPasswordAbsensiView {
 
+	public static final String EXTRA_ID_ABSENSI = "EXTRA_ID_ABSENSI";
+	public static final String EXTRA_ID_INTERNAL = "EXTRA_ID_INTERNAL";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

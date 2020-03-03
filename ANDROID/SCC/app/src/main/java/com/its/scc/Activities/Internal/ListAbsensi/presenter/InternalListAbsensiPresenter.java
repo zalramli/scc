@@ -2,6 +2,7 @@ package com.its.scc.Activities.Internal.ListAbsensi.presenter;
 
 import android.content.Context;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -17,6 +18,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class InternalListAbsensiPresenter implements IInternalListAbsensiPresenter {
 
@@ -99,4 +102,55 @@ public class InternalListAbsensiPresenter implements IInternalListAbsensiPresent
 		RequestQueue requestQueue = Volley.newRequestQueue(context);
 		requestQueue.add(stringRequest);
 	}
+
+	@Override
+	public String cekAbsen(String id_internal) {
+		final String[] cek_absen = {""};
+
+		String base_url = baseUrl.getUrlData();
+		String URL_DATA = base_url + "internal/absensi/cek_absen"; // url http request
+
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
+			new Response.Listener<String>() {
+				@Override
+				public void onResponse(String response) {
+					try {
+						JSONObject jsonObject = new JSONObject(response);
+						String success = jsonObject.getString("success");
+						String message = jsonObject.getString("message");
+
+						cek_absen[0] = jsonObject.getString("cek_absen");
+
+						if (success.equals("1")) {
+
+						} else {
+							internalListAbsensiView.onErrorMessage(message);
+						}
+
+					} catch (JSONException e) {
+						e.printStackTrace();
+						internalListAbsensiView.onErrorMessage("Kesalahan Menerima Data : " + e.toString());
+					}
+				}
+			},
+			new Response.ErrorListener() {
+				@Override
+				public void onErrorResponse(VolleyError error) {
+					internalListAbsensiView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
+				}
+			}) {
+			@Override
+			protected Map<String, String> getParams() throws AuthFailureError {
+				Map<String, String> params = new HashMap<>();
+				params.put("id_internal", id_internal);
+				return params;
+			}
+		};
+
+		RequestQueue requestQueue = Volley.newRequestQueue(context);
+		requestQueue.add(stringRequest);
+
+		return cek_absen[0];
+	}
+
 }
