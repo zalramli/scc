@@ -16,7 +16,8 @@
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme"
 		android:usesCleartextTraffic="true">
-		<activity android:name=".Activities.Internal.DetailAbsensi.InternalDetailAbsensiActivity"></activity>
+		<activity android:name=".Activities.Internal.CekPasswordAbsensi.InternalCekPasswordAbsensiActivity"></activity>
+		<activity android:name=".Activities.Internal.DetailAbsensi.InternalDetailAbsensiActivity" />
 		<activity android:name=".Activities.Internal.CreateAbsensi.InternalCreateAbsensiActivity" />
 		<activity android:name=".Activities.Internal.ListAbsensi.InternalListAbsensiActivity" />
 		<activity android:name=".Activities.Eksternal.DetailBankSoftware.EksternalDetailBankSoftwareActivity" />
