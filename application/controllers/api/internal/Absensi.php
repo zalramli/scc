@@ -53,7 +53,7 @@ class Absensi extends REST_Controller
 
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
-            $result["message"] = "absensi Masih Kosong";
+            $result["message"] = "Absensi Masih Kosong";
             $this->response($result, 200);
         }
     }
@@ -94,6 +94,40 @@ class Absensi extends REST_Controller
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
             $result["message"] = "Coba Lagi, Server Error";
+            $this->response($result, 200);
+        }
+    }
+
+    function cek_absen_post()
+    {
+        $id_absensi = $this->post('id_absensi');
+        $id_internal = $this->post('id_internal');
+
+        // variable array
+        $result = array();
+        $result['detail_absensi'] = array();
+
+        // cek apakah ada id_absensi
+        $where = array(
+            'id_absensi' => $id_absensi,
+            'id_internal' => $id_internal
+        );
+
+        $query = $this->M_universal->get_data('detail_absensi', $where);
+
+        if ($query->num_rows() > 0) { // jika ada
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "Anda Sudah Absen :)";
+            $result["cek_absen"] = "Sudah";
+            $this->response($result, 200);
+        } else {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "Anda Belum Absen !";
+            $result["cek_absen"] = "Belum";
             $this->response($result, 200);
         }
     }

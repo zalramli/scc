@@ -116,15 +116,21 @@ public class InternalListAbsensiActivity extends AppCompatActivity implements Vi
 			@Override
 			public void onClick(View view, int position) {
 				// lihat detail absensi dan kirim data detail
+				String id_absensi = dataModelArrayList.get(position).getId_absensi();
 
 				HashMap<String, String> user = sessionManager.getDataUser();
 				String id_internal = user.get(sessionManager.ID_USER);
 
-				String cek_absen = internalListAbsensiPresenter.cekAbsen("" + id_internal);
+				String cek_absen = internalListAbsensiPresenter.cekAbsen(
+					"" + id_absensi,
+					"" + id_internal
+				);
 
-				if (cek_absen.equals("sudah")) {
+				onSuccessMessage(cek_absen);
+
+				if (cek_absen.equals("Sudah")) {
 					Intent intent = new Intent(getApplicationContext(), InternalDetailAbsensiActivity.class);
-					intent.putExtra(InternalDetailAbsensiActivity.EXTRA_ID_ABSENSI, dataModelArrayList.get(position).getId_absensi());
+					intent.putExtra(InternalDetailAbsensiActivity.EXTRA_ID_ABSENSI, id_absensi);
 					// intent.putExtra(InternalDetailAbsensiActivity.EXTRA_ID_INTERNAL, dataModelArrayList.get(position).getId_internal());
 					intent.putExtra(InternalDetailAbsensiActivity.EXTRA_JUDUL_ABSENSI, dataModelArrayList.get(position).getJudul_absensi());
 					intent.putExtra(InternalDetailAbsensiActivity.EXTRA_TGL_ABSENSI, dataModelArrayList.get(position).getTgl_absensi());
@@ -135,7 +141,7 @@ public class InternalListAbsensiActivity extends AppCompatActivity implements Vi
 					startActivity(intent);
 				} else {
 					Intent intent = new Intent(getApplicationContext(), InternalCekPasswordAbsensiActivity.class);
-					intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_ID_ABSENSI, dataModelArrayList.get(position).getId_absensi());
+					intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_ID_ABSENSI, id_absensi);
 					intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_ID_INTERNAL, id_internal);
 					startActivity(intent);
 				}
