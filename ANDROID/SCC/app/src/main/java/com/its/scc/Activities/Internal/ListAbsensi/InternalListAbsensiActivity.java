@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.its.scc.Activities.Internal.CreateAbsensi.InternalCreateAbsensiActivity;
+import com.its.scc.Activities.Internal.DetailAbsensi.InternalDetailAbsensiActivity;
 import com.its.scc.Activities.Internal.ListAbsensi.presenter.IInternalListAbsensiPresenter;
 import com.its.scc.Activities.Internal.ListAbsensi.presenter.InternalListAbsensiPresenter;
 import com.its.scc.Activities.Internal.ListAbsensi.view.IInternalListAbsensiView;
@@ -107,7 +108,17 @@ public class InternalListAbsensiActivity extends AppCompatActivity implements Vi
 		adapterListAbsensi.setOnItemClickListener(new AdapterListAbsensi.ClickListener() {
 			@Override
 			public void onClick(View view, int position) {
-				// lihat detail absensi
+				// lihat detail absensi dan kirim data detail
+				Intent intent = new Intent(getApplicationContext(), InternalDetailAbsensiActivity.class);
+				intent.putExtra(InternalDetailAbsensiActivity.EXTRA_ID_ABSENSI, dataModelArrayList.get(position).getId_absensi());
+				intent.putExtra(InternalDetailAbsensiActivity.EXTRA_ID_INTERNAL, dataModelArrayList.get(position).getId_internal());
+				intent.putExtra(InternalDetailAbsensiActivity.EXTRA_JUDUL_ABSENSI, dataModelArrayList.get(position).getJudul_absensi());
+				intent.putExtra(InternalDetailAbsensiActivity.EXTRA_TGL_ABSENSI, dataModelArrayList.get(position).getTgl_absensi());
+				intent.putExtra(InternalDetailAbsensiActivity.EXTRA_JAM_MULAI, dataModelArrayList.get(position).getJam_mulai());
+				intent.putExtra(InternalDetailAbsensiActivity.EXTRA_JAM_SELESAI, dataModelArrayList.get(position).getJam_selesai());
+				intent.putExtra(InternalDetailAbsensiActivity.EXTRA_STATUS_ABSENSI, dataModelArrayList.get(position).getStatus_absensi());
+				intent.putExtra(InternalDetailAbsensiActivity.EXTRA_KATA_SANDI, dataModelArrayList.get(position).getKata_sandi());
+				startActivity(intent);
 			}
 		});
 	}
