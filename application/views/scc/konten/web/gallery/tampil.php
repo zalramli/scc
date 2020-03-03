@@ -1,11 +1,16 @@
-  <!--================Hero Banner SM Area Start =================-->
-  <section class="hero-banner-sm-404 magic-ball magic-ball-banner" id="parallax-1" data-anchor-target="#parallax-1"
-    data-300-top="background-position: 0px -80px" data-top-bottom="background-position: 0 100px">
+<section class="hero-banner magic-ball pb-5">
     <div class="container">
-      <div class="hero-banner-sm-content">
-        <h1>&nbsp</h1>
-        <p class="mb-5">&nbsp</p>
-      </div>
+
+    <div class="row align-items-center text-center text-md-left pb-5">
+        <div class="col-md-6 col-lg-5 mb-5 mb-md-0">
+        <h1>404 Not Found</h1>
+        <p>
+        Halaman yang anda cari tidak ditemukan
+        </p>  
+        </div>
+        <div class="col-md-6 col-lg-7 col-xl-6 offset-xl-1">
+        <img class="img-fluid" src="<?php echo base_url();?>_assets/safario/img/home/hero-img-404.png" alt="">
+        </div>
     </div>
-  </section>
-  <h1 class="text-center mb-5 mt-5">Not Found</h1>
+    </div>
+</section>

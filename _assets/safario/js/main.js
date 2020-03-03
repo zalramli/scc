@@ -1,17 +1,17 @@
 $(function() {
-  "use strict";
+    "use strict";
 
-  var nav_offset_top = $('header').height() + 50; 
+    var nav_offset_top = $('header').height() + 50;
     /*-------------------------------------------------------------------------------
 	  Navbar 
 	-------------------------------------------------------------------------------*/
 
-	//* Navbar Fixed  
-    function navbarFixed(){
-        if ( $('.header_area').length ){ 
+    //* Navbar Fixed  
+    function navbarFixed() {
+        if ($('.header_area').length) {
             $(window).scroll(function() {
-                var scroll = $(window).scrollTop();   
-                if (scroll >= nav_offset_top ) {
+                var scroll = $(window).scrollTop();
+                if (scroll >= nav_offset_top) {
                     $(".header_area").addClass("navbar_fixed");
                 } else {
                     $(".header_area").removeClass("navbar_fixed");
@@ -22,20 +22,20 @@ $(function() {
     navbarFixed();
 
     //------- Parallax -------//
-  skrollr.init({
-    forceHeight: false
-  });
+    // skrollr.init({
+    //     forceHeight: false
+    // });
 
 
 
-  //------- mailchimp --------//  
-	function mailChimp() {
-		$('#mc_embed_signup').find('form').ajaxChimp();
-	}
-  mailChimp();
+    //------- mailchimp --------//  
+    function mailChimp() {
+        $('#mc_embed_signup').find('form').ajaxChimp();
+    }
+    mailChimp();
 
 
-  $('select').niceSelect();
+    $('select').niceSelect();
 
     /*-------------------------------------------------------------------------------
 	  testimonial slider
@@ -61,7 +61,5 @@ $(function() {
 
 
 
-  
+
 });
-
-

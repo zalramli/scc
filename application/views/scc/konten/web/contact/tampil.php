@@ -1,12 +1,19 @@
-<section class="hero-banner-sm-contact magic-ball magic-ball-banner" id="parallax-1" data-anchor-target="#parallax-1"
-    data-300-top="background-position: 0px -80px" data-top-bottom="background-position: 0 100px">
+<section class="hero-banner magic-ball">
     <div class="container">
-      <div class="hero-banner-sm-content">
-        <h1>Contact Us</h1>
-        <p>Hubungi kami jika mengalami masalah</p>
-      </div>
+
+    <div class="row align-items-center text-center text-md-left">
+        <div class="col-md-6 col-lg-5 mb-5 mb-md-0">
+        <h1>Contact US</h1>
+        <p>
+          Hubungi kami jika ada kendala.
+        </p>  
+        </div>
+        <div class="col-md-6 col-lg-7 col-xl-6 offset-xl-1">
+        <img class="img-fluid" src="<?php echo base_url();?>_assets/safario/img/home/hero-img-contact.png" alt="">
+        </div>
     </div>
-  </section>
+    </div>
+</section>
 
   <section class="section-margin">
     <div class="container">
