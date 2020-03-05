@@ -12,4 +12,6 @@ public interface IInternalListAbsensiView {
 	void onSuccessMessage(String message);
 
 	void onErrorMessage(String message);
+
+	void onCek(String value);
 }

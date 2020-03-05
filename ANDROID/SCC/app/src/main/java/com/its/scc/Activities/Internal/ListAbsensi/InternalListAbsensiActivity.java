@@ -46,6 +46,8 @@ public class InternalListAbsensiActivity extends AppCompatActivity implements Vi
 
 	SessionManager sessionManager;
 
+	String cek_absen = "";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -121,7 +123,7 @@ public class InternalListAbsensiActivity extends AppCompatActivity implements Vi
 				HashMap<String, String> user = sessionManager.getDataUser();
 				String id_internal = user.get(sessionManager.ID_USER);
 
-				String cek_absen = internalListAbsensiPresenter.cekAbsen(
+				internalListAbsensiPresenter.cekAbsen(
 					"" + id_absensi,
 					"" + id_internal
 				);
@@ -157,6 +159,11 @@ public class InternalListAbsensiActivity extends AppCompatActivity implements Vi
 	@Override
 	public void onErrorMessage(String message) {
 		Toasty.error(this, message, Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
+	public void onCek(String value) {
+		cek_absen = value;
 	}
 
 	@Override

@@ -79,16 +79,34 @@ class Absensi extends REST_Controller
             'jam_mulai'   => $jam_mulai,
             'jam_selesai'   => $jam_selesai,
             'status_absensi'   => $status_absensi,
-            'kata_sandi'   => $kata_sandi,
+            'kata_sandi'   => $kata_sandi
         );
 
         $insert =  $this->M_universal->input_data('absensi', $data);
         if ($insert) {
 
-            // membuat array untuk di transfer ke API
-            $result["success"] = "1";
-            $result["message"] = "Berhasil Membuat Absensi";
-            $this->response($result, 200);
+            // input detail absensi
+            $tgl_absen = date('Y-m-d H:i:s');
+
+            $data = array(
+                'id_absensi'   => $id_absensi,
+                'id_internal'   => $id_internal,
+                'tgl_absen'   => $tgl_absen
+            );
+
+            $insert =  $this->M_universal->input_data('detail_absensi', $data);
+
+            if ($insert) {
+                // membuat array untuk di transfer ke API
+                $result["success"] = "1";
+                $result["message"] = "Berhasil Membuat Absensi";
+                $this->response($result, 200);
+            } else {
+                // membuat array untuk di transfer ke API
+                $result["success"] = "0";
+                $result["message"] = "Coba Lagi, Server Error";
+                $this->response($result, 200);
+            }
         } else {
 
             // membuat array untuk di transfer ke API

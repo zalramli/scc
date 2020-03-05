@@ -104,9 +104,7 @@ public class InternalListAbsensiPresenter implements IInternalListAbsensiPresent
 	}
 
 	@Override
-	public String cekAbsen(String id_absensi, String id_internal) {
-		String cek_absen = "";
-
+	public void cekAbsen(String id_absensi, String id_internal) {
 		String base_url = baseUrl.getUrlData();
 		String URL_DATA = base_url + "internal/absensi/cek_absen"; // url http request
 
@@ -121,14 +119,10 @@ public class InternalListAbsensiPresenter implements IInternalListAbsensiPresent
 
 						String cek = jsonObject.getString("cek_absen");
 
-						if (success.equals("1")) {
+						internalListAbsensiView.onCek(cek);
 
-						} else {
+						if (!success.equals("1")) {
 							internalListAbsensiView.onErrorMessage(message);
-						}
-
-						if (cek.equals("Sudah")){
-							
 						}
 
 					} catch (JSONException e) {
@@ -154,7 +148,5 @@ public class InternalListAbsensiPresenter implements IInternalListAbsensiPresent
 
 		RequestQueue requestQueue = Volley.newRequestQueue(context);
 		requestQueue.add(stringRequest);
-
-		return cek_absen;
 	}
 }
