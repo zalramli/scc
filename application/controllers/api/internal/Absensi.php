@@ -188,4 +188,57 @@ class Absensi extends REST_Controller
 
         $update =  $this->M_universal->update_data($where, "absensi", $data_update);
     }
+
+    function masuk_absensi_post()
+    {
+        // menerima data post
+        $id_absensi = $this->post('id_absensi');
+        $id_internal = $this->post('id_internal');
+
+        // variable array
+        $result = array();
+        $result['detail_absensi'] = array();
+
+        // cek apakah ada id_absensi
+        $where = array(
+            'id_absensi' => $id_absensi,
+            'id_internal' => $id_internal
+        );
+
+        $query = $this->M_universal->get_data('detail_absensi', $where);
+
+        if ($query->num_rows() > 0) { // jika ada
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "Anda Sudah Absen :)";
+            $this->response($result, 200);
+        } else {
+
+            // melakukan absensi
+            $tgl_absen = date('Y-m-d H:i:s');
+
+            $data = array(
+                'id_absensi'   => $id_absensi,
+                'id_internal'   => $id_internal,
+                'tgl_absen'   => $tgl_absen
+            );
+
+            $insert =  $this->M_universal->input_data('detail_absensi', $data);
+
+            if ($insert) {
+
+                // membuat array untuk di transfer ke API
+                $result["success"] = "1";
+                $result["message"] = "Berhasil Melakukan Absensi";
+                $this->response($result, 200);
+            } else {
+
+                // membuat array untuk di transfer ke API
+                $result["success"] = "0";
+                $result["message"] = "Coba Lagi, Server Error";
+                $this->response($result, 200);
+            }
+        }
+    }
 }

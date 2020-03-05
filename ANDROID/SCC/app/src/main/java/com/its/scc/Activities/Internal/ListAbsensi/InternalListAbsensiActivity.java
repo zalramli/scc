@@ -180,6 +180,13 @@ public class InternalListAbsensiActivity extends AppCompatActivity implements Vi
 	public void keKataSandi() {
 		Intent intent = new Intent(getApplicationContext(), InternalCekPasswordAbsensiActivity.class);
 		intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_ID_ABSENSI, db_id_absensi);
+		// intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_ID_INTERNAL, db_id_internal);
+		intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_JUDUL_ABSENSI, db_judul_absensi);
+		intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_TGL_ABSENSI, db_tgl_absensi);
+		intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_JAM_MULAI, db_jam_mulai);
+		intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_JAM_SELESAI, db_jam_selesai);
+		intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_STATUS_ABSENSI, db_status_absensi);
+		intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_KATA_SANDI, db_kata_sandi);
 		startActivity(intent);
 	}
 
