@@ -139,6 +139,8 @@ public class InternalListAbsensiPresenter implements IInternalListAbsensiPresent
 
 							if (cek_absen.equals("Belum")) {
 								internalListAbsensiView.onErrorMessage(message);
+							} else {
+								internalListAbsensiView.onSuccessMessage(message);
 							}
 
 							internalListAbsensiView.keDetail();
