@@ -148,6 +148,11 @@ public class InternalListAbsensiActivity extends AppCompatActivity implements Vi
 	}
 
 	@Override
+	public void setNilaiDefault() {
+		fab.show();
+	}
+
+	@Override
 	public void onSuccessMessage(String message) {
 		Toasty.success(this, message, Toast.LENGTH_SHORT).show();
 	}

@@ -11,6 +11,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.its.scc.Activities.Internal.ListAbsensi.view.IInternalListAbsensiView;
 import com.its.scc.Controllers.BaseUrl;
+import com.its.scc.Controllers.SessionManager;
 import com.its.scc.Models.Absensi;
 
 import org.json.JSONArray;
@@ -30,11 +31,15 @@ public class InternalListAbsensiPresenter implements IInternalListAbsensiPresent
 
 	ArrayList<Absensi> dataModelArrayList;
 
+	SessionManager sessionManager;
+
 	public InternalListAbsensiPresenter(Context context, IInternalListAbsensiView internalListAbsensiView) {
 		this.context = context;
 		this.internalListAbsensiView = internalListAbsensiView;
 
 		baseUrl = new BaseUrl();
+
+		sessionManager = new SessionManager(context);
 	}
 
 	@Override
@@ -50,6 +55,7 @@ public class InternalListAbsensiPresenter implements IInternalListAbsensiPresent
 					JSONObject obj = new JSONObject(response);
 					String success = obj.getString("success");
 					String message = obj.getString("message");
+					String id_internal_akses = obj.getString("id_internal_akses");
 
 					if (success.equals("1")) {
 
@@ -87,6 +93,14 @@ public class InternalListAbsensiPresenter implements IInternalListAbsensiPresent
 						internalListAbsensiView.onSetupListView(dataModelArrayList);
 						internalListAbsensiView.onErrorMessage(message);
 					}
+
+					HashMap<String, String> user = sessionManager.getDataUser();
+					String id_internal_session = user.get(sessionManager.ID_USER);
+
+					if (id_internal_akses.equals(id_internal_session)) {
+						internalListAbsensiView.setNilaiDefault();
+					}
+					
 				} catch (JSONException e) {
 					e.printStackTrace();
 					internalListAbsensiView.onErrorMessage("Gagal Menerima Data : " + e.toString());
@@ -119,9 +133,14 @@ public class InternalListAbsensiPresenter implements IInternalListAbsensiPresent
 
 						String cek_absen = jsonObject.getString("cek_absen");
 
-						if (cek_absen.equals("Belum") && status_absensi.equals("Belum Selesai")){
+						if (cek_absen.equals("Belum") && status_absensi.equals("Belum Selesai")) {
 							internalListAbsensiView.keKataSandi();
 						} else {
+
+							if (cek_absen.equals("Belum")) {
+								internalListAbsensiView.onErrorMessage(message);
+							}
+
 							internalListAbsensiView.keDetail();
 						}
 

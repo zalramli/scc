@@ -71,12 +71,14 @@ class Absensi extends REST_Controller
             // membuat array untuk di transfer
             $result["success"] = "1";
             $result["message"] = "Berhasil Mengambil Data";
+            $result["id_internal_akses"] = "IN001";
             $this->response($result, 200);
         } else {
 
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
             $result["message"] = "Absensi Masih Kosong";
+            $result["id_internal_akses"] = "IN001";
             $this->response($result, 200);
         }
     }

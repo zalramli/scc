@@ -9,6 +9,8 @@ public interface IInternalListAbsensiView {
 
 	void onSetupListView(ArrayList<Absensi> dataModelArrayList);
 
+	void setNilaiDefault();
+
 	void onSuccessMessage(String message);
 
 	void onErrorMessage(String message);
