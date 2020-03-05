@@ -24,8 +24,15 @@
 			$jadwal_bs = base_url('admin/jadwal_bs');
 			$materi_prove = base_url('admin/materi_prove');
 			$software = base_url('admin/software');
+			$sst = base_url('admin/sst');
 			if ($this->session->userdata('nama') == 'Hasri Wiji Aqsari') {
-				echo '<li class="nav-item">
+				echo '
+				<li class="nav-item">
+				<a class="nav-link" href="' . $sst . '">
+			<i class="fas fa-user"></i>
+			<span>Pendaftaran SST</span></a>
+			</li>
+				<li class="nav-item">
 				<a class="nav-link" href="' . $internal . '">
 			<i class="fas fa-user"></i>
 			<span>Anggota Internal</span></a>

@@ -58,3 +58,4 @@ $route['tutorial'] = "web/tutorial";
 $route['gallery'] = "web/gallery";
 $route['struktur'] = "web/struktur";
 $route['contact'] = "web/contact";
+$route['sst'] = "web/sst";

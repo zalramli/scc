@@ -59,6 +59,8 @@
 	var pesan_sukses = $('.pesan-sukses').data(pesan_sukses);
 	var pesan_update = $('.pesan-update').data(pesan_update);
 	var pesan_hapus = $('.pesan-hapus').data(pesan_hapus);
+	var pesan_upload = $('.pesan-upload').data(pesan_upload);
+
 	if (pesan_sukses) {
 		Swal.fire(
 			'Success',
@@ -77,6 +79,13 @@
 			'Data Berhasil Dihapus',
 			'success'
 		)
+	}
+	else if (pesan_upload) {
+			Swal.fire({
+				icon: 'error',
+				title: 'Gagal',
+				text: 'Upload foto gagal'
+			})
 	}
 </script>
 <script>

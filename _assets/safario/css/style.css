@@ -1000,6 +1000,7 @@ h3,
     -moz-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
+    border-radius: .60rem!important
 }
 
 .service-card:hover {
@@ -1007,15 +1008,16 @@ h3,
 }
 
 .service-card2 {
-    background: white;
+    background: #f8f8ff;
     -webkit-transition: all 0.3s ease 0s;
     -moz-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
+    border-radius: .90rem!important
 }
 
 .service-card2:hover {
-    background: #fff;
+    background: #2c2c54
 }
 
 .service-card-img {

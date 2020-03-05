@@ -24,18 +24,17 @@
         <h2>Event SCC</h2>
     </div>
 
-    <div class="row">
-        <div class="col-md-12 col-lg-12 mb-4 mb-lg-0">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-6 mb-lg-0">
         <div class="service-card2 text-center">
             <div class="service-card-img">
-            <img class="img-fluid" src="<?php echo base_url();?>_assets/safario/img/home/event.png" alt="">
+                <a href="<?php echo base_url('sst') ?>">
+                    <img class="img-fluid" src="<?php echo base_url();?>_assets/safario/img/home/event.png" alt="">
+                </a>
             </div>
             <div class="service-card-body">
             <h3>&nbsp</h3>
             <h3>&nbsp</h3>
-            <h2>Coming Soon</h2>
-            <p>Merupakan pelatihan statistika yang ditujukan untuk mahasiswa dan masyarakat umum.
-            </p>
             </div>
         </div>
         </div>

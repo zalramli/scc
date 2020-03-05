@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Tutorial extends CI_Controller
+class Sst extends CI_Controller
 {
     public function __construct()
     {
@@ -11,7 +11,6 @@ class Tutorial extends CI_Controller
 
     public function index()
     {
-        $data['record'] = $this->M_crud->tampil_data('tutorial')->result();
-        $this->template->load('scc/template/web', 'scc/konten/web/tutorial/tampil',$data);
+        $this->template->load('scc/template/web', 'scc/konten/web/sst/tampil');
     }
 }
