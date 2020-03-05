@@ -150,7 +150,7 @@ class Prove extends REST_Controller
                 $data = array();
 
                 if ($tgl_prove < date('Y-m-d') && $status_prove == "Belum Selesai") {
-                    $this->validasi_prove_gagal($id_prove, $id_jadwal_prove);
+                    // $this->validasi_prove_gagal($id_prove, $id_jadwal_prove);
                 } else {
                     // ambil detail data db
                     $data = array(
