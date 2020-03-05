@@ -148,7 +148,7 @@ public class InternalListAbsensiActivity extends AppCompatActivity implements Vi
 	}
 
 	@Override
-	public void setNilaiDefault() {
+	public void showAkses() {
 		fab.show();
 	}
 

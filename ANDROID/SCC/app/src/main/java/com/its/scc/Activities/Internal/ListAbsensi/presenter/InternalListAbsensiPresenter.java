@@ -98,9 +98,9 @@ public class InternalListAbsensiPresenter implements IInternalListAbsensiPresent
 					String id_internal_session = user.get(sessionManager.ID_USER);
 
 					if (id_internal_akses.equals(id_internal_session)) {
-						internalListAbsensiView.setNilaiDefault();
+						internalListAbsensiView.showAkses();
 					}
-					
+
 				} catch (JSONException e) {
 					e.printStackTrace();
 					internalListAbsensiView.onErrorMessage("Gagal Menerima Data : " + e.toString());

@@ -9,7 +9,7 @@ public interface IInternalListAbsensiView {
 
 	void onSetupListView(ArrayList<Absensi> dataModelArrayList);
 
-	void setNilaiDefault();
+	void showAkses();
 
 	void onSuccessMessage(String message);
 
