@@ -22,4 +22,19 @@ public class InternalCekPasswordAbsensiActivity extends AppCompatActivity implem
 	public void onClick(View v) {
 
 	}
+
+	@Override
+	public void onSuccessMessage(String message) {
+
+	}
+
+	@Override
+	public void onErrorMessage(String message) {
+
+	}
+
+	@Override
+	public void keHalamanLain() {
+
+	}
 }

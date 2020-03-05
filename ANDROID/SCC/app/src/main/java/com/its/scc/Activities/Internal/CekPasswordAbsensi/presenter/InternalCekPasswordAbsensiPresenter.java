@@ -18,4 +18,9 @@ public class InternalCekPasswordAbsensiPresenter implements IInternalCekPassword
 
 		baseUrl = new BaseUrl();
 	}
+
+	@Override
+	public void onSubmit(String id_absensi, String id_internal) {
+
+	}
 }
