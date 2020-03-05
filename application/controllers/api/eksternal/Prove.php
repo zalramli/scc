@@ -149,31 +149,32 @@ class Prove extends REST_Controller
 
                 $data = array();
 
-                if ($tgl_prove < date('Y-m-d') && $status_prove == "Belum Selesai") {
-                    // $this->validasi_prove_gagal($id_prove, $id_jadwal_prove);
-                } else {
-                    // ambil detail data db
-                    $data = array(
-                        'id_prove' => $row["id_prove"],
-                        'id_eksternal' => $row["id_eksternal"],
-                        'nama_eksternal' => $row["nama_eksternal"],
-                        'id_internal' => $row["id_internal"],
-                        'nama_internal' => $row["nama_internal"],
-                        'id_materi_prove' => $row["id_materi_prove"],
-                        'nama_materi_prove' => $row["nama_materi_prove"],
-                        'id_jadwal_prove' => $row["id_jadwal_prove"],
-                        'hari' => $row["hari"],
-                        'jam_mulai' => $row["jam_mulai"],
-                        'jam_selesai' => $row["jam_selesai"],
-                        'deskripsi_materi' => $row["deskripsi_materi"],
-                        'tanggal_booking' => $row["tanggal_booking"],
-                        'tanggal_prove' => $row["tanggal_prove"],
-                        'kode_prove' => $row["kode_prove"],
-                        'kata_sandi' => $row["kata_sandi"],
-                        'status_prove' => $row["status_prove"]
-                    );
-                    array_push($result['list_prove'], $data);
-                }
+                // if ($tgl_prove < date('Y-m-d') && $status_prove == "Belum Selesai") {
+                //     $this->validasi_prove_gagal($id_prove, $id_jadwal_prove);
+                // } else {
+                // }
+
+                // ambil detail data db
+                $data = array(
+                    'id_prove' => $row["id_prove"],
+                    'id_eksternal' => $row["id_eksternal"],
+                    'nama_eksternal' => $row["nama_eksternal"],
+                    'id_internal' => $row["id_internal"],
+                    'nama_internal' => $row["nama_internal"],
+                    'id_materi_prove' => $row["id_materi_prove"],
+                    'nama_materi_prove' => $row["nama_materi_prove"],
+                    'id_jadwal_prove' => $row["id_jadwal_prove"],
+                    'hari' => $row["hari"],
+                    'jam_mulai' => $row["jam_mulai"],
+                    'jam_selesai' => $row["jam_selesai"],
+                    'deskripsi_materi' => $row["deskripsi_materi"],
+                    'tanggal_booking' => $row["tanggal_booking"],
+                    'tanggal_prove' => $row["tanggal_prove"],
+                    'kode_prove' => $row["kode_prove"],
+                    'kata_sandi' => $row["kata_sandi"],
+                    'status_prove' => $row["status_prove"]
+                );
+                array_push($result['list_prove'], $data);
             }
 
             // membuat array untuk di transfer
