@@ -19,6 +19,9 @@
             <li class="nav-item <?php if($this->uri->segment('1') == "struktur"){echo "active";} ?>"><a class="nav-link" href="<?php echo base_url('struktur'); ?>">Struktur</a>
             <li class="nav-item <?php if($this->uri->segment('1') == "contact"){echo "active";} ?>"><a class="nav-link" href="<?php echo base_url('contact'); ?>">Contact</a></li>
             </ul>
+            <div class="nav-right text-center text-lg-right py-4 py-lg-0">
+              <a class="button" href="">Event SST</a>
+            </div>
         </div>
         </div>
     </nav>
