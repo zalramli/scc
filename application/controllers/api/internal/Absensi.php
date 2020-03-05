@@ -27,18 +27,41 @@ class Absensi extends REST_Controller
 
         if ($query->num_rows() > 0) {
 
-            // mengeluarkan data dari database
+            // for khusus validasi
             foreach ($query->result_array() as $row) {
+
+                $id_absensi = $row["id_absensi"];
+                $tgl_absensi = $row["tgl_absensi"];
+                $status_absensi = $row["status_absensi"];
+                $jam_selesai = $row["jam_selesai"];
+
+                if ($tgl_absensi == date('Y-m-d') && $jam_selesai < date('H:i') && $status_absensi == "Belum Selesai") {
+                    $this->validasi_absensi_selesai($id_absensi);
+                }
+
+                if ($tgl_absensi < date('Y-m-d') && $status_absensi == "Belum Selesai") {
+                    $this->validasi_absensi_selesai($id_absensi);
+                }
+            }
+
+            // mengeluarkan data dari database
+            $query = $this->M_universal->tampil_data_order_by('absensi', 'id_absensi', 'DESC');
+
+            foreach ($query->result_array() as $row) {
+
+                $id_absensi = $row["id_absensi"];
+                $tgl_absensi = $row["tgl_absensi"];
+                $status_absensi = $row["status_absensi"];
 
                 // ambil detail data db
                 $data = array(
-                    'id_absensi' => $row["id_absensi"],
+                    'id_absensi' => $id_absensi,
                     'id_internal' => $row["id_internal"],
                     'judul_absensi' => $row["judul_absensi"],
-                    'tgl_absensi' => $row["tgl_absensi"],
+                    'tgl_absensi' => $tgl_absensi,
                     'jam_mulai' => $row["jam_mulai"],
                     'jam_selesai' => $row["jam_selesai"],
-                    'status_absensi' => $row["status_absensi"],
+                    'status_absensi' => $status_absensi,
                     'kata_sandi' => $row["kata_sandi"],
                 );
 
@@ -148,5 +171,19 @@ class Absensi extends REST_Controller
             $result["cek_absen"] = "Belum";
             $this->response($result, 200);
         }
+    }
+
+    function validasi_absensi_selesai($id_absensi)
+    {
+        // untuk mengubah jadwal status prove
+        $where = array(
+            'id_absensi' => $id_absensi
+        );
+
+        $data_update = array(
+            'status_absensi' => 'Selesai'
+        );
+
+        $update =  $this->M_universal->update_data($where, "absensi", $data_update);
     }
 }

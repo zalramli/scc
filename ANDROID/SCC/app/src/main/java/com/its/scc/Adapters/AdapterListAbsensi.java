@@ -67,8 +67,6 @@ public class AdapterListAbsensi extends RecyclerView.Adapter<AdapterListAbsensi.
 
 		if (status_absensi.equals("Belum Selesai")) {
 			holder.cvItemAdapterListAbsensi.setCardBackgroundColor(Color.RED);
-		} else if (status_absensi.equals("Batal")) {
-			holder.cvItemAdapterListAbsensi.setCardBackgroundColor(Color.GRAY);
 		}
 	}
 

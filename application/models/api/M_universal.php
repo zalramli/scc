@@ -6,6 +6,12 @@ class M_universal extends CI_Model
         return $this->db->get($table);
     }
 
+    function tampil_data_order_by($table, $kolom, $by)
+    {
+        $this->db->order_by($kolom, $by);
+        return $this->db->get($table);
+    }
+
     function input_data($table, $data)
     {
         $status = $this->db->insert($table, $data);

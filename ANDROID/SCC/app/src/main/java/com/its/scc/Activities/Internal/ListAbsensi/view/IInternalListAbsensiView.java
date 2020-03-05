@@ -13,5 +13,7 @@ public interface IInternalListAbsensiView {
 
 	void onErrorMessage(String message);
 
-	void onCek(String value);
+	void keDetail();
+
+	void keKataSandi();
 }
