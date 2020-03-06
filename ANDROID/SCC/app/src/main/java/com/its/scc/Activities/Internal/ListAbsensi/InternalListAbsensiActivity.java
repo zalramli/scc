@@ -33,6 +33,7 @@ import es.dmoral.toasty.Toasty;
 public class InternalListAbsensiActivity extends AppCompatActivity implements View.OnClickListener, IInternalListAbsensiView {
 
 	public static final String EXTRA_TUJUAN = "EXTRA_TUJUAN";
+
 	IInternalListAbsensiPresenter internalListAbsensiPresenter;
 
 	AdapterListAbsensi adapterListAbsensi;
@@ -46,7 +47,14 @@ public class InternalListAbsensiActivity extends AppCompatActivity implements Vi
 
 	SessionManager sessionManager;
 
-	String cek_absen = "";
+	String db_id_absensi = "";
+	String db_id_internal = "";
+	String db_judul_absensi = "";
+	String db_tgl_absensi = "";
+	String db_jam_mulai = "";
+	String db_jam_selesai = "";
+	String db_status_absensi = "";
+	String db_kata_sandi = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -118,37 +126,30 @@ public class InternalListAbsensiActivity extends AppCompatActivity implements Vi
 			@Override
 			public void onClick(View view, int position) {
 				// lihat detail absensi dan kirim data detail
-				String id_absensi = dataModelArrayList.get(position).getId_absensi();
+				db_id_absensi = dataModelArrayList.get(position).getId_absensi();
+				db_id_internal = dataModelArrayList.get(position).getId_internal();
+				db_judul_absensi = dataModelArrayList.get(position).getJudul_absensi();
+				db_tgl_absensi = dataModelArrayList.get(position).getTgl_absensi();
+				db_jam_mulai = dataModelArrayList.get(position).getJam_mulai();
+				db_jam_selesai = dataModelArrayList.get(position).getJam_selesai();
+				db_status_absensi = dataModelArrayList.get(position).getStatus_absensi();
+				db_kata_sandi = dataModelArrayList.get(position).getKata_sandi();
 
 				HashMap<String, String> user = sessionManager.getDataUser();
 				String id_internal = user.get(sessionManager.ID_USER);
 
 				internalListAbsensiPresenter.cekAbsen(
-					"" + id_absensi,
-					"" + id_internal
+					"" + db_id_absensi,
+					"" + id_internal,
+					"" + db_status_absensi
 				);
-
-				onSuccessMessage(cek_absen);
-
-				if (cek_absen.equals("Sudah")) {
-					Intent intent = new Intent(getApplicationContext(), InternalDetailAbsensiActivity.class);
-					intent.putExtra(InternalDetailAbsensiActivity.EXTRA_ID_ABSENSI, id_absensi);
-					// intent.putExtra(InternalDetailAbsensiActivity.EXTRA_ID_INTERNAL, dataModelArrayList.get(position).getId_internal());
-					intent.putExtra(InternalDetailAbsensiActivity.EXTRA_JUDUL_ABSENSI, dataModelArrayList.get(position).getJudul_absensi());
-					intent.putExtra(InternalDetailAbsensiActivity.EXTRA_TGL_ABSENSI, dataModelArrayList.get(position).getTgl_absensi());
-					intent.putExtra(InternalDetailAbsensiActivity.EXTRA_JAM_MULAI, dataModelArrayList.get(position).getJam_mulai());
-					intent.putExtra(InternalDetailAbsensiActivity.EXTRA_JAM_SELESAI, dataModelArrayList.get(position).getJam_selesai());
-					intent.putExtra(InternalDetailAbsensiActivity.EXTRA_STATUS_ABSENSI, dataModelArrayList.get(position).getStatus_absensi());
-					intent.putExtra(InternalDetailAbsensiActivity.EXTRA_KATA_SANDI, dataModelArrayList.get(position).getKata_sandi());
-					startActivity(intent);
-				} else {
-					Intent intent = new Intent(getApplicationContext(), InternalCekPasswordAbsensiActivity.class);
-					intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_ID_ABSENSI, id_absensi);
-					intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_ID_INTERNAL, id_internal);
-					startActivity(intent);
-				}
 			}
 		});
+	}
+
+	@Override
+	public void showAkses() {
+		fab.show();
 	}
 
 	@Override
@@ -162,8 +163,31 @@ public class InternalListAbsensiActivity extends AppCompatActivity implements Vi
 	}
 
 	@Override
-	public void onCek(String value) {
-		cek_absen = value;
+	public void keDetail() {
+		Intent intent = new Intent(getApplicationContext(), InternalDetailAbsensiActivity.class);
+		intent.putExtra(InternalDetailAbsensiActivity.EXTRA_ID_ABSENSI, db_id_absensi);
+		// intent.putExtra(InternalDetailAbsensiActivity.EXTRA_ID_INTERNAL, db_id_internal);
+		intent.putExtra(InternalDetailAbsensiActivity.EXTRA_JUDUL_ABSENSI, db_judul_absensi);
+		intent.putExtra(InternalDetailAbsensiActivity.EXTRA_TGL_ABSENSI, db_tgl_absensi);
+		intent.putExtra(InternalDetailAbsensiActivity.EXTRA_JAM_MULAI, db_jam_mulai);
+		intent.putExtra(InternalDetailAbsensiActivity.EXTRA_JAM_SELESAI, db_jam_selesai);
+		intent.putExtra(InternalDetailAbsensiActivity.EXTRA_STATUS_ABSENSI, db_status_absensi);
+		intent.putExtra(InternalDetailAbsensiActivity.EXTRA_KATA_SANDI, db_kata_sandi);
+		startActivity(intent);
+	}
+
+	@Override
+	public void keKataSandi() {
+		Intent intent = new Intent(getApplicationContext(), InternalCekPasswordAbsensiActivity.class);
+		intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_ID_ABSENSI, db_id_absensi);
+		// intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_ID_INTERNAL, db_id_internal);
+		intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_JUDUL_ABSENSI, db_judul_absensi);
+		intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_TGL_ABSENSI, db_tgl_absensi);
+		intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_JAM_MULAI, db_jam_mulai);
+		intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_JAM_SELESAI, db_jam_selesai);
+		intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_STATUS_ABSENSI, db_status_absensi);
+		intent.putExtra(InternalCekPasswordAbsensiActivity.EXTRA_KATA_SANDI, db_kata_sandi);
+		startActivity(intent);
 	}
 
 	@Override

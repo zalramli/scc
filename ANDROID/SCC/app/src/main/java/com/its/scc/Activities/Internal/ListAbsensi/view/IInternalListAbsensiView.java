@@ -9,9 +9,13 @@ public interface IInternalListAbsensiView {
 
 	void onSetupListView(ArrayList<Absensi> dataModelArrayList);
 
+	void showAkses();
+
 	void onSuccessMessage(String message);
 
 	void onErrorMessage(String message);
 
-	void onCek(String value);
+	void keDetail();
+
+	void keKataSandi();
 }
