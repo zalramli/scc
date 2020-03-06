@@ -241,4 +241,54 @@ class Absensi extends REST_Controller
             }
         }
     }
+
+    function list_detail_absensi_post()
+    {
+
+
+        // mengambil data dari database
+        $query = $this->M_universal->tampil_data('absensi');
+
+        // variable array
+        $result = array();
+        $result['absensi'] = array();
+
+        if ($query->num_rows() > 0) {
+
+            // mengeluarkan data dari database
+            foreach ($query->result_array() as $row) {
+
+                $id_absensi = $row["id_absensi"];
+                $tgl_absensi = $row["tgl_absensi"];
+                $status_absensi = $row["status_absensi"];
+
+                // ambil detail data db
+                $data = array(
+                    'id_absensi' => $id_absensi,
+                    'id_internal' => $row["id_internal"],
+                    'judul_absensi' => $row["judul_absensi"],
+                    'tgl_absensi' => $tgl_absensi,
+                    'jam_mulai' => $row["jam_mulai"],
+                    'jam_selesai' => $row["jam_selesai"],
+                    'status_absensi' => $status_absensi,
+                    'kata_sandi' => $row["kata_sandi"],
+                );
+
+                array_push($result['absensi'], $data);
+            }
+
+            // membuat array untuk di transfer
+            $result["success"] = "1";
+            $result["message"] = "Berhasil Mengambil Data";
+            $result["id_internal_akses"] = "IN001";
+            $this->response($result, 200);
+        } else {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "Absensi Masih Kosong";
+            $result["id_internal_akses"] = "IN001";
+            $this->response($result, 200);
+        }
+    }
 }

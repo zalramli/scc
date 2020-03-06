@@ -32,20 +32,18 @@ public class InternalDetailAbsensiActivity extends AppCompatActivity implements 
 
 	String id_absensi, id_internal, judul_absensi, tgl_absensi, jam_mulai, jam_selesai, status_absensi, kata_sandi;
 
-//	IInternalDetailAbsensiPresenter internalDetailAbsensiPresenter;
-//
-//	private AdapterListAbsensiAnggota adapterListAbsensiAnggota;
-//	private RecyclerView recyclerView;
-//
-//	Toolbar toolbar;
-//
-//	private SwipeRefreshLayout swipeRefreshLayout;
-//
-//	TextView tvNamaMateri, tvDetailJadwal, tvTanggalProve, tvKodeProve, tvKataSandi, tvNamaInternal, tvStatusProve, tvRating, tvKeluar;
-//
-//	ImageView ivKeluar, ivRating;
-//
-//	CardView cvItemAdapterListProve;
+	IInternalDetailAbsensiPresenter internalDetailAbsensiPresenter;
+
+	private AdapterListAbsensiAnggota adapterListAbsensiAnggota;
+	private RecyclerView recyclerView;
+
+	Toolbar toolbar;
+
+	private SwipeRefreshLayout swipeRefreshLayout;
+
+	TextView tvJudulAbsensi, tvTglAbsensi, tvJamMulai, tvJamSelesai, tvStatusAbsensi;
+
+	CardView cvItemAdapterListAbsensi;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +58,15 @@ public class InternalDetailAbsensiActivity extends AppCompatActivity implements 
 		jam_selesai = getIntent().getStringExtra(EXTRA_JAM_SELESAI);
 		status_absensi = getIntent().getStringExtra(EXTRA_STATUS_ABSENSI);
 		kata_sandi = getIntent().getStringExtra(EXTRA_KATA_SANDI);
+
+		tvJudulAbsensi = findViewById(R.id.tv_judul_absensi);
+		tvTglAbsensi = findViewById(R.id.tv_tgl_absensi);
+		tvJamMulai = findViewById(R.id.tv_jam_mulai);
+		tvJamSelesai = findViewById(R.id.tv_jam_selesai);
+		tvStatusAbsensi = findViewById(R.id.tv_status_absensi);
+
+		// Nilai Awal
+		setNilaiDefault();
 	}
 
 	@Override
@@ -74,7 +81,11 @@ public class InternalDetailAbsensiActivity extends AppCompatActivity implements 
 
 	@Override
 	public void setNilaiDefault() {
-
+		tvJudulAbsensi.setText("" + judul_absensi);
+		tvTglAbsensi.setText("Tanggal Acara : " + tgl_absensi);
+		tvJamMulai.setText("Jam Mulai : " + jam_mulai);
+		tvJamSelesai.setText("Jam Selesai : " + jam_selesai);
+		tvStatusAbsensi.setText("" + status_absensi);
 	}
 
 	@Override
