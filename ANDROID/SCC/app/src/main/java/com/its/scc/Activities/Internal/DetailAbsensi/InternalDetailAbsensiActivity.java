@@ -7,17 +7,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.its.scc.Activities.Internal.DetailAbsensi.presenter.IInternalDetailAbsensiPresenter;
+import com.its.scc.Activities.Internal.DetailAbsensi.presenter.InternalDetailAbsensiPresenter;
 import com.its.scc.Activities.Internal.DetailAbsensi.view.IInternalDetailAbsensiView;
 import com.its.scc.Adapters.AdapterListAbsensiAnggota;
 import com.its.scc.Models.Internal;
 import com.its.scc.R;
 
 import java.util.ArrayList;
+
+import es.dmoral.toasty.Toasty;
 
 public class InternalDetailAbsensiActivity extends AppCompatActivity implements View.OnClickListener, IInternalDetailAbsensiView {
 
@@ -66,7 +72,38 @@ public class InternalDetailAbsensiActivity extends AppCompatActivity implements 
 		tvStatusAbsensi = findViewById(R.id.tv_status_absensi);
 
 		// Nilai Awal
+		internalDetailAbsensiPresenter = new InternalDetailAbsensiPresenter(this, this);
+		internalDetailAbsensiPresenter.onLoadSemuaData(
+			"" + id_absensi);
+
+		recyclerView = findViewById(R.id.recycle_view);
+
+		toolbar = findViewById(R.id.toolbar);
+
+		swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+
+		swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+			@Override
+			public void onRefresh() {
+				// Your code to make your refresh action
+				internalDetailAbsensiPresenter.onLoadSemuaData(
+					"" + id_absensi);
+
+				// CallYourRefreshingMethod();
+				final Handler handler = new Handler();
+				handler.postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						if (swipeRefreshLayout.isRefreshing()) {
+							swipeRefreshLayout.setRefreshing(false);
+						}
+					}
+				}, 1000);
+			}
+		});
+
 		setNilaiDefault();
+		initActionBar();
 	}
 
 	@Override
@@ -76,7 +113,10 @@ public class InternalDetailAbsensiActivity extends AppCompatActivity implements 
 
 	@Override
 	public void initActionBar() {
-
+		setSupportActionBar(toolbar);
+		if (getSupportActionBar() != null) {
+			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		}
 	}
 
 	@Override
@@ -95,21 +135,41 @@ public class InternalDetailAbsensiActivity extends AppCompatActivity implements 
 
 	@Override
 	public void onSuccessMessage(String message) {
-
+		Toasty.success(this, message, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onErrorMessage(String message) {
-
+		Toasty.error(this, message, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void backPressed() {
-
+		onBackPressed();
 	}
 
 	@Override
 	public void keHalamanLain() {
+//		Intent intent = new Intent(getApplicationContext(), EksternalListProveActivity.class);
+//		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//		startActivity(intent);
+	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+
+			case android.R.id.home:
+				onBackPressed();
+				break;
+		}
+		return true;
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		internalDetailAbsensiPresenter.onLoadSemuaData(
+			"" + id_absensi);
 	}
 }
