@@ -3,6 +3,7 @@ package com.its.scc.Activities.Internal.DetailAbsensi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -142,7 +143,19 @@ public class InternalDetailAbsensiActivity extends AppCompatActivity implements 
 
 	@Override
 	public void onSetupListView(ArrayList<Internal> dataModelArrayList) {
+		adapterListAbsensiAnggota = new AdapterListAbsensiAnggota(this, dataModelArrayList);
+		GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
+		recyclerView.setAdapter(adapterListAbsensiAnggota);
+		recyclerView.setLayoutManager(layoutManager);
+		recyclerView.setNestedScrollingEnabled(true);
+		adapterListAbsensiAnggota.notifyDataSetChanged();
 
+		adapterListAbsensiAnggota.setOnItemClickListener(new AdapterListAbsensiAnggota.ClickListener() {
+			@Override
+			public void onClick(View view, int position) {
+				
+			}
+		});
 	}
 
 	@Override
@@ -167,9 +180,7 @@ public class InternalDetailAbsensiActivity extends AppCompatActivity implements 
 
 	@Override
 	public void keHalamanLain() {
-//		Intent intent = new Intent(getApplicationContext(), EksternalListProveActivity.class);
-//		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//		startActivity(intent);
+
 	}
 
 	@Override

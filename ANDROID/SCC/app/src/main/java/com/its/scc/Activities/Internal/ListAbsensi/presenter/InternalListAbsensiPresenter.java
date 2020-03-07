@@ -57,6 +57,13 @@ public class InternalListAbsensiPresenter implements IInternalListAbsensiPresent
 					String message = obj.getString("message");
 					String id_internal_akses = obj.getString("id_internal_akses");
 
+					HashMap<String, String> user = sessionManager.getDataUser();
+					String id_internal_session = user.get(sessionManager.ID_USER);
+
+					if (id_internal_akses.equals(id_internal_session)) {
+						internalListAbsensiView.showAkses();
+					}
+
 					if (success.equals("1")) {
 
 						dataModelArrayList = new ArrayList<>();
@@ -92,13 +99,6 @@ public class InternalListAbsensiPresenter implements IInternalListAbsensiPresent
 						dataModelArrayList = new ArrayList<>();
 						internalListAbsensiView.onSetupListView(dataModelArrayList);
 						internalListAbsensiView.onErrorMessage(message);
-					}
-
-					HashMap<String, String> user = sessionManager.getDataUser();
-					String id_internal_session = user.get(sessionManager.ID_USER);
-
-					if (id_internal_akses.equals(id_internal_session)) {
-						internalListAbsensiView.showAkses();
 					}
 
 				} catch (JSONException e) {

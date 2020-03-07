@@ -11,6 +11,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.its.scc.Activities.Internal.DetailAbsensi.view.IInternalDetailAbsensiView;
 import com.its.scc.Controllers.BaseUrl;
+import com.its.scc.Controllers.SessionManager;
 import com.its.scc.Models.Internal;
 
 import org.json.JSONArray;
@@ -30,11 +31,15 @@ public class InternalDetailAbsensiPresenter implements IInternalDetailAbsensiPre
 
 	ArrayList<Internal> dataModelArrayList;
 
+	SessionManager sessionManager;
+
 	public InternalDetailAbsensiPresenter(Context context, IInternalDetailAbsensiView internalDetailAbsensiView) {
 		this.context = context;
 		this.internalDetailAbsensiView = internalDetailAbsensiView;
 
 		baseUrl = new BaseUrl();
+
+		sessionManager = new SessionManager(context);
 	}
 
 	@Override
@@ -50,6 +55,14 @@ public class InternalDetailAbsensiPresenter implements IInternalDetailAbsensiPre
 						JSONObject obj = new JSONObject(response);
 						String success = obj.getString("success");
 						String message = obj.getString("message");
+						String id_internal_akses = obj.getString("id_internal_akses");
+
+						HashMap<String, String> user = sessionManager.getDataUser();
+						String id_internal_session = user.get(sessionManager.ID_USER);
+
+						if (id_internal_akses.equals(id_internal_session)) {
+							internalDetailAbsensiView.showAkses();
+						}
 
 						if (success.equals("1")) {
 
@@ -60,9 +73,31 @@ public class InternalDetailAbsensiPresenter implements IInternalDetailAbsensiPre
 								Internal playerModel = new Internal();
 								JSONObject dataobj = dataArray.getJSONObject(i);
 
+								String id_detail_absensi = dataobj.getString("id_detail_absensi");
+								String id_absensi = dataobj.getString("id_absensi");
 								String id_internal = dataobj.getString("id_internal");
+								String tgl_absen = dataobj.getString("tgl_absen");
+								String nama = dataobj.getString("nama");
+								String no_hp = dataobj.getString("no_hp");
+								String akun_line = dataobj.getString("akun_line");
+								String username = dataobj.getString("username");
+								String hak_akses = dataobj.getString("hak_akses");
+								String jabatan_managerial = dataobj.getString("jabatan_managerial");
+								String status_sj = dataobj.getString("status_sj");
+								String foto = dataobj.getString("foto");
 
+								playerModel.setId_detail_absensi(id_detail_absensi);
+								playerModel.setId_absensi(id_absensi);
 								playerModel.setId_internal(id_internal);
+								playerModel.setTgl_absen(tgl_absen);
+								playerModel.setNama(nama);
+								playerModel.setNo_hp(no_hp);
+								playerModel.setAkun_line(akun_line);
+								playerModel.setUsername(username);
+								playerModel.setHak_akses(hak_akses);
+								playerModel.setJabatan_managerial(jabatan_managerial);
+								playerModel.setStatus_sj(status_sj);
+								playerModel.setFoto(foto);
 
 								dataModelArrayList.add(playerModel);
 							}
