@@ -1,7 +1,32 @@
 package com.its.scc.Models;
 
 public class Internal {
+	String id_detail_absensi,id_absensi,tgl_absen;
 	String id_internal, nama, no_hp, akun_line, username, hak_akses, jabatan_managerial, status_sj, foto;
+
+	public String getId_detail_absensi() {
+		return id_detail_absensi;
+	}
+
+	public void setId_detail_absensi(String id_detail_absensi) {
+		this.id_detail_absensi = id_detail_absensi;
+	}
+
+	public String getId_absensi() {
+		return id_absensi;
+	}
+
+	public void setId_absensi(String id_absensi) {
+		this.id_absensi = id_absensi;
+	}
+
+	public String getTgl_absen() {
+		return tgl_absen;
+	}
+
+	public void setTgl_absen(String tgl_absen) {
+		this.tgl_absen = tgl_absen;
+	}
 
 	public String getId_internal() {
 		return id_internal;

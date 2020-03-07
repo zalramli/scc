@@ -244,37 +244,54 @@ class Absensi extends REST_Controller
 
     function list_detail_absensi_post()
     {
+        $id_absensi = $this->post('id_absensi');
 
+        $where = array(
+            'id_absensi' => $id_absensi
+        );
 
         // mengambil data dari database
-        $query = $this->M_universal->tampil_data('absensi');
+        $query = $this->M_universal->get_data('list_anggota_absensi', $where);
 
         // variable array
         $result = array();
-        $result['absensi'] = array();
+        $result['list_anggota_absensi'] = array();
 
         if ($query->num_rows() > 0) {
 
             // mengeluarkan data dari database
             foreach ($query->result_array() as $row) {
 
+                $id_detail_absensi = $row["id_detail_absensi"];
                 $id_absensi = $row["id_absensi"];
-                $tgl_absensi = $row["tgl_absensi"];
-                $status_absensi = $row["status_absensi"];
+                $id_internal = $row["id_internal"];
+                $tgl_absen = $row["tgl_absen"];
+                $nama = $row["nama"];
+                $no_hp = $row["no_hp"];
+                $akun_line = $row["akun_line"];
+                $username = $row["username"];
+                $hak_akses = $row["hak_akses"];
+                $jabatan_managerial = $row["jabatan_managerial"];
+                $status_sj = $row["status_sj"];
+                $foto = $row["foto"];
 
                 // ambil detail data db
                 $data = array(
+                    'id_detail_absensi' => $id_detail_absensi,
                     'id_absensi' => $id_absensi,
-                    'id_internal' => $row["id_internal"],
-                    'judul_absensi' => $row["judul_absensi"],
-                    'tgl_absensi' => $tgl_absensi,
-                    'jam_mulai' => $row["jam_mulai"],
-                    'jam_selesai' => $row["jam_selesai"],
-                    'status_absensi' => $status_absensi,
-                    'kata_sandi' => $row["kata_sandi"],
+                    'id_internal' => $id_internal,
+                    'tgl_absen' => $tgl_absen,
+                    'nama' => $nama,
+                    'no_hp' => $no_hp,
+                    'akun_line' => $akun_line,
+                    'username' => $username,
+                    'hak_akses' => $hak_akses,
+                    'jabatan_managerial' => $jabatan_managerial,
+                    'status_sj' => $status_sj,
+                    'foto' => $foto
                 );
 
-                array_push($result['absensi'], $data);
+                array_push($result['list_anggota_absensi'], $data);
             }
 
             // membuat array untuk di transfer

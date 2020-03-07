@@ -31,7 +31,7 @@ ORDER BY db.id_detail_bs ASC
 LIMIT 60;
 
 CREATE VIEW list_anggota_absensi AS
-SELECT dp.id_detail_prove , dp.id_prove ,dp.rating , dp.deskripsi , e.id_eksternal , e.nama , e.no_hp , e.akun_line , e.username ,e.angkatan , e.foto
-FROM detail_prove dp JOIN eksternal e USING(id_eksternal)
-ORDER BY dp.id_detail_prove ASC
+SELECT da.id_detail_absensi, da.id_absensi , da.id_internal , da.tgl_absen, i.nama , i.no_hp , i.akun_line , i.username , i.hak_akses , i.jabatan_managerial , i.status_sj , i.foto
+FROM detail_absensi da JOIN internal i USING(id_internal)
+ORDER BY da.id_detail_absensi ASC
 LIMIT 60;
