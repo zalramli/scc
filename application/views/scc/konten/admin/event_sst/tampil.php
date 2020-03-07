@@ -13,6 +13,7 @@
 			<h6 class="m-0 font-weight-bold text-primary">Pendaftaran SST</h6>
 		</div>
 		<div class="card-body">
+		    <h4>JUMLAH PENDAFTAR : <?php echo $jumlah_pendaftar; ?></h4>
 			<div class="table-responsive">
 				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 					<thead>
@@ -25,6 +26,7 @@
 							<th class="text-center">No Hp</th>
 							<th class="text-center">Line</th>
 							<th class="text-center">Alasan</th>
+							<th class="text-center">Status</th>
 							<th class="text-center">Aksi</th>
 						</tr>
 					</thead>
@@ -42,8 +44,9 @@
 								<td><?= $data->no_hp ?></td>
 								<td><?= $data->akun_line ?></td>
 								<td><?= $data->alasan ?></td>
+								<td><?= $data->status ?></td>
 								<td class="text-center">
-									<!-- <a style="cursor:pointer" class="btn btn-sm btn-warning text-white" data-toggle="modal" data-target="#modal-edit<?= $data->id_materi_prove ?>">Edit</a> -->
+									<a style="cursor:pointer" class="btn btn-sm btn-warning text-white" data-toggle="modal" data-target="#modal-edit<?= $data->id_event_sst ?>">Edit</a>
 									<a href="<?= base_url('admin/sst/delete/' . $data->id_event_sst) ?>" class="btn btn-sm btn-danger tombol-hapus">Hapus</a>
 								</td>
 							</tr>
@@ -55,25 +58,32 @@
 	</div>
 </div>
 
-<!-- Modal Edit
+<!-- Modal Edit -->
 <?php foreach ($record as $data) :  ?>
-	<div id="modal-edit<?= $data->id_materi_prove; ?>" class="modal fade">
+	<div id="modal-edit<?= $data->id_event_sst; ?>" class="modal fade">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Edit Mater Prove</h5>
+					<h5 class="modal-title">Edit Status Pembayaran</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<?php echo form_open('admin/materi_prove/update'); ?>
+				<?php echo form_open('admin/sst/update'); ?>
 				<div class="modal-body">
 					<div class="form-row">
 						<div class="form-group col-sm-6">
-							<input type="hidden" name="id_materi_prove" value="<?= $data->id_materi_prove ?>">
-							<label for="inputEmail2">Nama Materi</label>
+							<input type="hidden" name="id_event_sst" value="<?= $data->id_event_sst ?>">
+							<label for="inputEmail2">Nama</label>
 							<input type="text" name="nama" value="<?= $data->nama ?>" class="form-control form-control-sm karakter" id="inputEmail2" placeholder="Masukan nama materi" required>
 
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="inputEmail2">Status Pembayaran</label>
+							<select name="status" class="form-control form-control-sm">
+								<option value="Belum" <?php if($data->status=="Belum"){echo"selected";} ?>>Belum</option>
+								<option value="Lunas" <?php if($data->status=="Lunas"){echo"selected";} ?>>Lunas</option>
+							</select>
 						</div>
 					</div>
 				</div>
@@ -85,7 +95,7 @@
 			</div>
 		</div>
 	</div>
-<?php endforeach; ?> -->
+<?php endforeach; ?>
 <script src="<?= base_url(); ?>_assets/sb_admin_2/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
 	$('.tombol-hapus').on('click', function(e) {

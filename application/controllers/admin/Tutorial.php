@@ -17,7 +17,7 @@ class Tutorial extends CI_Controller
     {
         $upload['upload_path'] ='_assets/image_web/';
         $upload['allowed_types'] ='jpg|png|jpeg';
-        $upload['file_name'] = $this->input->post('judul').'.jpg';
+        $upload['file_name'] = $this->input->post('judul');
         $upload['overwrite'] =true;
         $upload['max_size'] =3072;
         $this->upload->initialize($upload);
@@ -52,7 +52,7 @@ class Tutorial extends CI_Controller
         
         $upload['upload_path'] ='_assets/image_web/';
         $upload['allowed_types'] ='jpg|png|jpeg';
-        $upload['file_name'] = $this->input->post('judul').'.jpg';
+        $upload['file_name'] = $this->input->post('judul');
         $upload['overwrite'] =true;
         $upload['max_size'] =3072;
         $this->upload->initialize($upload);
@@ -70,7 +70,7 @@ class Tutorial extends CI_Controller
                 $judul_foto = $ambil->foto;
             }
             // Hapus foto lama
-            unlink("_assets/image_web/".$judul_foto);
+            delete_files('_assets/image_web/'.$judul_foto, TRUE);
             
             $data = array(
                 'judul' => $this->input->post('judul'),

@@ -11,7 +11,9 @@ class Tutorial extends CI_Controller
 
     public function index()
     {
-        $data['record'] = $this->M_crud->tampil_data('tutorial')->result();
+        $this->db->from("tutorial");
+        $this->db->order_by("id_tutorial", "desc");
+        $data['record'] = $this->db->get()->result(); 
         $this->template->load('scc/template/web', 'scc/konten/web/tutorial/tampil',$data);
     }
 }

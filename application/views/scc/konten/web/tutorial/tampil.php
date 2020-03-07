@@ -27,9 +27,10 @@
                       <article class="blog_item">
                         <div class="blog_item_img">
                           <img class="card-img rounded-0" src="<?php echo base_url() ?>_assets/image_web/<?php echo $data->foto ?>" alt="">
-                          <a href="#" class="blog_item_date">
-                            <h3>15</h3>
-                            <p>Jan</p>
+                          <a class="blog_item_date">
+                            <h3><?php echo date('d', strtotime($data->tanggal_upload)); ?></h3>
+                            <p class="text-white"><?php echo date('M', strtotime($data->tanggal_upload)); ?></p>
+                            <p class="text-white"><?php echo date('Y', strtotime($data->tanggal_upload)); ?></p>
                           </a>
                         </div>
                         
@@ -40,48 +41,22 @@
                             <p>
                                 <?php echo $data->deskripsi ?>
                             </p>
-                            <ul class="blog-info-link">
-                              <li><a href="#"><i class="far fa-user"></i> Travel, Lifestyle</a></li>
-                              <li><a href="#"><i class="far fa-comments"></i> 03 Comments</a></li>
-                            </ul>
+                            <button type="button" class="button button-hero video-btn" data-toggle="modal" data-src="<?php echo $data->embed ?>" data-target="#myModal">
+                                Play Tutorial
+                            </button>
                         </div>
                       </article>
+                      
                       <?php 
                       }
                       ?>
                       
-
-
-                      <nav class="blog-pagination justify-content-center d-flex">
-                          <ul class="pagination">
-                              <li class="page-item">
-                                  <a href="#" class="page-link" aria-label="Previous">
-                                      <span aria-hidden="true">
-                                          <span class="lnr lnr-chevron-left"></span>
-                                      </span>
-                                  </a>
-                              </li>
-                              <li class="page-item">
-                                  <a href="#" class="page-link">1</a>
-                              </li>
-                              <li class="page-item active">
-                                  <a href="#" class="page-link">2</a>
-                              </li>
-                              <li class="page-item">
-                                  <a href="#" class="page-link" aria-label="Next">
-                                      <span aria-hidden="true">
-                                          <span class="lnr lnr-chevron-right"></span>
-                                      </span>
-                                  </a>
-                              </li>
-                          </ul>
-                      </nav>
                   </div>
               </div>
               <div class="col-lg-4">
                   <div class="blog_right_sidebar">
                       <aside class="single_sidebar_widget search_widget">
-                          <form action="#">
+                          <form action="">
                             <div class="form-group">
                               <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="Search Keyword">
@@ -93,50 +68,7 @@
                             <button class="button rounded-0 primary-bg text-white w-100" type="submit">Search</button>
                           </form>
                       </aside>
-
-                      <!-- <aside class="single_sidebar_widget post_category_widget">
-                        <h4 class="widget_title">Category</h4>
-                        <ul class="list cat-list">
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>Resaurant food</p>
-                                    <p>(37)</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>Travel news</p>
-                                    <p>(10)</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>Modern technology</p>
-                                    <p>(03)</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>Product</p>
-                                    <p>(11)</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>Inspiration</p>
-                                    <p>21</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>Health Care (21)</p>
-                                    <p>09</p>
-                                </a>
-                            </li>
-                        </ul>
-                      </aside> -->
-
-                      <aside class="single_sidebar_widget popular_post_widget">
+                      <!-- <aside class="single_sidebar_widget popular_post_widget">
                           <h3 class="widget_title">Recent Post</h3>
                           <div class="media post_item">
                               <img src="<?php echo base_url() ?>_assets/safario/img/blog/popular-post/post1.jpg" alt="post">
@@ -174,9 +106,62 @@
                                   <p>01 Hours ago</p>
                               </div>
                           </div>
-                      </aside>
+                      </aside> -->
                   </div>
               </div>
           </div>
       </div>
   </section>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>        
+            <!-- 16:9 aspect ratio -->
+            <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item video_embed" src=""  allowscriptaccess="always" allow="autoplay" allowfullscreen></iframe>
+            </div>
+        </div>
+        </div>
+    </div>
+</div> 
+  
+<script src="<?php echo base_url(); ?>_assets/safario/vendors/jquery/jquery-3.2.1.min.js"></script>
+<script>
+$(document).ready(function() {
+
+// Gets the video src from the data-src on each button
+
+var $videoSrc;  
+$('.video-btn').click(function() {
+    $videoSrc = $(this).data( "src" );
+});
+
+
+  
+  
+// when the modal is opened autoplay it  
+$('#myModal').on('shown.bs.modal', function (e) {
+    
+// set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+$(".video_embed").attr('src',$videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0" ); 
+})
+  
+
+
+// stop playing the youtube video when I close the modal
+$('#myModal').on('hide.bs.modal', function (e) {
+    // a poor man's stop video
+    $(".video_embed").attr('src',$videoSrc); 
+}) 
+    
+    
+
+
+  
+  
+// document ready  
+});
+</script>
