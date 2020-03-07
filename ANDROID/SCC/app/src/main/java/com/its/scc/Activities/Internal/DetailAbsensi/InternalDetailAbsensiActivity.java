@@ -153,7 +153,7 @@ public class InternalDetailAbsensiActivity extends AppCompatActivity implements 
 		adapterListAbsensiAnggota.setOnItemClickListener(new AdapterListAbsensiAnggota.ClickListener() {
 			@Override
 			public void onClick(View view, int position) {
-				
+
 			}
 		});
 	}

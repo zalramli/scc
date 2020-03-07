@@ -67,7 +67,7 @@ public class InternalDetailAbsensiPresenter implements IInternalDetailAbsensiPre
 						if (success.equals("1")) {
 
 							dataModelArrayList = new ArrayList<>();
-							JSONArray dataArray = obj.getJSONArray("internal");
+							JSONArray dataArray = obj.getJSONArray("list_anggota_absensi");
 							for (int i = 0; i < dataArray.length(); i++) {
 
 								Internal playerModel = new Internal();
