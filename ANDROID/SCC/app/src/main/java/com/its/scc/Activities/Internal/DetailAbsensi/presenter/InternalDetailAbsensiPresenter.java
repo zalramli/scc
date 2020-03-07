@@ -70,7 +70,7 @@ public class InternalDetailAbsensiPresenter implements IInternalDetailAbsensiPre
 							internalDetailAbsensiView.onSetupListView(dataModelArrayList);
 
 						} else {
-							
+
 							dataModelArrayList = new ArrayList<>();
 							internalDetailAbsensiView.onSetupListView(dataModelArrayList);
 							internalDetailAbsensiView.onErrorMessage(message);

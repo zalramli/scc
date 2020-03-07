@@ -11,6 +11,8 @@ public interface IInternalDetailAbsensiView {
 
 	void onSetupListView(ArrayList<Internal> dataModelArrayList);
 
+	void showAkses();
+
 	void onSuccessMessage(String message);
 
 	void onErrorMessage(String message);

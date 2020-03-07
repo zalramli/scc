@@ -6,10 +6,12 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,6 +53,8 @@ public class InternalDetailAbsensiActivity extends AppCompatActivity implements 
 
 	CardView cvItemAdapterListAbsensi;
 
+	Button btnHapus;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -70,6 +74,10 @@ public class InternalDetailAbsensiActivity extends AppCompatActivity implements 
 		tvJamMulai = findViewById(R.id.tv_jam_mulai);
 		tvJamSelesai = findViewById(R.id.tv_jam_selesai);
 		tvStatusAbsensi = findViewById(R.id.tv_status_absensi);
+
+		cvItemAdapterListAbsensi = findViewById(R.id.cv_item_adapter_list_absensi);
+
+		btnHapus = findViewById(R.id.btn_hapus);
 
 		// Nilai Awal
 		internalDetailAbsensiPresenter = new InternalDetailAbsensiPresenter(this, this);
@@ -126,11 +134,20 @@ public class InternalDetailAbsensiActivity extends AppCompatActivity implements 
 		tvJamMulai.setText("Jam Mulai : " + jam_mulai);
 		tvJamSelesai.setText("Jam Selesai : " + jam_selesai);
 		tvStatusAbsensi.setText("" + status_absensi);
+
+		if (status_absensi.equals("Belum Selesai")) {
+			cvItemAdapterListAbsensi.setCardBackgroundColor(Color.RED);
+		}
 	}
 
 	@Override
 	public void onSetupListView(ArrayList<Internal> dataModelArrayList) {
 
+	}
+
+	@Override
+	public void showAkses() {
+		btnHapus.setVisibility(View.VISIBLE);
 	}
 
 	@Override
