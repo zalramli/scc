@@ -253,6 +253,29 @@ class Bank_software extends REST_Controller
         }
     }
 
+    function on_update_rating_post()
+    {
+
+        $kode_bank_s = $this->post('kode_bank_s');
+        $rating = $this->post('rating');
+
+        // untuk mengubah jadwal status bank_software
+        $where = array(
+            'kode_bank_s' => $kode_bank_s
+        );
+
+        $data_update = array(
+            'rating' => $rating
+        );
+
+        $update =  $this->M_universal->update_data($where, "bank_software", $data_update);
+
+        // membuat array untuk di transfer ke API
+        $result["success"] = "1";
+        $result["message"] = "Berhasil Memberi Rating, Terima Kasih :)";
+        $this->response($result, 200);
+    }
+
     function on_hapus_post()
     {
         // ambil data

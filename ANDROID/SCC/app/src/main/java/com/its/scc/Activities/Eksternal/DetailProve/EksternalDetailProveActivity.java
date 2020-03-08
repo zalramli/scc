@@ -303,9 +303,6 @@ public class EksternalDetailProveActivity extends AppCompatActivity implements V
 						id_eksternal = user.get(sessionManager.ID_USER);
 
 						eksternalDetailProvePresenter.onChangeRating(id_prove, id_eksternal, val_rating, id_jadwal_prove);
-						onSuccessMessage("Anda Sudah Menyelesaikan Prove, Terima Kasih :)");
-						backPressed();
-
 					} else {
 						onErrorMessage("Harus Login Sebagai Eksternal !");
 					}

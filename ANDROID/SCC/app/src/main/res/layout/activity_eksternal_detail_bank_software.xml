@@ -134,6 +134,17 @@
 						android:orientation="horizontal">
 
 						<Button
+							android:id="@+id/btn_rating"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_marginLeft="5dp"
+							android:layout_weight="1"
+							android:drawableStart="@drawable/ic_stars_black"
+							android:drawableLeft="@drawable/ic_stars_black"
+							android:text="Rating"
+							android:visibility="gone" />
+
+						<Button
 							android:id="@+id/btn_hapus"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"

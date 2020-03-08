@@ -15,6 +15,8 @@ public interface IEksternalDetailBankSoftwareView {
 
 	void onErrorMessage(String message);
 
+	void showDialogRating();
+
 	void showDialogHapus();
 
 	void showDialogSelesai();

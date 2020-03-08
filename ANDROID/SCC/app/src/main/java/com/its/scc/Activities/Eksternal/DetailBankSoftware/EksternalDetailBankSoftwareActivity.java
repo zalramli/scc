@@ -13,9 +13,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,7 +69,7 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 
 	CardView cvItemAdapterListBankSoftware;
 
-	Button btnHapus, btnSelesai;
+	Button btnRating, btnHapus, btnSelesai;
 
 	TextView tvDetailBs, tvTanggalBs, tvNamaEksternal, tvNoHp, tvAkunLine;
 
@@ -102,6 +105,7 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 		tvNoHp = findViewById(R.id.tv_no_hp);
 		tvAkunLine = findViewById(R.id.tv_akun_line);
 
+		btnRating = findViewById(R.id.btn_rating);
 		btnHapus = findViewById(R.id.btn_hapus);
 		btnSelesai = findViewById(R.id.btn_selesai);
 
@@ -136,12 +140,16 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 		setNilaiDefault();
 		initActionBar();
 
+		btnRating.setOnClickListener(this);
 		btnHapus.setOnClickListener(this);
 		btnSelesai.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
+		if (v.getId() == R.id.btn_rating) {
+			showDialogRating(); // update rating
+		}
 		if (v.getId() == R.id.btn_hapus) {
 			showDialogHapus(); // hapus
 		}
@@ -174,6 +182,10 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 		} else if (hak_akses.equals("eksternal") && status_bs.equals("Belum Selesai")) {
 			btnSelesai.setVisibility(View.GONE);
 			btnHapus.setVisibility(View.VISIBLE);
+		}
+
+		if (hak_akses.equals("eksternal") && !status_bs.equals("Batal")) {
+			btnRating.setVisibility(View.VISIBLE);
 		}
 
 		tvDetailBs.setText(hari + " ( " + jam_mulai + " - " + jam_selesai + " )");
@@ -209,6 +221,75 @@ public class EksternalDetailBankSoftwareActivity extends AppCompatActivity imple
 	@Override
 	public void onErrorMessage(String message) {
 		Toasty.error(this, message, Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
+	public void showDialogRating() {
+		final AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
+
+		LinearLayout linearLayout = new LinearLayout(this);
+		final RatingBar rating = new RatingBar(this);
+
+		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+			LinearLayout.LayoutParams.WRAP_CONTENT,
+			LinearLayout.LayoutParams.WRAP_CONTENT
+		);
+
+		linearLayout.setGravity(Gravity.CENTER_HORIZONTAL);
+
+		rating.setLayoutParams(lp);
+		rating.setNumStars(5);
+		rating.setStepSize(1);
+
+		//add ratingBar to linearLayout
+		linearLayout.addView(rating);
+
+		popDialog.setIcon(android.R.drawable.btn_star_big_on);
+		popDialog.setTitle("Tambahkan Rating Bank Software : ");
+
+		//add linearLayout to dailog
+		popDialog.setView(linearLayout);
+
+		rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+			@Override
+			public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+				System.out.println("Rated val:" + v);
+			}
+		});
+
+		// Button OK
+		popDialog.setPositiveButton(android.R.string.ok,
+			new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+
+					String val_rating = String.valueOf(rating.getProgress());
+
+					HashMap<String, String> user = sessionManager.getDataUser();
+					String hak_akses = user.get(sessionManager.HAK_AKSES);
+					String id_eksternal = "";
+
+					if (hak_akses.equals("eksternal")) {
+
+						id_eksternal = user.get(sessionManager.ID_USER);
+
+						eksternalDetailBankSoftwarePresenter.onChangeRating(kode_bank_s, val_rating);
+					} else {
+						onErrorMessage("Harus Login Sebagai Eksternal !");
+					}
+				}
+
+			})
+
+			// Button Cancel
+			.setNegativeButton("Cancel",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				});
+
+		popDialog.create();
+		popDialog.show();
 	}
 
 	@Override

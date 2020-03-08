@@ -172,6 +172,7 @@ public class EksternalDetailProvePresenter implements IEksternalDetailProvePrese
 						String message = jsonObject.getString("message");
 
 						if (success.equals("1")) {
+							eksternalDetailProveView.onSuccessMessage(message);
 							eksternalDetailProveView.backPressed();
 						} else {
 							eksternalDetailProveView.onErrorMessage(message);

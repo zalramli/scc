@@ -302,7 +302,7 @@ class Prove extends REST_Controller
 
                 // membuat array untuk di transfer ke API
                 $result["success"] = "1";
-                $result["message"] = "Berhasil";
+                $result["message"] = "Anda Sudah Menyelesaikan Prove, Terima Kasih :)";
                 $this->response($result, 200);
             } else {
 
