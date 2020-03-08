@@ -1,5 +1,6 @@
 package com.its.scc.Activities.Internal.DetailAbsensi;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -7,9 +8,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -113,11 +116,15 @@ public class InternalDetailAbsensiActivity extends AppCompatActivity implements 
 
 		setNilaiDefault();
 		initActionBar();
+
+		btnHapus.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
+		if (v.getId() == R.id.btn_hapus) {
 
+		}
 	}
 
 	@Override
@@ -171,6 +178,34 @@ public class InternalDetailAbsensiActivity extends AppCompatActivity implements 
 	@Override
 	public void onErrorMessage(String message) {
 		Toasty.error(this, message, Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
+	public void showDialog() {
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+			this);
+		alertDialogBuilder.setTitle("Ingin Menghapus Absensi Ini ?");
+		alertDialogBuilder
+			.setMessage("Klik Ya untuk melakukan hapus !")
+			.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+
+					try {
+						internalDetailAbsensiPresenter.onHapus(id_absensi);
+					} catch (Exception e) {
+						onErrorMessage("Terjadi Kesalahan " + e.toString());
+					}
+
+				}
+			})
+			.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+					dialog.cancel();
+				}
+			});
+
+		AlertDialog alertDialog = alertDialogBuilder.create();
+		alertDialog.show();
 	}
 
 	@Override

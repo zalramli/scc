@@ -134,4 +134,48 @@ public class InternalDetailAbsensiPresenter implements IInternalDetailAbsensiPre
 		RequestQueue requestQueue = Volley.newRequestQueue(context);
 		requestQueue.add(stringRequest);
 	}
+
+	@Override
+	public void onHapus(String id_absensi) {
+		String base_url = baseUrl.getUrlData();
+		String URL_DATA = base_url + "internal/absensi/hapus_absensi"; // url http request
+
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
+			new Response.Listener<String>() {
+				@Override
+				public void onResponse(String response) {
+					try {
+						JSONObject obj = new JSONObject(response);
+						String success = obj.getString("success");
+						String message = obj.getString("message");
+
+						if (success.equals("1")) {
+							internalDetailAbsensiView.onSuccessMessage(message);
+						} else {
+							internalDetailAbsensiView.onErrorMessage(message);
+						}
+
+					} catch (JSONException e) {
+						e.printStackTrace();
+						internalDetailAbsensiView.onErrorMessage("Kesalahan Menerima Data : " + e.toString());
+					}
+				}
+			},
+			new Response.ErrorListener() {
+				@Override
+				public void onErrorResponse(VolleyError error) {
+					internalDetailAbsensiView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
+				}
+			}) {
+			@Override
+			protected Map<String, String> getParams() throws AuthFailureError {
+				Map<String, String> params = new HashMap<>();
+				params.put("id_absensi", id_absensi);
+				return params;
+			}
+		};
+
+		RequestQueue requestQueue = Volley.newRequestQueue(context);
+		requestQueue.add(stringRequest);
+	}
 }
