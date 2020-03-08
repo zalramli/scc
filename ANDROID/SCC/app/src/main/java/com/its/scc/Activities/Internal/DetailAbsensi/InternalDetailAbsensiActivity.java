@@ -123,7 +123,7 @@ public class InternalDetailAbsensiActivity extends AppCompatActivity implements 
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.btn_hapus) {
-
+			showDialogHapus();
 		}
 	}
 
@@ -181,7 +181,7 @@ public class InternalDetailAbsensiActivity extends AppCompatActivity implements 
 	}
 
 	@Override
-	public void showDialog() {
+	public void showDialogHapus() {
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
 			this);
 		alertDialogBuilder.setTitle("Ingin Menghapus Absensi Ini ?");
@@ -211,11 +211,6 @@ public class InternalDetailAbsensiActivity extends AppCompatActivity implements 
 	@Override
 	public void backPressed() {
 		onBackPressed();
-	}
-
-	@Override
-	public void keHalamanLain() {
-
 	}
 
 	@Override

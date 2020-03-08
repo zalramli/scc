@@ -308,4 +308,32 @@ class Absensi extends REST_Controller
             $this->response($result, 200);
         }
     }
+
+    function hapus_absensi_post()
+    {
+        $id_absensi = $this->post('id_absensi');
+
+        $where = array(
+            'id_absensi' => $id_absensi
+        );
+
+        $hapus = $this->M_universal->hapus_data($where, 'absensi');
+
+        if ($hapus) {
+
+            // menghapus detail 
+            $hapus = $this->M_universal->hapus_data($where, 'detail_absensi');
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "Berhasil Menghapus Absensi";
+            $this->response($result, 200);
+        } else {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "Terjadi Kesalahan Server";
+            $this->response($result, 200);
+        }
+    }
 }

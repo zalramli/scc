@@ -151,6 +151,7 @@ public class InternalDetailAbsensiPresenter implements IInternalDetailAbsensiPre
 
 						if (success.equals("1")) {
 							internalDetailAbsensiView.onSuccessMessage(message);
+							internalDetailAbsensiView.backPressed();
 						} else {
 							internalDetailAbsensiView.onErrorMessage(message);
 						}

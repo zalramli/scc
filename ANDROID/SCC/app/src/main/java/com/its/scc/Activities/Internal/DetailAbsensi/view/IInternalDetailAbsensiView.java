@@ -17,9 +17,7 @@ public interface IInternalDetailAbsensiView {
 
 	void onErrorMessage(String message);
 
-	void showDialog();
+	void showDialogHapus();
 
 	void backPressed();
-
-	void keHalamanLain();
 }
