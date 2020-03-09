@@ -1,3 +1,12 @@
+<?php if ($this->session->flashdata('success')) : ?>
+	<div class="pesan-sukses" data-flashdata="<?= $this->session->flashdata('success'); ?>"></div>
+<?php endif; ?>
+<?php if ($this->session->flashdata('update')) : ?>
+	<div class="pesan-update" data-flashdata="<?= $this->session->flashdata('update'); ?>"></div>
+<?php endif; ?>
+<?php if ($this->session->flashdata('hapus')) : ?>
+	<div class="pesan-hapus" data-flashdata="<?= $this->session->flashdata('hapus'); ?>"></div>
+<?php endif; ?>
 <div class="container-fluid">
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">

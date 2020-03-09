@@ -26,12 +26,18 @@
 			$software = base_url('admin/software');
 			$sst = base_url('admin/sst');
 			$bs = base_url('admin/bank_software');
+			$absensi = base_url('admin/absensi');
 			if ($this->session->userdata('nama') == 'Hasri Wiji Aqsari') {
 				echo '
 				<li class="nav-item">
 				<a class="nav-link" href="' . $sst . '">
 			<i class="fas fa-user"></i>
 			<span>Pendaftaran SST</span></a>
+			</li>
+				<li class="nav-item">
+				<a class="nav-link" href="' . $absensi . '">
+			<i class="fas fa-user"></i>
+			<span>Absensi Rapat</span></a>
 			</li>
 				<li class="nav-item">
 				<a class="nav-link" href="' . $internal . '">

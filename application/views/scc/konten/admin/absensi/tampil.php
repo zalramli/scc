@@ -10,7 +10,7 @@
 <div class="container-fluid">
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h5 class="m-0 font-weight-bold text-primary">Data Bank Software</h5>
+			<h5 class="m-0 font-weight-bold text-primary">Data Absensi Rapat</h5>
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
@@ -18,9 +18,11 @@
 					<thead>
 						<tr>
 							<th class="text-center">No</th>
-							<th class="text-center">Nama Peminta</th>
+							<th class="text-center">Judul Absensi</th>
 							<th class="text-center">Tanggal</th>
-							<th class="text-center">Rating</th>
+							<th class="text-center">Jam Mulai</th>
+							<th class="text-center">Jam Selesai</th>
+							<th class="text-center">Kata Sandi</th>
 							<th class="text-center">Status</th>
 							<th class="text-center">Aksi</th>
 						</tr>
@@ -32,11 +34,13 @@
 						?>
 							<tr>
 								<td class="text-center"><?= $no++ ?></td>
-								<td><?= $data->nama_eksternal ?></td>
-								<td><?= date('d-m-Y',strtotime($data->tanggal_bs)) ?></td>
-								<td><?= $data->rating ?></td>
+								<td><?= $data->judul_absensi ?></td>
+								<td><?= date('d-m-Y',strtotime($data->tgl_absensi)) ?></td>
+								<td><?= $data->jam_mulai ?></td>
+								<td><?= $data->jam_selesai ?></td>
+								<td><?= $data->kata_sandi ?></td>
 								<td>
-									<?php if ($data->status_bs == "Selesai") {
+									<?php if ($data->status_absensi == "Selesai") {
 										echo '<span class="badge badge-success">Done</span>';
 									} else {
 										echo '<span class="badge badge-danger">unfinished</span>';
@@ -44,9 +48,9 @@
 									?>
 								</td>
 								<td>
-									<a href="#" class="btn-sm btn-info btn_search" data-toggle="modal" data-target="#exampleModalCenter" data-idbs="<?= $data->kode_bank_s ?>">
+									<a href="#" class="btn-sm btn-info btn_search" data-toggle="modal" data-target="#exampleModalCenter" data-ida="<?= $data->id_absensi ?>">
 										Detail</a>
-									<a href="<?= base_url('admin/bank_software/delete/' . $data->kode_bank_s) ?>" class="btn btn-sm btn-danger tombol-hapus">Hapus</a>
+									<a href="<?= base_url('admin/absensi/delete/' . $data->id_absensi) ?>" class="btn btn-sm btn-danger tombol-hapus">Hapus</a>
 									
 								</td>
 							</tr>
@@ -61,7 +65,7 @@
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">Detail Software</h5>
+				<h5 class="modal-title" id="exampleModalLongTitle">Detail Anggota Absensi</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -72,7 +76,8 @@
 						<thead>
 							<tr>
 								<th class="text-center">No</th>
-								<th class="text-center">Nama Software</th>
+								<th class="text-center">Nama Internal</th>
+								<th class="text-center">Jam Absen</th>
 							</tr>
 						</thead>
 						<tbody id="daftar_barang">
@@ -110,21 +115,21 @@
 </script>
 <script>
 	$('.btn_search').on('click', function() {
-		var kode_bank_s = $(this).data("idbs");
+		var id_absensi = $(this).data("ida");
 		var table;
 		table = $('.table_1').DataTable({
 			"columnDefs": [{
-				"targets": [0, 1],
+				"targets": [0, 2],
 				"className": "text-center"
 			}],
 			"bDestroy": true
 		});
 		table.clear();
 		$.ajax({
-			url: "<?php echo base_url() . 'admin/bank_software/detail_list_software'; ?>",
+			url: "<?php echo base_url() . 'admin/absensi/detail_list_absensi'; ?>",
 			method: "POST",
 			data: {
-				kode_bank_s: kode_bank_s
+				id_absensi: id_absensi
 			},
 			success: function(hasil) {
 				var obj = JSON.parse(hasil);
@@ -132,8 +137,9 @@
 				if (data != '') {
 					var no = 1;
 					$.each(data, function(i, item) {
-						var nama = data[i].nama;
-						table.row.add([no, nama]);
+						var nama = data[i].nama_internal;
+						var tgl_absen = data[i].tgl_absen;
+						table.row.add([no, nama, tgl_absen]);
 						no = no + 1;
 					});
 				} else {
