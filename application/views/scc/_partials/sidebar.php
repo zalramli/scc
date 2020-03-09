@@ -13,7 +13,7 @@
 
 	<!-- Heading -->
 	<div class="sidebar-heading">
-		Sistem Informasi Komunitas
+		Sistem Informasi SCC
 	</div>
 	<!-- Nav Item - Tables -->
 	<?php
@@ -25,6 +25,7 @@
 			$materi_prove = base_url('admin/materi_prove');
 			$software = base_url('admin/software');
 			$sst = base_url('admin/sst');
+			$bs = base_url('admin/bank_software');
 			if ($this->session->userdata('nama') == 'Hasri Wiji Aqsari') {
 				echo '
 				<li class="nav-item">
@@ -48,16 +49,6 @@
 			<span>Prove</span></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="' . $jadwal_bs . '">
-			<i class="fas fa-user"></i>
-			<span>Jadwal Bank Software</span></a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="'.$software.'">
-					<i class="fas fa-user"></i>
-					<span>List Software</span></a>
-			</li>
-			<li class="nav-item">
 					<a class="nav-link" href="' . $jadwal_prove . '">
 			<i class="fas fa-user"></i>
 			<span>Jadwal Prove</span></a>
@@ -67,9 +58,31 @@
 			<i class="fas fa-user"></i>
 			<span>Materi Prove</span></a>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="' . $bs . '">
+			<i class="fas fa-user"></i>
+			<span>Bank Software</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="' . $jadwal_bs . '">
+			<i class="fas fa-user"></i>
+			<span>Jadwal Bank Software</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="'.$software.'">
+					<i class="fas fa-user"></i>
+					<span>List Software</span></a>
+			</li>
+			
 			';
 			} else if ($this->session->userdata('nama') == 'Ichwanul Kahfi Prasetya') {
-				echo '<li class="nav-item">
+				echo '
+				<li class="nav-item">
+				<a class="nav-link" href="' . $bs . '">
+			<i class="fas fa-user"></i>
+			<span>Bank Software</span></a>
+			</li>
+				<li class="nav-item">
 				<a class="nav-link" href="' . $jadwal_bs . '">
 			<i class="fas fa-user"></i>
 			<span>Jadwal Bank Software</span></a>
@@ -96,6 +109,15 @@
 			<a class="nav-link" href="'.$materi_prove.'">
 			<i class="fas fa-user"></i>
 			<span>Materi Prove</span></a>
+			</li>
+			';
+			}
+			else if ($this->session->userdata('nama') == 'Yuniar Mega Kartikasari' || $this->session->userdata('nama') == 'Sarnita Sadya') {
+				echo '
+				<li class="nav-item">
+				<a class="nav-link" href="' . $sst . '">
+			<i class="fas fa-user"></i>
+			<span>Pendaftaran SST</span></a>
 			</li>
 			';
 			}

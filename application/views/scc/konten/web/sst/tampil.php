@@ -81,7 +81,7 @@
           <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-home"></i></span>
             <div class="media-body">
-              <h3>Departemen Statistika FMKSD ITS</h3>
+              <h3>Departemen Statistika FSAD ITS</h3>
               <p>Jl. Teknik Mesin No.175, Keputih, Kec. Sukolilo, Kota SBY, Jawa Timur 60115</p>
             </div>
           </div>

@@ -43,6 +43,10 @@ class Login extends CI_Controller
                 {
                     redirect('admin/jadwal_prove');
                 }
+                else if ($row->nama == 'Yuniar Mega Kartikasari' || $row->nama == 'Sarnita Sadya')
+                {
+                    redirect('admin/sst');
+                }
                 else {
                     $this->session->set_flashdata('akses','Dilogin');
                     redirect('login');
